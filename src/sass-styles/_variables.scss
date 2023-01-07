@@ -1,0 +1,36 @@
+//Primary theme color
+$primaryColor: #00b4d8;
+
+//Tint color
+$tintColor1: #caf0f8;
+$tintColor2: #ade8f4;
+$tintColor3: #90e0ef;
+$tintColor4: #48cae4;
+
+//Shade color
+$shadeColor1: #0096c7;
+$shadeColor2: #0077b6;
+$shadeColor3: #023e8a;
+$shadeColor4: #03045e;
+
+//Secondary color
+$secondaryColorYellowPrimary: #ffea00;
+$secondaryColorYellowShader1: #ffdd00;
+$secondaryColorYellowShader2: #ffd000;
+$secondaryColorYellowShader3: #ffc300;
+$secondaryColorYellowShader4: #ffb700;
+
+//Gray/Black color
+$grayColorMain: #333;
+$grayColorFaint1: #555;
+$grayColorFaint2: #777;
+$grayColorFaint3: #999;
+$grayColorFaint4: #bbb;
+$grayColorFaint5: #ddd;
+
+//Border
+$border: 0.1rem solid $grayColorFaint5;
+$borderRadius: 1rem;
+
+//box shadow
+$boxShadow: 0 0.1rem 0.2rem rgba(51, 51, 51, 0.1);

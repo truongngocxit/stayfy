@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap");
+
+@import "./sass-styles/variables";
+
+//Global style reset
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+}
+
+//Montserrat as primary font
+body {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  color: $grayColorMain;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+button,
+input {
+  font-family: inherit;
+}
