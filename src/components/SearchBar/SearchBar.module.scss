@@ -1,9 +1,8 @@
-.searchBar {
-  display: flex;
+@use "../../sass-styles/variables" as *;
 
-  button {
-    display: block;
-    border: none;
-    background: none;
-  }
+.searchBar__collapsed {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+  position: absolute;
 }

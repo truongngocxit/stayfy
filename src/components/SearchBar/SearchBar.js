@@ -1,30 +1,24 @@
 import styles from "./SearchBar.module.scss";
-import SearchIcon from "../UI/SVG/SearchIcon";
+import ActiveSearchBar from "./ActiveSearchBar";
 import InactiveSearchBar from "./InactiveSearchBar";
+import { useState } from "react";
 
 const SearchBar = function () {
-  const {
-    searchBar,
-    searchBar__Place,
-    searchBar__Time,
-    searchBar__Guests,
-    searchBar__Btn,
-  } = styles;
+  const [isSearching, setIsSearching] = useState(false);
+
+  const handleStartSearching = function () {
+    setIsSearching(true);
+  };
+
+  const { searchBar__collapsed } = styles;
   return (
-    <div className={searchBar}>
-      <div className={searchBar__Place}>
-        <button>All places</button>
-      </div>
-      <div className={searchBar__Time}>
-        <button>Any time</button>
-      </div>
-      <div className={searchBar__Guests}>
-        <button>For 1 guest</button>
-      </div>
-      <div className={searchBar__Btn}>
-        <SearchIcon />
-      </div>
-    </div>
+    <>
+      <ActiveSearchBar className={!isSearching ? searchBar__collapsed : ""} />
+      <InactiveSearchBar
+        className={isSearching ? searchBar__collapsed : ""}
+        onClick={handleStartSearching}
+      />
+    </>
   );
 };
 

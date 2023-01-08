@@ -8,12 +8,13 @@
 *::after {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 //Montserrat as primary font
 body {
   font-family: "Montserrat", sans-serif;
-  box-sizing: border-box;
+
   color: $grayColorMain;
 }
 
@@ -23,5 +24,30 @@ html {
 
 button,
 input {
-  font-family: inherit;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.6rem;
+}
+
+//Customize Ant Range Picker
+
+.ant-picker-active-bar {
+  display: none !important;
+}
+
+.ant-picker-focused {
+  box-shadow: none;
+}
+
+.ant-picker-suffix {
+  display: none !important;
+}
+
+.ant-picker-cell-inner,
+.ant-picker-content {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 1.6rem;
+}
+
+.ant-picker-input {
+  margin: 0 auto;
 }

@@ -1,0 +1,32 @@
+@use "../../sass-styles/variables" as *;
+
+.bottomNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  border-top: $border;
+  font-size: 1.6rem;
+
+  &__Resources {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+      span {
+        text-decoration: underline;
+      }
+    }
+
+    svg {
+      height: 1.6rem;
+      stroke-width: 0.3rem;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import styles from "./InactiveSearchBar.module.scss";
 import SearchIcon from "../UI/SVG/SearchIcon";
 
-const InactiveSearchBar = function () {
+const InactiveSearchBar = function ({ className, onClick }) {
   const {
     searchBar,
     searchBar__Place,
@@ -10,7 +10,7 @@ const InactiveSearchBar = function () {
     searchBar__Btn,
   } = styles;
   return (
-    <div className={searchBar}>
+    <div className={`${searchBar} ${className}`} onClick={onClick}>
       <div className={searchBar__Place}>
         <button>All places</button>
       </div>
