@@ -1,0 +1,19 @@
+&__Items {
+  position: relative;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  width: 99%;
+  margin: 0 auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__Slider {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 8.5%;
+    justify-items: center;
+    transition: all 0.5s ease-out;
+  }
+}

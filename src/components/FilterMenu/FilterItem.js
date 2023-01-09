@@ -1,12 +1,11 @@
 import styles from "./FilterItem.module.scss";
-import AllHomes from "../UI/FilterIcons/AllHomes";
 import { forwardRef } from "react";
 
-const FilterItem = forwardRef(function ({ text }, ref) {
+const FilterItem = forwardRef(function ({ text, svgUrl }, ref) {
   const { filterItem } = styles;
   return (
     <button className={filterItem} ref={ref}>
-      <AllHomes />
+      <img src={svgUrl} alt={text} />
       <span>{text}</span>
     </button>
   );

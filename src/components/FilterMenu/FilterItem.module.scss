@@ -7,19 +7,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90%;
+  padding: 1.5rem 0;
   height: 100%;
-  //border: 1px red dotted;
   gap: 1rem;
-
+  transition: all 0.15s;
   cursor: pointer;
 
-  svg {
-    height: 2.4rem;
-    stroke: $grayColorMain;
+  &:hover {
+    box-shadow: inset 0 -0.3rem 0 0 $grayColorFaint5;
+
+    img {
+      filter: opacity(90%);
+    }
+
+    span {
+      opacity: 100%;
+    }
+  }
+
+  img {
+    height: 2rem;
+    filter: opacity(70%);
   }
 
   span {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    opacity: 80%;
   }
 }
