@@ -1,47 +1,42 @@
 @use "../../sass-styles/variables" as *;
 
 .filterMenu {
-  padding: 3rem 4rem;
+  padding: 1.5rem 4rem;
   display: grid;
-  grid-template-columns: 1fr 15rem;
+  grid-template-columns: 1fr 14rem;
+  column-gap: 2rem;
   justify-items: center;
   align-items: center;
-
+  border-bottom: $border;
   &__Container {
     position: relative;
     width: 100%;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 
   &__Items {
-    width: 100%;
     position: relative;
     overflow-x: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
-
+    width: 99%;
+    margin: 0 auto;
     &::-webkit-scrollbar {
       display: none;
     }
 
     &__Slider {
-      display: flex;
-      gap: 3rem;
-      width: 100%;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 8.5%;
+      justify-items: center;
       transition: all 0.5s ease-out;
     }
 
     &__Btn {
       position: absolute;
       background-color: #fff;
-      width: 2.8rem;
-      height: 2.8rem;
+      width: 3.2rem;
+      height: 3.2rem;
       border-radius: 50%;
       border: none;
       display: flex;
@@ -51,39 +46,49 @@
       transform: translateY(-50%);
       z-index: 10;
       cursor: pointer;
+      transition: all 0.3s;
+      opacity: 1;
+
+      &_Hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      &::after {
+        content: "";
+        width: 300%;
+        height: 300%;
+        background: radial-gradient(
+          rgba(255, 255, 255, 1),
+          rgba(255, 255, 255, 0.8),
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        position: absolute;
+        border-radius: 50%;
+      }
 
       svg {
         z-index: 11;
         border-radius: 50%;
+        width: 100%;
+        height: 100%;
         padding: 0.5rem;
-        border: $border;
+        border: 0.1rem solid $grayColorFaint2;
         background-color: #fff;
         transition: all 0.3s;
+        z-index: 50;
 
         &:hover {
           box-shadow: $boxShadow;
+          transform: translateY(-0.1rem);
+        }
+
+        &:active {
+          transform: translateY(0);
+          box-shadow: none;
         }
       }
-
-      // &::after {
-      //   content: "";
-      //   top: 0;
-      //   left: 0;
-      //   transform: translate(-50%, -50%);
-      //   position: absolute;
-      //   display: block;
-      //   width: 100%;
-      //   height: 100%;
-      //   transform: scale(2.2);
-      //   border-radius: 50rem;
-      //   background: radial-gradient(
-      //     rgba(255, 255, 255, 1),
-      //     rgba(255, 255, 255, 0.8),
-      //     transparent
-      //   );
-
-      //   z-index: 9;
-      // }
 
       &_Left {
         left: 0;
@@ -97,99 +102,8 @@
 
   &__Btn {
     justify-self: end;
+    width: 100%;
+    height: 100%;
+    z-index: 30;
   }
 }
-
-.filterItem {
-  border: none;
-  background: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1 0 auto;
-  gap: 1rem;
-  width: 6.8rem;
-
-  svg {
-    height: 2.4rem;
-    stroke: $grayColorMain;
-  }
-
-  span {
-    font-size: 1.6rem;
-  }
-}
-
-.filterBtn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  border: none;
-  background: none;
-  border-radius: 1rem;
-  border: $border;
-  padding: 1rem 2rem;
-
-  svg {
-    width: 2.4rem;
-  }
-}
-
-// .filterMenu__Items__Btn {
-//   position: absolute;
-//   background-color: #fff;
-//   width: 2.8rem;
-//   height: 2.8rem;
-//   border-radius: 50%;
-//   border: none;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   top: 50%;
-//   transform: translateY(-50%);
-//   z-index: 10;
-//   cursor: pointer;
-
-//   svg {
-//     z-index: 11;
-//     border-radius: 50%;
-//     padding: 0.5rem;
-//     border: $border;
-//     background-color: #fff;
-//     transition: all 0.3s;
-
-//     &:hover {
-//       box-shadow: $boxShadow;
-//     }
-//   }
-
-//   &::after {
-//     content: "";
-//     top: 0;
-//     left: 0;
-//     transform: translate(-50%, -50%);
-//     position: absolute;
-//     display: block;
-//     width: 100%;
-//     height: 100%;
-//     transform: scale(2.2);
-//     border-radius: 50rem;
-//     background: radial-gradient(
-//       rgba(255, 255, 255, 1),
-//       rgba(255, 255, 255, 0.8),
-//       transparent
-//     );
-
-//     z-index: 9;
-//   }
-
-//   &_Left {
-//     left: 0;
-//   }
-
-//   &_Right {
-//     right: 0;
-//   }
-// }

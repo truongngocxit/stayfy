@@ -1,0 +1,25 @@
+@use "../../sass-styles/variables" as *;
+
+.filterItem {
+  border: none;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 100%;
+  //border: 1px red dotted;
+  gap: 1rem;
+
+  cursor: pointer;
+
+  svg {
+    height: 2.4rem;
+    stroke: $grayColorMain;
+  }
+
+  span {
+    font-size: 1.6rem;
+  }
+}

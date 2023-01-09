@@ -1,29 +1,73 @@
 import styles from "./FilterMenu.module.scss";
-import AllHomes from "../UI/FilterIcons/AllHomes";
-import FilterIcon from "../UI/SVG/FilterIcon";
 import ChevronLeftIcon from "../UI/SVG/ChevronLeftIcon";
 import ChevronRightIcon from "../UI/SVG/ChevronRightIcon";
-import { useEffect, useRef, forwardRef } from "react";
+import FilterItem from "./FilterItem";
+import FilterButton from "./FilterButton";
+import { useRef, useEffect, useState } from "react";
 
 const FilterMenu = function () {
   const intersectionObserverRef = useRef(null);
-  const itemsSliderRef = useRef(null);
+
   const firstItemRef = useRef(null);
   const lastItemRef = useRef(null);
+  const filterSliderRef = useRef(null);
+
+  const [leftBtnIsVisible, setLeftBtnIsVisible] = useState(false);
+  const [rightBtnIsVisible, setRightBtnIsVisible] = useState(false);
 
   useEffect(() => {
-    if (!intersectionObserverRef) {
-      const options = {
-        root: itemsSliderRef.current,
-        threshold: 0,
-      };
-      const handleFirstAndLastItemsVisible = function (entries, callback) {};
-      intersectionObserverRef.current = new IntersectionObserver(
-        handleFirstAndLastItemsVisible,
-        options
-      );
-    }
-  });
+    const observerOptions = {
+      root: filterSliderRef.current,
+      threshold: 0,
+    };
+    const observerCallback = function (entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.target === firstItemRef.current && entry.isIntersecting) {
+          setLeftBtnIsVisible(false);
+        } else if (
+          entry.target === firstItemRef.current &&
+          !entry.isIntersecting
+        ) {
+          setLeftBtnIsVisible(true);
+        }
+
+        console.log(entry.target === lastItemRef.current);
+
+        if (entry.target === lastItemRef.current && entry.isIntersecting) {
+          console.log("Hide Right BTN");
+          setRightBtnIsVisible(false);
+        } else if (
+          entry.target === lastItemRef.current &&
+          !entry.isIntersecting
+        ) {
+          console.log("SHow Right BTN");
+          setRightBtnIsVisible(true);
+        }
+      });
+    };
+
+    intersectionObserverRef.current = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    intersectionObserverRef.current.observe(firstItemRef.current);
+    intersectionObserverRef.current.observe(lastItemRef.current);
+  }, []);
+
+  const handleClickLeft = function () {
+    filterSliderRef.current.scrollBy({
+      left: -filterSliderRef.current.getBoundingClientRect().width / 2,
+      behavior: "smooth",
+    });
+  };
+
+  const handleClickRight = function () {
+    filterSliderRef.current.scrollBy({
+      left: filterSliderRef.current.getBoundingClientRect().width / 2,
+      behavior: "smooth",
+    });
+  };
 
   const {
     filterMenu,
@@ -31,6 +75,7 @@ const FilterMenu = function () {
     filterMenu__Items,
     filterMenu__Items__Slider,
     filterMenu__Items__Btn,
+    filterMenu__Items__Btn_Hidden,
     filterMenu__Items__Btn_Left,
     filterMenu__Items__Btn_Right,
     filterMenu__Container,
@@ -38,34 +83,42 @@ const FilterMenu = function () {
   return (
     <div className={filterMenu}>
       <div className={filterMenu__Container}>
-        <button
-          className={`${filterMenu__Items__Btn} ${filterMenu__Items__Btn_Left}`}
-        >
-          <ChevronLeftIcon />
-        </button>
-        <button
-          className={`${filterMenu__Items__Btn} ${filterMenu__Items__Btn_Right}`}
-        >
-          <ChevronRightIcon />
-        </button>
-        <div className={filterMenu__Items}>
-          <div className={filterMenu__Items__Slider} ref={itemsSliderRef}>
+        <div className={filterMenu__Items} ref={filterSliderRef}>
+          <div className={filterMenu__Items__Slider}>
             {new Array(25).fill(0).map((item, index, array) => (
-              <MenuItem
+              <FilterItem
+                text={index + 1}
                 key={index}
                 ref={(node) => {
                   if (index === 0) {
                     firstItemRef.current = node;
-                    console.log(node);
-                  } else if (index === array.length - 1) {
+                  }
+                  if (index === array.length - 1) {
                     lastItemRef.current = node;
-                    console.log(node);
                   }
                 }}
               />
             ))}
           </div>
         </div>
+
+        <button
+          onClick={handleClickLeft}
+          className={`${filterMenu__Items__Btn} ${filterMenu__Items__Btn_Left} ${
+            !leftBtnIsVisible ? filterMenu__Items__Btn_Hidden : ""
+          }`}
+        >
+          <ChevronLeftIcon />
+        </button>
+
+        <button
+          className={`${filterMenu__Items__Btn} ${filterMenu__Items__Btn_Right} ${
+            !rightBtnIsVisible ? filterMenu__Items__Btn_Hidden : ""
+          }`}
+          onClick={handleClickRight}
+        >
+          <ChevronRightIcon />
+        </button>
       </div>
 
       <div className={filterMenu__Btn}>
@@ -77,36 +130,39 @@ const FilterMenu = function () {
 
 export default FilterMenu;
 
-const MenuItem = forwardRef(function (props, ref) {
-  const { filterItem } = styles;
-  return (
-    <button className={filterItem} ref={ref}>
-      <AllHomes />
-      <span>All</span>
-    </button>
-  );
-});
+// const handleClickRight = function () {
+//   const numberOfItemsOnViewport =
+//     filterItemsArrayRef.current.length /
+//     (filterSliderRef.current.scrollWidth /
+//       observerRootRef.current.getBoundingClientRect().width);
 
-const FilterButton = function () {
-  const { filterBtn } = styles;
-  return (
-    <button className={filterBtn}>
-      <FilterIcon />
-      <span>Filter</span>
-    </button>
-  );
-};
-
-const handleSliderToRight = function () {
-  // const sliderWidth = filterSliderRef.current.getBoundingClientRect().width;
-  // slideDistanceRef.current.right += sliderWidth;
-  // slideDistanceRef.current.left -= sliderWidth;
-  // filterSliderRef.current.style.transform = `translateX(-${slideDistanceRef.current.right}px)`;
-};
-
-const handleSliderToLeft = function () {
-  // const sliderWidth = filterSliderRef.current.getBoundingClientRect().width;
-  // slideDistanceRef.current.left += sliderWidth;
-  // slideDistanceRef.current.right -= sliderWidth;
-  // filterSliderRef.current.style.transform = `translateX(${slideDistanceRef.current.left}px)`;
-};
+//   if (
+//     currentScrollPositionRef.current + numberOfItemsOnViewport - (5 + 1) >=
+//     filterItemsArrayRef.current.length - 1
+//   ) {
+//     console.log("Exceedd");
+//     filterItemsArrayRef.current[
+//       filterItemsArrayRef.current.length - 1
+//     ].scrollIntoView({ behavior: "smooth" });
+//   } else {
+//     console.log("Still in");
+//     if (
+//       filterItemsArrayRef.current[
+//         currentScrollPositionRef.current +
+//           numberOfItemsOnViewport * 2 -
+//           (5 + 1) !==
+//           undefined
+//       ]
+//     ) {
+//       filterItemsArrayRef.current[
+//         currentScrollPositionRef.current +
+//           numberOfItemsOnViewport * 2 -
+//           (5 + 1)
+//       ].scrollIntoView({ behavior: "smooth" });
+//     } else {
+//       filterItemsArrayRef.current[
+//         currentScrollPositionRef.current + numberOfItemsOnViewport - (5 + 1)
+//       ].scrollIntoView({ behavior: "smooth" });
+//     }
+//   }
+// };
