@@ -1,0 +1,11 @@
+.header {
+  &__Buffer {
+    height: 100%;
+  }
+  &__FixedContainer {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 500;
+  }
+}

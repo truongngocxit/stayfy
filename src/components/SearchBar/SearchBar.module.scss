@@ -1,8 +1,7 @@
 @use "../../sass-styles/variables" as *;
 
-.searchBar__collapsed {
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0);
-  position: absolute;
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

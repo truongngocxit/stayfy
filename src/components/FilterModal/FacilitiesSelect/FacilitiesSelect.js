@@ -43,9 +43,6 @@ const FacilitiesSelect = function () {
 
   const [visibleSection, ...hiddenSection] = cleansedData;
 
-  console.log(visibleSection);
-  console.log(hiddenSection);
-
   const {
     facilities,
     facilities__Section,

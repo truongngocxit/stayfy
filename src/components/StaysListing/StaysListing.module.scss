@@ -1,0 +1,7 @@
+.staysListing {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4rem 2.5rem;
+  padding: 2rem 4rem;
+  margin-bottom: 8rem;
+}

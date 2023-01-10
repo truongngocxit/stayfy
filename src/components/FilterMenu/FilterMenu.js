@@ -14,7 +14,7 @@ const FilterMenu = function () {
   const [leftBtnIsVisible, setLeftBtnIsVisible] = useState(false);
   const [rightBtnIsVisible, setRightBtnIsVisible] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("all-stays");
-  const intersectionObserverRef = useRef(null);
+  const sliderIntersectionObserverRef = useRef(null);
   const firstItemRef = useRef(null);
   const lastItemRef = useRef(null);
   const filterSliderRef = useRef(null);
@@ -55,18 +55,18 @@ const FilterMenu = function () {
       });
     };
 
-    intersectionObserverRef.current = new IntersectionObserver(
+    sliderIntersectionObserverRef.current = new IntersectionObserver(
       observerCallback,
       observerOptions
     );
 
     if (firstItemRef.current && lastItemRef.current) {
-      intersectionObserverRef.current.observe(firstItemRef.current);
-      intersectionObserverRef.current.observe(lastItemRef.current);
+      sliderIntersectionObserverRef.current.observe(firstItemRef.current);
+      sliderIntersectionObserverRef.current.observe(lastItemRef.current);
     }
 
     if (unobserve) {
-      intersectionObserverRef.current.disconnect();
+      sliderIntersectionObserverRef.current.disconnect();
     }
     return () => {
       unobserve = true;
