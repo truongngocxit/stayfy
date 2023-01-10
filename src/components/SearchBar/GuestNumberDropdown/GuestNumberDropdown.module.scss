@@ -1,0 +1,18 @@
+@use "../../../sass-styles/variables" as *;
+
+.guestNumberDropdown {
+  position: absolute;
+  bottom: -30%;
+  left: 0;
+  width: 300%;
+  background-color: #fff;
+  padding: 2rem 4rem;
+  border-radius: 1.6rem;
+  transform: translate(-10%, 100%);
+  border: $border;
+  box-shadow: $boxShadow;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  gap: 3.5rem;
+}

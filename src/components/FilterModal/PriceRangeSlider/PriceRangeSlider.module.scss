@@ -1,0 +1,44 @@
+@use "../../../sass-styles/variables" as *;
+
+.filterModal__Main__Price__Inputs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.filterModal__Main__Price__Input {
+  display: flex;
+  flex-direction: column;
+  border: $border;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-radius: $borderRadius;
+
+  label {
+    font-size: 1.6rem;
+    color: $grayColorFaint3;
+  }
+
+  span {
+    font-size: 1.6rem;
+    padding-right: 0.4rem;
+  }
+
+  input {
+    border: none;
+    &:focus {
+      outline: none;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+}

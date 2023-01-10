@@ -2,6 +2,7 @@
 
 .searchBar {
   display: flex;
+  margin: 2rem 0;
   align-items: center;
   justify-content: space-between;
   border-radius: 50rem;
@@ -27,11 +28,20 @@
     }
   }
 
+  &__Guests {
+    cursor: pointer;
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+  }
+
   &__Place {
     display: flex;
     flex-direction: column;
     font-size: 1.6rem;
     gap: 0.5rem;
+    position: relative;
 
     label {
       font-size: inherit;
@@ -64,8 +74,8 @@
     background-color: $primaryColor;
     align-self: stretch;
     border-radius: 50rem;
-    width: 12rem;
-    padding: 0 1rem;
+    width: 14rem;
+    padding: 0 1.5rem;
     color: #fff;
     cursor: pointer;
 

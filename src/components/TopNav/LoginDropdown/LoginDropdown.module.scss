@@ -1,0 +1,28 @@
+@use "../../../sass-styles/variables" as *;
+
+.loginDropdown {
+  position: absolute;
+  width: 200%;
+
+  background-color: #fff;
+  border: $border;
+  border-radius: $borderRadius;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  font-size: 1.6rem;
+  box-shadow: $boxShadow;
+  right: 0;
+  bottom: -10%;
+  transform: translate(0, 100%);
+
+  &__Option {
+    padding: 1.5rem 3rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $tintColor1;
+      color: $primaryColor;
+    }
+  }
+}

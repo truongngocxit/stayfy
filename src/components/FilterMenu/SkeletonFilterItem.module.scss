@@ -1,0 +1,35 @@
+@use "../../sass-styles/variables" as *;
+
+.skeletonItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 8rem;
+  gap: 1rem;
+  animation: skeletonGlimmering infinite 1s ease-in alternate;
+  &__Icon {
+    width: 30%;
+    height: 30%;
+    background-color: $grayColorFaint4;
+    border-radius: 50%;
+  }
+
+  &__Text {
+    width: 50%;
+    height: 15%;
+    border-radius: $borderRadius;
+    background-color: $grayColorFaint4;
+  }
+}
+
+@keyframes skeletonGlimmering {
+  0% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -7,9 +7,20 @@
   gap: 0.5rem;
   background: none;
   border: $border;
-  box-shadow: $boxShadow;
+  cursor: pointer;
   justify-content: space-between;
   padding: 0 0.5rem;
+  transition: all 0.3s;
+
+  &:hover {
+    box-shadow: $boxShadow;
+    transform: translateY(-0.1rem);
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
 
   &__Hamburger {
     height: 5rem;

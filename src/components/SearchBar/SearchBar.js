@@ -10,15 +10,19 @@ const SearchBar = function () {
     setIsSearching(true);
   };
 
-  const { searchBar__collapsed } = styles;
+  const handleStopSearching = function () {
+    setIsSearching(false);
+  };
+
+  const { searchBar, searchBar__collapsed } = styles;
   return (
-    <>
-      <ActiveSearchBar className={!isSearching ? searchBar__collapsed : ""} />
-      <InactiveSearchBar
-        className={isSearching ? searchBar__collapsed : ""}
-        onClick={handleStartSearching}
-      />
-    </>
+    <div className={searchBar}>
+      {isSearching ? (
+        <ActiveSearchBar onStopSearching={handleStopSearching} />
+      ) : (
+        <InactiveSearchBar onStartSearching={handleStartSearching} />
+      )}
+    </div>
   );
 };
 

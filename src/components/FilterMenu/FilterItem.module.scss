@@ -25,6 +25,10 @@
     }
   }
 
+  &:focus {
+    outline: none;
+  }
+
   img {
     height: 2rem;
     filter: opacity(70%);
@@ -33,5 +37,22 @@
   span {
     font-size: 1.4rem;
     opacity: 80%;
+  }
+
+  &__Selected {
+    box-shadow: inset 0 -0.3rem 0 0 $tintColor4;
+    background-color: $tintColor1;
+
+    &:hover {
+      box-shadow: inset 0 -0.3rem 0 0 $tintColor4;
+      background-color: $tintColor1;
+    }
+    img {
+      filter: opacity(100%);
+    }
+
+    span {
+      opacity: 100%;
+    }
   }
 }

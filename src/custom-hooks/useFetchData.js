@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const useFetchData = function (url) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -27,6 +27,7 @@ const useFetchData = function (url) {
       } catch (error) {
         setError(`Request has been ${error}`);
       }
+      setIsLoading(false);
     };
 
     fetchData();

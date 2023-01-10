@@ -1,0 +1,113 @@
+@use "../../sass-styles/variables" as *;
+
+.filterModal {
+  height: 85vh;
+  width: 50vw;
+  background-color: #fff;
+  border: $border;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1500;
+  border-radius: $borderRadius;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+
+  &__Head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+    border-bottom: $border;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    svg {
+      position: absolute;
+      height: 3.2rem;
+      width: 3.2rem;
+      top: 1.5rem;
+      left: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+
+      &:hover {
+        background-color: $grayColorFaint6;
+      }
+    }
+  }
+
+  &__Main {
+    padding: 4rem;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+
+    &__Price {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      h3 {
+        font-size: 2.4rem;
+        margin-bottom: 2rem;
+      }
+    }
+
+    &__Type {
+      h3 {
+        font-size: 2.4rem;
+        margin-bottom: 2rem;
+      }
+      &__Container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 1.5rem;
+      }
+    }
+
+    &__Facilities {
+      h3 {
+        font-size: 2.4rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  &__Foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    border-top: $border;
+
+    &__ClearBtn {
+      border: none;
+      background: none;
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    &__ShowBtn {
+      border: none;
+      background: none;
+      background-color: $primaryColor;
+      color: #fff;
+      border-radius: $borderRadius;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: 0.2s all;
+
+      &:hover {
+        background-color: $shadeColor1;
+      }
+    }
+  }
+}

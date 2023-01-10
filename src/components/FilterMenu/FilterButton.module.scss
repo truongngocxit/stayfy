@@ -12,6 +12,17 @@
   border-radius: 1rem;
   border: $border;
   padding: 1rem 2rem;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $boxShadow;
+    transform: translateY(-0.1rem);
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
 
   svg {
     width: 2.4rem;

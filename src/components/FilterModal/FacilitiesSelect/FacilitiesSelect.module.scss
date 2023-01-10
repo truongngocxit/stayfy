@@ -1,0 +1,59 @@
+.facilities {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__Section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 3rem;
+    margin-bottom: 4rem;
+    transition: all 0.3s;
+
+    h4 {
+      font-size: 1.6rem;
+      grid-column: 1 / -1;
+      margin-bottom: -0.5rem;
+    }
+
+    &__Hidden {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      bottom: 0;
+      transform: translateY(-100%);
+      transition: 0.3s all;
+    }
+
+    &__Shown {
+      position: relative;
+      visibility: visible;
+      animation: modalShowing 0.3s;
+    }
+  }
+  &__ShowBtn {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    font-weight: 700;
+    align-self: flex-start;
+    cursor: pointer;
+  }
+}
+
+@keyframes modalShowing {
+  0% {
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+
+  50% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}

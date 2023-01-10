@@ -4,14 +4,17 @@ import ChevronRightIcon from "../UI/SVG/ChevronRightIcon";
 import FilterItem from "./FilterItem";
 import FilterButton from "./FilterButton";
 import { useRef, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import useFetchData from "../../custom-hooks/useFetchData";
+import SkeletonFilterSlider from "./SkeletonFilterSlider";
+import FilterModal from "../FilterModal/FilterModal";
 
 const FilterMenu = function () {
+  const [filterModalIsVisible, setFilterModalIsVisible] = useState(false);
   const [leftBtnIsVisible, setLeftBtnIsVisible] = useState(false);
   const [rightBtnIsVisible, setRightBtnIsVisible] = useState(false);
-
+  const [selectedFilter, setSelectedFilter] = useState("all-stays");
   const intersectionObserverRef = useRef(null);
-
   const firstItemRef = useRef(null);
   const lastItemRef = useRef(null);
   const filterSliderRef = useRef(null);
@@ -23,9 +26,9 @@ const FilterMenu = function () {
   } = useFetchData(
     "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/filters.json"
   );
-  console.log(filterItems);
 
   useEffect(() => {
+    let unobserve = false;
     const observerOptions = {
       root: filterSliderRef.current,
       threshold: 0,
@@ -41,8 +44,6 @@ const FilterMenu = function () {
           setLeftBtnIsVisible(true);
         }
 
-        console.log(entry.target === lastItemRef.current);
-
         if (entry.target === lastItemRef.current && entry.isIntersecting) {
           setRightBtnIsVisible(false);
         } else if (
@@ -53,17 +54,23 @@ const FilterMenu = function () {
         }
       });
     };
-    console.log(firstItemRef.current && lastItemRef.current);
-    if (filterItems.length > 0) {
-      console.log("observe");
-      intersectionObserverRef.current = new IntersectionObserver(
-        observerCallback,
-        observerOptions
-      );
 
+    intersectionObserverRef.current = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    if (firstItemRef.current && lastItemRef.current) {
       intersectionObserverRef.current.observe(firstItemRef.current);
       intersectionObserverRef.current.observe(lastItemRef.current);
     }
+
+    if (unobserve) {
+      intersectionObserverRef.current.disconnect();
+    }
+    return () => {
+      unobserve = true;
+    };
   }, [filterItems]);
 
   const handleClickLeft = function () {
@@ -80,6 +87,18 @@ const FilterMenu = function () {
     });
   };
 
+  const handleOpenFilterModal = function () {
+    setFilterModalIsVisible(true);
+  };
+
+  const handleCloseFilterModal = function () {
+    setFilterModalIsVisible(false);
+  };
+
+  const handleChangeSelectedFilter = function (tag) {
+    setSelectedFilter(tag);
+  };
+
   const {
     filterMenu,
     filterMenu__FilterBtn,
@@ -91,29 +110,34 @@ const FilterMenu = function () {
     filterMenu__Btn_Right,
     filterMenu__Container,
   } = styles;
-  return (
-    <div className={filterMenu}>
+
+  let filterSliderContent;
+
+  if (isLoading || filterItems.length === 0) {
+    filterSliderContent = isLoading && <SkeletonFilterSlider />;
+  } else if (!isLoading && filterItems.length > 0) {
+    filterSliderContent = (
       <div className={filterMenu__Container}>
         <div className={filterMenu__Items} ref={filterSliderRef}>
-          {filterItems.length > 0 && (
-            <div className={filterMenu__Items__Slider}>
-              {filterItems.map((item, index, array) => (
-                <FilterItem
-                  text={item.name}
-                  key={item.id}
-                  svgUrl={item.url}
-                  ref={(node) => {
-                    if (index === 0) {
-                      firstItemRef.current = node;
-                    }
-                    if (index === array.length - 1) {
-                      lastItemRef.current = node;
-                    }
-                  }}
-                />
-              ))}
-            </div>
-          )}
+          <div className={filterMenu__Items__Slider}>
+            {filterItems.map((item, index, array) => (
+              <FilterItem
+                onClick={() => handleChangeSelectedFilter(item.tag)}
+                isSelected={item.tag === selectedFilter}
+                text={item.name}
+                key={item.id}
+                svgUrl={item.url}
+                ref={(node) => {
+                  if (index === 0) {
+                    firstItemRef.current = node;
+                  }
+                  if (index === array.length - 1) {
+                    lastItemRef.current = node;
+                  }
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         <button
@@ -134,9 +158,21 @@ const FilterMenu = function () {
           <ChevronRightIcon />
         </button>
       </div>
+    );
+  }
+
+  return (
+    <div className={filterMenu}>
+      {filterSliderContent}
 
       <div className={filterMenu__FilterBtn}>
-        <FilterButton />
+        <FilterButton onClick={handleOpenFilterModal} />
+
+        {filterModalIsVisible &&
+          createPortal(
+            <FilterModal onClick={handleCloseFilterModal} />,
+            document.getElementById("modal-root")
+          )}
       </div>
     </div>
   );

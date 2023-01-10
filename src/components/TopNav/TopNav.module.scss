@@ -1,9 +1,16 @@
 @use "../../sass-styles/variables" as *;
 
 .topNav {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 4rem;
   border-bottom: $border;
+  background-color: #fff;
+  z-index: 1000;
+
+  &__Menu {
+    position: relative;
+  }
 }
