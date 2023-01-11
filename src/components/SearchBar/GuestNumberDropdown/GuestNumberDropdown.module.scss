@@ -4,11 +4,11 @@
   position: absolute;
   bottom: -30%;
   left: 0;
-  width: 300%;
+  width: 100%;
   background-color: #fff;
   padding: 2rem 4rem;
   border-radius: 1.6rem;
-  transform: translate(-10%, 100%);
+  transform: translateY(100%);
   border: $border;
   box-shadow: $boxShadow;
   display: flex;

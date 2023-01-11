@@ -1,8 +1,7 @@
 import styles from "./FacilitiesSelect.module.scss";
-import FacilitySelect from "./FacilitySelectItem/FacilitySelect";
-import { useState } from "react";
 import useFetchData from "../../../custom-hooks/useFetchData";
 import FacilitySection from "./FacilitySection/FacilitySection";
+import { useState } from "react";
 const FacilitiesSelect = function () {
   const [showMoreIsShown, setShowMoreIsShown] = useState(false);
 
@@ -45,7 +44,7 @@ const FacilitiesSelect = function () {
 
   const {
     facilities,
-    facilities__Section,
+
     facilities__Section__Hidden,
     facilities__Section__Shown,
     facilities__ShowBtn,

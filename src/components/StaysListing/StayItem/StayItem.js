@@ -1,5 +1,6 @@
 import styles from "./StayItem.module.scss";
 import HeartIcon from "../../UI/SVG/HeartIcon";
+import StarIcon from "../../UI/SVG/StartIcon";
 
 const StayItem = function () {
   const {
@@ -23,7 +24,9 @@ const StayItem = function () {
       </div>
       <div className={stayItem__Description}>
         <h4 className={stayItem__Description_Name}>Nha Trang, Vietnam</h4>
-        <span className={stayItem__Description_Review}>⭐ 5.0</span>
+        <span className={stayItem__Description_Review}>
+          <StarIcon /> <span>5.0</span>
+        </span>
         <span className={stayItem__Description_Feature}>Ocean Views</span>
         <span className={stayItem__Description_Date}>Jan 17 - 22</span>
         <span className={stayItem__Description_Price}>

@@ -1,14 +1,12 @@
 import styles from "./ActiveSearchBar.module.scss";
 import SearchIcon from "../UI/SVG/SearchIcon";
-import { DatePicker, ConfigProvider } from "antd";
 import Overlay from "../UI/Overlay/Overlay";
 import LocationSearchDropdown from "./LocationSearchDropdown/LocationSearchDropdown";
 import GuestNumberDropdown from "./GuestNumberDropdown/GuestNumberDropdown";
 import { createPortal } from "react-dom";
 import useDropdown from "../../custom-hooks/useDropdown";
 import useInput from "../../custom-hooks/useInput";
-
-const { RangePicker } = DatePicker;
+import DateRangePicker from "../DateRangePicker/DateRangePicker";
 
 const SearchBar = function ({ className, onStopSearching }) {
   const { dropdownIsVisible, dropdownRef, handleOpenDropdown } = useDropdown();
@@ -20,15 +18,6 @@ const SearchBar = function ({ className, onStopSearching }) {
     handleStopTyping: handleStopTypingQuery,
     handleStartTyping: handleStartTypingQuery,
   } = useInput();
-
-  const datePickerInlineStyle = {
-    border: "none",
-    outline: "none",
-    backgroundColor: "transparent",
-    fontSize: "20px",
-    fontFamily: "inherit",
-    gap: "1rem",
-  };
 
   const {
     searchBar,
@@ -54,18 +43,7 @@ const SearchBar = function ({ className, onStopSearching }) {
           {searchQuery !== "" && isTypingQuery && <LocationSearchDropdown />}
         </div>
         <div className={searchBar__Time}>
-          <ConfigProvider
-            theme={{
-              token: {
-                colorPrimary: "#00b4d8",
-              },
-            }}
-          >
-            <RangePicker
-              style={datePickerInlineStyle}
-              placeholder={["Checkin", "Checkout"]}
-            />
-          </ConfigProvider>
+          <DateRangePicker />
         </div>
         <div
           className={searchBar__Guests}
@@ -73,7 +51,9 @@ const SearchBar = function ({ className, onStopSearching }) {
           ref={dropdownRef}
         >
           <button>Add guests</button>
-          {dropdownIsVisible && <GuestNumberDropdown />}
+          {dropdownIsVisible && (
+            <GuestNumberDropdown style={{ width: "300%" }} />
+          )}
         </div>
         <button className={searchBar__Btn}>
           <SearchIcon />

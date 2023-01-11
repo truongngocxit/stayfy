@@ -1,0 +1,50 @@
+@use "../../../sass-styles/variables" as *;
+
+.imagesPreview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  border-radius: $borderRadius;
+  overflow: hidden;
+  position: relative;
+
+  &__Image {
+    width: 100%;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    &_Main {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+
+  &__ShowBtn {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    border: 0.1rem solid $grayColorMain;
+    border-radius: $borderRadius;
+    box-shadow: $boxShadow;
+    cursor: pointer;
+
+    svg {
+      height: 2.4rem;
+      width: 2.4rem;
+    }
+
+    &:active {
+      transform: scale(0.99);
+    }
+  }
+}

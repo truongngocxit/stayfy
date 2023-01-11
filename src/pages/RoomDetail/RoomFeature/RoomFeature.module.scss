@@ -1,0 +1,40 @@
+@use "../../../sass-styles/variables" as *;
+
+.roomFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  h2 {
+    font-size: 2.4rem;
+  }
+
+  &__List {
+    font-size: 1.6rem;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2rem;
+    &__Item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      svg {
+        width: 2rem;
+      }
+    }
+  }
+
+  &__MoreBtn {
+    background: none;
+    align-self: flex-start;
+    border: 0.2rem solid $grayColorFaint1;
+    border-radius: $borderRadius;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $grayColorFaint7;
+    }
+  }
+}

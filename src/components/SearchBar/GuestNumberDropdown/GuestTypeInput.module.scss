@@ -8,6 +8,7 @@
   &__Text {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
   }
 
@@ -23,6 +24,10 @@
       cursor: pointer;
       border: $border;
       border-radius: 50%;
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &:hover {
         border: 0.1rem solid $grayColorFaint1;
       }

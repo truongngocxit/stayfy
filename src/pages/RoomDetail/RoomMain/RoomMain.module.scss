@@ -1,0 +1,13 @@
+@use "../../../sass-styles/variables" as *;
+
+.roomMain {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8rem;
+
+  &__Info {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+}

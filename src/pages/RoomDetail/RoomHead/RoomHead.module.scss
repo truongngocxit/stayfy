@@ -1,0 +1,43 @@
+@use "../../../sass-styles/variables" as *;
+
+.roomHead {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  row-gap: 2rem;
+
+  &__Heading {
+    grid-column: 1 / -1;
+    font-size: 3.2rem;
+  }
+
+  &__Info {
+    grid-column: 1;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    &__Rating {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      svg {
+        height: 2.4rem;
+        fill: $grayColorMain;
+      }
+    }
+  }
+
+  &__Actions {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    gap: 1rem;
+    justify-self: end;
+    font-weight: 600;
+    text-decoration: underline;
+    svg {
+      height: 2.4rem;
+    }
+  }
+}
