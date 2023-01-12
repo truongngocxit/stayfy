@@ -1,0 +1,57 @@
+@use "../../../sass-styles/variables" as *;
+
+.aboutHost {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  &__Info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    &__Image {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &__Name {
+      height: 100%;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      align-items: center;
+
+      h3 {
+        font-size: 2.4rem;
+      }
+
+      span {
+        font-size: 1.6rem;
+        color: $grayColorFaint3;
+      }
+
+      &__Reviews {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        svg {
+          height: 2rem;
+          fill: $grayColorMain;
+        }
+      }
+    }
+  }
+
+  &__Description {
+    font-size: 1.6rem;
+  }
+}

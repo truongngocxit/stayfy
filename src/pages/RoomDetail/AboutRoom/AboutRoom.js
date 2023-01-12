@@ -2,8 +2,8 @@ import styles from "./AboutRoom.module.scss";
 import { createPortal } from "react-dom";
 import RoomIntroModal from "../RoomIntroModal/RoomIntroModal";
 import Overlay from "../../../components/UI/Overlay/Overlay";
-import { useState } from "react";
-const AboutRoom = function () {
+import { useState, forwardRef } from "react";
+const AboutRoom = forwardRef(function (_, ref) {
   const [showMoreModal, setShowMoreModal] = useState(false);
 
   const handleShowModal = function () {
@@ -17,7 +17,7 @@ const AboutRoom = function () {
   const { aboutRoom } = styles;
   return (
     <>
-      <section className={aboutRoom}>
+      <section className={aboutRoom} ref={ref} id="about">
         <p>
           Enjoy your stay in Dalat on the second floor of a 20th century French
           colonial mansion. It features self check-in, a private bathroom,
@@ -37,6 +37,6 @@ const AboutRoom = function () {
         )}
     </>
   );
-};
+});
 
 export default AboutRoom;

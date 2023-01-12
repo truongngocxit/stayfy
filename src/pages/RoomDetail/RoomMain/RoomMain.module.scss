@@ -4,10 +4,11 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 8rem;
+  padding: 2rem 0 6rem;
 
   &__Info {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 5rem;
   }
 }

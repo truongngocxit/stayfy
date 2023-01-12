@@ -19,9 +19,6 @@ const Footer = function ({ onCloseFooter }) {
   return (
     <>
       <footer className={footer}>
-        <div className={footer__CloseIcon} onClick={onCloseFooter}>
-          <CloseIcon />
-        </div>
         <div className={footer__Links}>
           <section className={footer__Links__Info}>
             <h3>Info</h3>

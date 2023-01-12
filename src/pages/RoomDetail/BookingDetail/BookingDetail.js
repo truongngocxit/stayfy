@@ -6,8 +6,9 @@ import GuestNumberDropdown from "../../../components/SearchBar/GuestNumberDropdo
 import useDropdown from "../../../custom-hooks/useDropdown";
 import { useState } from "react";
 
-const BookingDetail = function () {
+const BookingDetail = function ({ stickyNavHeight }) {
   const [datePickerIsActive, setDatePickerIsActive] = useState(false);
+
   const { dropdownIsVisible, dropdownRef, handleOpenDropdown } = useDropdown();
 
   const handleDatePickerFocus = function () {
@@ -33,7 +34,7 @@ const BookingDetail = function () {
     bookingDetail__Head_Review,
   } = styles;
   return (
-    <div className={bookingDetail}>
+    <div className={bookingDetail} style={{ top: `${40 + stickyNavHeight}px` }}>
       <div className={bookingDetail__Head}>
         <div className={bookingDetail__Head_Price}>
           <span>

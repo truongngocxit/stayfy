@@ -1,0 +1,27 @@
+@use "../../sass-styles/variables" as *;
+
+.footer__Fixed {
+  position: fixed;
+  padding: 7rem 6rem 8rem 6rem;
+  border-radius: 1.6rem 1.6rem 0 0;
+  border: $border;
+  z-index: 3000;
+  width: 100%;
+  background-color: #fff;
+  bottom: 0;
+}
+
+.footer__CloseIcon {
+  position: absolute;
+  width: 3.2rem;
+  height: 3.2rem;
+  padding: 0.3rem;
+  top: 2rem;
+  left: 2rem;
+  cursor: pointer;
+  border-radius: $borderRadius;
+
+  &:hover {
+    background-color: $grayColorFaint6;
+  }
+}

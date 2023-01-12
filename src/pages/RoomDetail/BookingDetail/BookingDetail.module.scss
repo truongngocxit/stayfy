@@ -8,6 +8,8 @@
   font-size: 1.6rem;
   border: $border;
   border-radius: $borderRadius;
+  top: 4rem;
+  position: sticky;
 
   &__Head {
     display: flex;

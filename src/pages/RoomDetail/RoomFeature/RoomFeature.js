@@ -9,8 +9,9 @@ import Kitchen from "../../../components/UI/RoomFeaturesIcon/Kitchen";
 import Workspace from "../../../components/UI/RoomFeaturesIcon/Workspace";
 import HotTub from "../../../components/UI/RoomFeaturesIcon/HotTub";
 import SecurityCamera from "../../../components/UI/RoomFeaturesIcon/SecurityCamera";
+import { forwardRef } from "react";
 
-const RoomFeature = function () {
+const RoomFeature = forwardRef(function (_, ref) {
   const {
     roomFeatures,
     roomFeatures__List,
@@ -18,7 +19,7 @@ const RoomFeature = function () {
     roomFeatures__MoreBtn,
   } = styles;
   return (
-    <div className={roomFeatures}>
+    <div className={roomFeatures} ref={ref} id="features">
       <h2>What this place offers</h2>
       <ul className={roomFeatures__List}>
         <li className={roomFeatures__List__Item}>
@@ -65,6 +66,6 @@ const RoomFeature = function () {
       <button className={roomFeatures__MoreBtn}>Show all amenities</button>
     </div>
   );
-};
+});
 
 export default RoomFeature;

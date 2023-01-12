@@ -3,7 +3,7 @@ export default function Kitchen({ className }) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="currentcolor"
-      ariaHidden="true"
+      aria-hidden="true"
       display="block"
       viewBox="0 0 32 32"
       className={className}

@@ -1,0 +1,14 @@
+@use "../../sass-styles/variables" as *;
+
+.staticFooter {
+  border-top: $border;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  padding: 8rem 12rem 5rem 12rem;
+  background-color: $grayColorFaint7;
+
+  &__Copyright {
+    font-size: 1.6rem;
+  }
+}

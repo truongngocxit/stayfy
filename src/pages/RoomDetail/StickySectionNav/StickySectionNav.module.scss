@@ -1,0 +1,38 @@
+@use "../../../sass-styles/variables" as *;
+
+.stickyNav {
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  display: flex;
+  width: 100%;
+  z-index: 1100;
+  display: block;
+  border-bottom: $border;
+  padding: 0 12rem;
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 4rem;
+    font-size: 1.6rem;
+
+    button {
+      background: none;
+      border: none;
+      padding: 3rem 0;
+      cursor: pointer;
+      color: $grayColorMain;
+
+      &:hover {
+        box-shadow: inset 0 -0.4rem 0 0 $grayColorMain;
+      }
+    }
+  }
+}
+
+.link__Active {
+  button {
+    box-shadow: inset 0 -0.4rem 0 0 $grayColorMain;
+  }
+}

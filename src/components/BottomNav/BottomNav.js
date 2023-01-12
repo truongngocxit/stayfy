@@ -1,6 +1,6 @@
 import styles from "./BottomNav.module.scss";
 import ChevronTopIcon from "../UI/SVG/ChevronTopIcon";
-import Footer from "../Footer/Footer";
+import PopupFooter from "../Footer/PopupFooter";
 import Overlay from "../UI/Overlay/Overlay";
 import { createPortal } from "react-dom";
 import { useState } from "react";
@@ -30,7 +30,7 @@ const BottomNav = function () {
       </div>
       {bottomIsVisible &&
         createPortal(
-          <Footer onCloseFooter={handleCloseFooter} />,
+          <PopupFooter onCloseFooter={handleCloseFooter} />,
           document.getElementById("modal-root")
         )}
       {bottomIsVisible &&

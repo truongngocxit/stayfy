@@ -1,0 +1,11 @@
+@use "../../../sass-styles/variables" as *;
+
+.profile__Settings {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  &__Heading {
+    font-size: 2.8rem;
+  }
+}

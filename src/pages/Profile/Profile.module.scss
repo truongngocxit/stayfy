@@ -1,0 +1,22 @@
+@use "../../sass-styles/variables" as *;
+
+.profile {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  padding: 6rem 12rem;
+  gap: 6rem;
+
+  &__Nav {
+    align-self: flex-start;
+  }
+
+  &__Settings {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    &__Heading {
+      font-size: 2.8rem;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@use "../../../sass-styles/variables" as *;
+
+.settingItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 2rem;
+  border-bottom: $border;
+
+  &__Info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    h4 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__Icon {
+    width: 3.2rem;
+    height: 3.2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    overflow: visible;
+    border: $border;
+    cursor: pointer;
+
+    &:hover {
+      border: 0.1rem solid $primaryColor;
+      background-color: $primaryColor;
+      stroke: #fff;
+    }
+  }
+}
