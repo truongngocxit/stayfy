@@ -1,0 +1,15 @@
+@use "../../../sass-styles/variables" as *;
+
+.settingBtn {
+  padding: 1.5rem 3rem;
+  border: none;
+  border-radius: $borderRadius;
+  background-color: $primaryColor;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $shadeColor1;
+  }
+}

@@ -1,16 +1,16 @@
 @use "../../../sass-styles/variables" as *;
 
 .settingItem {
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  //align-items: flex-start;
   justify-content: space-between;
-  padding: 2rem;
-  border-bottom: $border;
+  grid-template-columns: 9fr 1fr;
+  row-gap: 3rem;
 
   &__Info {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     h4 {
       font-size: 2rem;
     }
@@ -28,11 +28,19 @@
     overflow: visible;
     border: $border;
     cursor: pointer;
+    justify-self: end;
 
     &:hover {
       border: 0.1rem solid $primaryColor;
       background-color: $primaryColor;
-      stroke: #fff;
+
+      svg {
+        stroke: #fff;
+      }
     }
+  }
+
+  &__Form {
+    grid-column: 1 / -1;
   }
 }

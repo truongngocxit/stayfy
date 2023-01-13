@@ -1,0 +1,12 @@
+@use "../../../sass-styles/variables" as *;
+
+.nameSetting {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  &__Btn {
+    width: 40%;
+    align-self: flex-start;
+  }
+}

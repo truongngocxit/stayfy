@@ -8,4 +8,9 @@
   &__Heading {
     font-size: 2.8rem;
   }
+
+  &__Item {
+    padding: 2rem;
+    border-bottom: 0.1rem solid $grayColorFaint5;
+  }
 }

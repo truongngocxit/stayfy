@@ -2,6 +2,7 @@
 
 .lineBreak {
   width: 100%;
-  height: 0.01rem;
+  height: 0.1rem;
   background-color: $grayColorFaint5;
+  z-index: 15;
 }

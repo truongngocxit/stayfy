@@ -2,9 +2,11 @@
 
 .profileNav {
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   border: $border;
   border-radius: $borderRadius;
+  overflow: hidden;
 
   &__Btn {
     background: none;
@@ -14,6 +16,11 @@
     gap: 1.5rem;
     padding: 2rem 4rem;
     cursor: pointer;
+    overflow: hidden;
+
+    &__Active {
+      background-color: $grayColorFaint7;
+    }
 
     &:hover {
       background-color: $grayColorFaint7;
