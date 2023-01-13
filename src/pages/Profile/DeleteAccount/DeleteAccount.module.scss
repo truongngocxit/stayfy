@@ -1,0 +1,7 @@
+@use "../../../sass-styles/variables" as *;
+
+.deleteAccount {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

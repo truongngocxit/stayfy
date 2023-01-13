@@ -1,0 +1,16 @@
+@use "../../../sass-styles/variables" as *;
+
+.securitySettings {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  &__Heading {
+    font-size: 2.8rem;
+  }
+
+  &__Item {
+    padding: 2rem;
+    border-bottom: 0.1rem solid $grayColorFaint5;
+  }
+}

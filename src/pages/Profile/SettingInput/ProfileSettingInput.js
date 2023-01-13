@@ -1,11 +1,11 @@
 import styles from "./ProfileSettingInput.module.scss";
 
-const ProfileSettingInput = function ({ label, className }) {
+const ProfileSettingInput = function ({ label, className, type }) {
   const { settingInput } = styles;
   return (
     <label className={`${settingInput} ${className}`}>
       <span>{label}</span>
-      <input />
+      <input type={type ? type : null} />
     </label>
   );
 };
