@@ -1,0 +1,8 @@
+@use "../../../../../sass-styles/variables" as *;
+
+.totalPrice {
+  display: flex;
+  font-weight: 700;
+  font-size: 2rem;
+  justify-content: space-between;
+}

@@ -1,0 +1,22 @@
+@use "../../../../../sass-styles/variables" as *;
+
+.dateItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__Tag {
+    font-size: 1.4rem;
+    color: $grayColorFaint4;
+    font-weight: 700;
+  }
+
+  &__Date {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  &__Time {
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,37 @@
+@use "../../../../sass-styles/variables" as *;
+
+.guestNum {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-size: 1.6rem;
+  position: relative;
+
+  &__Label {
+    font-weight: 700;
+  }
+
+  &__EditIcon {
+    width: 2.8rem;
+    height: 2.8rem;
+    position: absolute;
+    border-radius: 50%;
+    border: $border;
+    top: -1rem;
+    right: 0;
+    cursor: pointer;
+
+    svg {
+      padding: 0.5rem;
+      stroke: $grayColorMain;
+    }
+
+    &:hover {
+      background-color: $primaryColor;
+      border: none;
+
+      svg {
+        stroke: #fff;
+      }
+    }
+  }
+}

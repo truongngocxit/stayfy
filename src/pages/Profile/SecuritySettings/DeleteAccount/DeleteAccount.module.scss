@@ -1,0 +1,28 @@
+@use "../../../../sass-styles/variables" as *;
+
+.deleteAccount {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__Container {
+    h4 {
+      color: $warningColor1;
+    }
+  }
+
+  &__Input {
+    input {
+      font-weight: 700;
+      color: $warningColor1;
+    }
+  }
+
+  &__Btn {
+    background-color: $warningColor1;
+
+    &:hover {
+      background-color: $warningColor3;
+    }
+  }
+}

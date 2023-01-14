@@ -5,6 +5,7 @@ import Profile from "./pages/Profile/Profile";
 import Wishlist from "./pages/WishList/Wishlist";
 import Error from "./pages/Error404/Error404";
 import RoomDetail from "./pages/RoomDetail/RoomDetail";
+import Checkout from "./pages/Checkout/Checkout";
 
 const App = function () {
   return (
@@ -14,6 +15,7 @@ const App = function () {
       <Route path="profile" element={<Profile />} />
       <Route path="about" element={<About />} />
       <Route path="wishlist" element={<Wishlist />} />
+      <Route path="checkout" element={<Checkout />} />
       <Route path="*" element={<Error />} />
     </Routes>
   );

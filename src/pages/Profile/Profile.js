@@ -3,7 +3,7 @@ import TopNav from "../../components/TopNav/TopNav";
 import StaticFooter from "../../components/Footer/StaticFooter";
 import ProfileNav from "./ProfileNav/ProfileNav";
 import ProfileSettings from "./ProfileSettings/ProfileSettings";
-import SecuritySettings from "./SecuritySetting/SecuritySettings";
+import SecuritySettings from "./SecuritySettings/SecuritySettings";
 import { useState } from "react";
 
 const Profile = function () {

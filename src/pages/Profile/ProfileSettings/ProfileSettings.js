@@ -1,7 +1,7 @@
 import styles from "./ProfileSettings.module.scss";
-import NameSettingForm from "../NameSettingForm/NameSettingForm";
-import EmailSettingForm from "../EmailSettingForm/EmailSettingForm";
-import PhoneSettingForm from "../PhoneSettingForm/PhoneSettingForm";
+import NameSettingForm from "./NameSettingForm/NameSettingForm";
+import EmailSettingForm from "./EmailSettingForm/EmailSettingForm";
+import PhoneSettingForm from "./PhoneSettingForm/PhoneSettingForm";
 import ProfileImageUpload from "../ProfileImageUpload/ProfileImageUpload";
 const ProfileSettings = function ({ className }) {
   const {

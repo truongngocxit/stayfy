@@ -1,0 +1,36 @@
+@use "../../../../sass-styles/variables" as *;
+
+.infoForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  &__Container {
+    border: $border;
+    border-radius: $borderRadius;
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  &__FName {
+    grid-column: 1;
+  }
+
+  &__LName {
+    grid-column: 2;
+  }
+
+  &__Email {
+    grid-column: 1 / -1;
+  }
+
+  &__Phone {
+    grid-column: 1 / -1;
+  }
+}

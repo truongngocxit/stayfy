@@ -1,0 +1,22 @@
+@use "../../../../../sass-styles/variables" as *;
+
+.infoInput {
+  border: $border;
+  display: flex;
+  flex-direction: column;
+  border-radius: $borderRadius;
+  padding: 1rem 2rem;
+  gap: 1rem;
+
+  span {
+    font-size: 1.4rem;
+  }
+  input {
+    background: none;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

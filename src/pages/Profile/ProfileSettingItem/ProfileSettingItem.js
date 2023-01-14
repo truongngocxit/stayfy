@@ -8,6 +8,7 @@ const ProfileSettingItem = function ({
   heading,
   savedInfo,
   placeholder,
+  className,
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -22,7 +23,7 @@ const ProfileSettingItem = function ({
     settingItem__Form,
   } = styles;
   return (
-    <div className={settingItem}>
+    <div className={`${settingItem} ${className}`}>
       <div className={settingItem__Info}>
         <h4>{heading}</h4>
         <p>{!isEditing ? savedInfo : placeholder}</p>
