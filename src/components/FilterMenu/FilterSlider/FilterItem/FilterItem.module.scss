@@ -1,4 +1,4 @@
-@use "../../sass-styles/variables" as *;
+@use "../../../../sass-styles/variables" as *;
 
 .filterItem {
   border: none;
@@ -11,6 +11,7 @@
   height: 100%;
   gap: 1rem;
   transition: all 0.15s;
+  height: 100%;
   cursor: pointer;
 
   &:hover {
@@ -32,6 +33,7 @@
   img {
     height: 2rem;
     filter: opacity(70%);
+    display: block;
   }
 
   span {

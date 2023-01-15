@@ -6,6 +6,8 @@ import StaticFooter from "../../components/Footer/StaticFooter";
 import TopNav from "../../components/TopNav/TopNav";
 import StickySectionNav from "./StickySectionNav/StickySectionNav";
 import { useRef, useEffect, useState, useLayoutEffect } from "react";
+import ImagesSlider from "../../components/ImagesSlider/ImagesSlider";
+import { createPortal } from "react-dom";
 
 const RoomDetail = function () {
   const stickyNavIntersectionObserverRef = useRef(null);
@@ -150,6 +152,7 @@ const RoomDetail = function () {
         />
       </div>
       <StaticFooter />
+      {createPortal(<ImagesSlider />, document.getElementById("modal-root"))}
     </>
   );
 };

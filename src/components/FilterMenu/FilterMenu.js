@@ -1,12 +1,12 @@
 import styles from "./FilterMenu.module.scss";
 import ChevronLeftIcon from "../UI/SVG/ChevronLeftIcon";
 import ChevronRightIcon from "../UI/SVG/ChevronRightIcon";
-import FilterItem from "./FilterItem";
-import FilterButton from "./FilterButton";
+import FilterItem from "./FilterSlider/FilterItem/FilterItem";
+import FilterButton from "./FilterButton/FilterButton";
 import { useRef, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import useFetchData from "../../custom-hooks/useFetchData";
-import SkeletonFilterSlider from "./SkeletonFilterSlider";
+import SkeletonFilterSlider from "./SkeletonFilterSlider/SkeletonFilterSlider";
 import FilterModal from "../FilterModal/FilterModal";
 
 const FilterMenu = function () {

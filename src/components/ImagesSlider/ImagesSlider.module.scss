@@ -1,0 +1,93 @@
+@use "../../sass-styles/variables" as *;
+
+.slider {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #222;
+  z-index: 2000;
+  display: grid;
+  grid-template-rows: 1fr 70% 1fr;
+  gap: 1.5rem;
+  justify-items: center;
+  align-items: center;
+  font-size: 1.6rem;
+  color: #fff;
+
+  &__Nav {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__CloseBtn {
+      position: absolute;
+      left: 5rem;
+      width: 3.6rem;
+      height: 3.6rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 50rem;
+      svg {
+        stroke: #fff;
+      }
+
+      &:hover {
+        border: 0.1rem solid #fff;
+      }
+    }
+  }
+
+  &__Slider {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &__BtnRight,
+    &__BtnLeft {
+      width: 4.2rem;
+      height: 4.2rem;
+      border: 0.1rem solid #fff;
+      background: none;
+      border-radius: 50rem;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      svg {
+        stroke: #fff;
+      }
+
+      &:hover {
+        background-color: #fff;
+
+        svg {
+          stroke: #222;
+        }
+      }
+    }
+
+    &__BtnRight {
+      transform: rotate(180deg);
+    }
+
+    &__Image {
+      height: 100%;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+      }
+    }
+  }
+
+  &__Description {
+    padding: 0 12rem;
+  }
+}

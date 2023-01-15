@@ -1,5 +1,5 @@
 import styles from "./SkeletonFilterSlider.module.scss";
-import SkeletonFilterItem from "./SkeletonFilterItem";
+import SkeletonFilterItem from "./SkeletonFilterItem/SkeletonFilterItem";
 
 const SkeletonFilterSlider = function () {
   const { skeletonFilterSlider } = styles;

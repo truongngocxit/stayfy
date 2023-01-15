@@ -1,5 +1,5 @@
 import styles from "./FilterSlider.module.scss";
-import FilterItem from "./FilterItem";
+import FilterItem from "./FilterItem/FilterItem";
 import { useRef, useEffect } from "react";
 const FilterSlider = function ({ onHandleLeftBtn, onHandleRightBtn }) {
   const intersectionObserverRef = useRef(null);
