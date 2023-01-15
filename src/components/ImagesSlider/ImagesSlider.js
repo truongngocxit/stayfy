@@ -3,9 +3,28 @@ import { sampleImages } from "../../assets/sample-images";
 import CloseIcon from "../UI/SVG/CloseIcon";
 import ChevronLeftIcon from "../UI/SVG/ChevronLeftIcon";
 import useModalIsOpen from "../../custom-hooks/useModalIsOpen";
+import { useState } from "react";
 
 const ImagesSlider = function () {
   useModalIsOpen();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleToPreviousImage = function () {
+    if (currentImageIndex === 0) {
+      setCurrentImageIndex(sampleImages.length - 1);
+    } else {
+      setCurrentImageIndex((i) => i - 1);
+    }
+  };
+
+  const handleToNextImage = function () {
+    if (currentImageIndex === sampleImages.length - 1) {
+      setCurrentImageIndex(0);
+    } else {
+      setCurrentImageIndex((i) => i + 1);
+    }
+  };
+
   const {
     slider,
     slider__Nav,
@@ -23,19 +42,24 @@ const ImagesSlider = function () {
         <button className={slider__Nav__CloseBtn}>
           <CloseIcon />
         </button>
-        <span className={slider__ImageNum}>27/51</span>
+        <span className={slider__ImageNum}>
+          {currentImageIndex + 1}/{sampleImages.length}
+        </span>
       </nav>
       <div className={slider__Slider}>
-        <button className={slider__Slider__BtnLeft}>
+        <button
+          className={slider__Slider__BtnLeft}
+          onClick={handleToPreviousImage}
+        >
           <ChevronLeftIcon />
         </button>
         <div className={slider__Slider__Image}>
-          <img
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-581480098379191226/original/80efcfcd-b88f-4b09-bb33-80e12f537cf5.jpeg?im_w=960"
-            alt="sample"
-          />
+          <img src={sampleImages[currentImageIndex]} alt="sample" />
         </div>
-        <button className={slider__Slider__BtnRight}>
+        <button
+          className={slider__Slider__BtnRight}
+          onClick={handleToNextImage}
+        >
           <ChevronLeftIcon />
         </button>
       </div>
