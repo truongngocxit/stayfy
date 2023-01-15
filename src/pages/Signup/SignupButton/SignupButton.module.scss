@@ -1,0 +1,16 @@
+@use "../../../sass-styles/variables" as *;
+
+.signupBtn {
+  padding: 2rem 4rem;
+  background-color: $primaryColor;
+  color: #fff;
+  font-weight: 700;
+  border-radius: $borderRadius;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $shadeColor1;
+  }
+}

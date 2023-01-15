@@ -1,0 +1,14 @@
+@use "../../../../sass-styles/variables" as *;
+
+.bookingBtn {
+  padding: 2rem 4rem;
+  border: none;
+  background-color: $primaryColor;
+  color: #fff;
+  border-radius: $borderRadius;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $shadeColor1;
+  }
+}

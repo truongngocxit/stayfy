@@ -6,6 +6,8 @@ import Wishlist from "./pages/WishList/Wishlist";
 import Error from "./pages/Error404/Error404";
 import RoomDetail from "./pages/RoomDetail/RoomDetail";
 import Checkout from "./pages/Checkout/Checkout";
+import Trips from "./pages/Trips/Trips";
+import Signup from "./pages/Signup/Signup";
 
 const App = function () {
   return (
@@ -16,6 +18,8 @@ const App = function () {
       <Route path="about" element={<About />} />
       <Route path="wishlist" element={<Wishlist />} />
       <Route path="checkout" element={<Checkout />} />
+      <Route path="trips" element={<Trips />} />
+      <Route path="signup" element={<Signup />} />
       <Route path="*" element={<Error />} />
     </Routes>
   );

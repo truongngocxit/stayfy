@@ -1,0 +1,20 @@
+@use "../../../sass-styles/variables" as *;
+
+.signupInput {
+  @include card;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__Label {
+    font-size: 1.4rem;
+  }
+  &__Input {
+    background: none;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

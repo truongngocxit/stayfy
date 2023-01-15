@@ -43,3 +43,9 @@ $borderRadius: 1rem;
 
 //box shadow
 $boxShadow: 0 0.1rem 0.3rem rgba(3, 3, 3, 0.1);
+
+@mixin card {
+  padding: 1rem 2rem;
+  border: $border;
+  border-radius: $borderRadius;
+}

@@ -1,0 +1,13 @@
+@use "../../../sass-styles/variables";
+
+.loginButton {
+  width: 100%;
+  border: none;
+  background: none;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
