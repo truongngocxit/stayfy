@@ -1,1 +1,13 @@
 @use "../../../../sass-styles/variables" as *;
+
+.amenity {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 1.6rem;
+  align-items: center;
+
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}

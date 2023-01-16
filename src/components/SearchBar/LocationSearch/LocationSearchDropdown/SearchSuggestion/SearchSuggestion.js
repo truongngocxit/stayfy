@@ -1,5 +1,5 @@
 import styles from "./SearchSuggestion.module.scss";
-import LocationIcon from "../../UI/SVG/LocationIcon";
+import LocationIcon from "../../../../UI/SVG/LocationIcon";
 export default function SearchSuggestion({ search }) {
   const { searchSuggestion } = styles;
   return (

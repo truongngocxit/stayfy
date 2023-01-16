@@ -1,6 +1,6 @@
 import styles from "./SearchBar.module.scss";
-import ActiveSearchBar from "./ActiveSearchBar";
-import InactiveSearchBar from "./InactiveSearchBar";
+import ActiveSearchBar from "./ActiveSearchBar/ActiveSearchBar";
+import InactiveSearchBar from "./InactiveSearchBar/InactiveSearchBar";
 import { useState } from "react";
 
 const SearchBar = function () {

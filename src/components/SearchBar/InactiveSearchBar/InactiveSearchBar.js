@@ -1,5 +1,5 @@
 import styles from "./InactiveSearchBar.module.scss";
-import SearchIcon from "../UI/SVG/SearchIcon";
+import SearchIcon from "../../UI/SVG/SearchIcon";
 
 const InactiveSearchBar = function ({ className, onStartSearching }) {
   const {

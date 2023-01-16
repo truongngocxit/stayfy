@@ -1,5 +1,5 @@
 import styles from "./LocationSearchDropdown.module.scss";
-import SearchSuggestion from "./SearchSuggestion";
+import SearchSuggestion from "./SearchSuggestion/SearchSuggestion";
 
 const LocationSearchDropdown = function () {
   const { searchDropdown } = styles;

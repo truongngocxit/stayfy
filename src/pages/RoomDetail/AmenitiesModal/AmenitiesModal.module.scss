@@ -1,7 +1,55 @@
 @use "../../../sass-styles/variables" as *;
 
 .amenities {
-  display: fixed;
+  position: fixed;
   width: 50%;
-  height: 70%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  z-index: 2000;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  border: $border;
+  border-radius: $borderRadius;
+  display: grid;
+  grid-template-rows: 1fr 6fr;
+  gap: 2rem;
+  font-size: 1.6rem;
+  padding-top: 1rem;
+
+  &__Header {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 4rem;
+
+    &__CloseBtn {
+      width: 3.6rem;
+      height: 3.6rem;
+      position: absolute;
+      top: 50%;
+      left: 2rem;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      border-radius: 50rem;
+      padding: 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $grayColorFaint6;
+      }
+    }
+  }
+
+  &__List {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
 }

@@ -10,7 +10,7 @@ const Checkout = function () {
     styles;
   return (
     <>
-      <TopNav />
+      <TopNav hasSearchBar={false} />
       <div className={checkout}>
         <div className={checkout__Aside}>
           <BookingDetailAside />

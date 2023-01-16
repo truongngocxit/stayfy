@@ -1,0 +1,27 @@
+@use "../../../sass-styles/variables" as *;
+
+.locationSearch {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  gap: 0.5rem;
+  position: relative;
+
+  label {
+    font-size: inherit;
+  }
+
+  input {
+    border: none;
+    background: none;
+    font-size: inherit;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $grayColorFaint4;
+    }
+  }
+}

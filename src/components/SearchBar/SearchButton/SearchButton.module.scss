@@ -1,0 +1,26 @@
+@use "../../../sass-styles/variables" as *;
+
+.searchBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  background-color: $primaryColor;
+  align-self: stretch;
+  border-radius: 50rem;
+  width: 14rem;
+  padding: 0 1.5rem;
+  color: #fff;
+  cursor: pointer;
+
+  svg {
+    height: 3.2rem;
+    width: 3.2rem;
+    stroke: #fff;
+  }
+
+  &:hover {
+    background-color: $shadeColor1;
+  }
+}

@@ -1,13 +1,15 @@
 import styles from "./ActiveSearchBar.module.scss";
-import SearchIcon from "../UI/SVG/SearchIcon";
-import Overlay from "../UI/Overlay/Overlay";
-import LocationSearchDropdown from "./LocationSearchDropdown/LocationSearchDropdown";
-import GuestNumberDropdown from "./GuestNumberDropdown/GuestNumberDropdown";
+import SearchIcon from "../../UI/SVG/SearchIcon";
+import Overlay from "../../UI/Overlay/Overlay";
+import GuestNumberDropdown from "../GuestNumberDropdown/GuestNumberDropdown";
 import { createPortal } from "react-dom";
 import { useState } from "react";
-import useDropdown from "../../custom-hooks/useDropdown";
-import useInput from "../../custom-hooks/useInput";
-import DateRangePicker from "../DateRangePicker/DateRangePicker";
+import useDropdown from "../../../custom-hooks/useDropdown";
+import useInput from "../../../custom-hooks/useInput";
+import LocationSearch from "../LocationSearch/LocationSearch";
+import DateSearch from "../DateSearch/DateSearch";
+import GuestNumber from "../GuestNumber/GuestNumber";
+import SearchButton from "../SearchButton/SearchButton";
 
 const SearchBar = function ({ className, onStopSearching }) {
   const { dropdownIsVisible, dropdownRef, handleOpenDropdown } = useDropdown();
@@ -34,13 +36,48 @@ const SearchBar = function ({ className, onStopSearching }) {
     searchBar__Active,
     searchBar__Time,
     searchBar__Guests,
-    searchBar__Btn,
   } = styles;
 
   return (
     <>
       <div className={`${searchBar}  ${className}`}>
-        <div
+        <LocationSearch
+          value={searchQuery}
+          isTyping={isTypingQuery}
+          onChange={handleQueryChange}
+          onBlur={handleStopTypingQuery}
+          onFocus={handleStartTypingQuery}
+          className={`${searchBar__Place} ${
+            isTypingQuery ? searchBar__Active : ""
+          }`}
+        />
+
+        <DateSearch
+          onFocus={handleFocusDatePicker}
+          onBlur={handleBlurDatePicker}
+          className={`${searchBar__Time} ${
+            datePickerIsFocus ? searchBar__Active : ""
+          }`}
+        />
+
+        <GuestNumber
+          className={`${searchBar__Guests} ${
+            dropdownIsVisible ? searchBar__Active : ""
+          }`}
+        />
+        <SearchButton>Search</SearchButton>
+      </div>
+      {createPortal(
+        <Overlay onClick={onStopSearching} />,
+        document.getElementById("overlay-root")
+      )}
+    </>
+  );
+};
+
+export default SearchBar;
+
+/* <div
           className={`${searchBar__Place} ${
             isTypingQuery ? searchBar__Active : ""
           }`}
@@ -55,8 +92,9 @@ const SearchBar = function ({ className, onStopSearching }) {
             onFocus={handleStartTypingQuery}
           />
           {searchQuery !== "" && isTypingQuery && <LocationSearchDropdown />}
-        </div>
-        <div
+        </div> */
+
+/* <div
           className={`${searchBar__Time} ${
             datePickerIsFocus ? searchBar__Active : ""
           }`}
@@ -65,30 +103,4 @@ const SearchBar = function ({ className, onStopSearching }) {
             onFocus={handleFocusDatePicker}
             onBlur={handleBlurDatePicker}
           />
-        </div>
-        <div
-          className={`${searchBar__Guests} ${
-            dropdownIsVisible ? searchBar__Active : ""
-          }`}
-          onClick={handleOpenDropdown}
-          ref={dropdownRef}
-        >
-          <button>Add guests</button>
-          {dropdownIsVisible && (
-            <GuestNumberDropdown style={{ width: "300%" }} />
-          )}
-        </div>
-        <button className={searchBar__Btn}>
-          <SearchIcon />
-          <span>Search</span>
-        </button>
-      </div>
-      {createPortal(
-        <Overlay onClick={onStopSearching} />,
-        document.getElementById("overlay-root")
-      )}
-    </>
-  );
-};
-
-export default SearchBar;
+        </div> */

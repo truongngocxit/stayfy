@@ -1,0 +1,16 @@
+@use "../../../sass-styles/variables" as *;
+
+.guestNum {
+  cursor: pointer;
+  position: relative;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  button {
+    display: block;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+}

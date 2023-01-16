@@ -2,6 +2,7 @@ import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, useMap, Popup, Marker } from "react-leaflet";
 import { useState, useEffect } from "react";
 import L from "leaflet";
+import customLeafletMarker from "./customLeafletMarker";
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -35,10 +36,11 @@ export default function LeafletMap({
           attributionControl={false}
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Marker position={[currentLocation.lat, currentLocation.lng]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
+          <Marker
+            position={[currentLocation.lat, currentLocation.lng]}
+            icon={customLeafletMarker}
+          >
+            <Popup>You will stay here</Popup>
           </Marker>
         </MapContainer>
       </div>

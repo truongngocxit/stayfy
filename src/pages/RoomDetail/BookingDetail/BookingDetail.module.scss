@@ -83,9 +83,14 @@
         box-shadow: 0 0 0 0.4rem $grayColorFaint6;
       }
 
+      &_Active > &_DropdownBtn {
+        transform: rotate(0);
+      }
+
       &_DropdownBtn {
         width: 2rem;
         height: 2rem;
+        transform: rotate(180deg);
       }
     }
   }

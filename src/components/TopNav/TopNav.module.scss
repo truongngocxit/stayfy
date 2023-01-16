@@ -10,6 +10,10 @@
   background-color: #fff;
   z-index: 1000;
 
+  &__Logo {
+    text-decoration: none;
+  }
+
   &__Menu {
     position: relative;
   }
