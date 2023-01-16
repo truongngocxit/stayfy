@@ -14,7 +14,7 @@
 //Montserrat as primary font
 body {
   font-family: "Montserrat", sans-serif;
-
+  scrollbar-width: 10rem;
   color: $grayColorMain;
 }
 
@@ -30,11 +30,14 @@ textarea {
   font-size: 1.6rem;
 }
 
-.modalIsOpen {
-  overflow: hidden;
-}
+//keyframes
 
 //Customize Ant Range Picker
+
+.ant-picker {
+  height: 100% !important;
+  align-self: stretch;
+}
 
 .ant-picker-active-bar {
   display: none !important;
@@ -42,6 +45,10 @@ textarea {
 
 .ant-picker-focused {
   box-shadow: none;
+}
+
+.ant-picker-dropdown {
+  position: fixed !important;
 }
 
 .ant-picker-suffix {
@@ -56,6 +63,12 @@ textarea {
 
 .ant-picker-input {
   margin: 0 auto;
+  height: 100% !important;
+
+  input {
+    text-align: center;
+    cursor: pointer !important;
+  }
 }
 
 //Customize Ant Slider

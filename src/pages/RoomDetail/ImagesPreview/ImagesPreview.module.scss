@@ -8,19 +8,9 @@
   overflow: hidden;
   position: relative;
 
-  &__Image {
-    width: 100%;
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    &_Main {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
+  &__MainImg {
+    grid-column: span 2;
+    grid-row: span 2;
   }
 
   &__ShowBtn {

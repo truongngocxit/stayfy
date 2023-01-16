@@ -2,10 +2,18 @@
   &__Buffer {
     height: 100%;
   }
-  &__FixedContainer {
-    position: fixed;
+
+  &__Main {
     top: 0;
     width: 100vw;
     z-index: 500;
+  }
+
+  &__Fixed {
+    position: fixed;
+  }
+
+  &__Absolute {
+    position: absolute;
   }
 }

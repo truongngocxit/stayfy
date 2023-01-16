@@ -3,11 +3,9 @@ import RoomHead from "./RoomHead/RoomHead";
 import ImagesPreview from "./ImagesPreview/ImagesPreview";
 import RoomMain from "./RoomMain/RoomMain";
 import StaticFooter from "../../components/Footer/StaticFooter";
-import TopNav from "../../components/TopNav/TopNav";
+import Header from "../../components/Header/Header";
 import StickySectionNav from "./StickySectionNav/StickySectionNav";
 import { useRef, useEffect, useState, useLayoutEffect } from "react";
-import ImagesSlider from "../../components/ImagesSlider/ImagesSlider";
-import { createPortal } from "react-dom";
 
 const RoomDetail = function () {
   const stickyNavIntersectionObserverRef = useRef(null);
@@ -121,7 +119,7 @@ const RoomDetail = function () {
   const { roomDetail } = styles;
   return (
     <>
-      <TopNav />
+      <Header isFixed={false} />
       <StickySectionNav
         activeId={activeId}
         isVisible={navIsSticky}
@@ -152,7 +150,6 @@ const RoomDetail = function () {
         />
       </div>
       <StaticFooter />
-      {createPortal(<ImagesSlider />, document.getElementById("modal-root"))}
     </>
   );
 };

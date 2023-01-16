@@ -6,7 +6,7 @@ import Header from "../../components/Header/Header";
 const Home = function () {
   return (
     <>
-      <Header />
+      <Header hasFilter={true} />
       <StaysListing />
       <BottomNav />
     </>

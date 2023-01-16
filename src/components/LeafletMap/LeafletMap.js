@@ -26,18 +26,21 @@ export default function LeafletMap({
 
   if (currentLocation)
     return (
-      <MapContainer
-        center={[currentLocation.lat, currentLocation.lng]}
-        style={style}
-        zoom={13}
-        attributionControl={false}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker position={[currentLocation.lat, currentLocation.lng]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      </MapContainer>
+      <div style={{ zIndex: "0" }}>
+        <MapContainer
+          zIndex={0}
+          center={[currentLocation.lat, currentLocation.lng]}
+          style={style}
+          zoom={13}
+          attributionControl={false}
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <Marker position={[currentLocation.lat, currentLocation.lng]}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        </MapContainer>
+      </div>
     );
 }

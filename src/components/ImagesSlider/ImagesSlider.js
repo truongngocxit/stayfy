@@ -2,11 +2,10 @@ import styles from "./ImagesSlider.module.scss";
 import { sampleImages } from "../../assets/sample-images";
 import CloseIcon from "../UI/SVG/CloseIcon";
 import ChevronLeftIcon from "../UI/SVG/ChevronLeftIcon";
-import useModalIsOpen from "../../custom-hooks/useModalIsOpen";
+
 import { useState } from "react";
 
-const ImagesSlider = function () {
-  useModalIsOpen();
+const ImagesSlider = function ({ onCloseSlider }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleToPreviousImage = function () {
@@ -39,7 +38,7 @@ const ImagesSlider = function () {
   return (
     <div className={slider}>
       <nav className={slider__Nav}>
-        <button className={slider__Nav__CloseBtn}>
+        <button className={slider__Nav__CloseBtn} onClick={onCloseSlider}>
           <CloseIcon />
         </button>
         <span className={slider__ImageNum}>

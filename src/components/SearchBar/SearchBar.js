@@ -14,7 +14,7 @@ const SearchBar = function () {
     setIsSearching(false);
   };
 
-  const { searchBar, searchBar__collapsed } = styles;
+  const { searchBar } = styles;
   return (
     <div className={searchBar}>
       {isSearching ? (

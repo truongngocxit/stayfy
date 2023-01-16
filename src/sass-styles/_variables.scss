@@ -49,3 +49,40 @@ $boxShadow: 0 0.1rem 0.3rem rgba(3, 3, 3, 0.1);
   border: $border;
   border-radius: $borderRadius;
 }
+
+@mixin largeBoxShadow {
+}
+
+//keyframes
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(80%);
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(80%);
+    opacity: 0.2;
+  }
+}
+
+@mixin slideUp {
+  animation: slideUp ease 0.3s backwards;
+}
+
+@mixin slideDown {
+  animation: slideDown ease 0.3s forwards;
+}

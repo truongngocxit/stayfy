@@ -47,7 +47,7 @@ const BookingDetail = function ({ stickyNavHeight }) {
           <span>4.90</span>
         </div>
       </div>
-      <button className={bookingDetail__Btn}>Reserve</button>
+
       <div className={bookingDetail__Info}>
         <div
           className={`${bookingDetail__Info_DatePicker} ${
@@ -72,7 +72,11 @@ const BookingDetail = function ({ stickyNavHeight }) {
           <ChevronTop className={bookingDetail__Info_GuestNum_DropdownBtn} />
           {dropdownIsVisible && (
             <GuestNumberDropdown
-              style={{ width: "150%", left: "auto", right: 0 }}
+              style={{
+                width: "150%",
+                left: "-155%",
+                transform: "translateY(50%)",
+              }}
             />
           )}
         </button>
@@ -81,6 +85,7 @@ const BookingDetail = function ({ stickyNavHeight }) {
         <span>Total before taxes</span>
         <span>$71</span>
       </div>
+      <button className={bookingDetail__Btn}>Reserve</button>
     </div>
   );
 };

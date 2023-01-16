@@ -1,9 +1,9 @@
 import styles from "./Header.module.scss";
 import TopNav from "../TopNav/TopNav";
 import FilterMenu from "../FilterMenu/FilterMenu";
-import { useLayoutEffect, useRef, useState, useEffect } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
-const Header = function () {
+const Header = function ({ hasFilter = false, isFixed = true }) {
   const headerFixedRef = useRef(null);
   const [bufferHeight, setBufferHeight] = useState(0);
   const headerBufferRef = useRef(null);
@@ -13,7 +13,13 @@ const Header = function () {
     setBufferHeight(headerHeight);
   }, []);
 
-  const { header, header__FixedContainer, header__Buffer } = styles;
+  const {
+    header,
+    header__Main,
+    header__Fixed,
+    header__Absolute,
+    header__Buffer,
+  } = styles;
   return (
     <header className={header}>
       <div
@@ -21,9 +27,14 @@ const Header = function () {
         style={{ height: bufferHeight }}
         ref={headerBufferRef}
       ></div>
-      <div className={header__FixedContainer} ref={headerFixedRef}>
+      <div
+        className={`${header__Main} ${
+          isFixed ? header__Fixed : header__Absolute
+        }`}
+        ref={headerFixedRef}
+      >
         <TopNav />
-        <FilterMenu />
+        {hasFilter && <FilterMenu />}
       </div>
     </header>
   );

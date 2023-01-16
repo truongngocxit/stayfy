@@ -1,14 +1,15 @@
 @use "../../sass-styles/variables" as *;
 
 .searchBar {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-auto-rows: auto;
   margin: 2rem 0;
   align-items: center;
   justify-content: space-between;
   border-radius: 50rem;
   border: $border;
   background-color: $grayColorFaint6;
-  padding: 0.5rem;
 
   button {
     display: block;
@@ -16,13 +17,22 @@
     background: none;
   }
 
+  &__Active {
+    background-color: #fff;
+    border-radius: 50rem;
+    box-shadow: 0 0 0 0.3rem #fff, 0 0 1rem 0.8rem rgba(0, 0, 0, 0.1);
+  }
+
   &__Place,
   &__Time,
   &__Guests {
-    padding: 0.5rem 3rem;
+    padding: 1rem 3rem;
+    position: relative;
   }
 
   &__Time {
+    height: 100%;
+
     * {
       font-size: 1.6rem !important;
     }
@@ -31,9 +41,10 @@
   &__Guests {
     cursor: pointer;
     position: relative;
-    align-self: stretch;
+    align-self: center;
     display: flex;
     align-items: center;
+    height: 100%;
   }
 
   &__Place {
@@ -64,7 +75,7 @@
 
   &__Place,
   &__Time {
-    border-right: $border;
+    //border-right: $border;
   }
 
   .searchBar__Btn {
@@ -83,6 +94,10 @@
       height: 3.2rem;
       width: 3.2rem;
       stroke: #fff;
+    }
+
+    &:hover {
+      background-color: $shadeColor1;
     }
   }
 }
