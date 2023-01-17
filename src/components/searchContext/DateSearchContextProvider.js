@@ -15,8 +15,8 @@ const DateSearchContextProvider = function ({ children }) {
 
   const handleDatePickerChange = function (event) {
     setSelectedDate({
-      start: event[0].$d,
-      end: event[1].$d,
+      start: event[0].$d.toString(),
+      end: event[1].$d.toString(),
     });
   };
   return (
@@ -34,4 +34,5 @@ const DateSearchContextProvider = function ({ children }) {
   );
 };
 
-export default DateSearchContextProvider;
+export { DateSearchContextProvider };
+export default DateSearchContext;

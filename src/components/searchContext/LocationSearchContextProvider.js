@@ -29,4 +29,5 @@ const LocationSearchContextProvider = function ({ children }) {
   );
 };
 
-export default LocationSearchContextProvider;
+export { LocationSearchContextProvider };
+export default LocationSearchContext;

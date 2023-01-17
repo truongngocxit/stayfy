@@ -4,18 +4,26 @@ const searchSlice = createSlice({
   name: "search",
   initialState: {
     query: "",
-    date: null,
-    guestNum: null,
+    date: {
+      start: null,
+      end: null,
+    },
+    guestNum: {
+      adults: 0,
+      chilren: 0,
+      babies: 0,
+      animals: 0,
+    },
   },
   reducers: {
     setQuerySearch(state, action) {
-      state.query = action.payload;
+      state.query = action.payload || null;
     },
     setDateSearch(state, action) {
-      state.date = action.payload;
+      state.date = action.payload || null;
     },
     setGuestNum(state, action) {
-      state.guestNum = action.payload;
+      state.guestNum = action.payload || null;
     },
   },
 });

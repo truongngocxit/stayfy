@@ -12,9 +12,17 @@ const GuestNumberContextProvider = function ({ children }) {
 
   const animalsNumContextSlice = useGuestNum(3);
 
+  const resetContext = function () {
+    adultsNumContextSlice.setGuestNum(0);
+    childrenNumContextSlice.setGuestNum(0);
+    babiesNumContextSlice.setGuestNum(0);
+    animalsNumContextSlice.setGuestNum(0);
+  };
+
   return (
     <GuestNumberContext.Provider
       value={{
+        resetContext,
         adultsNumContextSlice,
         childrenNumContextSlice,
         babiesNumContextSlice,
@@ -26,7 +34,8 @@ const GuestNumberContextProvider = function ({ children }) {
   );
 };
 
-export default GuestNumberContextProvider;
+export { GuestNumberContextProvider };
+export default GuestNumberContext;
 
 // const {
 //     guestNum: adultsNum,

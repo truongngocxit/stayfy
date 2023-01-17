@@ -8,8 +8,8 @@ const GuestTypeInput = function ({
   number,
   onIncrease,
   onDecrease,
-  numIsUnder,
-  numIsOver,
+  decreaseDisable,
+  increaseDisable,
 }) {
   const {
     guestTypeInput,
@@ -18,29 +18,31 @@ const GuestTypeInput = function ({
     guestTypeInput__Actions__Disable,
   } = styles;
   return (
-    <div className={guestTypeInput}>
+    <>
       <div className={guestTypeInput__Text}>
         <h3>{typeName}</h3>
         <p>{typeCondition}</p>
       </div>
       <div className={guestTypeInput__Actions}>
         <button
+          type="button"
           onClick={onDecrease}
-          className={numIsUnder ? guestTypeInput__Actions__Disable : ""}
-          disabled={numIsUnder}
+          className={decreaseDisable ? guestTypeInput__Actions__Disable : ""}
+          disabled={decreaseDisable}
         >
           <MinusIcon />
         </button>
         <span>{number}</span>
         <button
+          type="button"
           onClick={onIncrease}
-          className={numIsOver ? guestTypeInput__Actions__Disable : ""}
-          disabled={numIsOver}
+          className={increaseDisable ? guestTypeInput__Actions__Disable : ""}
+          disabled={increaseDisable}
         >
           <AddIcon />
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

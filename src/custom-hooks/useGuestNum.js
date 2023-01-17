@@ -17,6 +17,7 @@ const useGuestNum = function (maxNum) {
 
   return {
     guestNum,
+    setGuestNum,
     guestNumIsTooHigh,
     guestNumIsTooLow,
     handleIncreaseNum,

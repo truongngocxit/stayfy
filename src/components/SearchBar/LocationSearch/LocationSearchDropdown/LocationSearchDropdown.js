@@ -1,9 +1,12 @@
 import styles from "./LocationSearchDropdown.module.scss";
 import SearchSuggestion from "./SearchSuggestion/SearchSuggestion";
 import NoLocationFound from "./NoLocationFound/NoLocationFound";
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 
-const LocationSearchDropdown = function ({ locations, setQuery }) {
+const LocationSearchDropdown = function (
+  { locations, setQuery, onCloseDropdown },
+  ref
+) {
   const [activeIndex, setActiveIndex] = useState(null);
   useEffect(() => {
     const handleArrowUpAndDown = function (event) {
@@ -35,13 +38,20 @@ const LocationSearchDropdown = function ({ locations, setQuery }) {
     document.addEventListener("keydown", handleArrowUpAndDown);
 
     return () => document.removeEventListener("keydown", handleArrowUpAndDown);
-  }, [activeIndex, locations.length]);
+  }, [activeIndex, setQuery, locations]);
+
+  const handleClickSuggestion = function (_, name) {
+    setQuery(name);
+    onCloseDropdown();
+  };
+
   const { searchDropdown } = styles;
   return (
-    <ul className={searchDropdown}>
+    <ul className={searchDropdown} ref={ref}>
       {locations.length > 0 ? (
         locations.map((loc, i) => (
           <SearchSuggestion
+            onClick={handleClickSuggestion.bind(null, null, loc.name)}
             key={loc.id}
             search={loc.name}
             isActive={i === activeIndex}
@@ -54,4 +64,4 @@ const LocationSearchDropdown = function ({ locations, setQuery }) {
   );
 };
 
-export default LocationSearchDropdown;
+export default forwardRef(LocationSearchDropdown);

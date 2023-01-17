@@ -1,17 +1,26 @@
 import styles from "./LocationSearch.module.scss";
 import LocationSearchDropdown from "./LocationSearchDropdown/LocationSearchDropdown";
-import useInput from "../../../custom-hooks/useInput";
 import useFetchData from "../../../custom-hooks/useFetchData";
+import { useContext } from "react";
+import LocationSearchContext from "../../searchContext/LocationSearchContextProvider";
+import useDropdown from "../../../custom-hooks/useDropdown";
 
 const LocationSearch = function ({ activeClassName, className }) {
   const {
-    input: searchQuery,
-    handleInputChange: handleQueryChange,
-    isTyping: isTypingQuery,
-    handleStopTyping: handleStopTypingQuery,
-    handleStartTyping: handleStartTypingQuery,
-    setInput: setQuery,
-  } = useInput();
+    searchQuery,
+    handleQueryChange,
+    isTypingQuery,
+    handleStopTypingQuery,
+    handleStartTypingQuery,
+    setQuery,
+  } = useContext(LocationSearchContext);
+
+  const {
+    dropdownIsVisible,
+    dropdownRef,
+    handleCloseDropdown,
+    handleOpenDropdown,
+  } = useDropdown();
 
   const { data: locations } = useFetchData(
     "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/locations.json"
@@ -34,17 +43,23 @@ const LocationSearch = function ({ activeClassName, className }) {
     >
       <label htmlFor="place">Where</label>
       <input
+        autoComplete="off"
         id="place"
         placeholder="Search for places"
         value={searchQuery}
-        onChange={handleQueryChange}
+        onChange={(event) => {
+          handleQueryChange(event);
+          handleOpenDropdown();
+        }}
         onBlur={handleStopTypingQuery}
         onFocus={handleStartTypingQuery}
       />
-      {searchQuery !== "" && isTypingQuery && (
+      {dropdownIsVisible && (
         <LocationSearchDropdown
+          ref={dropdownRef}
           locations={filteredLocations}
           setQuery={setQuery}
+          onCloseDropdown={handleCloseDropdown}
         />
       )}
     </div>

@@ -1,6 +1,6 @@
-import DateSearchContextProvider from "./DateSearchContextProvider";
-import GuestNumberContextProvider from "./GuestNumberContextProvider";
-import LocationSearchContextProvider from "./LocationSearchContextProvider";
+import { DateSearchContextProvider } from "./DateSearchContextProvider";
+import { GuestNumberContextProvider } from "./GuestNumberContextProvider";
+import { LocationSearchContextProvider } from "./LocationSearchContextProvider";
 
 const SearchContextProvider = function ({ children }) {
   return (

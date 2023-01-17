@@ -4,15 +4,15 @@
   position: absolute;
   bottom: -30%;
   left: 0;
-  width: 100%;
+  // width: 100%;
   background-color: #fff;
   padding: 2rem 4rem;
   border-radius: 1.6rem;
   transform: translateY(100%);
   border: $border;
   box-shadow: $boxShadow;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 6fr 4fr;
   font-size: 1.6rem;
   gap: 3.5rem;
   cursor: default;

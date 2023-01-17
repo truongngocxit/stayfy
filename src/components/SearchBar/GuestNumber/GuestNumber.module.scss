@@ -3,11 +3,23 @@
 .guestNum {
   cursor: pointer;
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   align-items: center;
+  // justify-content: space-between;
   height: 100%;
   font-size: 1.6rem;
-  gap: 1.5rem;
+  gap: 0.5rem;
+  width: 16rem;
+
+  &__ZeroGuest &__Label {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  &__ZeroGuest &__CloseBtn {
+    display: none;
+  }
 
   &__Label {
   }
@@ -15,6 +27,7 @@
   &__CloseBtn {
     width: 2.4rem;
     height: 2.4rem;
+    justify-self: end;
     border-radius: 50%;
     border: none;
     padding: 0.3rem;

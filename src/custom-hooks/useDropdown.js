@@ -4,27 +4,31 @@ const useDropdown = function () {
   const [dropdownIsVisible, setDropdownIsVisible] = useState(false);
   const dropdownRef = useRef(null);
 
-  const handleOpenDropdown = function (event) {
+  const handleOpenDropdown = function () {
     setDropdownIsVisible(true);
   };
 
-  const handleCloseDropdown = function (event) {
-    if (dropdownRef.current && !dropdownRef?.current.contains(event.target)) {
-      setDropdownIsVisible(false);
-    }
+  const handleCloseDropdown = function () {
+    setDropdownIsVisible(false);
   };
 
   useEffect(() => {
-    document.addEventListener("click", handleCloseDropdown);
+    const handleClickOutside = function (event) {
+      if (dropdownRef.current && !dropdownRef?.current.contains(event.target)) {
+        setDropdownIsVisible(false);
+      }
+    };
 
-    return () => document.removeEventListener("click", handleCloseDropdown);
+    document.addEventListener("click", handleClickOutside);
+
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   return {
     dropdownIsVisible,
     dropdownRef,
-    handleCloseDropdown,
     handleOpenDropdown,
+    handleCloseDropdown,
   };
 };
 

@@ -1,24 +1,16 @@
 import styles from "./DateSearch.module.scss";
 import DateRangePicker from "../../DateRangePicker/DateRangePicker";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import DateSearchContext from "../../searchContext/DateSearchContextProvider";
 
 const DateSearch = function ({ className, activeClassName }) {
-  const [datePickerIsFocus, setDatePickerIsFocus] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const handleFocusDatePicker = function () {
-    setDatePickerIsFocus(true);
-  };
-  const handleBlurDatePicker = function () {
-    setDatePickerIsFocus(false);
-  };
-
-  const handleDatePickerChange = function (event) {
-    setSelectedDate({
-      start: event[0].$d,
-      end: event[1].$d,
-    });
-  };
+  const {
+    selectedDate,
+    datePickerIsFocus,
+    handleBlurDatePicker,
+    handleFocusDatePicker,
+    handleDatePickerChange,
+  } = useContext(DateSearchContext);
 
   const { dateSearch } = styles;
   return (
