@@ -39,6 +39,15 @@ textarea {
   align-self: stretch;
 }
 
+.ant-picker-clear {
+  inset-inline-end: 0 !important;
+  background: none !important;
+}
+
+.ant-picker-range-wrapper {
+  margin-top: 1rem;
+}
+
 .ant-picker-active-bar {
   display: none !important;
 }
@@ -49,6 +58,7 @@ textarea {
 
 .ant-picker-dropdown {
   position: fixed !important;
+  bottom: -10rem !important;
 }
 
 .ant-picker-suffix {

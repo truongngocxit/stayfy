@@ -19,6 +19,7 @@ const useInput = function () {
     isTyping,
     handleStopTyping,
     handleStartTyping,
+    setInput,
   };
 };
 

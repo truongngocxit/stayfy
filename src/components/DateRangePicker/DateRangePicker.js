@@ -2,7 +2,7 @@ import styles from "./DateRangePicker.module.scss";
 import { DatePicker, ConfigProvider } from "antd";
 const { RangePicker } = DatePicker;
 
-const DateRangePicker = function ({ onFocus, onBlur }) {
+const DateRangePicker = function ({ onFocus, onBlur, onChange, disabledDate }) {
   const datePickerInlineStyle = {
     border: "none",
     outline: "none",
@@ -25,7 +25,9 @@ const DateRangePicker = function ({ onFocus, onBlur }) {
         onBlur={onBlur}
         inputReadOnly={true}
         style={datePickerInlineStyle}
+        onChange={onChange}
         placeholder={["Checkin", "Checkout"]}
+        disabledDate={disabledDate}
       />
     </ConfigProvider>
   );

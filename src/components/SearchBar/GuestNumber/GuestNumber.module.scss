@@ -3,14 +3,26 @@
 .guestNum {
   cursor: pointer;
   position: relative;
-  align-self: center;
   display: flex;
   align-items: center;
   height: 100%;
-  button {
-    display: block;
+  font-size: 1.6rem;
+  gap: 1.5rem;
+
+  &__Label {
+  }
+
+  &__CloseBtn {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
     border: none;
-    background: none;
+    padding: 0.3rem;
+    background-color: $grayColorFaint6;
     cursor: pointer;
+
+    &:hover {
+      background-color: $grayColorFaint5;
+    }
   }
 }

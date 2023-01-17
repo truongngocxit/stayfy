@@ -1,18 +1,11 @@
 @use "../../../../../sass-styles/variables" as *;
 
-.searchSuggestion {
+.notFound {
   display: flex;
   align-items: center;
   cursor: pointer;
   gap: 2rem;
   padding: 1rem 2rem;
-
-  &__Active {
-    background-color: $tintColor1;
-    span {
-      color: $tintColor4;
-    }
-  }
 
   &:hover {
     background-color: $tintColor1;
