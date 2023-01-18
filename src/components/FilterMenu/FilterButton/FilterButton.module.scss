@@ -13,10 +13,10 @@
   border: $border;
   padding: 1rem 2rem;
   cursor: pointer;
+  box-shadow: $boxShadow;
+  transform: translateY(-0.1rem);
 
   &:hover {
-    box-shadow: $boxShadow;
-    transform: translateY(-0.1rem);
   }
 
   &:active {

@@ -1,7 +1,7 @@
 import styles from "./SignupForm.module.scss";
 import SignupInput from "../SignupInput/SignupInput";
 import SignupButton from "../SignupButton/SignupButton";
-import LoginButton from "../LoginButton/LoginButton";
+import NavigationLink from "../NavigationLink/NavigationLink";
 const SignupForm = function () {
   const {
     signupForm,
@@ -43,7 +43,7 @@ const SignupForm = function () {
       />
       <div className={signupForm__Actions}>
         <SignupButton text="Sign up" />
-        <LoginButton text="Already have an account? Login" />
+        <NavigationLink text="Already have an account? Login" to="/login" />
       </div>
     </form>
   );

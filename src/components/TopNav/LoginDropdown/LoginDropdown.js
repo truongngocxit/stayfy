@@ -1,15 +1,16 @@
 import styles from "./LoginDropdown.module.scss";
+import { Link } from "react-router-dom";
 
 const LoginDropdown = function () {
   const { loginDropdown, loginDropdown__Option } = styles;
   return (
     <div className={loginDropdown}>
-      <div className={loginDropdown__Option}>
+      <Link to="/login" className={loginDropdown__Option}>
         <span>Login</span>
-      </div>
-      <div className={loginDropdown__Option}>
+      </Link>
+      <Link to="/signup" className={loginDropdown__Option}>
         <span>Signup</span>
-      </div>
+      </Link>
     </div>
   );
 };

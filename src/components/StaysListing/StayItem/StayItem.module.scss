@@ -5,6 +5,12 @@
   grid-template-rows: 7fr 3fr;
   row-gap: 1rem;
   cursor: pointer;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: inherit;
+  }
 
   &__Image {
     width: 100%;

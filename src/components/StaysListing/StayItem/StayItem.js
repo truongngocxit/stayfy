@@ -1,6 +1,7 @@
 import styles from "./StayItem.module.scss";
 import HeartIcon from "../../UI/SVG/HeartIcon";
 import StarIcon from "../../UI/SVG/StartIcon";
+import { Link } from "react-router-dom";
 
 const StayItem = function () {
   const {
@@ -14,7 +15,7 @@ const StayItem = function () {
     stayItem__Description_Price,
   } = styles;
   return (
-    <div className={stayItem}>
+    <Link to="detail" className={stayItem}>
       <div className={stayItem__Image}>
         <HeartIcon />
         <img
@@ -33,7 +34,7 @@ const StayItem = function () {
           <strong>$1.161</strong> night
         </span>
       </div>
-    </div>
+    </Link>
   );
 };
 

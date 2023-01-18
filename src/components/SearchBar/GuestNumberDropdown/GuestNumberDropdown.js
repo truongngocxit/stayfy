@@ -1,23 +1,18 @@
 import styles from "./GuestNumberDropdown.module.scss";
 import GuestTypeInput from "./GuestTypeInput/GuestTypeInput";
-import { forwardRef, useContext } from "react";
-import GuestNumberContext from "../../searchContext/GuestNumberContextProvider";
+import { forwardRef } from "react";
 
-const GuestNumberDropdown = forwardRef(function ({ style }, ref) {
-  const {
-    adultsNumContextSlice,
-    childrenNumContextSlice,
-    babiesNumContextSlice,
-    animalsNumContextSlice,
-  } = useContext(GuestNumberContext);
-
+const GuestNumberDropdown = forwardRef(function (
+  { adultsData, babiesData, childrenData, animalsData, style },
+  ref
+) {
   const {
     guestNum: adultsNum,
     guestNumIsTooHigh: adultsNumIsTooHigh,
     guestNumIsTooLow: adultsNumIsTooLow,
     handleDecreaseNum: handleDecreaseAdultsNum,
     handleIncreaseNum: handleIncreaseAdultsNum,
-  } = adultsNumContextSlice;
+  } = adultsData;
 
   const {
     guestNum: childrenNum,
@@ -26,7 +21,7 @@ const GuestNumberDropdown = forwardRef(function ({ style }, ref) {
     guestNumIsTooLow: childrenNumIsTooLow,
     handleDecreaseNum: handleDecreaseChildrenNum,
     handleIncreaseNum: handleIncreaseChildrenNum,
-  } = childrenNumContextSlice;
+  } = childrenData;
 
   const {
     guestNum: babiesNum,
@@ -35,7 +30,7 @@ const GuestNumberDropdown = forwardRef(function ({ style }, ref) {
     guestNumIsTooLow: babiesNumIsTooLow,
     handleDecreaseNum: handleDecreaseBabiesNum,
     handleIncreaseNum: handleIncreaseBabiesNum,
-  } = babiesNumContextSlice;
+  } = babiesData;
 
   const {
     guestNum: animalsNum,
@@ -44,7 +39,7 @@ const GuestNumberDropdown = forwardRef(function ({ style }, ref) {
     guestNumIsTooLow: animalsNumIsTooLow,
     handleDecreaseNum: handleDecreaseAnimalsNum,
     handleIncreaseNum: handleIncreaseAnimalsNum,
-  } = animalsNumContextSlice;
+  } = animalsData;
 
   const handleDecreaseAdultsAndResetOthers = function () {
     handleDecreaseAdultsNum();

@@ -4,10 +4,11 @@ import NoLocationFound from "./NoLocationFound/NoLocationFound";
 import { useState, useEffect, forwardRef } from "react";
 
 const LocationSearchDropdown = function (
-  { locations, setQuery, onCloseDropdown },
+  { locations, setQuery, onCloseDropdown, onFinishSearch },
   ref
 ) {
   const [activeIndex, setActiveIndex] = useState(null);
+
   useEffect(() => {
     const handleArrowUpAndDown = function (event) {
       if (event.key === "ArrowDown") {
@@ -32,17 +33,20 @@ const LocationSearchDropdown = function (
 
       if (event.key === "Enter") {
         setQuery(locations[activeIndex].name);
+        onCloseDropdown();
+        onFinishSearch();
       }
     };
 
     document.addEventListener("keydown", handleArrowUpAndDown);
 
     return () => document.removeEventListener("keydown", handleArrowUpAndDown);
-  }, [activeIndex, setQuery, locations]);
+  }, [activeIndex, setQuery, locations, onCloseDropdown, onFinishSearch]);
 
   const handleClickSuggestion = function (_, name) {
     setQuery(name);
     onCloseDropdown();
+    onFinishSearch();
   };
 
   const { searchDropdown } = styles;

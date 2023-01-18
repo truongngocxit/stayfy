@@ -1,0 +1,8 @@
+@use "../../../../sass-styles/variables" as *;
+
+.rateSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}

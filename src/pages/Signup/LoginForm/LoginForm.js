@@ -1,6 +1,6 @@
 import SignupInput from "../SignupInput/SignupInput";
 import styles from "./LoginForm.module.scss";
-import LoginButton from "../LoginButton/LoginButton";
+import NavigationLink from "../NavigationLink/NavigationLink";
 import SignupButton from "../SignupButton/SignupButton";
 
 const LoginForm = function () {
@@ -11,7 +11,7 @@ const LoginForm = function () {
       <SignupInput label="Password" className={login__Password} />
       <div className={login__Actions}>
         <SignupButton text="Login" />
-        <LoginButton text="Don't have an account? Sign up" />
+        <NavigationLink text="Don't have an account? Sign up" to="/signup" />
       </div>
     </form>
   );

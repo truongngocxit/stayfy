@@ -1,0 +1,63 @@
+@use "../../../sass-styles/variables" as *;
+
+.bookingDetail {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 1.6rem;
+  border: $border;
+  border-radius: $borderRadius;
+  top: 4rem;
+  position: sticky;
+
+  &__Head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_Price {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+
+      strong {
+        font-size: 2.2rem;
+      }
+    }
+
+    &_Review {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      svg {
+        fill: $grayColorMain;
+        width: 2rem;
+      }
+    }
+  }
+
+  &__Info {
+  }
+
+  &__Btn {
+    border: none;
+    background-color: $primaryColor;
+    padding: 1rem 2rem;
+    border-radius: $borderRadius;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    &:hover {
+      background-color: $shadeColor1;
+    }
+  }
+
+  &__Fee {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 700;
+  }
+}

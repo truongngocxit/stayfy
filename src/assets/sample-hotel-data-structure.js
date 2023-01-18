@@ -4,7 +4,7 @@ const hotels = {
   description:
     "Enjoy your stay in Dalat on the second floor of a 20th century French colonial mansion. It features self check-in, a private bathroom, kitchenette, and washing machine. Located in the heart of Dalat, the studio is merely steps away from an abundance of shops, restaurants, and bars. The studio can host 2 people, perfect for solo travellers or couples",
   location: "Nha Trang, Khanh Hoa, Vietnam",
-  review: [4.3, 4.2, 5.1, 3.4],
+  reviews: [4.3, 4.2, 5.1, 3.4],
   host: {
     name: "Truong Nguyen",
   },

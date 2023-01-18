@@ -20,6 +20,8 @@ const App = function () {
       <Route path="checkout" element={<Checkout />} />
       <Route path="trips" element={<Trips />} />
       <Route path="signup" element={<Signup />} />
+      <Route path="login" element={<Signup isLoggingIn={true} />} />
+
       <Route path="*" element={<Error />} />
     </Routes>
   );

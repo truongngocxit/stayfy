@@ -22,7 +22,7 @@ const InactiveSearchBar = function ({
 
   let dateString = "Anytime";
 
-  if (date.start && date.end) {
+  if (date?.start && date?.end) {
     dateString = `${new Date(date.start).toLocaleDateString("en-us", {
       month: "short",
       day: "2-digit",

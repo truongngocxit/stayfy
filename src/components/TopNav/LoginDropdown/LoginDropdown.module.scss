@@ -19,10 +19,15 @@
   &__Option {
     padding: 1.5rem 3rem;
     cursor: pointer;
+    text-decoration: none;
 
     &:hover {
       background-color: $tintColor1;
       color: $primaryColor;
+    }
+
+    &:visited {
+      color: inherit;
     }
   }
 }

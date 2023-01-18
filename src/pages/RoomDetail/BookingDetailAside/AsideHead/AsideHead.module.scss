@@ -1,0 +1,28 @@
+@use "../../../../sass-styles/variables" as *;
+
+.asideHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__Price {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    strong {
+      font-size: 2.2rem;
+    }
+  }
+
+  &__Review {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    svg {
+      fill: $grayColorMain;
+      width: 2rem;
+    }
+  }
+}

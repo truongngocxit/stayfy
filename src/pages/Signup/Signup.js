@@ -1,15 +1,17 @@
 import styles from "./Signup.module.scss";
 import BareLogo from "../../components/UI/BareLogo/BareLogo";
 import SignupForm from "./SignupForm/SignupForm";
+import LoginForm from "./LoginForm/LoginForm";
 import ChevronLeftIcon from "../../components/UI/SVG/ChevronLeftIcon";
 import { Link } from "react-router-dom";
-const Signup = function () {
+const Signup = function ({ isLoggingIn = false }) {
   const {
     signup,
     signup__Image,
     signup__Form,
     signup__Form__Logo,
     signup__Form__Intro,
+    signup__Form__Form,
     signup__Back,
   } = styles;
   return (
@@ -32,7 +34,9 @@ const Signup = function () {
           <div className={signup__Form__Intro}>
             <h2>Welcome to Stayfy</h2>
             <p>Deliver authentic stays and travelling experiences</p>
-            <SignupForm />
+          </div>
+          <div className={signup__Form__Form}>
+            {isLoggingIn ? <LoginForm /> : <SignupForm />}
           </div>
         </div>
       </div>

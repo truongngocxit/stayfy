@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const searchSlice = createSlice({
+const searchQuerySlice = createSlice({
   name: "search",
   initialState: {
     query: "",
@@ -10,7 +10,7 @@ const searchSlice = createSlice({
     },
     guestNum: {
       adults: 0,
-      chilren: 0,
+      children: 0,
       babies: 0,
       animals: 0,
     },
@@ -28,5 +28,5 @@ const searchSlice = createSlice({
   },
 });
 
-export const searchActions = searchSlice.actions;
-export default searchSlice.reducer;
+export const searchQueryActions = searchQuerySlice.actions;
+export default searchQuerySlice.reducer;

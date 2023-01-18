@@ -1,6 +1,6 @@
 import styles from "./RoomMain.module.scss";
 import AboutRoom from "../AboutRoom/AboutRoom";
-import BookingDetail from "../BookingDetail/BookingDetail";
+import BookingDetailAside from "../BookingDetailAside/BookingDetailAside";
 import RoomFeature from "../RoomFeature/RoomFeature";
 import RoomLocation from "../RoomLocation/RoomLocation";
 import AboutHost from "../AboutHost/AboutHost";
@@ -30,7 +30,7 @@ const RoomMain = function ({
         <RoomMoreInfo ref={rulesRef} />
       </div>
       <aside className={roomMain__Aside}>
-        <BookingDetail stickyNavHeight={stickyNavHeight} />
+        <BookingDetailAside stickyNavHeight={stickyNavHeight} />
       </aside>
     </div>
   );

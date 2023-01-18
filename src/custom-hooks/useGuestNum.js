@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const useGuestNum = function (maxNum) {
-  const [guestNum, setGuestNum] = useState(0);
+const useGuestNum = function (maxNum, initialState = 0) {
+  const [guestNum, setGuestNum] = useState(initialState);
   const guestNumIsTooLow = guestNum === 0;
   const guestNumIsTooHigh = guestNum >= maxNum;
 

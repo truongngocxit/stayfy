@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 const useDropdown = function () {
   const [dropdownIsVisible, setDropdownIsVisible] = useState(false);
   const dropdownRef = useRef(null);
+  const containerRef = useRef(null);
 
   const handleOpenDropdown = function () {
     setDropdownIsVisible(true);
@@ -14,7 +15,10 @@ const useDropdown = function () {
 
   useEffect(() => {
     const handleClickOutside = function (event) {
-      if (dropdownRef.current && !dropdownRef?.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef?.current.contains(event.target)
+      ) {
         setDropdownIsVisible(false);
       }
     };
@@ -27,6 +31,7 @@ const useDropdown = function () {
   return {
     dropdownIsVisible,
     dropdownRef,
+    containerRef,
     handleOpenDropdown,
     handleCloseDropdown,
   };

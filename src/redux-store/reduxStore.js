@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import searchReducer from "./searchSlice";
+import searchQueryReducer from "./searchQuerySlice";
+import searchRefsReducer from "./searchRefsSlice";
 
 const reduxStore = configureStore({
   reducer: {
-    search: searchReducer,
+    search: searchQueryReducer,
+    refs: searchRefsReducer,
   },
 });
 

@@ -1,0 +1,58 @@
+@use "../../../../sass-styles/variables" as *;
+
+.asideInfo {
+  border: $border;
+  border-radius: $borderRadius;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.01rem;
+    background-color: $grayColorFaint6;
+    top: 50%;
+    transform: translateY(-200%);
+  }
+
+  &__DatePicker {
+    padding: 1.5rem 2rem;
+    border-radius: $borderRadius;
+
+    &__Active {
+      box-shadow: 0 0 0 0.4rem $grayColorFaint6;
+    }
+  }
+
+  &__GuestNum {
+    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    background: none;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    position: relative;
+    border-radius: $borderRadius;
+
+    &__Active {
+      box-shadow: 0 0 0 0.4rem $grayColorFaint6;
+    }
+
+    &__Active > &__DropdownBtn {
+      transform: rotate(0);
+    }
+
+    &__DropdownBtn {
+      width: 2rem;
+      height: 2rem;
+      transform: rotate(180deg);
+    }
+  }
+}

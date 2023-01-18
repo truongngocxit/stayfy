@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import useInput from "../../custom-hooks/useInput";
+import useInput from "../custom-hooks/useInput";
 
 const LocationSearchContext = createContext();
 

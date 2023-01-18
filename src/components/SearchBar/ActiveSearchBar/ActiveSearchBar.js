@@ -4,13 +4,14 @@ import DateSearch from "../DateSearch/DateSearch";
 import GuestNumber from "../GuestNumber/GuestNumber";
 import SearchButton from "../SearchButton/SearchButton";
 import { useContext } from "react";
-import DateSearchContext from "../../searchContext/DateSearchContextProvider";
-import GuestNumberContext from "../../searchContext/GuestNumberContextProvider";
-import LocationSearchContext from "../../searchContext/LocationSearchContextProvider";
+import DateSearchContext from "../../../searchContext/DateSearchContextProvider";
+import GuestNumberContext from "../../../searchContext/GuestNumberContextProvider";
+import LocationSearchContext from "../../../searchContext/LocationSearchContextProvider";
 import { useDispatch } from "react-redux";
-import { searchActions } from "../../../redux-store/searchSlice";
+import { searchQueryActions } from "../../../redux-store/searchQuerySlice";
+import { useRef } from "react";
 
-const SearchBar = function ({ className, isCollapse }) {
+const SearchBar = function ({ className, isCollapse, onStopSearching }) {
   const reduxDispatch = useDispatch();
   const { searchQuery } = useContext(LocationSearchContext);
   const { selectedDate } = useContext(DateSearchContext);
@@ -21,18 +22,34 @@ const SearchBar = function ({ className, isCollapse }) {
     animalsNumContextSlice: { guestNum: animalsNum },
   } = useContext(GuestNumberContext);
 
-  const handleSearch = function (event) {
-    event.preventDefault();
-    reduxDispatch(searchActions.setQuerySearch(searchQuery));
-    reduxDispatch(searchActions.setDateSearch(selectedDate));
+  const handleSearch = function () {
+    reduxDispatch(searchQueryActions.setQuerySearch(searchQuery));
+    reduxDispatch(searchQueryActions.setDateSearch(selectedDate));
     reduxDispatch(
-      searchActions.setGuestNum({
+      searchQueryActions.setGuestNum({
         adults: adultsNum,
         children: childrenNum,
         babies: babiesNum,
         animals: animalsNum,
       })
     );
+    onStopSearching();
+  };
+
+  const locationSearchRef = useRef(null);
+  const dateSearchRef = useRef(null);
+  const guestNumSearchRef = useRef(null);
+
+  const handleFocusLocationSearch = function () {
+    locationSearchRef.current.focus();
+  };
+
+  const handleFocusDateSearch = function () {
+    dateSearchRef.current.querySelector(".ant-picker-input").click();
+  };
+
+  const handleFocusGuestNumSearch = function () {
+    guestNumSearchRef.current.click();
   };
 
   const {
@@ -46,8 +63,7 @@ const SearchBar = function ({ className, isCollapse }) {
 
   return (
     <>
-      <form
-        onSubmit={handleSearch}
+      <div
         className={`${searchBar}  ${className} ${
           isCollapse ? searchBar__Collapse : ""
         }`}
@@ -55,19 +71,24 @@ const SearchBar = function ({ className, isCollapse }) {
         <LocationSearch
           activeClassName={searchBar__Active}
           className={searchBar__Place}
+          onFinishSearch={handleFocusDateSearch}
+          ref={locationSearchRef}
         />
 
         <DateSearch
           className={searchBar__Time}
           activeClassName={searchBar__Active}
+          onFinishSearch={handleFocusGuestNumSearch}
+          ref={dateSearchRef}
         />
 
         <GuestNumber
           className={searchBar__Guests}
           activeClassName={searchBar__Active}
+          ref={guestNumSearchRef}
         />
-        <SearchButton type="submit">Search</SearchButton>
-      </form>
+        <SearchButton onClick={handleSearch}>Search</SearchButton>
+      </div>
     </>
   );
 };

@@ -1,8 +1,12 @@
 import styles from "./DateRangePicker.module.scss";
 import { DatePicker, ConfigProvider } from "antd";
+import { forwardRef } from "react";
 const { RangePicker } = DatePicker;
 
-const DateRangePicker = function ({ onFocus, onBlur, onChange, disabledDate }) {
+const DateRangePicker = function (
+  { onFocus, onBlur, onChange, disabledDate },
+  ref
+) {
   const datePickerInlineStyle = {
     border: "none",
     outline: "none",
@@ -21,6 +25,7 @@ const DateRangePicker = function ({ onFocus, onBlur, onChange, disabledDate }) {
       }}
     >
       <RangePicker
+        ref={ref}
         onFocus={onFocus}
         onBlur={onBlur}
         inputReadOnly={true}
@@ -33,4 +38,4 @@ const DateRangePicker = function ({ onFocus, onBlur, onChange, disabledDate }) {
   );
 };
 
-export default DateRangePicker;
+export default forwardRef(DateRangePicker);

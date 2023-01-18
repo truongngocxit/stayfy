@@ -1,11 +1,14 @@
 import styles from "./LocationSearch.module.scss";
 import LocationSearchDropdown from "./LocationSearchDropdown/LocationSearchDropdown";
 import useFetchData from "../../../custom-hooks/useFetchData";
-import { useContext } from "react";
-import LocationSearchContext from "../../searchContext/LocationSearchContextProvider";
+import { useContext, forwardRef } from "react";
+import LocationSearchContext from "../../../searchContext/LocationSearchContextProvider";
 import useDropdown from "../../../custom-hooks/useDropdown";
 
-const LocationSearch = function ({ activeClassName, className }) {
+const LocationSearch = function (
+  { activeClassName, className, onFinishSearch },
+  ref
+) {
   const {
     searchQuery,
     handleQueryChange,
@@ -18,6 +21,7 @@ const LocationSearch = function ({ activeClassName, className }) {
   const {
     dropdownIsVisible,
     dropdownRef,
+    containerRef,
     handleCloseDropdown,
     handleOpenDropdown,
   } = useDropdown();
@@ -40,9 +44,11 @@ const LocationSearch = function ({ activeClassName, className }) {
       className={`${locationSearch} ${className} ${
         isTypingQuery ? activeClassName : ""
       }`}
+      ref={containerRef}
     >
       <label htmlFor="place">Where</label>
       <input
+        ref={ref}
         autoComplete="off"
         id="place"
         placeholder="Search for places"
@@ -60,10 +66,11 @@ const LocationSearch = function ({ activeClassName, className }) {
           locations={filteredLocations}
           setQuery={setQuery}
           onCloseDropdown={handleCloseDropdown}
+          onFinishSearch={onFinishSearch}
         />
       )}
     </div>
   );
 };
 
-export default LocationSearch;
+export default forwardRef(LocationSearch);

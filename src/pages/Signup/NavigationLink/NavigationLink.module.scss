@@ -5,7 +5,14 @@
   border: none;
   background: none;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+
+  &:visited {
+    color: inherit;
+  }
 
   &:hover {
     text-decoration: underline;
