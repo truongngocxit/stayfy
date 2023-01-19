@@ -4,9 +4,12 @@ import ImagesGallery from "../../../components/ImagesGallery/ImagesGallery";
 import PreviewImage from "./PreviewImage/PreviewImage";
 import { forwardRef, useState } from "react";
 import { createPortal } from "react-dom";
+import useModalIsOpen from "../../../custom-hooks/useModalIsOpen";
 
 const ImagesPreview = forwardRef(function (props, ref) {
   const [isShowGallery, setIsShowGallery] = useState(false);
+
+  useModalIsOpen(isShowGallery);
 
   const handleShowGallery = function (e) {
     setIsShowGallery(true);

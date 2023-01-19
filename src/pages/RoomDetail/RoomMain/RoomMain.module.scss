@@ -1,8 +1,9 @@
 @use "../../../sass-styles/variables" as *;
 
 .roomMain {
+  width: 100%;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 62% 1fr;
   gap: 8rem;
   padding: 2rem 0 6rem;
 

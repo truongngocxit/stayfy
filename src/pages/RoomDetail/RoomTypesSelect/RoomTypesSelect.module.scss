@@ -1,0 +1,73 @@
+@use "../../../sass-styles/variables" as *;
+
+.roomTypes__Container {
+  width: 100%;
+  position: relative;
+}
+
+.roomTypes__Nav {
+  display: flex;
+  gap: 1rem;
+  align-self: end;
+}
+
+.roomTypes {
+  //   position: relative;
+  width: 100%;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 50%;
+  place-items: center;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__Type {
+    width: 90% !important;
+  }
+
+  &__BtnLeft,
+  &__BtnRight {
+    width: 3.2rem;
+    height: 3.2rem;
+    padding: 0.5rem;
+    border: 0.1rem solid $grayColorFaint1;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 30%;
+    cursor: pointer;
+    transition: all 0.3s;
+    opacity: 1;
+    visibility: visible;
+
+    &:hover {
+      box-shadow: $boxShadow;
+      transform: translateY(-0.1rem);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  }
+
+  &__BtnLeft {
+    left: -1.5rem;
+  }
+
+  &__BtnRight {
+    right: -1.5rem;
+  }
+
+  &__BtnHidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

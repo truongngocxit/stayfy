@@ -9,7 +9,8 @@ import { useSelector } from "react-redux";
 
 const AsideInfo = function ({ className }) {
   const [datePickerIsActive, setDatePickerIsActive] = useState(false);
-  const { dropdownIsVisible, dropdownRef, handleOpenDropdown } = useDropdown();
+  const { dropdownIsVisible, dropdownRef, containerRef, handleOpenDropdown } =
+    useDropdown();
 
   const { adults, children, babies, animals } = useSelector(
     (state) => state.search.guestNum
@@ -56,8 +57,8 @@ const AsideInfo = function ({ className }) {
         className={`${asideInfo__GuestNum} ${
           dropdownIsVisible ? asideInfo__GuestNum__Active : ""
         }`}
-        ref={dropdownRef}
         onClick={handleOpenDropdown}
+        ref={containerRef}
       >
         <span>{guestLabel}</span>
 

@@ -6,6 +6,7 @@ import RoomLocation from "../RoomLocation/RoomLocation";
 import AboutHost from "../AboutHost/AboutHost";
 import RoomMoreInfo from "../RoomMoreInfo/RoomMoreInfo";
 import LineBreak from "../../../components/UI/Cosmetics/LineBreak/LineBreak";
+import RoomTypesSelect from "../RoomTypesSelect/RoomTypesSelect";
 
 const RoomMain = function ({
   stickyNavHeight,
@@ -22,6 +23,8 @@ const RoomMain = function ({
         <AboutRoom ref={aboutRef} />
         <LineBreak />
         <RoomFeature ref={facilitiesRef} />
+        <LineBreak />
+        <RoomTypesSelect />
         <LineBreak />
         <RoomLocation ref={locationRef} />
         <LineBreak />

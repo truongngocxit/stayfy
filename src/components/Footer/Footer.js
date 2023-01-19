@@ -4,12 +4,10 @@ import FacebookIcon from "../UI/SVG/FacebookIcon";
 import TwitterIcon from "../UI/SVG/TwitterIcon";
 import InstagramIcon from "../UI/SVG/InstagramIcon";
 import LinkedinIcon from "../UI/SVG/LinkedinIcon";
-import CloseIcon from "../UI/SVG/CloseIcon";
 
 const Footer = function ({ onCloseFooter }) {
   const {
     footer,
-    footer__CloseIcon,
     footer__Links,
     footer__Links__Info,
     footer__Links__Company,

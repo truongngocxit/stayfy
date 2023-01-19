@@ -1,5 +1,4 @@
 import styles from "./ImagesGallery.module.scss";
-import useModalIsOpen from "../../custom-hooks/useModalIsOpen";
 import ChevronLeft from "../UI/SVG/ChevronLeftIcon";
 import HeartIcon from "../UI/SVG/HeartIcon";
 import { sampleImages } from "../../assets/sample-images";

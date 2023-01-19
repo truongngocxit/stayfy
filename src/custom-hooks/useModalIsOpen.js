@@ -1,24 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-const useModalIsOpen = function () {
-  const [modalIsClosed, setModalIsClosed] = useState(false);
+const useModalIsOpen = function (modalIsOpen) {
   useEffect(() => {
     const scrollBarWidth = window.innerWidth - document.body.scrollWidth;
-    console.log(true);
-    if (!(document.body.style.overflow === "hidden")) {
+    console.log(modalIsOpen);
+    if (modalIsOpen) {
       document.body.style.overflow = "hidden";
       document.body.style.marginRight = `${scrollBarWidth}px`;
     }
-
-    return () => {
-      if (document.body.style.overflow === "hidden") {
-        document.body.style.overflow = "visible";
-        document.body.style.marginRight = 0;
-      }
-    };
-  }, []);
-
-  return [modalIsClosed, setModalIsClosed];
+    if (!modalIsOpen) {
+      document.body.style.overflow = "visible";
+      document.body.style.marginRight = 0;
+    }
+  }, [modalIsOpen]);
 };
 
 export default useModalIsOpen;
+
+// const [modalIsClosed, setModalIsClosed] = useState(false);
+// useEffect(() => {
+//   const scrollBarWidth = window.innerWidth - document.body.scrollWidth;
+//   if (!(document.body.style.overflow === "hidden")) {
+//     document.body.style.overflow = "hidden";
+//     document.body.style.marginRight = `${scrollBarWidth}px`;
+//   }
+
+//   return () => {
+//     if (document.body.style.overflow === "hidden") {
+//       document.body.style.overflow = "visible";
+//       document.body.style.marginRight = 0;
+//     }
+//   };
+// }, []);
+
+// return [modalIsClosed, setModalIsClosed];
