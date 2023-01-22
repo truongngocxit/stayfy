@@ -17,6 +17,7 @@ const RoomMain = function ({
   hostRef,
   lodgeInfo,
 }) {
+  console.log(lodgeInfo);
   const { roomMain, roomMain__Info, roomMain__Aside } = styles;
   return (
     <div className={roomMain}>
@@ -25,11 +26,11 @@ const RoomMain = function ({
         <LineBreak />
         <RoomFeature ref={facilitiesRef} amenities={lodgeInfo.amenities} />
         <LineBreak />
-        <RoomTypesSelect />
+        <RoomTypesSelect types={lodgeInfo.types} />
         <LineBreak />
         <RoomLocation ref={locationRef} />
         <LineBreak />
-        <AboutHost ref={hostRef} />
+        <AboutHost ref={hostRef} hostInfo={lodgeInfo.host} />
         <LineBreak />
         <RoomMoreInfo ref={rulesRef} />
       </div>

@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 
 const RoomDetail = function () {
   const { state: lodge } = useLocation();
-
+  console.log(lodge);
   const stickyNavIntersectionObserverRef = useRef(null);
   const stickyNavRef = useRef(null);
   const [navIsSticky, setNavIsSticky] = useState(false);
@@ -149,6 +149,7 @@ const RoomDetail = function () {
         <ImagesPreview
           ref={imagePreviewRef}
           images={lodge.images.filter((img) => img !== "")}
+          name={lodge.name}
         />
         <RoomMain
           lodgeInfo={lodge}

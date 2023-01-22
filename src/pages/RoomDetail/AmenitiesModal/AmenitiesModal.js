@@ -11,7 +11,6 @@ const AmenitiesModal = function ({
   const availableAmenitiesIcons = availableAmenities.map((a) =>
     getAmenityIcon(a)
   );
-  console.log(availableAmenitiesIcons);
 
   const availableAmenitiesIconsByGroups = availableAmenitiesIcons.reduce(
     (finalList, currentIcon) => {
@@ -41,6 +40,10 @@ const AmenitiesModal = function ({
     {}
   );
 
+  const unavailableAmenitiesIcons = unavailableAmenities.map((a) =>
+    getAmenityIcon(a)
+  );
+
   const {
     amenities,
     amenities__Header,
@@ -64,6 +67,12 @@ const AmenitiesModal = function ({
           {Object.entries(availableAmenitiesIconsByGroups).map((group) => (
             <AmenityGroup key={group[0]} heading={group[0]} items={group[1]} />
           ))}
+
+          <AmenityGroup
+            heading="Not included"
+            items={unavailableAmenitiesIcons}
+            isIncluded={false}
+          />
         </div>
       </div>
     </>

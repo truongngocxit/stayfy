@@ -6,7 +6,7 @@ import { forwardRef, useState } from "react";
 import { createPortal } from "react-dom";
 import useModalIsOpen from "../../../custom-hooks/useModalIsOpen";
 
-const ImagesPreview = forwardRef(function ({ images }, ref) {
+const ImagesPreview = forwardRef(function ({ images, name }, ref) {
   const [isShowGallery, setIsShowGallery] = useState(false);
 
   useModalIsOpen(isShowGallery);
@@ -43,7 +43,11 @@ const ImagesPreview = forwardRef(function ({ images }, ref) {
       </div>
       {isShowGallery &&
         createPortal(
-          <ImagesGallery onCloseGallery={handleCloseGallery} />,
+          <ImagesGallery
+            onCloseGallery={handleCloseGallery}
+            name={name}
+            images={images}
+          />,
           document.getElementById("modal-root")
         )}
     </>

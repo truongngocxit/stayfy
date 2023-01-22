@@ -15,6 +15,8 @@ const StaysListing = function () {
       images: d.images,
       description: d.description,
       amenities: d.amenities,
+      types: d.types,
+      host: d.host,
       price:
         d.types
           .map((t) => t.price)

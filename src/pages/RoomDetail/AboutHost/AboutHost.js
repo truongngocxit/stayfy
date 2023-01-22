@@ -2,7 +2,7 @@ import styles from "./AboutHost.module.scss";
 import StarIcon from "../../../components/UI/SVG/StartIcon";
 import { forwardRef } from "react";
 
-const AboutHost = forwardRef(function (_, ref) {
+const AboutHost = forwardRef(function ({ hostInfo }, ref) {
   const {
     aboutHost,
     aboutHost__Info,
@@ -11,6 +11,7 @@ const AboutHost = forwardRef(function (_, ref) {
     aboutHost__Info__Name__Reviews,
     aboutHost__Description,
   } = styles;
+  console.log(hostInfo.joinedDate);
   return (
     <div className={aboutHost} ref={ref} id="host">
       <div className={aboutHost__Info}>
@@ -21,8 +22,14 @@ const AboutHost = forwardRef(function (_, ref) {
           />
         </div>
         <div className={aboutHost__Info__Name}>
-          <h3>Hosted by Thanh Huong</h3>
-          <span>Joined in March 2022</span>
+          <h3>Hosted by {hostInfo.name}</h3>
+          <span>
+            Joined in{" "}
+            {new Date(hostInfo.joinedDate).toLocaleDateString("en-us", {
+              month: "long",
+              year: "numeric",
+            })}
+          </span>
           <div className={aboutHost__Info__Name__Reviews}>
             <StarIcon />
             <span>70 reviews</span>

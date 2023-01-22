@@ -9,11 +9,7 @@ export default function HouseIcon({ className }) {
       preserveAspectRatio="xMidYMid meet"
       className={className}
     >
-      <g
-        transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)"
-        fill="#000000"
-        stroke="none"
-      >
+      <g transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)">
         <path
           d="M762 1188 c-7 -7 -12 -39 -12 -75 l0 -63 -289 0 c-219 0 -291 -3
    -299 -12 -8 -10 -105 -299 -156 -464 -8 -27 16 -54 50 -54 l24 0 0 -185 0

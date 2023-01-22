@@ -1,28 +1,47 @@
 import styles from "./ImagesSlider.module.scss";
-import { sampleImages } from "../../assets/sample-images";
 import CloseIcon from "../UI/SVG/CloseIcon";
 import ChevronLeftIcon from "../UI/SVG/ChevronLeftIcon";
+import { useState, useEffect, useCallback } from "react";
 
-import { useState } from "react";
-
-const ImagesSlider = function ({ onCloseSlider }) {
+const ImagesSlider = function ({ onCloseSlider, images }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handleToPreviousImage = function () {
-    if (currentImageIndex === 0) {
-      setCurrentImageIndex(sampleImages.length - 1);
-    } else {
-      setCurrentImageIndex((i) => i - 1);
-    }
-  };
+  const handleToPreviousImage = useCallback(
+    function () {
+      if (currentImageIndex === 0) {
+        setCurrentImageIndex(images.length - 1);
+      } else {
+        setCurrentImageIndex((i) => i - 1);
+      }
+    },
+    [currentImageIndex, images.length]
+  );
 
-  const handleToNextImage = function () {
-    if (currentImageIndex === sampleImages.length - 1) {
-      setCurrentImageIndex(0);
-    } else {
-      setCurrentImageIndex((i) => i + 1);
-    }
-  };
+  const handleToNextImage = useCallback(
+    function () {
+      if (currentImageIndex === images.length - 1) {
+        setCurrentImageIndex(0);
+      } else {
+        setCurrentImageIndex((i) => i + 1);
+      }
+    },
+    [currentImageIndex, images.length]
+  );
+
+  useEffect(() => {
+    const handleArrowLeftAndRight = function (event) {
+      if (event.key === "ArrowLeft") {
+        handleToPreviousImage();
+      } else if (event.key === "ArrowRight") {
+        handleToNextImage();
+      }
+    };
+
+    document.addEventListener("keydown", handleArrowLeftAndRight);
+
+    return () =>
+      document.removeEventListener("keydown", handleArrowLeftAndRight);
+  }, [handleToPreviousImage, handleToNextImage]);
 
   const {
     slider,
@@ -42,7 +61,7 @@ const ImagesSlider = function ({ onCloseSlider }) {
           <CloseIcon />
         </button>
         <span className={slider__ImageNum}>
-          {currentImageIndex + 1}/{sampleImages.length}
+          {currentImageIndex + 1}/{images.length}
         </span>
       </nav>
       <div className={slider__Slider}>
@@ -53,7 +72,7 @@ const ImagesSlider = function ({ onCloseSlider }) {
           <ChevronLeftIcon />
         </button>
         <div className={slider__Slider__Image}>
-          <img src={sampleImages[currentImageIndex]} alt="sample" />
+          <img src={images[currentImageIndex]} alt="sample" />
         </div>
         <button
           className={slider__Slider__BtnRight}

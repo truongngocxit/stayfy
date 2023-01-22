@@ -9,11 +9,7 @@ export default function BunkBedIcon({ className }) {
       preserveAspectRatio="xMidYMid meet"
       className={className}
     >
-      <g
-        transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)"
-        fill="#000000"
-        stroke="none"
-      >
+      <g transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)">
         <path
           d="M12 1228 c-9 -9 -12 -144 -12 -589 0 -492 2 -578 15 -589 24 -20 54
  -3 61 36 l6 34 558 0 558 0 6 -34 c7 -39 37 -56 61 -36 13 11 15 97 15 589 0

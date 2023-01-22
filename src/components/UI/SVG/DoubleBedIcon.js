@@ -9,11 +9,7 @@ export default function DoubleBedIcon({ className }) {
       preserveAspectRatio="xMidYMid meet"
       className={className}
     >
-      <g
-        transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)"
-        fill="#000000"
-        stroke="none"
-      >
+      <g transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)">
         <path
           d="M129 1117 c-48 -32 -58 -71 -59 -227 0 -118 -3 -138 -20 -160 -12
    -16 -20 -41 -20 -67 0 -32 -4 -43 -15 -43 -13 0 -15 -33 -15 -241 l0 -240 38

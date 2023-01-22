@@ -6,6 +6,7 @@
   display: grid;
   gap: 1rem;
   grid-template-rows: 3fr 1fr 0.5fr;
+  font-size: 1.6rem;
 
   &__Img {
     border-radius: $borderRadius;
@@ -29,6 +30,48 @@
     h3 {
       font-size: 1.8rem;
       font-weight: 700;
+    }
+
+    &__Type {
+      font-size: 1.1rem;
+      background-color: $tintColor1;
+      align-self: flex-start;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 50rem;
+      padding: 0.5rem 1rem;
+      svg {
+        width: 1.8rem;
+        height: 1.8rem;
+        fill: $primaryColor;
+      }
+
+      span {
+        font-weight: 600;
+        color: $primaryColor;
+        text-transform: uppercase;
+      }
+    }
+
+    &__Sleeps {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+
+      &__Icon {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+
+        svg {
+          width: 1.6rem;
+          height: 1.6rem;
+          fill: $grayColorFaint1;
+        }
+      }
     }
   }
 

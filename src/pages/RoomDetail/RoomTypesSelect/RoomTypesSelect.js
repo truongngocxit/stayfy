@@ -4,7 +4,7 @@ import ChevronLeftIcon from "../../../components/UI/SVG/ChevronLeftIcon";
 import ChevronRightIcon from "../../../components/UI/SVG/ChevronRightIcon";
 import { useRef, useState, useEffect } from "react";
 
-const RoomTypes = function () {
+const RoomTypes = function ({ types }) {
   const roomTypesRef = useRef(null);
   const intersectionObserverRef = useRef(null);
   const firstItemRef = useRef(null);
@@ -60,10 +60,13 @@ const RoomTypes = function () {
       observerCallback,
       observerOptions
     );
+    if (types.length > 2) {
+      intersectionObserverRef.current.observe(firstItemRef.current);
+      intersectionObserverRef.current.observe(lastItemRef.current);
+    }
 
-    intersectionObserverRef.current.observe(firstItemRef.current);
-    intersectionObserverRef.current.observe(lastItemRef.current);
-  }, []);
+    return () => intersectionObserverRef.current.disconnect();
+  }, [types.length]);
 
   const {
     roomTypes__Container,
@@ -75,34 +78,38 @@ const RoomTypes = function () {
   } = styles;
   return (
     <div className={roomTypes__Container}>
-      <div
-        className={`${roomTypes__BtnLeft} ${
-          !leftBtnIsVisible ? roomTypes__BtnHidden : ""
-        }`}
-        onClick={handleSlideLeft}
-        ref={leftBtnRef}
-      >
-        <ChevronLeftIcon />
-      </div>
-      <div
-        className={`${roomTypes__BtnRight} ${
-          !rightBtnIsVisible ? roomTypes__BtnHidden : ""
-        }`}
-        onClick={handleSlideRight}
-        ref={rightBtnRef}
-      >
-        <ChevronRightIcon />
-      </div>
+      {types.length <= 2 && (
+        <>
+          <div
+            className={`${roomTypes__BtnLeft} ${
+              !leftBtnIsVisible ? roomTypes__BtnHidden : ""
+            }`}
+            onClick={handleSlideLeft}
+            ref={leftBtnRef}
+          >
+            <ChevronLeftIcon />
+          </div>
+          <div
+            className={`${roomTypes__BtnRight} ${
+              !rightBtnIsVisible ? roomTypes__BtnHidden : ""
+            }`}
+            onClick={handleSlideRight}
+            ref={rightBtnRef}
+          >
+            <ChevronRightIcon />
+          </div>
+        </>
+      )}
       <ul className={roomTypes} ref={roomTypesRef}>
-        {new Array(8).fill().map((item, index, array) => (
+        {types.map((item, index, array) => (
           <RoomType
             key={index}
             className={roomTypes__Type}
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-759973019429492387/original/65f6c4d0-76e3-4a87-954a-116e2d31c007.jpeg?im_w=1200"
-            alt="sample master room"
-            title="Economy Double room"
-            description="1 large double bed"
-            price="54"
+            src={item.img}
+            alt={item.name}
+            title={item.name}
+            type={item.type}
+            price={item.price}
             ref={(node) => {
               if (index === 0) {
                 firstItemRef.current = node;

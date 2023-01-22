@@ -6,8 +6,42 @@
   font-size: 1.6rem;
   align-items: center;
 
-  svg {
-    width: 2.4rem;
-    height: 2.4rem;
+  &__Icon {
+    svg {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+
+  &__NotIncluded {
+    span {
+      position: relative;
+      &::before {
+        position: absolute;
+        content: "";
+        height: 0.15rem;
+        top: 50%;
+        width: 100%;
+        box-shadow: 0 0 0 0.15rem #fff;
+        background-color: $grayColorFaint1;
+        display: block;
+      }
+    }
+
+    .amenity__Icon {
+      position: relative;
+      &::before {
+        position: absolute;
+        content: "";
+        height: 0.15rem;
+        transform: rotate(45deg);
+        top: 40%;
+        left: -20%;
+        width: 150%;
+        box-shadow: 0 0 0 0.1rem #fff;
+        background-color: $grayColorFaint1;
+        display: block;
+      }
+    }
   }
 }

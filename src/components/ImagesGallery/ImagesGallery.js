@@ -1,12 +1,11 @@
 import styles from "./ImagesGallery.module.scss";
-import ChevronLeft from "../UI/SVG/ChevronLeftIcon";
-import HeartIcon from "../UI/SVG/HeartIcon";
-import { sampleImages } from "../../assets/sample-images";
 import ImagesSlider from "../ImagesSlider/ImagesSlider";
+import GalleryHeader from "./GalleryHeader/GalleryHeader";
+import GalleryItem from "./GalleryItem/GalleryItem";
 import { createPortal } from "react-dom";
 import { useState } from "react";
 
-const ImagesGallery = function ({ onCloseGallery }) {
+const ImagesGallery = function ({ onCloseGallery, images, name }) {
   const [sliderIsOpen, setSliderIsOpen] = useState(false);
 
   const handleOpenSlider = function () {
@@ -17,37 +16,26 @@ const ImagesGallery = function ({ onCloseGallery }) {
     setSliderIsOpen(false);
   };
 
-  const {
-    gallery,
-    gallery__ImageContainer,
-    gallery__Header,
-    gallery__Header__BackBtn,
-    gallery__Header__LikeBtn,
-    gallery__Header__Heading,
-  } = styles;
+  const { gallery, gallery__Container, gallery__Container__LargeImg } = styles;
   return (
     <>
       <div className={gallery}>
-        <div className={gallery__Header}>
-          <button className={gallery__Header__BackBtn} onClick={onCloseGallery}>
-            <ChevronLeft />
-          </button>
-          <h2 className={gallery__Header__Heading}>
-            Chillin room - The room by the stream
-          </h2>
-          <button className={gallery__Header__LikeBtn}>
-            <HeartIcon />
-          </button>
-        </div>
-        <div className={gallery__ImageContainer}>
-          {sampleImages.map((img) => (
-            <GalleryItem key={img} src={img} onClick={handleOpenSlider} />
+        <GalleryHeader name={name} onClick={onCloseGallery} />
+
+        <div className={gallery__Container}>
+          {images.map((img, index) => (
+            <GalleryItem
+              key={img}
+              src={img}
+              className={index % 3 === 0 ? gallery__Container__LargeImg : ""}
+              onClick={handleOpenSlider}
+            />
           ))}
         </div>
       </div>
       {sliderIsOpen &&
         createPortal(
-          <ImagesSlider onCloseSlider={handleCloseSlider} />,
+          <ImagesSlider onCloseSlider={handleCloseSlider} images={images} />,
           document.getElementById("modal-root")
         )}
     </>
@@ -55,12 +43,3 @@ const ImagesGallery = function ({ onCloseGallery }) {
 };
 
 export default ImagesGallery;
-
-const GalleryItem = function ({ src, className, onClick }) {
-  const { galleryItem } = styles;
-  return (
-    <div className={`${galleryItem} ${className}`} onClick={onClick}>
-      <img src={src} alt="sample" />
-    </div>
-  );
-};
