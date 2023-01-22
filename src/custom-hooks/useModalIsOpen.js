@@ -3,7 +3,7 @@ import { useEffect } from "react";
 const useModalIsOpen = function (modalIsOpen) {
   useEffect(() => {
     const scrollBarWidth = window.innerWidth - document.body.scrollWidth;
-    console.log(modalIsOpen);
+
     if (modalIsOpen) {
       document.body.style.overflow = "hidden";
       document.body.style.marginRight = `${scrollBarWidth}px`;

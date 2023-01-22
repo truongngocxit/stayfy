@@ -1,0 +1,38 @@
+@use "../../../../sass-styles/variables" as *;
+
+.itemInfo {
+  font-size: 1.6rem;
+  display: grid;
+  row-gap: 0.5rem;
+  align-self: flex-start;
+
+  &__Name {
+    grid-column: 1;
+    font-size: 1.8rem;
+  }
+
+  &__Review {
+    grid-column: 2;
+    font-weight: 600;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    svg {
+      height: 1.8rem;
+      width: 1.8rem;
+      display: inline-block;
+      fill: $grayColorMain;
+    }
+  }
+
+  &__Feature,
+  &__Date,
+  &__Price {
+    grid-column: 1 / -1;
+  }
+
+  &__Price {
+  }
+}

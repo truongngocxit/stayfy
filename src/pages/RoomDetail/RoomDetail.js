@@ -6,8 +6,11 @@ import StaticFooter from "../../components/Footer/StaticFooter";
 import Header from "../../components/Header/Header";
 import StickySectionNav from "./StickySectionNav/StickySectionNav";
 import { useRef, useEffect, useState, useLayoutEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const RoomDetail = function () {
+  const { state: lodge } = useLocation();
+
   const stickyNavIntersectionObserverRef = useRef(null);
   const stickyNavRef = useRef(null);
   const [navIsSticky, setNavIsSticky] = useState(false);
@@ -138,9 +141,17 @@ const RoomDetail = function () {
         onScrollToHost={handleScrollToElement.bind(null, hostSectionref)}
       />
       <div className={roomDetail}>
-        <RoomHead />
-        <ImagesPreview ref={imagePreviewRef} />
+        <RoomHead
+          name={lodge.name}
+          location={lodge.location}
+          review={lodge.review.toFixed(2)}
+        />
+        <ImagesPreview
+          ref={imagePreviewRef}
+          images={lodge.images.filter((img) => img !== "")}
+        />
         <RoomMain
+          lodgeInfo={lodge}
           stickyNavHeight={stickyNavHeight}
           locationRef={locationSectionRef}
           aboutRef={aboutSectionRef}

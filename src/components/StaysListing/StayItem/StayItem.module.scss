@@ -2,7 +2,7 @@
 
 .stayItem {
   display: grid;
-  grid-template-rows: 7fr 3fr;
+  grid-template-rows: 8fr 3fr;
   row-gap: 1rem;
   cursor: pointer;
   text-decoration: none;
@@ -10,65 +10,5 @@
   &:link,
   &:visited {
     color: inherit;
-  }
-
-  &__Image {
-    width: 100%;
-    height: 100%;
-    border-radius: $borderRadius;
-    overflow: hidden;
-    position: relative;
-    svg {
-      top: 5%;
-      right: 5%;
-      position: absolute;
-      width: 2.4rem;
-      height: 2.4rem;
-      stroke: #fff;
-      fill: rgb(119, 119, 119, 0.6);
-      cursor: pointer;
-    }
-
-    img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &__Description {
-    font-size: 1.6rem;
-    display: grid;
-    row-gap: 0.5rem;
-
-    &_Name {
-      grid-column: 1;
-      font-size: 1.8rem;
-    }
-
-    &_Review {
-      grid-column: 2;
-      font-weight: 600;
-      justify-self: end;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      svg {
-        height: 1.8rem;
-        width: 1.8rem;
-        display: inline-block;
-        fill: $grayColorMain;
-      }
-    }
-
-    &_Feature,
-    &_Date,
-    &_Price {
-      grid-column: 1 / -1;
-    }
-
-    &_Price {
-    }
   }
 }

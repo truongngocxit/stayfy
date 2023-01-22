@@ -6,7 +6,7 @@ import { forwardRef, useState } from "react";
 import { createPortal } from "react-dom";
 import useModalIsOpen from "../../../custom-hooks/useModalIsOpen";
 
-const ImagesPreview = forwardRef(function (props, ref) {
+const ImagesPreview = forwardRef(function ({ images }, ref) {
   const [isShowGallery, setIsShowGallery] = useState(false);
 
   useModalIsOpen(isShowGallery);
@@ -21,21 +21,20 @@ const ImagesPreview = forwardRef(function (props, ref) {
 
   const { imagesPreview, imagesPreview__MainImg, imagesPreview__ShowBtn } =
     styles;
+
+  const [mainPreviewImage, ...restPreviewImages] = images;
   return (
     <>
       <div className={imagesPreview} ref={ref} id="images">
         <PreviewImage
           onClick={handleShowGallery}
           className={imagesPreview__MainImg}
-          src="https://a0.muscache.com/im/pictures/ec1edb38-c5ba-48db-82bf-d2df94a1648a.jpg?im_w=960"
+          src={mainPreviewImage}
           alt="dummy pic"
         />
-        {new Array(4).fill().map((image, index) => (
-          <PreviewImage
-            onClick={handleShowGallery}
-            key={index}
-            src="https://a0.muscache.com/im/pictures/ec1edb38-c5ba-48db-82bf-d2df94a1648a.jpg?im_w=960"
-          />
+
+        {restPreviewImages.slice(1, 5).map((image) => (
+          <PreviewImage onClick={handleShowGallery} key={image} src={image} />
         ))}
         <button className={imagesPreview__ShowBtn} onClick={handleShowGallery}>
           <ExpandIcon />

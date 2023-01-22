@@ -1,0 +1,10 @@
+@use "../../../../sass-styles/variables" as *;
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  svg {
+    width: 2rem;
+  }
+}

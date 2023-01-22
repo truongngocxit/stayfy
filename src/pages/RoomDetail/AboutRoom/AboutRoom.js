@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import RoomIntroModal from "../RoomIntroModal/RoomIntroModal";
 import Overlay from "../../../components/UI/Overlay/Overlay";
 import { useState, forwardRef } from "react";
-const AboutRoom = forwardRef(function (_, ref) {
+const AboutRoom = forwardRef(function ({ description }, ref) {
   const [showMoreModal, setShowMoreModal] = useState(false);
 
   const handleShowModal = function () {
@@ -15,21 +15,26 @@ const AboutRoom = forwardRef(function (_, ref) {
   };
 
   const { aboutRoom } = styles;
+
+  let truncatedDescription = description.slice(0, 150);
+  if (truncatedDescription[truncatedDescription.length - 1] === " ") {
+    truncatedDescription = truncatedDescription.substring(
+      0,
+      truncatedDescription.length - 1
+    );
+  }
+  truncatedDescription += "...";
   return (
     <>
       <section className={aboutRoom} ref={ref} id="about">
-        <p>
-          Enjoy your stay in Dalat on the second floor of a 20th century French
-          colonial mansion. It features self check-in, a private bathroom,
-          kitchenette, and washing machine. Located in the heart of Dalat, the
-          studio is merely steps away from an abundance of shops, restaurants,
-          and bars. The studio can host 2 people, perfect for solo travellers or
-          couples...
-        </p>
+        <p>{truncatedDescription}</p>
         <button onClick={handleShowModal}>Show more</button>
       </section>
       {showMoreModal &&
-        createPortal(<RoomIntroModal />, document.getElementById("modal-root"))}
+        createPortal(
+          <RoomIntroModal description={description} />,
+          document.getElementById("modal-root")
+        )}
       {showMoreModal &&
         createPortal(
           <Overlay onClick={handleCloseModal} />,

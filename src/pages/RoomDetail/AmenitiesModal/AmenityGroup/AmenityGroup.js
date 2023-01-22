@@ -1,6 +1,5 @@
 import AmenityItem from "../AmenityItem/AmenityItem";
 import styles from "./AmenityGroup.module.scss";
-import Garden from "../../../../components/UI/RoomFeaturesIcon/Garden";
 
 const AmenityGroup = function ({ heading, items }) {
   const {
@@ -13,13 +12,9 @@ const AmenityGroup = function ({ heading, items }) {
     <div className={amenityGroup}>
       <h3 className={amenityGroup__Heading}>{heading}</h3>
       <ul className={amenityGroup__Container}>
-        {items.map((item, index) => (
+        {items.map((item) => (
           <li className={amenityGroup__Container__Item}>
-            <AmenityItem
-              icon={<Garden />}
-              key={index}
-              text="Gardening on premises"
-            />
+            <AmenityItem icon={item.icon} key={item.text} text={item.text} />
           </li>
         ))}
       </ul>

@@ -1,8 +1,46 @@
 import styles from "./AmenitiesModal.module.scss";
 import CloseIcon from "../../../components/UI/SVG/CloseIcon";
 import AmenityGroup from "./AmenityGroup/AmenityGroup";
+import getAmenityIcon from "../../../utils/getAmenityIcon";
 
-const AmenitiesModal = function ({ onCloseModal }) {
+const AmenitiesModal = function ({
+  onCloseModal,
+  availableAmenities,
+  unavailableAmenities,
+}) {
+  const availableAmenitiesIcons = availableAmenities.map((a) =>
+    getAmenityIcon(a)
+  );
+  console.log(availableAmenitiesIcons);
+
+  const availableAmenitiesIconsByGroups = availableAmenitiesIcons.reduce(
+    (finalList, currentIcon) => {
+      if (finalList[currentIcon.category]) {
+        return {
+          ...finalList,
+          [currentIcon.category]: [
+            ...finalList[currentIcon.category],
+            {
+              icon: currentIcon.icon,
+              text: currentIcon.text,
+            },
+          ],
+        };
+      } else {
+        return {
+          ...finalList,
+          [currentIcon.category]: [
+            {
+              icon: currentIcon.icon,
+              text: currentIcon.text,
+            },
+          ],
+        };
+      }
+    },
+    {}
+  );
+
   const {
     amenities,
     amenities__Header,
@@ -23,8 +61,9 @@ const AmenitiesModal = function ({ onCloseModal }) {
           <h2 className={amenities__Header__Heading}>What this place offers</h2>
         </header>
         <div className={amenities__List}>
-          <AmenityGroup heading="Scenic views" items={new Array(3).fill()} />
-          <AmenityGroup heading="Safety" items={new Array(4).fill()} />
+          {Object.entries(availableAmenitiesIconsByGroups).map((group) => (
+            <AmenityGroup key={group[0]} heading={group[0]} items={group[1]} />
+          ))}
         </div>
       </div>
     </>

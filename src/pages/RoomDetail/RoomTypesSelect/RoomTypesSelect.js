@@ -31,7 +31,6 @@ const RoomTypes = function () {
   useEffect(() => {
     const observerCallback = function (entries) {
       entries.forEach((entry) => {
-        console.log(entry);
         if (entry.target === firstItemRef.current && entry.isIntersecting) {
           setLeftBtnIsVisible(false);
         } else if (

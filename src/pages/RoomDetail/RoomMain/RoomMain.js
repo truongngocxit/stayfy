@@ -15,14 +15,15 @@ const RoomMain = function ({
   aboutRef,
   facilitiesRef,
   hostRef,
+  lodgeInfo,
 }) {
   const { roomMain, roomMain__Info, roomMain__Aside } = styles;
   return (
     <div className={roomMain}>
       <div className={roomMain__Info}>
-        <AboutRoom ref={aboutRef} />
+        <AboutRoom ref={aboutRef} description={lodgeInfo.description} />
         <LineBreak />
-        <RoomFeature ref={facilitiesRef} />
+        <RoomFeature ref={facilitiesRef} amenities={lodgeInfo.amenities} />
         <LineBreak />
         <RoomTypesSelect />
         <LineBreak />
