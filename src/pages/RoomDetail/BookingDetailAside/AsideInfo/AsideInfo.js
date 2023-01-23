@@ -6,8 +6,9 @@ import ChevronTopIcon from "../../../../components/UI/SVG/ChevronTopIcon";
 import useGuestNum from "../../../../custom-hooks/useGuestNum";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import dayjs from "dayjs";
 
-const AsideInfo = function ({ className }) {
+const AsideInfo = function ({ className, startDate, endDate, onChangeDate }) {
   const [datePickerIsActive, setDatePickerIsActive] = useState(false);
   const { dropdownIsVisible, dropdownRef, containerRef, handleOpenDropdown } =
     useDropdown();
@@ -50,6 +51,11 @@ const AsideInfo = function ({ className }) {
         <DateRangePicker
           onFocus={handleDatePickerFocus}
           onBlur={handleDatePickerBlur}
+          value={[
+            startDate ? dayjs(startDate) : null,
+            endDate ? dayjs(endDate) : null,
+          ]}
+          onChange={onChangeDate}
         />
       </div>
 

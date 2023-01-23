@@ -5,7 +5,10 @@ import ChevronRightIcon from "../../../UI/SVG/ChevronRightIcon";
 import { useState, useRef, useEffect } from "react";
 
 const StayItemImage = function ({ className, imgs }) {
-  const [btnIsVisible, setBtnIsVisible] = useState(false);
+  const [btnsIsHovered, setBtnsIsHovered] = useState(false);
+  const [leftBtnIsVisible, setLeftBtnIsVisible] = useState(false);
+  const [rightBtnIsVisible, setRightBtnIsVisible] = useState(false);
+
   const firstImageRef = useRef(null);
   const lastImageRef = useRef(null);
 
@@ -14,11 +17,11 @@ const StayItemImage = function ({ className, imgs }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const imagesContainerRef = useRef(null);
   const handleHoverImg = function () {
-    setBtnIsVisible(true);
+    setBtnsIsHovered(true);
   };
 
   const handleBlurImg = function () {
-    setBtnIsVisible(false);
+    setBtnsIsHovered(false);
   };
 
   const handleClickNextImage = function (event) {
@@ -43,17 +46,22 @@ const StayItemImage = function ({ className, imgs }) {
     const observerCallback = function (entries, observer) {
       entries.forEach((e) => {
         if (e.isIntersecting && e.target === firstImageRef.current) {
-        } else {
+          setLeftBtnIsVisible(false);
+        } else if (!e.isIntersecting && e.target === firstImageRef.current) {
+          setLeftBtnIsVisible(true);
         }
 
         if (e.isIntersecting && e.target === lastImageRef.current) {
+          setRightBtnIsVisible(false);
+        } else if (!e.isIntersecting && e.target === lastImageRef.current) {
+          setRightBtnIsVisible(true);
         }
       });
     };
 
     const observerOptions = {
       root: imagesContainerRef.current,
-      threshold: 0,
+      threshold: 1,
     };
 
     intersectionObserverRef.current = new IntersectionObserver(
@@ -63,6 +71,8 @@ const StayItemImage = function ({ className, imgs }) {
 
     intersectionObserverRef.current.observe(firstImageRef.current);
     intersectionObserverRef.current.observe(lastImageRef.current);
+
+    return () => intersectionObserverRef.current.disconnect();
   }, []);
 
   const {
@@ -113,7 +123,7 @@ const StayItemImage = function ({ className, imgs }) {
 
       <button
         className={`${itemImage__LeftBtn} ${
-          !btnIsVisible || activeImageIndex === 0 ? itemImage__HiddenBtn : ""
+          btnsIsHovered && leftBtnIsVisible ? "" : itemImage__HiddenBtn
         }`}
         onClick={handleClickPreviousImage}
       >
@@ -121,9 +131,7 @@ const StayItemImage = function ({ className, imgs }) {
       </button>
       <button
         className={`${itemImage__RightBtn} ${
-          !btnIsVisible || activeImageIndex === imgs.length - 1
-            ? itemImage__HiddenBtn
-            : ""
+          btnsIsHovered && rightBtnIsVisible ? "" : itemImage__HiddenBtn
         }`}
         onClick={handleClickNextImage}
       >

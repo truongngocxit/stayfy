@@ -4,7 +4,7 @@ const DateSearchContext = createContext();
 
 const DateSearchContextProvider = function ({ children }) {
   const [datePickerIsFocus, setDatePickerIsFocus] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState({ start: null, end: null });
 
   const handleFocusDatePicker = function () {
     setDatePickerIsFocus(true);

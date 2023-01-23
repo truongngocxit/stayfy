@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 const { RangePicker } = DatePicker;
 
 const DateRangePicker = function (
-  { onFocus, onBlur, onChange, disabledDate },
+  { onFocus, onBlur, onChange, disabledDate, value },
   ref
 ) {
   const datePickerInlineStyle = {
@@ -25,6 +25,7 @@ const DateRangePicker = function (
       }}
     >
       <RangePicker
+        value={value}
         ref={ref}
         onFocus={onFocus}
         onBlur={onBlur}

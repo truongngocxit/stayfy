@@ -1,13 +1,15 @@
 import styles from "./DateSearch.module.scss";
 import DateRangePicker from "../../DateRangePicker/DateRangePicker";
-import { useContext, forwardRef } from "react";
+import { useContext, forwardRef, useState } from "react";
 import DateSearchContext from "../../../searchContext/DateSearchContextProvider";
+import dayjs from "dayjs";
 
 const DateSearch = function (
   { className, activeClassName, onFinishSearch },
   ref
 ) {
   const {
+    selectedDate,
     datePickerIsFocus,
     handleBlurDatePicker,
     handleFocusDatePicker,
@@ -20,7 +22,12 @@ const DateSearch = function (
     setTimeout(onFinishSearch, 0);
   };
 
+  const { start, end } = selectedDate;
+
+  console.log(start, end);
+
   const { dateSearch } = styles;
+
   return (
     <div
       ref={ref}
@@ -29,6 +36,7 @@ const DateSearch = function (
       }`}
     >
       <DateRangePicker
+        value={[start ? dayjs(start) : start, end ? dayjs(end) : end]}
         onFocus={handleFocusDatePicker}
         onBlur={handleBlurDatePicker}
         onChange={handleDateChangeAndFocusGuestNum}

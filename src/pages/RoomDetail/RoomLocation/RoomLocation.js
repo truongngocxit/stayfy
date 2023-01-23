@@ -17,7 +17,7 @@ const RoomLocation = forwardRef(function ({ cityName }, ref) {
         .toLowerCase()
         .split(" ")
         .join("+")}`;
-      console.log(url);
+
       try {
         const response = await axios({
           method: "GET",

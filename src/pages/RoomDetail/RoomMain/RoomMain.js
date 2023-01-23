@@ -17,7 +17,6 @@ const RoomMain = function ({
   hostRef,
   lodgeInfo,
 }) {
-  console.log(lodgeInfo);
   const { roomMain, roomMain__Info, roomMain__Aside } = styles;
   return (
     <div className={roomMain}>
@@ -35,7 +34,11 @@ const RoomMain = function ({
         <RoomMoreInfo ref={rulesRef} />
       </div>
       <aside className={roomMain__Aside}>
-        <BookingDetailAside stickyNavHeight={stickyNavHeight} />
+        <BookingDetailAside
+          stickyNavHeight={stickyNavHeight}
+          price={lodgeInfo.price}
+          review={lodgeInfo.review}
+        />
       </aside>
     </div>
   );
