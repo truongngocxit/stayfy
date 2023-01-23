@@ -8,6 +8,7 @@ import useModalIsOpen from "../../../custom-hooks/useModalIsOpen";
 
 const ImagesPreview = forwardRef(function ({ images, name }, ref) {
   const [isShowGallery, setIsShowGallery] = useState(false);
+  const [imgIndexToScrollTo, setImgIndexToScrollTo] = useState(null);
 
   useModalIsOpen(isShowGallery);
 
@@ -19,6 +20,11 @@ const ImagesPreview = forwardRef(function ({ images, name }, ref) {
     setIsShowGallery(false);
   };
 
+  const handleClickImage = function (imgIndex) {
+    setImgIndexToScrollTo(imgIndex);
+    setIsShowGallery(true);
+  };
+
   const { imagesPreview, imagesPreview__MainImg, imagesPreview__ShowBtn } =
     styles;
 
@@ -27,14 +33,18 @@ const ImagesPreview = forwardRef(function ({ images, name }, ref) {
     <>
       <div className={imagesPreview} ref={ref} id="images">
         <PreviewImage
-          onClick={handleShowGallery}
+          onClick={handleClickImage.bind(null, 0)}
           className={imagesPreview__MainImg}
           src={mainPreviewImage}
           alt="dummy pic"
         />
 
-        {restPreviewImages.slice(1, 5).map((image) => (
-          <PreviewImage onClick={handleShowGallery} key={image} src={image} />
+        {restPreviewImages.slice(1, 5).map((image, index) => (
+          <PreviewImage
+            onClick={handleClickImage.bind(null, index + 1)}
+            key={image}
+            src={image}
+          />
         ))}
         <button className={imagesPreview__ShowBtn} onClick={handleShowGallery}>
           <ExpandIcon />
@@ -44,6 +54,7 @@ const ImagesPreview = forwardRef(function ({ images, name }, ref) {
       {isShowGallery &&
         createPortal(
           <ImagesGallery
+            imageScrolledTo={imgIndexToScrollTo}
             onCloseGallery={handleCloseGallery}
             name={name}
             images={images}

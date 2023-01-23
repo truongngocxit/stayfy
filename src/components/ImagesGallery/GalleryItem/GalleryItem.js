@@ -1,12 +1,17 @@
 import styles from "./GalleryItem.module.scss";
+import { forwardRef } from "react";
 
-const GalleryItem = function ({ src, className, onClick }) {
+const GalleryItem = function ({ src, className, onClick }, ref) {
   const { galleryItem } = styles;
   return (
-    <div className={`${galleryItem} ${className || ""}`} onClick={onClick}>
+    <div
+      className={`${galleryItem} ${className || ""}`}
+      onClick={onClick}
+      ref={ref}
+    >
       <img src={src} alt="sample" />
     </div>
   );
 };
 
-export default GalleryItem;
+export default forwardRef(GalleryItem);

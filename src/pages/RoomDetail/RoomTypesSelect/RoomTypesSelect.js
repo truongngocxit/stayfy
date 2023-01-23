@@ -78,7 +78,7 @@ const RoomTypes = function ({ types }) {
   } = styles;
   return (
     <div className={roomTypes__Container}>
-      {types.length <= 2 && (
+      {types.length > 2 && (
         <>
           <div
             className={`${roomTypes__BtnLeft} ${
@@ -110,6 +110,7 @@ const RoomTypes = function ({ types }) {
             title={item.name}
             type={item.type}
             price={item.price}
+            sleeps={item.sleeps}
             ref={(node) => {
               if (index === 0) {
                 firstItemRef.current = node;

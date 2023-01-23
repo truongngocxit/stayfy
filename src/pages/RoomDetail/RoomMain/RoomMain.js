@@ -28,7 +28,7 @@ const RoomMain = function ({
         <LineBreak />
         <RoomTypesSelect types={lodgeInfo.types} />
         <LineBreak />
-        <RoomLocation ref={locationRef} />
+        <RoomLocation ref={locationRef} cityName={lodgeInfo.city} />
         <LineBreak />
         <AboutHost ref={hostRef} hostInfo={lodgeInfo.host} />
         <LineBreak />

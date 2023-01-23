@@ -1,0 +1,55 @@
+@use "../../../../../sass-styles/variables" as *;
+
+.typeTag {
+  font-size: 1.1rem;
+  align-self: flex-start;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 50rem;
+  padding: 0.5rem 1rem;
+
+  &__Private {
+    background-color: $tintColor1;
+    svg {
+      fill: $primaryColor;
+    }
+
+    span {
+      color: $primaryColor;
+    }
+  }
+
+  &__Entire {
+    background-color: $secondaryColorYellowTint1;
+    svg {
+      fill: $secondaryColorYellowShader5;
+    }
+
+    span {
+      color: $secondaryColorYellowShader5;
+    }
+  }
+
+  &__Shared {
+    background-color: $grayColorFaint6;
+    svg {
+      fill: $grayColorMain;
+    }
+
+    span {
+      color: $grayColorMain;
+    }
+  }
+
+  svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  span {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}

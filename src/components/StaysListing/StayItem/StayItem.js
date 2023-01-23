@@ -4,11 +4,11 @@ import StayItemImage from "./StayItemImage/StayItemImage";
 import StayItemInfo from "./StayItemInfo/StayItemInfo";
 
 const StayItem = function ({ item }) {
-  const { stayItem } = styles;
+  const { stayItem, stayItem__Image } = styles;
 
   return (
     <Link to={`detail/${item.id}`} state={item} className={stayItem}>
-      <StayItemImage imgs={item.images} />
+      <StayItemImage imgs={item.images} className={stayItem__Image} />
       <StayItemInfo
         location={item.location}
         name={item.name}

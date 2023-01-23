@@ -2,15 +2,17 @@ import styles from "./RoomType.module.scss";
 import AddIcon from "../../../../components/UI/SVG/AddIcon";
 import MinusIcon from "../../../../components/UI/SVG/MinusIcon";
 import UserIcon from "../../../../components/UI/SVG/UserIcon";
-import DoubleBedIcon from "../../../../components/UI/SVG/DoubleBedIcon";
+import RoomTypeTag from "./RoomTypeTag/RoomTypeTag";
 import { forwardRef } from "react";
 
-const RoomType = function ({ src, alt, title, type, price, className }, ref) {
+const RoomType = function (
+  { src, alt, title, type, price, sleeps, className },
+  ref
+) {
   const {
     roomType,
     roomType__Img,
     roomType__Info,
-    roomType__Info__Type,
     roomType__Info__Sleeps,
     roomType__Info__Sleeps__Text,
     roomType__Info__Sleeps__Icon,
@@ -24,18 +26,14 @@ const RoomType = function ({ src, alt, title, type, price, className }, ref) {
       </div>
       <div className={roomType__Info}>
         <h3>{title}</h3>
-        <div className={roomType__Info__Type}>
-          <DoubleBedIcon />
-          <span>{type}</span>
-        </div>
+        <RoomTypeTag type={type} />
       </div>
       <div className={roomType__Info__Sleeps}>
         <span className={roomType__Info__Sleeps__Text}>
           1 king bed, 1 queen bed
         </span>
         <span className={roomType__Info__Sleeps__Icon}>
-          <UserIcon />
-          x5
+          <UserIcon />x<strong>{sleeps}</strong>
         </span>
       </div>
       <div className={roomType__Price}>

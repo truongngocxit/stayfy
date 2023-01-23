@@ -1,6 +1,5 @@
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, useMap, Popup, Marker } from "react-leaflet";
-import { useState, useEffect } from "react";
+import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import L from "leaflet";
 import customLeafletMarker from "./customLeafletMarker";
 delete L.Icon.Default.prototype._getIconUrl;
@@ -13,31 +12,21 @@ L.Icon.Default.mergeOptions({
 
 export default function LeafletMap({
   style = { height: "45rem", width: "100%" },
+  coords,
 }) {
-  const [currentLocation, setCurrentLocation] = useState(null);
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { longitude, latitude } = position.coords;
-      setCurrentLocation({
-        lng: longitude,
-        lat: latitude,
-      });
-    });
-  }, []);
-
-  if (currentLocation)
+  if (coords)
     return (
       <div style={{ zIndex: "0" }}>
         <MapContainer
           zIndex={0}
-          center={[currentLocation.lat, currentLocation.lng]}
+          center={[coords.lat, coords.lng]}
           style={style}
-          zoom={13}
+          zoom={12}
           attributionControl={false}
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <Marker
-            position={[currentLocation.lat, currentLocation.lng]}
+            position={[coords.lat, coords.lng]}
             icon={customLeafletMarker}
           >
             <Popup>You will stay here</Popup>

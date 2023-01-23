@@ -32,7 +32,7 @@ const useFetchData = function (url) {
 
     fetchData();
 
-    return () => cancelRequest();
+    return cancelRequest;
   }, [url]);
 
   return {

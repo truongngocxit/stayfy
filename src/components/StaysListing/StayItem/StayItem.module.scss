@@ -2,7 +2,7 @@
 
 .stayItem {
   display: grid;
-  grid-template-rows: 8fr 3fr;
+  grid-template-rows: 70% 1fr;
   row-gap: 1rem;
   cursor: pointer;
   text-decoration: none;
@@ -10,5 +10,9 @@
   &:link,
   &:visited {
     color: inherit;
+  }
+
+  &__Image {
+    height: 100%;
   }
 }
