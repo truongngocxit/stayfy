@@ -42,8 +42,6 @@ const RoomLocation = forwardRef(function ({ cityName }, ref) {
     return cancelRequest;
   }, [cityName]);
 
-  console.log(coords);
-
   const { roomLocation } = styles;
   return (
     <div className={roomLocation} ref={ref} id="location">

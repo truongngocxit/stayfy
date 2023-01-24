@@ -24,8 +24,6 @@ const DateSearch = function (
 
   const { start, end } = selectedDate;
 
-  console.log(start, end);
-
   const { dateSearch } = styles;
 
   return (

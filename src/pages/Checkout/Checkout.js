@@ -3,8 +3,8 @@ import TopNav from "../../components/TopNav/TopNav";
 import StaticFooter from "../../components/Footer/StaticFooter";
 import BookingDetailAside from "./BookingDetailAside/BookingDetailAside";
 import BookingButton from "./BookingInfoMain/BookingButton/BookingButton";
-
 import BookingInfoMain from "./BookingInfoMain/BookingInfoMain";
+
 const Checkout = function () {
   const { checkout, checkout__Aside, checkout__Details, checkout__Btn } =
     styles;

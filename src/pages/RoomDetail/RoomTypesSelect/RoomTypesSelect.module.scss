@@ -3,6 +3,9 @@
 .roomTypes__Container {
   width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .roomTypes__Nav {
@@ -14,7 +17,7 @@
 .roomTypes {
   //   position: relative;
   width: 100%;
-
+  padding: 0.5rem 0;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 50%;
@@ -23,6 +26,10 @@
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  &__Heading {
+    font-size: 2.2rem;
   }
 
   &__Type {
@@ -46,6 +53,7 @@
     transition: all 0.3s;
     opacity: 1;
     visibility: visible;
+    z-index: 1;
 
     &:hover {
       box-shadow: $boxShadow;

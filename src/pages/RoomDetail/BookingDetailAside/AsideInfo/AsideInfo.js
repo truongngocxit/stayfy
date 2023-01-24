@@ -8,19 +8,19 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 
-const AsideInfo = function ({ className, startDate, endDate, onChangeDate }) {
+const AsideInfo = function ({
+  className,
+  startDate,
+  endDate,
+  onChangeDate,
+  adultsNumData,
+  childrenNumData,
+  babiesNumData,
+  animalsNumData,
+}) {
   const [datePickerIsActive, setDatePickerIsActive] = useState(false);
   const { dropdownIsVisible, dropdownRef, containerRef, handleOpenDropdown } =
     useDropdown();
-
-  const { adults, children, babies, animals } = useSelector(
-    (state) => state.search.guestNum
-  );
-
-  const adultsNumData = useGuestNum(7, adults || 1);
-  const childrenNumData = useGuestNum(7, children || 0);
-  const babiesNumData = useGuestNum(5, babies || 0);
-  const animalsNumData = useGuestNum(3, animals || 0);
 
   const handleDatePickerFocus = function () {
     setDatePickerIsActive(true);
@@ -29,6 +29,11 @@ const AsideInfo = function ({ className, startDate, endDate, onChangeDate }) {
   const handleDatePickerBlur = function () {
     setDatePickerIsActive(false);
   };
+
+  const { guestNum: localAdults } = adultsNumData;
+  const { guestNum: localChildren } = childrenNumData;
+  const { guestNum: localBabies } = babiesNumData;
+  const { guestNum: localAnimals } = animalsNumData;
 
   const {
     asideInfo,
@@ -39,7 +44,15 @@ const AsideInfo = function ({ className, startDate, endDate, onChangeDate }) {
     asideInfo__GuestNum__DropdownBtn,
   } = styles;
 
-  let guestLabel = "Add guests";
+  let guestLabel;
+
+  if (localAdults === 0) {
+    guestLabel = "Add guests";
+  } else if (localAdults === 1) {
+    guestLabel = "1 guest";
+  } else {
+    guestLabel = `${localAdults + localChildren} guests`;
+  }
 
   return (
     <div className={`${asideInfo} ${className}`}>

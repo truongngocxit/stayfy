@@ -1,0 +1,18 @@
+@use "../../../../sass-styles/variables" as *;
+
+.btnScroll {
+  border: none;
+  background: none;
+  padding: 1rem 2rem;
+  border-radius: $borderRadius;
+  color: $primaryColor;
+  box-shadow: inset 0 0 0 0.2rem $primaryColor;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s all;
+
+  &:hover {
+    background-color: $primaryColor;
+    color: #fff;
+  }
+}

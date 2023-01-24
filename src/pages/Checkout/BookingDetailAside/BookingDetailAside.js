@@ -4,18 +4,28 @@ import BookingPriceSummary from "./BookingPriceSummary/BookingPriceSummary";
 import BookingDate from "./BookingDate/BookingDate";
 import GuestNum from "./GuestNum/GuestNum";
 import LineBreak from "../../../components/UI/Cosmetics/LineBreak/LineBreak";
+import { useSelector } from "react-redux";
 
 const BookingDetailAside = function () {
+  const { name, rooms, review, location, date, image, guests } = useSelector(
+    (state) => state.bookingInfo.roomInfo
+  );
+
   const { bookingDetail } = styles;
   return (
     <aside className={bookingDetail}>
-      <BookingRoomInfo />
+      <BookingRoomInfo
+        name={name}
+        review={review}
+        location={location}
+        image={image}
+      />
       <LineBreak />
-      <BookingDate />
+      <BookingDate date={date} />
       <LineBreak />
-      <GuestNum />
+      <GuestNum guests={guests} />
       <LineBreak />
-      <BookingPriceSummary />
+      <BookingPriceSummary rooms={rooms} />
     </aside>
   );
 };

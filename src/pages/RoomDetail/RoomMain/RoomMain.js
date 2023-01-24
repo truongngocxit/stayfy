@@ -7,6 +7,7 @@ import AboutHost from "../AboutHost/AboutHost";
 import RoomMoreInfo from "../RoomMoreInfo/RoomMoreInfo";
 import LineBreak from "../../../components/UI/Cosmetics/LineBreak/LineBreak";
 import RoomTypesSelect from "../RoomTypesSelect/RoomTypesSelect";
+import { useState } from "react";
 
 const RoomMain = function ({
   stickyNavHeight,
@@ -16,8 +17,13 @@ const RoomMain = function ({
   facilitiesRef,
   hostRef,
   lodgeInfo,
+  roomTypesRef,
+  onScrollToElement,
 }) {
+  const [selectedRooms, setSelectedRooms] = useState([]);
+
   const { roomMain, roomMain__Info, roomMain__Aside } = styles;
+
   return (
     <div className={roomMain}>
       <div className={roomMain__Info}>
@@ -25,7 +31,12 @@ const RoomMain = function ({
         <LineBreak />
         <RoomFeature ref={facilitiesRef} amenities={lodgeInfo.amenities} />
         <LineBreak />
-        <RoomTypesSelect types={lodgeInfo.types} />
+        <RoomTypesSelect
+          types={lodgeInfo.types}
+          ref={roomTypesRef}
+          onSelectTypes={setSelectedRooms}
+          selectedRooms={selectedRooms}
+        />
         <LineBreak />
         <RoomLocation ref={locationRef} cityName={lodgeInfo.city} />
         <LineBreak />
@@ -36,8 +47,13 @@ const RoomMain = function ({
       <aside className={roomMain__Aside}>
         <BookingDetailAside
           stickyNavHeight={stickyNavHeight}
-          price={lodgeInfo.price}
           review={lodgeInfo.review}
+          name={lodgeInfo.name}
+          price={lodgeInfo.price}
+          location={lodgeInfo.location}
+          images={lodgeInfo.images}
+          onScrollToRoomTypes={onScrollToElement.bind(null, roomTypesRef)}
+          selectedRooms={selectedRooms}
         />
       </aside>
     </div>

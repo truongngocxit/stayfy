@@ -4,12 +4,13 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
   font-size: 1.6rem;
   border: $border;
   border-radius: $borderRadius;
   top: 4rem;
   position: sticky;
+  z-index: 2;
 
   &__Head {
     display: flex;
@@ -42,12 +43,13 @@
   }
 
   &__Btn {
-    border: none;
     background-color: $primaryColor;
     padding: 1rem 2rem;
     border-radius: $borderRadius;
     color: #fff;
     font-weight: 700;
+    text-align: center;
+    text-decoration: none;
     cursor: pointer;
     &:hover {
       background-color: $shadeColor1;

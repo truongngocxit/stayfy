@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import searchQueryReducer from "./searchQuerySlice";
-import searchRefsReducer from "./searchRefsSlice";
+import bookingInfoReducer from "./bookingInfoSlice";
 
 const reduxStore = configureStore({
   reducer: {
     search: searchQueryReducer,
-    refs: searchRefsReducer,
+    bookingInfo: bookingInfoReducer,
   },
 });
 

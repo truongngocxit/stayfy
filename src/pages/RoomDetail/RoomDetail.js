@@ -25,6 +25,7 @@ const RoomDetail = function () {
   const locationSectionRef = useRef(null);
   const rulesSectionRef = useRef(null);
   const hostSectionref = useRef(null);
+  const roomTypesSectionRef = useRef(null);
   //
 
   const handleScrollToElement = function (elementRef) {
@@ -139,6 +140,10 @@ const RoomDetail = function () {
         onScrollToPhotos={handleScrollToElement.bind(null, imagePreviewRef)}
         onScrollToRules={handleScrollToElement.bind(null, rulesSectionRef)}
         onScrollToHost={handleScrollToElement.bind(null, hostSectionref)}
+        onScrollToRoomTyoes={handleScrollToElement.bind(
+          null,
+          roomTypesSectionRef
+        )}
       />
       <div className={roomDetail}>
         <RoomHead
@@ -159,6 +164,8 @@ const RoomDetail = function () {
           rulesRef={rulesSectionRef}
           facilitiesRef={facilitiesSectionRef}
           hostRef={hostSectionref}
+          roomTypesRef={roomTypesSectionRef}
+          onScrollToElement={handleScrollToElement}
         />
       </div>
       <StaticFooter />

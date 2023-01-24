@@ -2,9 +2,9 @@ import styles from "./RoomTypesSelect.module.scss";
 import RoomType from "./RoomType/RoomType";
 import ChevronLeftIcon from "../../../components/UI/SVG/ChevronLeftIcon";
 import ChevronRightIcon from "../../../components/UI/SVG/ChevronRightIcon";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, forwardRef } from "react";
 
-const RoomTypes = function ({ types }) {
+const RoomTypes = function ({ types, onSelectTypes, selectedRooms }, ref) {
   const roomTypesRef = useRef(null);
   const intersectionObserverRef = useRef(null);
   const firstItemRef = useRef(null);
@@ -74,10 +74,12 @@ const RoomTypes = function ({ types }) {
     roomTypes__BtnHidden,
     roomTypes__BtnRight,
     roomTypes,
+    roomTypes__Heading,
     roomTypes__Type,
   } = styles;
   return (
-    <div className={roomTypes__Container}>
+    <div className={roomTypes__Container} ref={ref}>
+      <h2 className={roomTypes__Heading}>Room Types</h2>
       {types.length > 2 && (
         <>
           <div
@@ -103,7 +105,7 @@ const RoomTypes = function ({ types }) {
       <ul className={roomTypes} ref={roomTypesRef}>
         {types.map((item, index, array) => (
           <RoomType
-            key={index}
+            key={item.type}
             className={roomTypes__Type}
             src={item.img}
             alt={item.name}
@@ -118,6 +120,8 @@ const RoomTypes = function ({ types }) {
                 lastItemRef.current = node;
               }
             }}
+            onSelectTypes={onSelectTypes}
+            selectedTypes={selectedRooms}
           />
         ))}
       </ul>
@@ -125,4 +129,4 @@ const RoomTypes = function ({ types }) {
   );
 };
 
-export default RoomTypes;
+export default forwardRef(RoomTypes);

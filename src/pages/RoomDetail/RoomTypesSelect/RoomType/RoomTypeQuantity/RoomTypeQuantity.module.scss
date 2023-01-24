@@ -1,0 +1,33 @@
+@use "../../../../../sass-styles/variables" as *;
+.typeQuantity {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  justify-self: end;
+  place-items: center;
+  // justify-items: center;
+  &__Btn {
+    background: none;
+    border: $border;
+    border-radius: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0.3rem;
+    cursor: pointer;
+
+    &:hover {
+      border: 0.1rem solid $grayColorFaint1;
+    }
+
+    &:disabled {
+      border: $border;
+
+      &:hover {
+        border: $border;
+      }
+    }
+  }
+
+  &__Quantity {
+    font-size: 1.6rem;
+  }
+}

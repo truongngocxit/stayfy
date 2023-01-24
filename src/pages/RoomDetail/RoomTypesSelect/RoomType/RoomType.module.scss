@@ -5,14 +5,48 @@
   width: 100%;
   display: grid;
   gap: 1rem;
-  grid-template-rows: 3fr 1fr 0.5fr;
+  grid-template-rows: 3fr 0.7fr 0.5fr;
   font-size: 1.6rem;
+  border-radius: $borderRadius;
+  overflow: hidden;
+  padding-bottom: 1.5rem;
+  position: relative;
+  border: $border;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 0 0.3rem $grayColorFaint6;
+  }
+
+  &__Checkbox {
+    width: 2.8rem;
+    height: 2.8rem;
+    position: absolute;
+    background-color: #fff;
+    border-radius: $borderRadius;
+    top: 2rem;
+    right: 2rem;
+    padding: 0.4rem;
+    box-shadow: inset 0 0 0 0.2rem $primaryColor;
+
+    svg {
+      stroke: #fff;
+    }
+  }
+
+  &__Selected &__Checkbox {
+    background-color: $primaryColor;
+  }
+
+  &__Info,
+  &__Sleeps,
+  &__Price {
+    padding: 0 1.5rem;
+  }
 
   &__Img {
-    border-radius: $borderRadius;
     width: 100%;
-    height: 16rem;
-    overflow: hidden;
+    height: 100%;
 
     img {
       width: 100%;
@@ -25,52 +59,29 @@
     font-size: 1.6rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
 
     h3 {
       font-size: 1.8rem;
       font-weight: 700;
     }
+  }
 
-    &__Type {
-      font-size: 1.1rem;
-      background-color: $tintColor1;
-      align-self: flex-start;
+  &__Sleeps {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+
+    &__Icon {
       display: flex;
-      gap: 0.5rem;
       align-items: center;
-      justify-content: space-between;
-      border-radius: 50rem;
-      padding: 0.5rem 1rem;
+      gap: 0.6rem;
+
       svg {
-        width: 1.8rem;
-        height: 1.8rem;
-        fill: $primaryColor;
-      }
-
-      span {
-        font-weight: 600;
-        color: $primaryColor;
-        text-transform: uppercase;
-      }
-    }
-
-    &__Sleeps {
-      display: flex;
-      gap: 0.5rem;
-      justify-content: space-between;
-      align-items: center;
-
-      &__Icon {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-
-        svg {
-          width: 1.6rem;
-          height: 1.6rem;
-          fill: $grayColorFaint1;
-        }
+        width: 1.6rem;
+        height: 1.6rem;
+        fill: $grayColorFaint1;
       }
     }
   }
@@ -79,32 +90,23 @@
     display: grid;
     grid-template-columns: 3.5fr 2fr;
     align-items: center;
+    align-self: flex-end;
 
     &__Price {
       font-size: 1.6rem;
     }
   }
-}
 
-.typeQuantity {
-  display: grid;
-  grid-template-columns: 1fr 0.8fr 1fr;
-  place-items: center;
-  // justify-items: center;
-  &__Btn {
-    border: $border;
-    border-radius: 50%;
-    width: 2.8rem;
-    height: 2.8rem;
-    padding: 0.4rem;
-    cursor: pointer;
+  &__Selected {
+    box-shadow: 0 0 0 0.3rem $secondaryColorYellowPrimary;
 
     &:hover {
-      border: 0.1rem solid $grayColorFaint1;
+      box-shadow: 0 0 0 0.3rem $secondaryColorYellowPrimary;
     }
   }
 
-  &__Quantity {
-    font-size: 1.6rem;
+  &__HiddenQuantity {
+    opacity: 0;
+    visibility: hidden;
   }
 }
