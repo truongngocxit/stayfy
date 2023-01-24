@@ -5,7 +5,7 @@ const TotalPrice = function ({ price }) {
   return (
     <div className={totalPrice}>
       <span>Total (USD)</span>
-      <span>${price}</span>
+      <span>${price.toFixed(2)}</span>
     </div>
   );
 };

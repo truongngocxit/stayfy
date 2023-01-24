@@ -20,61 +20,84 @@ const RoomType = function (
   },
   ref
 ) {
-  const [roomNum, setRoomNum] = useState(0);
-
+  const typeTarget = selectedTypes.find((roomType) => roomType.name === title);
   const handleToggleTypeSelect = function () {
-    if (
-      !selectedTypes.some((type) => type.title === title) &&
-      type === "Entire place"
-    ) {
-      setRoomNum((n) => n + 1);
-      onSelectTypes([
-        {
-          type,
-          price,
-          title,
-        },
-      ]);
-    } else if (
-      !selectedTypes.some((type) => type.title === title) &&
-      type !== "Entire place"
-    ) {
-      setRoomNum((n) => n + 1);
-      onSelectTypes((types) =>
-        [
-          ...types,
-          {
-            type,
-            price,
-            title,
-          },
-        ].filter((type) => type.type !== "Entire place")
+    if (type === "Entire place" && typeTarget.quantity === 0) {
+      onSelectTypes((prevRooms) =>
+        prevRooms.map((room) => {
+          if (room.type === "Entire place") {
+            return { ...room, quantity: 1 };
+          } else {
+            return { ...room, quantity: 0 };
+          }
+        })
       );
-    } else {
-      setRoomNum(0);
-      onSelectTypes((types) => types.filter((t) => t.title !== title));
+    }
+    if (type === "Entire place" && typeTarget.quantity === 1) {
+      onSelectTypes((prevRooms) =>
+        prevRooms.map((room) => {
+          if (room.type === "Entire place") {
+            return { ...room, quantity: 0 };
+          } else {
+            return { ...room };
+          }
+        })
+      );
+    }
+    if (type !== "Entire place" && typeTarget.quantity === 0) {
+      onSelectTypes((prevRooms) =>
+        prevRooms.map((room) => {
+          if (room.name === title) {
+            return { ...room, quantity: 1 };
+          }
+          if (room.type === "Entire place") {
+            return { ...room, quantity: 0 };
+          }
+          return { ...room };
+        })
+      );
+    }
+
+    if (type !== "Entire place" && typeTarget.quantity > 0) {
+      onSelectTypes((prevRooms) =>
+        prevRooms.map((room) => {
+          if (room.name === typeTarget.name) {
+            return { ...room, quantity: 0 };
+          }
+          if (room.type === "Entire place") {
+            return { ...room, quantity: 0 };
+          }
+          return { ...room };
+        })
+      );
     }
   };
 
   const handleIncreaseRoomNum = function (event) {
     event.stopPropagation();
-    if (!selectedTypes.some((type) => type.title === title)) return;
-    if (roomNum >= 5) return;
-    setRoomNum((num) => num + 1);
+    if (type === "Entire place") return;
+    onSelectTypes((prevRooms) =>
+      prevRooms.map((room) => {
+        if (room.name === title) {
+          return { ...room, quantity: room.quantity + 1 };
+        }
+        return { ...room };
+      })
+    );
   };
 
   const handleDecreaseRoomNum = function (event) {
     event.stopPropagation();
-    if (!selectedTypes.some((type) => type.title === title)) return;
-    if (roomNum === 0) return;
-    if (roomNum === 1) {
-      onSelectTypes((types) => types.filter((t) => t.title !== title));
-    }
-
-    setRoomNum((num) => num - 1);
+    if (type === "Entire place") return;
+    onSelectTypes((prevRooms) =>
+      prevRooms.map((room) => {
+        if (room.name === title) {
+          return { ...room, quantity: room.quantity - 1 };
+        }
+        return { ...room };
+      })
+    );
   };
-
-  const roomTypeIsSelected = selectedTypes.some((type) => type.title === title);
 
   const {
     roomType,
@@ -92,7 +115,7 @@ const RoomType = function (
   return (
     <li
       className={`${roomType} ${
-        roomTypeIsSelected ? roomType__Selected : ""
+        typeTarget.quantity > 0 ? roomType__Selected : ""
       } ${className}`}
       ref={ref}
       onClick={handleToggleTypeSelect}
@@ -121,8 +144,7 @@ const RoomType = function (
         <RoomTypeQuantity
           onIncreaseRoomNum={handleIncreaseRoomNum}
           onDecreaseRoomNum={handleDecreaseRoomNum}
-          roomNum={roomNum}
-          className={roomNum <= 0 ? roomType__HiddenQuantity : ""}
+          quantity={typeTarget.quantity}
         />
       </div>
     </li>

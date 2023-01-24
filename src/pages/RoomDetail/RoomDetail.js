@@ -88,12 +88,20 @@ const RoomDetail = function () {
         setActiveId("facilities");
       }
       if (
+        roomTypesSectionRef.current.getBoundingClientRect().top -
+          stickyNavHeight * 2 <
+        0
+      ) {
+        setActiveId("roomTypes");
+      }
+      if (
         locationSectionRef.current.getBoundingClientRect().top -
           stickyNavHeight * 2 <
         0
       ) {
         setActiveId("location");
       }
+
       if (
         hostSectionref.current.getBoundingClientRect().top -
           stickyNavHeight * 2 <
@@ -140,7 +148,7 @@ const RoomDetail = function () {
         onScrollToPhotos={handleScrollToElement.bind(null, imagePreviewRef)}
         onScrollToRules={handleScrollToElement.bind(null, rulesSectionRef)}
         onScrollToHost={handleScrollToElement.bind(null, hostSectionref)}
-        onScrollToRoomTyoes={handleScrollToElement.bind(
+        onScrollToRoomTypes={handleScrollToElement.bind(
           null,
           roomTypesSectionRef
         )}

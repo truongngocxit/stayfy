@@ -5,11 +5,11 @@ import MinusIcon from "../../../../../components/UI/SVG/MinusIcon";
 const RoomTypeQuantity = function ({
   onIncreaseRoomNum,
   onDecreaseRoomNum,
-  roomNum,
+  quantity,
   className,
 }) {
-  const increaseBtnIsDisabled = roomNum >= 5;
-  const decreaseBtnIsDisabled = roomNum <= 0;
+  const increaseBtnIsDisabled = quantity >= 5;
+  const decreaseBtnIsDisabled = quantity <= 0;
 
   const { typeQuantity, typeQuantity__Btn, typeQuantity__Quantity } = styles;
   return (
@@ -21,7 +21,7 @@ const RoomTypeQuantity = function ({
       >
         <MinusIcon />
       </button>
-      <span className={typeQuantity__Quantity}>{roomNum}</span>
+      <span className={typeQuantity__Quantity}>{quantity}</span>
 
       <button
         className={typeQuantity__Btn}

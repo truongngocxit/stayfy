@@ -10,6 +10,7 @@ const StickySectionNav = forwardRef(function (
     onScrollToLocation,
     onScrollToHost,
     onScrollToRules,
+    onScrollToRoomTypes,
     activeId,
   },
   ref
@@ -49,6 +50,12 @@ const StickySectionNav = forwardRef(function (
           className={activeId === "facilities" ? link__Active : ""}
         >
           <button>Facilities</button>
+        </li>
+        <li
+          onClick={onScrollToRoomTypes}
+          className={activeId === "roomTypes" ? link__Active : ""}
+        >
+          <button>Room types</button>
         </li>
         <li
           onClick={onScrollToLocation}

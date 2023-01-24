@@ -17,7 +17,7 @@ const App = function () {
       <Route path="profile" element={<Profile />} />
       <Route path="about" element={<About />} />
       <Route path="wishlist" element={<Wishlist />} />
-      <Route path="checkout" element={<Checkout />} />
+      <Route path="checkout/:id" element={<Checkout />} />
       <Route path="trips" element={<Trips />} />
       <Route path="signup" element={<Signup />} />
       <Route path="login" element={<Signup isLoggingIn={true} />} />

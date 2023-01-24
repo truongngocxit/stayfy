@@ -8,6 +8,7 @@ import RoomMoreInfo from "../RoomMoreInfo/RoomMoreInfo";
 import LineBreak from "../../../components/UI/Cosmetics/LineBreak/LineBreak";
 import RoomTypesSelect from "../RoomTypesSelect/RoomTypesSelect";
 import { useState } from "react";
+import { type } from "@testing-library/user-event/dist/type";
 
 const RoomMain = function ({
   stickyNavHeight,
@@ -20,7 +21,11 @@ const RoomMain = function ({
   roomTypesRef,
   onScrollToElement,
 }) {
-  const [selectedRooms, setSelectedRooms] = useState([]);
+  const [selectedRooms, setSelectedRooms] = useState(
+    lodgeInfo.types.map((type) => ({ ...type, quantity: 0 }))
+  );
+
+  console.log(selectedRooms);
 
   const { roomMain, roomMain__Info, roomMain__Aside } = styles;
 
@@ -52,6 +57,7 @@ const RoomMain = function ({
           price={lodgeInfo.price}
           location={lodgeInfo.location}
           images={lodgeInfo.images}
+          id={lodgeInfo.id}
           onScrollToRoomTypes={onScrollToElement.bind(null, roomTypesRef)}
           selectedRooms={selectedRooms}
         />

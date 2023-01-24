@@ -18,6 +18,7 @@ const BookingDetailAside = function ({
   onScrollToRoomTypes,
   selectedRooms,
   images,
+  id,
 }) {
   const reduxDispatch = useDispatch();
 
@@ -93,7 +94,7 @@ const BookingDetailAside = function ({
       {selectedRooms.length > 0 && (
         <>
           <Link
-            to="/checkout"
+            to={`/checkout/${id}`}
             className={bookingDetail__Btn}
             onClick={handleConfirmInformation}
           >
