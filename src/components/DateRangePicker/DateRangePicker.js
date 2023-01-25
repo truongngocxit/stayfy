@@ -4,7 +4,16 @@ import { forwardRef } from "react";
 const { RangePicker } = DatePicker;
 
 const DateRangePicker = function (
-  { onFocus, onBlur, onChange, disabledDate, value },
+  {
+    onFocus,
+    onBlur,
+    onChange,
+    disabledDate,
+    value,
+    className,
+    open,
+    getPopupContainer,
+  },
   ref
 ) {
   const datePickerInlineStyle = {
@@ -25,7 +34,9 @@ const DateRangePicker = function (
       }}
     >
       <RangePicker
+        className={className || ""}
         value={value}
+        open={open}
         ref={ref}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -34,6 +45,7 @@ const DateRangePicker = function (
         onChange={onChange}
         placeholder={["Checkin", "Checkout"]}
         disabledDate={disabledDate}
+        getPopupContainer={getPopupContainer}
       />
     </ConfigProvider>
   );

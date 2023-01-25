@@ -75,6 +75,8 @@ const BookingDetailAside = function ({
     reduxDispatch(bookingInfoActions.addRoomInfo(bookingInfo));
   };
 
+  const atLeastOneItemIsAdded = selectedRooms.some((room) => room.quantity > 0);
+
   const { bookingDetail, bookingDetail__Btn } = styles;
   return (
     <div className={bookingDetail} style={{ top: `${40 + stickyNavHeight}px` }}>
@@ -88,10 +90,10 @@ const BookingDetailAside = function ({
         babiesNumData={babiesNumData}
         animalsNumData={animalsNumData}
       />
-      {selectedRooms.length === 0 && (
+      {!atLeastOneItemIsAdded && (
         <ButtonScroll label="Choose room" onClick={onScrollToRoomTypes} />
       )}
-      {selectedRooms.length > 0 && (
+      {atLeastOneItemIsAdded && (
         <>
           <Link
             to={`/checkout/${id}`}
