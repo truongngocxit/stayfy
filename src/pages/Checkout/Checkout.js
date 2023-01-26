@@ -4,7 +4,7 @@ import StaticFooter from "../../components/Footer/StaticFooter";
 import BookingDetailAside from "./BookingDetailAside/BookingDetailAside";
 import BookingButton from "./BookingInfoMain/BookingButton/BookingButton";
 import BookingInfoMain from "./BookingInfoMain/BookingInfoMain";
-
+import DateAdjustModal from "./BookingDetailAside/BookingDate/DateAdjustModal/DateAdjustModal";
 const Checkout = function () {
   const { checkout, checkout__Aside, checkout__Details, checkout__Btn } =
     styles;

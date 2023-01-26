@@ -30,56 +30,57 @@ a {
   font-size: 1.6rem;
 }
 
-//keyframes
-
 //Customize Ant Range Picker
 
-.ant-picker {
-  height: 100% !important;
-  align-self: stretch;
-}
+// .ant-picker {
+//   // height: 100% !important;
+//   align-self: stretch;
+// }
 
-.ant-picker-clear {
-  inset-inline-end: 0 !important;
-  background: none !important;
-}
+// .ant-picker-clear {
+//   inset-inline-end: 0 !important;
+//   background: none !important;
+// }
 
-.ant-picker-range-wrapper {
-  margin-top: 1rem;
-}
+// .ant-picker-range-wrapper {
+//   margin-top: 1rem;
+// }
 
-.ant-picker-active-bar {
-  display: none !important;
-}
+// .ant-picker-active-bar {
+//   display: none !important;
+// }
 
-.ant-picker-focused {
-  box-shadow: none;
-}
+// .ant-picker-focused {
+//   box-shadow: none;
+// }
 
-.ant-picker-dropdown {
-  position: fixed !important;
-  bottom: -10rem !important;
-}
+// .ant-picker-dropdown {
+//   //position: static !important;
+//   bottom: 0 !important;
+// }
 
-.ant-picker-suffix {
-  display: none !important;
-}
+// .ant-picker-suffix {
+//   display: none !important;
+// }
 
-.ant-picker-cell-inner,
-.ant-picker-content {
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 1.6rem;
-}
+// .ant-picker-cell-inner,
+// .ant-picker-content {
+//   font-family: "Montserrat", sans-serif !important;
+//   font-size: 1.6rem;
+// }
 
-.ant-picker-input {
-  margin: 0 auto;
-  height: 100% !important;
+// .ant-picker-input {
+//   margin: 0 auto;
+//   height: 100% !important;
 
-  input {
-    text-align: center;
-    cursor: pointer !important;
-  }
-}
+//   input {
+//     font-size: 1.6rem !important;
+//     text-align: center;
+//     cursor: pointer !important;
+//   }
+// }
+
+//Custom Leaflet Marker
 
 .customLeafletMarker {
   width: 3.2rem !important;
@@ -88,44 +89,74 @@ a {
 
 //Customize Ant Slider
 
-.ant-tooltip {
-  z-index: 5000;
-  text-align: center;
-  // transform: translateX(-0.5rem);
-}
+// .ant-tooltip {
+//   z-index: 5000;
+//   text-align: center;
+//   // transform: translateX(-0.5rem);
+// }
 
-.ant-tooltip-inner {
-  text-align: center !important;
-  font-family: "Montserrat", sans-serif;
-}
+// .ant-tooltip-inner {
+//   text-align: center !important;
+//   font-family: "Montserrat", sans-serif;
+// }
 
-.ant-slider {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
+// .ant-slider {
+//   display: flex !important;
+//   align-items: center;
+//   justify-content: center;
+// }
 
-.ant-slider-handle {
-  transform: translateY(-50%) !important;
+// .ant-slider-handle {
+//   transform: translateY(-50%) !important;
 
-  &::after {
-    width: 2rem !important;
-    height: 2rem !important;
-    inset-inline-start: -1rem !important;
-    inset-block-start: -0.1rem !important;
-    cursor: grab !important;
+//   &::after {
+//     width: 2rem !important;
+//     height: 2rem !important;
+//     inset-inline-start: -1rem !important;
+//     inset-block-start: -0.1rem !important;
+//     cursor: grab !important;
 
-    &:hover {
-      inset-inline-start: 0 !important;
-      inset-inline-end: 0 !important;
-    }
-  }
-}
+//     &:hover {
+//       inset-inline-start: 0 !important;
+//       inset-inline-end: 0 !important;
+//     }
+//   }
+// }
 
-.ant-slider-rail {
-  height: 0.6rem !important;
-}
+// .ant-slider-rail {
+//   height: 0.6rem !important;
+// }
 
-.ant-slider-track {
-  height: 0.7rem !important;
-}
+// .ant-slider-track {
+//   height: 0.7rem !important;
+// }
+
+//TEST
+// .modal {
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   border: 0.1rem solid black;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+
+// .modal > * {
+//   position: static !important;
+// }
+
+// .popup {
+// }
+
+// /* .popup > * {
+//   position: static !important;
+// } */
+
+// .ant-picker-dropdown {
+//   animation: none !important;
+//   position: static !important;
+//   transform: scale(1);
+//   opacity: 1;
+// }

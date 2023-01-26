@@ -13,6 +13,7 @@ const DateRangePicker = function (
     className,
     open,
     getPopupContainer,
+    bordered,
   },
   ref
 ) {
@@ -34,6 +35,7 @@ const DateRangePicker = function (
       }}
     >
       <RangePicker
+        bordered={bordered}
         className={className || ""}
         value={value}
         open={open}

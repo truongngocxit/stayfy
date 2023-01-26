@@ -19,7 +19,7 @@ const BookingRoomInfo = function ({ name, review, location, image }) {
         <h3 className={roomInfo__Details__Name}>{name}</h3>
         <div className={roomInfo__Details__Review}>
           <StarIcon />
-          <span>{review.toFixed(2)}</span>
+          <span>{"6.89" || review.toFixed(2)}</span>
         </div>
         <p className={roomInfo__Details__Address}>{location}</p>
       </div>
