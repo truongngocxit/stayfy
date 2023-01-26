@@ -3,6 +3,7 @@ import DateItem from "./DateItem/DateItem.js";
 import EditIcon from "../../../../components/UI/SVG/EditIcon";
 import DateAdjustModal from "./DateAdjustModal/DateAdjustModal";
 import Overlay from "../../../../components/UI/Overlay/Overlay";
+import EditButton from "../EditButton/EditButton";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -35,12 +36,10 @@ const BookingDate = function ({ date }) {
   return (
     <>
       <div className={bookingDate}>
-        <button
+        <EditButton
           className={bookingDate__EditIcon}
           onClick={handleOpenDatePicker}
-        >
-          <EditIcon />
-        </button>
+        />
         <DateItem tag="IN" date={startDateText} time="13:00 – 23:30" />
         <DateItem tag="OUT" date={endDateText} time="Until 12:00" />
       </div>
@@ -57,11 +56,6 @@ const BookingDate = function ({ date }) {
           />,
           document.getElementById("modal-root")
         )}
-
-      {/* <DateAdjustModal
-        datePickerIsOpen={datePickerIsOpen}
-        onCloseDatePicker={handleCloseDatePicker}
-      /> */}
     </>
   );
 };

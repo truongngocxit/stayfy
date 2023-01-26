@@ -3,9 +3,7 @@ import DateRangePicker from "../../../../components/DateRangePicker/DateRangePic
 import GuestNumberDropdown from "../../../../components/SearchBar/GuestNumberDropdown/GuestNumberDropdown";
 import useDropdown from "../../../../custom-hooks/useDropdown";
 import ChevronTopIcon from "../../../../components/UI/SVG/ChevronTopIcon";
-import useGuestNum from "../../../../custom-hooks/useGuestNum";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 
 const AsideInfo = function ({
@@ -41,6 +39,7 @@ const AsideInfo = function ({
     asideInfo__DatePicker__Active,
     asideInfo__GuestNum,
     asideInfo__GuestNum__Active,
+    asideInfo__GuestNum__Modal,
     asideInfo__GuestNum__DropdownBtn,
   } = styles;
 
@@ -84,11 +83,7 @@ const AsideInfo = function ({
         <ChevronTopIcon className={asideInfo__GuestNum__DropdownBtn} />
         {dropdownIsVisible && (
           <GuestNumberDropdown
-            style={{
-              width: "150%",
-              left: "-155%",
-              transform: "translateY(50%)",
-            }}
+            className={asideInfo__GuestNum__Modal}
             adultsData={adultsNumData}
             childrenData={childrenNumData}
             babiesData={babiesNumData}

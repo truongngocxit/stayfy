@@ -15,6 +15,7 @@ const AsideRateSummary = function ({ numOfDays, price, selectedRooms }) {
           if (room.quantity > 0) {
             return (
               <PriceItem
+                key={room.id}
                 title={room.name}
                 quantity={room.quantity}
                 price={room.price}

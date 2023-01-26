@@ -38,9 +38,7 @@ const DateSearch = function (
         onFocus={handleFocusDatePicker}
         onBlur={handleBlurDatePicker}
         onChange={handleDateChangeAndFocusGuestNum}
-        disabledDate={(current) =>
-          current < Date.now() || current > new Date(new Date().setMonth(2))
-        }
+        
       />
     </div>
   );

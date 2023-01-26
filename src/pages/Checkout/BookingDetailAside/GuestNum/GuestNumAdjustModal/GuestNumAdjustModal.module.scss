@@ -1,0 +1,55 @@
+@use "../../../../../sass-styles/variables" as *;
+
+.guestNumModal {
+  position: fixed;
+  z-index: 1500;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: $border;
+  box-shadow: $boxShadow;
+  border-radius: $borderRadius;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+  padding: 2rem 0;
+
+  &__Header {
+    h2 {
+      font-size: 2.4rem;
+    }
+    padding: 0 4rem;
+  }
+
+  &__Modal {
+    padding: 0 4rem;
+  }
+
+  &__Footer {
+    padding: 1rem 4rem 0;
+    border-top: $border;
+
+    display: flex;
+    justify-content: space-between;
+
+    & > * {
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    &__Cancel {
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    &__Save {
+      padding: 1.5rem 3rem;
+      background-color: $primaryColor;
+      border-radius: $borderRadius;
+      color: #fff;
+      font-weight: 700;
+    }
+  }
+}

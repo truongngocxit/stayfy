@@ -39,8 +39,13 @@ const GuestNumber = function ({ className, activeClassName }, ref) {
     btnLabel = `${adultsNum + childrenNum} guests`;
   }
 
-  const { guestNum, guestNum__ZeroGuest, guestNum__Label, guestNum__CloseBtn } =
-    styles;
+  const {
+    guestNum,
+    guestNum__ZeroGuest,
+    guestNum__Label,
+    guestNum__CloseBtn,
+    guestNum__Modal,
+  } = styles;
 
   return (
     <div
@@ -62,6 +67,7 @@ const GuestNumber = function ({ className, activeClassName }, ref) {
       {dropdownIsVisible && (
         <GuestNumberDropdown
           ref={dropdownRef}
+          className={guestNum__Modal}
           adultsData={adultsNumContextSlice}
           babiesData={babiesNumContextSlice}
           childrenData={childrenNumContextSlice}

@@ -8,7 +8,7 @@ const DateRangePicker = function (
     onFocus,
     onBlur,
     onChange,
-    disabledDate,
+    onCalendarChange,
     value,
     className,
     open,
@@ -35,6 +35,7 @@ const DateRangePicker = function (
       }}
     >
       <RangePicker
+        onCalendarChange={onCalendarChange}
         bordered={bordered}
         className={className || ""}
         value={value}
@@ -46,8 +47,10 @@ const DateRangePicker = function (
         style={datePickerInlineStyle}
         onChange={onChange}
         placeholder={["Checkin", "Checkout"]}
-        disabledDate={disabledDate}
         getPopupContainer={getPopupContainer}
+        disabledDate={(current) =>
+          current < Date.now() || current > new Date(new Date().setMonth(2))
+        }
       />
     </ConfigProvider>
   );

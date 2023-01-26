@@ -23,6 +23,12 @@ const bookingInfoSlice = createSlice({
     guestInfo: null,
   },
   reducers: {
+    replaceGuestNum(state, action) {
+      state.roomInfo.guests = action.payload;
+    },
+    replaceDate(state, action) {
+      state.roomInfo.date = action.payload;
+    },
     addRoomInfo(state, action) {
       state.roomInfo = action.payload;
     },

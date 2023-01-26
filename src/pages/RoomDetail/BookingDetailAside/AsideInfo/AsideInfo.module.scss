@@ -54,5 +54,18 @@
       height: 2rem;
       transform: rotate(180deg);
     }
+
+    &__Modal {
+      position: absolute;
+      bottom: -30%;
+      left: 0;
+      transform: translateY(100%);
+      width: 150%;
+      left: -155%;
+      transform: translateY(50%);
+      border: $border;
+      box-shadow: $boxShadow;
+      padding: 2rem 4rem;
+    }
   }
 }

@@ -1,16 +1,8 @@
 @use "../../../sass-styles/variables" as *;
 
 .guestNumberDropdown {
-  position: absolute;
-  bottom: -30%;
-  left: 0;
-  // width: 100%;
   background-color: #fff;
-  padding: 2rem 4rem;
   border-radius: 1.6rem;
-  transform: translateY(100%);
-  border: $border;
-  box-shadow: $boxShadow;
   display: grid;
   grid-template-columns: max-content 4fr;
   font-size: 1.6rem;

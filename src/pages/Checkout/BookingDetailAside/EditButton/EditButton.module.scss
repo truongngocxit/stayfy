@@ -1,0 +1,23 @@
+@use "../../../../sass-styles/variables" as *;
+
+.editBtn {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  border: $border;
+  cursor: pointer;
+
+  svg {
+    padding: 0.5rem;
+    stroke: $grayColorMain;
+  }
+
+  &:hover {
+    background-color: $primaryColor;
+    border: none;
+
+    svg {
+      stroke: #fff;
+    }
+  }
+}

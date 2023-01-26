@@ -3,7 +3,7 @@ import GuestTypeInput from "./GuestTypeInput/GuestTypeInput";
 import { forwardRef } from "react";
 
 const GuestNumberDropdown = forwardRef(function (
-  { adultsData, babiesData, childrenData, animalsData, style },
+  { adultsData, babiesData, childrenData, animalsData, style, className },
   ref
 ) {
   const {
@@ -52,7 +52,11 @@ const GuestNumberDropdown = forwardRef(function (
 
   const { guestNumberDropdown } = styles;
   return (
-    <div className={guestNumberDropdown} ref={ref} style={style}>
+    <div
+      className={`${guestNumberDropdown} ${className}`}
+      ref={ref}
+      style={style}
+    >
       <GuestTypeInput
         typeName="Adults"
         typeCondition="13 years of age or higher"

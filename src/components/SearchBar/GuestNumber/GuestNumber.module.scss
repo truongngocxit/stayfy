@@ -12,6 +12,16 @@
   gap: 0.5rem;
   width: 16rem;
 
+  &__Modal {
+    position: absolute;
+    bottom: -30%;
+    left: 0;
+    transform: translateY(100%);
+    border: $border;
+    box-shadow: $boxShadow;
+    padding: 2rem 4rem;
+  }
+
   &__ZeroGuest &__Label {
     grid-column: 1 / -1;
     justify-self: center;

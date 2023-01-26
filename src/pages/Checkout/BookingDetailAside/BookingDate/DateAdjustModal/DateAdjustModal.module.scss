@@ -30,4 +30,19 @@
       background-color: $grayColorFaint6;
     }
   }
+
+  &__SaveBtn {
+    padding: 1.5rem 4rem;
+    border: $border;
+    background-color: $primaryColor;
+    border-radius: $borderRadius;
+    color: #fff;
+    font-weight: 700;
+    align-self: flex-end;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $shadeColor1;
+    }
+  }
 }
