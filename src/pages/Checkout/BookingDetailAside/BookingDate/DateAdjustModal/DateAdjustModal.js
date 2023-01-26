@@ -1,13 +1,19 @@
 import styles from "./DateAdjustModal.module.scss";
-import { DatePicker } from "antd";
-const { RangePicker } = DatePicker;
+import "./customAntdStyle.scss";
+import CloseIcon from "../../../../../components/UI/SVG/CloseIcon";
 
-const DateAdjustModal = function () {
-  const { dateModal } = styles;
+import DateRangePicker from "../../../../../components/DateRangePicker/DateRangePicker";
+
+const DateAdjustModal = function ({ onCloseDatePicker }) {
+  const { dateModal, dateModal__CloseBtn } = styles;
   return (
-    <div className={dateModal}>
-      <RangePicker
+    <div className={`checkoutDatePicker  ${dateModal}`}>
+      <button onClick={onCloseDatePicker} className={dateModal__CloseBtn}>
+        <CloseIcon />
+      </button>
+      <DateRangePicker
         open={true}
+        bordered={false}
         getPopupContainer={(popup) => {
           return popup.parentElement;
         }}

@@ -44,11 +44,11 @@ const BookingDate = function ({ date }) {
         <DateItem tag="IN" date={startDateText} time="13:00 – 23:30" />
         <DateItem tag="OUT" date={endDateText} time="Until 12:00" />
       </div>
-      {/* {datePickerIsOpen &&
+      {datePickerIsOpen &&
         createPortal(
           <Overlay zIndex={1200} onClick={handleCloseDatePicker} />,
           document.getElementById("overlay-root")
-        )} */}
+        )}
       {datePickerIsOpen &&
         createPortal(
           <DateAdjustModal

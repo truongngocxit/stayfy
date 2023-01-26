@@ -1,0 +1,24 @@
+@use "../../../../../sass-styles/variables" as *;
+
+.checkoutDatePicker {
+  & > * {
+    position: static !important;
+  }
+
+  .ant-picker {
+    &-dropdown {
+      position: static !important;
+      animation: none !important;
+      opacity: 1 !important;
+      transform: scale(1) !important;
+    }
+
+    &-panel-container {
+      box-shadow: none !important;
+    }
+
+    &-range-arrow {
+      display: none !important;
+    }
+  }
+}
