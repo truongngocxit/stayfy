@@ -12,7 +12,7 @@ const GuestGeneralInfoContextProvicer = function ({ children }) {
   const phoneInput = useInput(
     (phone) => phone.trim() !== "" && !isNaN(-phone) && phone.length === 10
   );
-  const bookedForInput = useInput();
+  const bookedForInput = useInput(null, "I am the main guest");
   return (
     <guestGeneralInfoContext.Provider
       value={{

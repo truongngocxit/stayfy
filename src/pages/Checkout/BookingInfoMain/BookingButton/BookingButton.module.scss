@@ -1,14 +1,25 @@
 @use "../../../../sass-styles/variables" as *;
 
 .bookingBtn {
-  padding: 2rem 4rem;
+  padding: 2rem 6rem;
   border: none;
   background-color: $primaryColor;
   color: #fff;
   border-radius: $borderRadius;
+  font-weight: 700;
   cursor: pointer;
+  border: none;
+  font-size: 1.6rem;
 
   &:hover {
     background-color: $shadeColor1;
+  }
+
+  &__Disabled {
+    cursor: not-allowed;
+    background-color: $grayColorFaint5;
+    &:hover {
+      background-color: $grayColorFaint5;
+    }
   }
 }

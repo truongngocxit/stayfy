@@ -1,6 +1,7 @@
 import styles from "./GuestInfoForm.module.scss";
 import InfoInput from "./InfoInput/InfoInput";
 import InfoRadio from "./InfoRadio/InfoRadio";
+import { Tooltip } from "antd";
 import { useContext } from "react";
 import { guestGeneralInfoContext } from "../../../../contexts/guestBookingInfoContext/guestGeneralInfoContext";
 
@@ -64,7 +65,9 @@ const GuestInfoForm = function () {
     <div className={infoForm__Container}>
       <form className={infoForm}>
         <h3>Your information</h3>
+
         <InfoInput
+          errorMessage="Invalid first name format"
           hasError={firstNameHasError}
           label="First name"
           value={firstName}
@@ -74,7 +77,9 @@ const GuestInfoForm = function () {
           onFocus={handleStartTypingFirstName}
           onBlur={handleStopTypingFirstName}
         />
+
         <InfoInput
+          errorMessage="Invalid last name format"
           hasError={lastNameHasError}
           label="Last name"
           value={lastName}
@@ -85,6 +90,7 @@ const GuestInfoForm = function () {
           onBlur={handleStopTypingLastName}
         />
         <InfoInput
+          errorMessage="Invalid email (includes domain name)"
           hasError={emailHasError}
           label="Email address"
           value={email}
@@ -95,6 +101,7 @@ const GuestInfoForm = function () {
           onBlur={handleStopTypingEmail}
         />
         <InfoInput
+          errorMessage="Invalid phone (= 10 numbers)"
           hasError={phoneHasError}
           label="Phone number"
           value={phone}

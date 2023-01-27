@@ -56,6 +56,7 @@ const BookingDetailAside = function ({
 
   const handleConfirmInformation = function () {
     const bookingInfo = {
+      id,
       name,
       rooms: selectedRooms,
       review,
