@@ -1,6 +1,6 @@
-@use "../../../../../sass-styles/variables" as *;
+@use "../../sass-styles/variables" as *;
 
-.infoInput {
+.input {
   border: $border;
   display: flex;
   flex-direction: column;

@@ -13,4 +13,13 @@
   &:hover {
     background-color: $shadeColor1;
   }
+
+  &__Disabled {
+    background-color: $grayColorFaint5;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: $grayColorFaint5;
+    }
+  }
 }

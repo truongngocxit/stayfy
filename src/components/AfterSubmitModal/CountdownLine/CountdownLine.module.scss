@@ -1,0 +1,10 @@
+@use "../../../sass-styles/variables" as *;
+
+.countdownLine {
+  width: 100%;
+
+  background-color: $primaryColor;
+  height: 0.58rem;
+  align-self: flex-start;
+  transition: all 0.3s;
+}

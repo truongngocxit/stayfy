@@ -1,6 +1,6 @@
 import styles from "./GuestInfoForm.module.scss";
-import InfoInput from "./InfoInput/InfoInput";
 import InfoRadio from "./InfoRadio/InfoRadio";
+import Input from "../../../../components/Input/Input";
 import { Tooltip } from "antd";
 import { useContext } from "react";
 import { guestGeneralInfoContext } from "../../../../contexts/guestBookingInfoContext/guestGeneralInfoContext";
@@ -66,47 +66,47 @@ const GuestInfoForm = function () {
       <form className={infoForm}>
         <h3>Your information</h3>
 
-        <InfoInput
-          errorMessage="Invalid first name format"
+        <Input
+          className={infoForm__FName}
+          errorMessage="Invalid first name"
           hasError={firstNameHasError}
           label="First name"
           value={firstName}
           onChange={handleFirstNameChange}
-          className={infoForm__FName}
           isTyping={isTypingFirstName}
           onFocus={handleStartTypingFirstName}
           onBlur={handleStopTypingFirstName}
         />
 
-        <InfoInput
-          errorMessage="Invalid last name format"
+        <Input
+          className={infoForm__LName}
+          errorMessage="Invalid last name"
           hasError={lastNameHasError}
           label="Last name"
           value={lastName}
           onChange={handleLastNameChange}
-          className={infoForm__LName}
           isTyping={isTypingLastName}
           onFocus={handleStartTypingLastName}
           onBlur={handleStopTypingLastName}
         />
-        <InfoInput
+        <Input
+          className={infoForm__Email}
           errorMessage="Invalid email (includes domain name)"
           hasError={emailHasError}
           label="Email address"
           value={email}
           onChange={handleEmailChange}
-          className={infoForm__Email}
           isTyping={isTypingEmail}
           onFocus={handleStartTypingEmail}
           onBlur={handleStopTypingEmail}
         />
-        <InfoInput
+        <Input
+          className={infoForm__Phone}
           errorMessage="Invalid phone (= 10 numbers)"
           hasError={phoneHasError}
           label="Phone number"
           value={phone}
           onChange={handlePhoneChange}
-          className={infoForm__Phone}
           isTyping={isTypingPhone}
           onFocus={handleStartTypingPhone}
           onBlur={handleStopTypingPhone}

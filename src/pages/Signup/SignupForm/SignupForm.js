@@ -1,8 +1,118 @@
 import styles from "./SignupForm.module.scss";
-import SignupInput from "../SignupInput/SignupInput";
+import Input from "../../../components/Input/Input";
 import SignupButton from "../SignupButton/SignupButton";
 import NavigationLink from "../NavigationLink/NavigationLink";
+import useInput from "../../../custom-hooks/useInput";
+import { createPortal } from "react-dom";
+import Overlay from "../../../components/UI/Overlay/Overlay";
+import AfterSubmitModal from "../../../components/AfterSubmitModal/AfterSubmitModal";
+import { useState } from "react";
+
 const SignupForm = function () {
+  const [submitState, setSubmitState] = useState("yetSubmit");
+  const {
+    input: firstName,
+    handleInputChange: handleFirstNameChange,
+    isTyping: isTypingFirstName,
+    handleStopTyping: handleStopTypingFirstName,
+    handleStartTyping: handleStartTypingFirstName,
+    inputHasError: firstNameHasError,
+    inputIsInvalid: firstNameIsInvalid,
+  } = useInput((firstName) => firstName.trim() !== "");
+
+  const {
+    input: lastName,
+    handleInputChange: handleLastNameChange,
+    isTyping: isTypingLastName,
+    handleStopTyping: handleStopTypingLastName,
+    handleStartTyping: handleStartTypingLastName,
+    inputHasError: lastNameHasError,
+    inputIsInvalid: lastNameIsInvalid,
+  } = useInput((lastName) => lastName.trim() !== "");
+
+  const {
+    input: email,
+    handleInputChange: handleEmailChange,
+    isTyping: isTypingEmail,
+    handleStopTyping: handleStopTypingEmail,
+    handleStartTyping: handleStartTypingEmail,
+    inputHasError: emailHasError,
+    inputIsInvalid: emailIsInvalid,
+  } = useInput((email) => email.includes("@") && email.includes("."));
+
+  const {
+    input: phone,
+    handleInputChange: handlePhoneChange,
+    isTyping: isTypingPhone,
+    handleStopTyping: handleStopTypingPhone,
+    handleStartTyping: handleStartTypingPhone,
+    inputHasError: phoneHasError,
+    inputIsInvalid: phoneIsInvalid,
+  } = useInput(
+    (phone) => phone.trim() !== "" && !isNaN(-phone) && phone.length === 10
+  );
+
+  const {
+    input: password,
+    handleInputChange: handlePasswordChange,
+    isTyping: isTypingPassword,
+    handleStopTyping: handleStopTypingPassword,
+    handleStartTyping: handleStartTypingPassword,
+    inputHasError: passwordHasError,
+    inputIsInvalid: passwordIsInvalid,
+  } = useInput(
+    (password) =>
+      !password.includes(" ") &&
+      password.length >= 10 &&
+      password.match(/\W|_/g)
+  );
+
+  const {
+    input: confirmPassword,
+    handleInputChange: handleConfirmPasswordChange,
+    isTyping: isTypingConfirmPassword,
+    handleStopTyping: handleStopTypingConfirmPassword,
+    handleStartTyping: handleStartTypingConfirmPassword,
+    inputHasError: confirmPasswordHasError,
+    inputIsInvalid: confirmPasswordIsInvalid,
+  } = useInput((confirmPassword) => confirmPassword === password);
+
+  const formIsInvalid =
+    firstNameIsInvalid ||
+    lastNameIsInvalid ||
+    emailIsInvalid ||
+    phoneIsInvalid ||
+    passwordIsInvalid ||
+    confirmPasswordIsInvalid;
+
+  const handleSubmitInfo = function (event) {
+    event.preventDefault();
+    const userData = {
+      firstName,
+      lastName,
+      password,
+      phone,
+      email,
+    };
+
+    (async function () {
+      setSubmitState("isSubmitting");
+      await fetch(
+        "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users.json",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+      setTimeout(() => {
+        setSubmitState("hasSubmitted");
+      }, 4000);
+    })();
+  };
+
   const {
     signupForm,
     signupForm__Actions,
@@ -14,38 +124,105 @@ const SignupForm = function () {
     signupForm__PasswordConfirm,
   } = styles;
   return (
-    <form className={signupForm}>
-      <SignupInput
-        id="firstName"
-        label="First name"
-        className={signupForm__firstName}
-      />
-      <SignupInput
-        id="lastName"
-        label="Last name"
-        className={signupForm__lastName}
-      />
-      <SignupInput id="email" label="Email" className={signupForm__Email} />
-      <SignupInput
-        id="phone"
-        label="Phone number"
-        className={signupForm__Phone}
-      />
-      <SignupInput
-        id="password"
-        label="Password"
-        className={signupForm__Password}
-      />
-      <SignupInput
-        id="passwordConfirm"
-        label="Confirm password"
-        className={signupForm__PasswordConfirm}
-      />
-      <div className={signupForm__Actions}>
-        <SignupButton text="Sign up" />
-        <NavigationLink text="Already have an account? Login" to="/login" />
-      </div>
-    </form>
+    <>
+      <form className={signupForm} onSubmit={handleSubmitInfo}>
+        <Input
+          className={signupForm__firstName}
+          id="firstName"
+          errorMessage="Invalid first name"
+          hasError={firstNameHasError}
+          label="First name"
+          value={firstName}
+          onChange={handleFirstNameChange}
+          isTyping={isTypingFirstName}
+          onFocus={handleStartTypingFirstName}
+          onBlur={handleStopTypingFirstName}
+        />
+        <Input
+          className={signupForm__lastName}
+          id="lastName"
+          errorMessage="Invalid last name"
+          hasError={lastNameHasError}
+          label="Last name"
+          value={lastName}
+          onChange={handleLastNameChange}
+          isTyping={isTypingLastName}
+          onFocus={handleStartTypingLastName}
+          onBlur={handleStopTypingLastName}
+        />
+        <Input
+          id="email"
+          className={signupForm__Email}
+          errorMessage="Invalid email (includes domain name)"
+          hasError={emailHasError}
+          label="Email address"
+          value={email}
+          onChange={handleEmailChange}
+          isTyping={isTypingEmail}
+          onFocus={handleStartTypingEmail}
+          onBlur={handleStopTypingEmail}
+        />
+        <Input
+          id="phone"
+          className={signupForm__Phone}
+          errorMessage="Invalid phone (= 10 numbers)"
+          hasError={phoneHasError}
+          label="Phone number"
+          value={phone}
+          onChange={handlePhoneChange}
+          isTyping={isTypingPhone}
+          onFocus={handleStartTypingPhone}
+          onBlur={handleStopTypingPhone}
+        />
+        <Input
+          id="password"
+          className={signupForm__Password}
+          label="Password"
+          type="password"
+          errorMessage="Must > 10 characters and contains > 1 special character"
+          hasError={passwordHasError}
+          value={password}
+          onChange={handlePasswordChange}
+          isTyping={isTypingPassword}
+          onFocus={handleStartTypingPassword}
+          onBlur={handleStopTypingPassword}
+        />
+        <Input
+          id="passwordConfirm"
+          label="Confirm password"
+          className={signupForm__PasswordConfirm}
+          type="password"
+          errorMessage="Must be the same as the password you gave"
+          hasError={confirmPasswordHasError}
+          value={confirmPassword}
+          onChange={handleConfirmPasswordChange}
+          isTyping={isTypingConfirmPassword}
+          onFocus={handleStartTypingConfirmPassword}
+          onBlur={handleStopTypingConfirmPassword}
+        />
+        <div className={signupForm__Actions}>
+          <SignupButton text="Sign up" isDisabled={formIsInvalid} />
+          <NavigationLink text="Already have an account? Login" to="/login" />
+        </div>
+      </form>
+      {submitState !== "yetSubmit" &&
+        createPortal(
+          <Overlay zIndex={1200} />,
+          document.getElementById("overlay-root")
+        )}
+
+      {submitState !== "yetSubmit" &&
+        createPortal(
+          <AfterSubmitModal
+            submitState={submitState}
+            loadingMessage="Your data is being processed"
+            successMessage="You have officially become Homefy's user. You will be navigated to login page in 5 seconds."
+            navigateMessage="Or you could click here to go to login page right now."
+            to="/login"
+          />,
+          document.getElementById("modal-root")
+        )}
+    </>
   );
 };
 

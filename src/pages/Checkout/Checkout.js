@@ -7,11 +7,11 @@ import BookingInfoMain from "./BookingInfoMain/BookingInfoMain";
 import GuestBookingInfoContextProvider from "../../contexts/guestBookingInfoContext/GuestBookingInfoContextProvider";
 import { createPortal } from "react-dom";
 import Overlay from "../../components/UI/Overlay/Overlay";
-import AfterSubmitModal from "./AfterSubmitModal/AfterSubmitModal";
+import AfterSubmitModal from "../../components/AfterSubmitModal/AfterSubmitModal";
 import { useState } from "react";
 
 const Checkout = function () {
-  const [submitState, setSubmitState] = useState("yetSumit");
+  const [submitState, setSubmitState] = useState("yetSubmit");
   const [submittingError, setSubmittingError] = useState(null);
 
   const handleIsSubmittingData = function () {
@@ -46,7 +46,14 @@ const Checkout = function () {
       <StaticFooter />
       {submitState !== "yetSubmit" &&
         createPortal(
-          <AfterSubmitModal submitState={submitState} />,
+          <AfterSubmitModal
+            submitState={submitState}
+            loadingMessage="Your data is being processed"
+            successMessage="Your data has been sent successfully to the host!. You will be
+          navigated away in 5 seconds."
+            navigateMessage="Or you could click here to go to home right now."
+            to="/"
+          />,
           document.getElementById("modal-root")
         )}
       {submitState !== "yetSubmit" &&

@@ -1,7 +1,7 @@
-import styles from "./InfoInput.module.scss";
+import styles from "./Input.module.scss";
 import { Tooltip } from "antd";
 
-const InfoInput = function ({
+const Input = function ({
   label,
   type,
   className,
@@ -13,7 +13,7 @@ const InfoInput = function ({
   hasError,
   errorMessage = "Invalid input",
 }) {
-  const { infoInput, infoInput__Focus, infoInput__Error } = styles;
+  const { input, input__Focus, input__Error } = styles;
   return (
     <Tooltip
       title={errorMessage}
@@ -22,8 +22,8 @@ const InfoInput = function ({
       open={hasError && !isTyping}
     >
       <label
-        className={`${infoInput} ${isTyping ? infoInput__Focus : ""} ${
-          hasError ? infoInput__Error : ""
+        className={`${input} ${isTyping ? input__Focus : ""} ${
+          hasError ? input__Error : ""
         } ${className}`}
       >
         <span>{label}</span>
@@ -40,4 +40,4 @@ const InfoInput = function ({
   );
 };
 
-export default InfoInput;
+export default Input;
