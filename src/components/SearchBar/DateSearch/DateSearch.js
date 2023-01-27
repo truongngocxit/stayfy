@@ -34,11 +34,11 @@ const DateSearch = function (
       }`}
     >
       <DateRangePicker
+        id="searchbar-picker"
         value={[start ? dayjs(start) : start, end ? dayjs(end) : end]}
         onFocus={handleFocusDatePicker}
         onBlur={handleBlurDatePicker}
         onChange={handleDateChangeAndFocusGuestNum}
-        
       />
     </div>
   );

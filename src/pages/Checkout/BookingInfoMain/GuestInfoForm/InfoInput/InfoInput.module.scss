@@ -7,6 +7,7 @@
   border-radius: $borderRadius;
   padding: 1rem 2rem;
   gap: 1rem;
+  transition: all 0.3s;
 
   span {
     font-size: 1.4rem;
@@ -17,6 +18,24 @@
 
     &:focus {
       outline: none;
+    }
+  }
+
+  &__Focus {
+    box-shadow: 0 0 0 0.3rem $tintColor1;
+    border: 0.1rem solid $tintColor1;
+
+    span {
+      color: $primaryColor;
+    }
+  }
+
+  &__Error {
+    box-shadow: 0 0 0 0.3rem $warningColor1;
+    border: 0.1rem solid $warningColor1;
+
+    span {
+      color: $warningColor4;
     }
   }
 }

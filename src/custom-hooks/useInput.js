@@ -1,17 +1,23 @@
 import { useState } from "react";
 
-const useInput = function () {
+const useInput = function (validateInput) {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [hasFocusedOnce, setHasFocusedOnce] = useState(false);
+
   const handleInputChange = function (event) {
     setInput(event.target.value);
   };
   const handleStartTyping = function () {
     setIsTyping(true);
+    setHasFocusedOnce(true);
   };
   const handleStopTyping = function () {
     setIsTyping(false);
   };
+  const inputHasError = validateInput
+    ? !validateInput(input) && hasFocusedOnce
+    : null;
 
   return {
     input,
@@ -20,6 +26,7 @@ const useInput = function () {
     handleStopTyping,
     handleStartTyping,
     setInput,
+    inputHasError,
   };
 };
 
