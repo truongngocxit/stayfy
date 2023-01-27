@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import useGuestNum from "../custom-hooks/useGuestNum";
+import useGuestNum from "../../custom-hooks/useGuestNum";
 
 const GuestNumberContext = createContext();
 

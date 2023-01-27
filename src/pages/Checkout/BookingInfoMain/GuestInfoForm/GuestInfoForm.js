@@ -1,9 +1,18 @@
 import styles from "./GuestInfoForm.module.scss";
 import InfoInput from "./InfoInput/InfoInput";
 import InfoRadio from "./InfoRadio/InfoRadio";
-import useInput from "../../../../custom-hooks/useInput";
+import { useContext } from "react";
+import { guestGeneralInfoContext } from "../../../../contexts/guestBookingInfoContext/guestGeneralInfoContext";
 
 const GuestInfoForm = function () {
+  const {
+    firstNameInput,
+    lastNameInput,
+    emailInput,
+    phoneInput,
+    bookedForInput,
+  } = useContext(guestGeneralInfoContext);
+
   const {
     input: firstName,
     handleInputChange: handleFirstNameChange,
@@ -11,7 +20,7 @@ const GuestInfoForm = function () {
     handleStopTyping: handleStopTypingFirstName,
     handleStartTyping: handleStartTypingFirstName,
     inputHasError: firstNameHasError,
-  } = useInput((firstName) => firstName.trim() !== "");
+  } = firstNameInput;
 
   const {
     input: lastName,
@@ -20,7 +29,7 @@ const GuestInfoForm = function () {
     handleStopTyping: handleStopTypingLastName,
     handleStartTyping: handleStartTypingLastName,
     inputHasError: lastNameHasError,
-  } = useInput((lastName) => lastName.trim() !== "");
+  } = lastNameInput;
 
   const {
     input: email,
@@ -29,9 +38,7 @@ const GuestInfoForm = function () {
     handleStopTyping: handleStopTypingEmail,
     handleStartTyping: handleStartTypingEmail,
     inputHasError: emailHasError,
-  } = useInput(
-    (email) => email.trim() !== "" && email.includes("@") && email.includes(".")
-  );
+  } = emailInput;
 
   const {
     input: phone,
@@ -40,9 +47,10 @@ const GuestInfoForm = function () {
     handleStopTyping: handleStopTypingPhone,
     handleStartTyping: handleStartTypingPhone,
     inputHasError: phoneHasError,
-  } = useInput(
-    (phone) => phone.trim() !== "" && !isNaN(-phone) && phone.length === 10
-  );
+  } = phoneInput;
+
+  const { input: bookedFor, handleInputChange: handleChangeBookedFor } =
+    bookedForInput;
 
   const {
     infoForm,
@@ -98,6 +106,8 @@ const GuestInfoForm = function () {
         />
       </form>
       <InfoRadio
+        onChange={handleChangeBookedFor}
+        value={bookedFor}
         legend="Who are you booking for?"
         name="travel"
         values={["I am the main guest", "Booking is for someone else"]}

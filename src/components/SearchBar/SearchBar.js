@@ -4,7 +4,7 @@ import InactiveSearchBar from "./InactiveSearchBar/InactiveSearchBar";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import Overlay from "../UI/Overlay/Overlay";
-import SearchContextProvider from "../../searchContext/SearchContextProvider";
+import SearchContextProvider from "../../contexts/searchContext/SearchContextProvider";
 
 const SearchBar = function () {
   const [isSearching, setIsSearching] = useState(false);

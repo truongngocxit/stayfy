@@ -1,7 +1,7 @@
 import styles from "./DateSearch.module.scss";
 import DateRangePicker from "../../DateRangePicker/DateRangePicker";
-import { useContext, forwardRef, useState } from "react";
-import DateSearchContext from "../../../searchContext/DateSearchContextProvider";
+import { useContext, forwardRef } from "react";
+import DateSearchContext from "../../../contexts/searchContext/DateSearchContextProvider";
 import dayjs from "dayjs";
 
 const DateSearch = function (

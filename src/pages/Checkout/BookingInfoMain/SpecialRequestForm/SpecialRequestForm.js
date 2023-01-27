@@ -1,6 +1,13 @@
 import styles from "./SpecialRequestForm.module.scss";
+import { useContext } from "react";
+import { guestSpecialRequestContext } from "../../../../contexts/guestBookingInfoContext/guestSpecialRequestContext";
 
 const SpecialRequestForm = function () {
+  const {
+    input: specialRequest,
+    handleInputChange: handleSpecialRequestChange,
+  } = useContext(guestSpecialRequestContext);
+
   const {
     requestForm,
     requestForm__Heading,
@@ -17,7 +24,11 @@ const SpecialRequestForm = function () {
       </p>
       <form className={requestForm__Form}>
         <label>Please write your requests in English or Vietnamese.</label>
-        <textarea rows="6" />
+        <textarea
+          rows="6"
+          value={specialRequest}
+          onChange={handleSpecialRequestChange}
+        />
       </form>
     </div>
   );

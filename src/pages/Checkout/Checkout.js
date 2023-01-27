@@ -4,6 +4,7 @@ import StaticFooter from "../../components/Footer/StaticFooter";
 import BookingDetailAside from "./BookingDetailAside/BookingDetailAside";
 import BookingButton from "./BookingInfoMain/BookingButton/BookingButton";
 import BookingInfoMain from "./BookingInfoMain/BookingInfoMain";
+import GuestBookingInfoContextProvider from "../../contexts/guestBookingInfoContext/GuestBookingInfoContextProvider";
 
 const Checkout = function () {
   const { checkout, checkout__Aside, checkout__Details, checkout__Btn } =
@@ -15,11 +16,14 @@ const Checkout = function () {
         <div className={checkout__Aside}>
           <BookingDetailAside />
         </div>
-        <div className={checkout__Details}>
-          <BookingInfoMain />
-        </div>
-        <BookingButton text="Book now" className={checkout__Btn} />
+        <GuestBookingInfoContextProvider>
+          <div className={checkout__Details}>
+            <BookingInfoMain />
+          </div>
+          <BookingButton text="Book now" className={checkout__Btn} />
+        </GuestBookingInfoContextProvider>
       </div>
+
       <StaticFooter />
     </>
   );

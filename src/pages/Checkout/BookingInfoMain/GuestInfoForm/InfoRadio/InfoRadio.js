@@ -1,14 +1,15 @@
 import styles from "./InfoRadio.module.scss";
 import CheckIcon from "../../../../../components/UI/SVG/CheckIcon";
-import { useState } from "react";
 
-const InfoRadio = function ({ name, legend, values, className, onChange }) {
-  const [currentSelection, setCurrentSelection] = useState("");
-
-  const handleChangeSelection = function (event) {
-    setCurrentSelection(event.target.value);
-  };
-
+const InfoRadio = function ({
+  name,
+  legend,
+  values,
+  value,
+  className,
+  onChange,
+}) {
+  console.log(value);
   const {
     infoRadio,
     infoRadio__Title,
@@ -25,9 +26,7 @@ const InfoRadio = function ({ name, legend, values, className, onChange }) {
             <label className={infoRadio__Item} key={v}>
               <div
                 className={`${infoRadio__Item__Checkbox} ${
-                  currentSelection === v
-                    ? infoRadio__Item__Checkbox__Active
-                    : ""
+                  value === v ? infoRadio__Item__Checkbox__Active : ""
                 }`}
               >
                 <CheckIcon />
@@ -37,8 +36,8 @@ const InfoRadio = function ({ name, legend, values, className, onChange }) {
                 name={name}
                 value={v}
                 id={v}
-                checked={currentSelection === v}
-                onChange={handleChangeSelection}
+                checked={value === v}
+                onChange={onChange}
               />
               <span>{v}</span>
             </label>

@@ -1,9 +1,26 @@
 import styles from "./ArrivalTimeForm.module.scss";
 import TimeIcon from "../../../../components/UI/SVG/TimeIcon";
+import ChevronTopIcon from "../../../../components/UI/SVG/ChevronTopIcon";
+import { useContext } from "react";
+import { arrivalTimeContext } from "../../../../contexts/guestBookingInfoContext/guestArrivalTimeContext";
 
 const ArrivalTimeForm = function () {
-  const { timeForm, timeForm__Heading, timeForm__Info, timeForm__Form } =
-    styles;
+  const {
+    input: selectedTime,
+    handleInputChange: handleChangeSelectedChange,
+    handleStartTyping: handleFocusSelect,
+    handleStopTyping: handleBlurSelect,
+    isTyping: selectIsFocused,
+  } = useContext(arrivalTimeContext);
+
+  const {
+    timeForm,
+    timeForm__Heading,
+    timeForm__Info,
+    timeForm__Form,
+    timeForm__Form__Focused,
+    timeForm__Form__Select,
+  } = styles;
   return (
     <div className={timeForm}>
       <h3 className={timeForm__Heading}>Your arrival time</h3>
@@ -13,13 +30,27 @@ const ArrivalTimeForm = function () {
       </p>
       <label htmlFor="time" className={timeForm__Form}>
         <span>Add your estimated arrival time:</span>
-        <select name="time" id="time">
-          {times.map((t) => (
-            <option value={t} key={t}>
-              {t}
-            </option>
-          ))}
-        </select>
+        <div
+          className={`${timeForm__Form__Select} ${
+            selectIsFocused ? timeForm__Form__Focused : ""
+          }`}
+        >
+          <ChevronTopIcon />
+          <select
+            name="time"
+            id="time"
+            onBlur={handleBlurSelect}
+            onFocus={handleFocusSelect}
+            value={selectedTime}
+            onChange={handleChangeSelectedChange}
+          >
+            {times.map((t) => (
+              <option value={t} key={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </div>
       </label>
     </div>
   );

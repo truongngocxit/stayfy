@@ -25,7 +25,7 @@ const InfoInput = function ({
         onFocus={onFocus}
         value={value}
         onChange={onChange}
-        spellcheck={false}
+        spellCheck={false}
       />
     </label>
   );

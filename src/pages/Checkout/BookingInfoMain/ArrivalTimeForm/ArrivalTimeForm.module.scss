@@ -34,17 +34,40 @@
       font-size: 1.6rem;
     }
 
-    select {
+    &__Select {
+      position: relative;
       width: 50%;
-      padding: 1.5rem 2rem;
+
       border: $border;
       border-radius: $borderRadius;
-
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.3rem $tintColor2;
-        border: 0.1rem solid $tintColor2;
+      svg {
+        display: block;
+        height: 2.4rem;
+        width: 2.4rem;
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        transform: translateY(-50%) rotate(180deg);
       }
+
+      select {
+        padding: 1.5rem 2rem;
+        width: 100%;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        border: none;
+        background: none;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    &__Focused {
+      box-shadow: 0 0 0 0.3rem $tintColor2;
+      border: 0.1rem solid $tintColor2;
     }
   }
 }

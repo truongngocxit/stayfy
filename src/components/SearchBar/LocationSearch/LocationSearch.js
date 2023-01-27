@@ -2,7 +2,7 @@ import styles from "./LocationSearch.module.scss";
 import LocationSearchDropdown from "./LocationSearchDropdown/LocationSearchDropdown";
 import useFetchData from "../../../custom-hooks/useFetchData";
 import { useContext, forwardRef } from "react";
-import LocationSearchContext from "../../../searchContext/LocationSearchContextProvider";
+import LocationSearchContext from "../../../contexts/searchContext/LocationSearchContextProvider";
 import useDropdown from "../../../custom-hooks/useDropdown";
 
 const LocationSearch = function (

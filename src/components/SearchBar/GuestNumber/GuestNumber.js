@@ -3,7 +3,7 @@ import GuestNumberDropdown from "../GuestNumberDropdown/GuestNumberDropdown";
 import useDropdown from "../../../custom-hooks/useDropdown";
 import CloseIcon from "../../../components/UI/SVG/CloseIcon";
 import { useContext, forwardRef } from "react";
-import GuestNumberContext from "../../../searchContext/GuestNumberContextProvider";
+import GuestNumberContext from "../../../contexts/searchContext/GuestNumberContextProvider";
 
 const GuestNumber = function ({ className, activeClassName }, ref) {
   const { dropdownIsVisible, dropdownRef, containerRef, handleOpenDropdown } =

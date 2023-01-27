@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const useInput = function (validateInput) {
-  const [input, setInput] = useState("");
+const useInput = function (validateInput, initialState = "") {
+  const [input, setInput] = useState(initialState);
   const [isTyping, setIsTyping] = useState(false);
   const [hasFocusedOnce, setHasFocusedOnce] = useState(false);
 
