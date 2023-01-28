@@ -11,10 +11,10 @@
     position: absolute;
     width: 90%;
     height: 90%;
-    border: 0.3rem solid $primaryColor;
+    border: 0.3rem solid #ffd000;
     border-radius: 50%;
     animation: loadingSpinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: $primaryColor transparent transparent transparent;
+    border-color: #ffd000 transparent transparent transparent;
     &:nth-child(1) {
       animation-delay: -0.45s;
     }

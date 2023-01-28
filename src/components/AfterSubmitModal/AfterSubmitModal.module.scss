@@ -22,11 +22,21 @@
       stroke: $primaryColor;
     }
 
-    &__Success {
+    &__Success,
+    &__Failure {
       stroke-width: 0.3rem;
       padding: 0.3rem;
       border-radius: $borderRadius;
+    }
+
+    &__Success {
       background-color: $tintColor1;
+    }
+
+    &__Failure {
+      background-color: $warningColor1;
+      stroke: $warningColor4 !important;
+      stroke-width: 0.2rem;
     }
   }
 

@@ -4,9 +4,11 @@ import { Tooltip } from "antd";
 import { useContext } from "react";
 import { guestGeneralInfoContext } from "../../../../contexts/guestBookingInfoContext/guestGeneralInfoContext";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { bookingInfoActions } from "../../../../redux-store/bookingInfoSlice";
+import { searchQueryActions } from "../../../../redux-store/searchQuerySlice";
 
 const BookingButton = function ({
-  onClick,
   text,
   className,
   onSubmitting,
@@ -19,6 +21,8 @@ const BookingButton = function ({
     phoneInput,
     bookedForInput,
   } = useContext(guestGeneralInfoContext);
+
+  const reduxDispatch = useDispatch();
 
   const { id, name, date, rooms } = useSelector(
     (state) => state.bookingInfo.roomInfo
@@ -62,6 +66,8 @@ const BookingButton = function ({
 
         setTimeout(() => {
           onHasSubmitted();
+          reduxDispatch(bookingInfoActions.resetBookingInfo());
+          reduxDispatch(searchQueryActions.resetSearchQuery());
         }, 5000);
       };
       sendBookingData();

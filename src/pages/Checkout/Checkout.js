@@ -8,11 +8,14 @@ import GuestBookingInfoContextProvider from "../../contexts/guestBookingInfoCont
 import { createPortal } from "react-dom";
 import Overlay from "../../components/UI/Overlay/Overlay";
 import AfterSubmitModal from "../../components/AfterSubmitModal/AfterSubmitModal";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Checkout = function () {
   const [submitState, setSubmitState] = useState("yetSubmit");
   const [submittingError, setSubmittingError] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleIsSubmittingData = function () {
     setSubmitState("isSubmitting");
@@ -24,6 +27,22 @@ const Checkout = function () {
 
   const { checkout, checkout__Aside, checkout__Details, checkout__Btn } =
     styles;
+
+  let header, state, stateMessage, navigateMessage;
+
+  if (submitState === "isSubmitting") {
+    header = "Your data is being processed";
+    state = "loading";
+    stateMessage = null;
+    navigateMessage = null;
+  } else if (submitState === "hasSubmitted") {
+    header = "The host has received your info :)";
+    state = "success";
+    stateMessage =
+      "Your data has been sent successfully to the host!. You will be navigated away in 5 seconds.";
+    navigateMessage = "Or you could click here to go to home right now.";
+  }
+
   return (
     <>
       <TopNav hasSearchBar={false} />
@@ -47,11 +66,12 @@ const Checkout = function () {
       {submitState !== "yetSubmit" &&
         createPortal(
           <AfterSubmitModal
-            submitState={submitState}
-            loadingMessage="Your data is being processed"
-            successMessage="Your data has been sent successfully to the host!. You will be
-          navigated away in 5 seconds."
-            navigateMessage="Or you could click here to go to home right now."
+            header={header}
+            state={state}
+            stateMessage={stateMessage}
+            navigateMessage={navigateMessage}
+            doAfterSubmit={() => navigate("/")}
+            navigateSeconds={5}
             to="/"
           />,
           document.getElementById("modal-root")

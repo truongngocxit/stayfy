@@ -6,9 +6,11 @@ import useInput from "../../../custom-hooks/useInput";
 import { createPortal } from "react-dom";
 import Overlay from "../../../components/UI/Overlay/Overlay";
 import AfterSubmitModal from "../../../components/AfterSubmitModal/AfterSubmitModal";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const SignupForm = function () {
+  const navigate = useNavigate();
   const [submitState, setSubmitState] = useState("yetSubmit");
   const {
     input: firstName,
@@ -93,6 +95,8 @@ const SignupForm = function () {
       password,
       phone,
       email,
+      profileImage:
+        "https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/misc%2Fplaceholder-profile-image.png?alt=media&token=d7ee83a6-7b08-49e1-9d75-14de009335c9",
     };
 
     (async function () {
@@ -112,6 +116,23 @@ const SignupForm = function () {
       }, 4000);
     })();
   };
+
+  let header, state, stateMessage, navigateMessage, doAfterSubmit;
+
+  if (submitState === "isSubmitting") {
+    header = "Your data is being processed";
+    state = "loading";
+    stateMessage = null;
+    navigateMessage = null;
+    doAfterSubmit = null;
+  } else if (submitState === "hasSubmitted") {
+    header = "Welcome to Homefy";
+    state = "success";
+    stateMessage =
+      "You have successfully signed up to Homefy. You will be navigated away to home in 5 seconds";
+    navigateMessage = "Or you could click here to go to home right now.";
+    doAfterSubmit = () => navigate("/");
+  }
 
   const {
     signupForm,
@@ -214,11 +235,13 @@ const SignupForm = function () {
       {submitState !== "yetSubmit" &&
         createPortal(
           <AfterSubmitModal
-            submitState={submitState}
-            loadingMessage="Your data is being processed"
-            successMessage="You have officially become Homefy's user. You will be navigated to login page in 5 seconds."
-            navigateMessage="Or you could click here to go to login page right now."
-            to="/login"
+            header={header}
+            state={state}
+            stateMessage={stateMessage}
+            navigateMessage={navigateMessage}
+            doAfterSubmit={doAfterSubmit}
+            navigateSeconds={5}
+            to="/"
           />,
           document.getElementById("modal-root")
         )}

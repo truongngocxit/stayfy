@@ -9,7 +9,6 @@ const InfoRadio = function ({
   className,
   onChange,
 }) {
-  console.log(value);
   const {
     infoRadio,
     infoRadio__Title,

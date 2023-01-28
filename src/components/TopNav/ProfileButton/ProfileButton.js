@@ -1,18 +1,31 @@
 import styles from "./ProfileButton.module.scss";
 import Hamburger from "../../UI/SVG/Hamburger";
-import UserIcon from "../../UI/SVG/UserIcon";
+import useDropdown from "../../../custom-hooks/useDropdown";
+import LoginDropdown from "../LoginDropdown/LoginDropdown";
 
-const ProfileButton = function ({ onClick }) {
-  const { profileBtn, profileBtn__Hamburger, profileBtn__Image } = styles;
+const ProfileButton = function ({ className }) {
+  const { dropdownIsVisible, containerRef, handleOpenDropdown } = useDropdown();
+  const {
+    profileBtn,
+    profileBtn__Container,
+    profileBtn__Hamburger,
+    profileBtn__Image,
+  } = styles;
   return (
-    <button className={profileBtn} onClick={onClick}>
-      <div className={profileBtn__Hamburger}>
-        <Hamburger />
-      </div>
-      <div className={profileBtn__Image}>
-        <UserIcon />
-      </div>
-    </button>
+    <div ref={containerRef} className={`${className} ${profileBtn__Container}`}>
+      <button className={profileBtn} onClick={handleOpenDropdown}>
+        <div className={profileBtn__Hamburger}>
+          <Hamburger />
+        </div>
+        <div className={profileBtn__Image}>
+          <img
+            alt="profile avatar"
+            src="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/misc%2Fplaceholder-profile-image.png?alt=media&token=d7ee83a6-7b08-49e1-9d75-14de009335c9"
+          />
+        </div>
+      </button>
+      {dropdownIsVisible && <LoginDropdown />}
+    </div>
   );
 };
 

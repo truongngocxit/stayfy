@@ -5,11 +5,9 @@ import { useState } from "react";
 const SignupButton = function ({ className, text, isDisabled, tooltipTitle }) {
   const [btnIsHovered, setBtnIsHovered] = useState(false);
   const handleHoverButton = function () {
-    console.log("Enter");
     setBtnIsHovered(true);
   };
   const handleBlurButton = function () {
-    console.log("Leave");
     setBtnIsHovered(false);
   };
   const { signupBtn, signupBtn__Disabled } = styles;

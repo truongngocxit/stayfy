@@ -25,6 +25,19 @@ const searchQuerySlice = createSlice({
     setGuestNum(state, action) {
       state.guestNum = action.payload || null;
     },
+    resetSearchQuery(state, action) {
+      state.query = "";
+      state.date = {
+        start: null,
+        end: null,
+      };
+      state.guestNum = {
+        adults: 0,
+        children: 0,
+        babies: 0,
+        animals: 0,
+      };
+    },
   },
 });
 

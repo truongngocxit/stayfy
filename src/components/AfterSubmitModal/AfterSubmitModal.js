@@ -1,84 +1,71 @@
 import styles from "./AfterSubmitModal.module.scss";
 import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 import CheckIcon from "../UI/SVG/CheckIcon";
+import WarningIcon from "../UI/SVG/WarningIcon";
 import CountdownLine from "./CountdownLine/CountdownLine";
-import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const AfterSubmitModal = function ({
-  submitState,
-  successMessage,
-  navigateMessage,
-  loadingMessage,
+  stateMessage = null,
+  navigateMessage = null,
+  header,
+  state,
+  doAfterSubmit,
+  navigateSeconds,
   to,
 }) {
-  const navigate = useNavigate();
-  const [dotNum, setDotNum] = useState(0);
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (dotNum < 3) {
-        setDotNum((n) => n + 1);
-      } else {
-        setDotNum(0);
-      }
-    }, 1000);
-    return () => clearTimeout(timeoutId);
-  }, [dotNum]);
-
   useEffect(() => {
     let timeoutId;
-    if (submitState === "hasSubmitted") {
+    if (state !== "loading") {
       timeoutId = setTimeout(() => {
-        navigate(to);
-      }, 5000);
+        doAfterSubmit && doAfterSubmit();
+      }, navigateSeconds * 1000);
     }
-
     return () => clearTimeout(timeoutId);
-  }, [submitState, navigate, to]);
+  }, [state, doAfterSubmit, navigateSeconds]);
 
   const {
     afterSubmit,
     afterSubmit__StateIcon,
     afterSubmit__StateIcon__Success,
     afterSubmit__StateIcon__Loading,
+    afterSubmit__StateIcon__Failure,
     afterSubmit__Header,
     afterSubmit__Message,
     afterSubmit__Message__Ok,
   } = styles;
+
+  let icon;
+
+  if (state === "loading") {
+    icon = <LoadingSpinner className={afterSubmit__StateIcon__Loading} />;
+  } else if (state === "success") {
+    icon = <CheckIcon className={afterSubmit__StateIcon__Success} />;
+  } else if (state === "failure") {
+    icon = <WarningIcon className={afterSubmit__StateIcon__Failure} />;
+  }
+
   return (
     <div className={afterSubmit}>
       <div className={afterSubmit__Header}>
-        <div className={afterSubmit__StateIcon}>
-          {submitState === "isSubmitting" && (
-            <LoadingSpinner className={afterSubmit__StateIcon__Loading} />
-          )}
-          {submitState === "hasSubmitted" && (
-            <CheckIcon className={afterSubmit__StateIcon__Success} />
-          )}
-        </div>
-
-        <h2>
-          {submitState === "isSubmitting" && (
-            <>
-              {loadingMessage}
-              <span>{".".repeat(dotNum)}</span>
-            </>
-          )}
-
-          {submitState === "hasSubmitted" &&
-            "The host has received your data :)"}
-        </h2>
+        <div className={afterSubmit__StateIcon}>{icon}</div>
+        <h2>{header}</h2>
       </div>
       <div
         className={`${afterSubmit__Message} ${
-          submitState === "hasSubmitted" ? afterSubmit__Message__Ok : ""
+          stateMessage ? afterSubmit__Message__Ok : ""
         }`}
       >
-        <p>{successMessage}</p>
-        <Link to={to}>{navigateMessage}</Link>
+        <p>{stateMessage}</p>
+        {navigateMessage && <Link to={to}>{navigateMessage}</Link>}
       </div>
-      {submitState === "hasSubmitted" && <CountdownLine />}
+      {(state === "success" || state === "failure") && (
+        <CountdownLine
+          color={state === "failure" ? "#e30613" : ""}
+          duration={navigateSeconds}
+        />
+      )}
     </div>
   );
 };

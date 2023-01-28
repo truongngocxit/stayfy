@@ -5,6 +5,7 @@ import ProfileImageModal from "./ProfileImageModal/ProfileImageModal";
 import Overlay from "../../../components/UI/Overlay/Overlay";
 import { createPortal } from "react-dom";
 import { useState } from "react";
+import { Tooltip } from "antd";
 
 const ProfileImageUpload = function () {
   const { imageUpload, imageUpload__Placeholder, imageUpload__EditIcon } =
@@ -12,7 +13,6 @@ const ProfileImageUpload = function () {
   const [isChangingImage, setIsChangingImage] = useState(false);
 
   const handleStartChangingImage = function () {
-    console.log("clicked");
     setIsChangingImage(true);
   };
 
@@ -23,13 +23,20 @@ const ProfileImageUpload = function () {
   return (
     <>
       <div className={imageUpload}>
-        <div
-          className={imageUpload__EditIcon}
-          onClick={handleStartChangingImage}
-        >
-          <UploadIcon />
+        <Tooltip title="Change profile image" color="#333">
+          <button
+            className={imageUpload__EditIcon}
+            onClick={handleStartChangingImage}
+          >
+            <UploadIcon />
+          </button>
+        </Tooltip>
+        <div className={imageUpload__Placeholder}>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/misc%2Fplaceholder-profile-image.png?alt=media&token=d7ee83a6-7b08-49e1-9d75-14de009335c9"
+            alt="profile-avatar"
+          />
         </div>
-        <UserIcon className={imageUpload__Placeholder} />
       </div>
       {isChangingImage &&
         createPortal(

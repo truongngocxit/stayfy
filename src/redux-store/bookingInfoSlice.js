@@ -35,6 +35,26 @@ const bookingInfoSlice = createSlice({
     addGuestInfo(state, action) {
       state.guestInfo = action.payload;
     },
+    resetBookingInfo(state, action) {
+      state.roomInfo = {
+        name: "",
+        img: null,
+        rooms: [],
+        review: null,
+        location: "",
+        date: {
+          start: null,
+          end: null,
+        },
+        guests: {
+          adults: 0,
+          children: 0,
+          babies: 0,
+          animals: 0,
+        },
+      };
+      state.guestInfo = null;
+    },
   },
 });
 

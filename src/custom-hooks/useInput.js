@@ -15,6 +15,11 @@ const useInput = function (validateInput, initialState = "") {
   const handleStopTyping = function () {
     setIsTyping(false);
   };
+
+  const resetInput = function () {
+    setInput("");
+    setHasFocusedOnce(false);
+  };
   const inputIsInvalid = validateInput ? !validateInput(input) : null;
 
   const inputHasError = inputIsInvalid && hasFocusedOnce;
@@ -26,6 +31,7 @@ const useInput = function (validateInput, initialState = "") {
     handleStopTyping,
     handleStartTyping,
     setInput,
+    resetInput,
     inputHasError,
     inputIsInvalid,
   };

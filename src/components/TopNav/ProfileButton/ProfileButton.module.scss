@@ -1,5 +1,7 @@
 @use "../../../sass-styles/variables" as *;
 
+$profileImageWidth: 3.2rem;
+
 .profileBtn {
   display: flex;
   align-items: center;
@@ -9,7 +11,7 @@
   border: $border;
   cursor: pointer;
   justify-content: space-between;
-  padding: 0 0.5rem;
+  padding: 0 calc($profileImageWidth * 0.125);
   transition: all 0.3s;
 
   &:hover {
@@ -22,14 +24,18 @@
     transform: translateY(0);
   }
 
+  &__Container {
+    position: relative;
+  }
+
   &__Hamburger {
-    height: 5rem;
-    width: 5rem;
+    height: calc($profileImageWidth * 1.2);
+    width: calc($profileImageWidth * 1.2);
     stroke: $grayColorMain;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: calc($profileImageWidth * 0.25);
 
     svg {
       stroke: $grayColorMain;
@@ -37,16 +43,15 @@
   }
 
   &__Image {
-    height: 4rem;
-    width: 4rem;
-    background-color: $grayColorMain;
+    height: $profileImageWidth;
+    width: $profileImageWidth;
+    overflow: hidden;
     border-radius: 50%;
-    padding: 0.5rem;
 
-    svg {
-      stroke-width: 0.1rem;
-      fill: #fff;
-      stroke: #fff;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 }
