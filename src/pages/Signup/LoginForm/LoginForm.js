@@ -144,7 +144,7 @@ const LoginForm = function () {
             stateMessage={stateMessage}
             navigateMessage={navigateMessage}
             navigateSeconds={5}
-            to="/signup"
+            to="/profile"
             doAfterSubmit={doAfterSubmit}
           />,
           document.getElementById("modal-root")

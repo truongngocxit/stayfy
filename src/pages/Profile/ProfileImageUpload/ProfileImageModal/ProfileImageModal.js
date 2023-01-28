@@ -2,11 +2,16 @@ import styles from "./ProfileImageModal.module.scss";
 import CloseIcon from "../../../../components/UI/SVG/CloseIcon";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { activeUserActions } from "../../../../redux-store/activeUserSlice";
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../../myAppFirebase/myAppFirebase";
 
 const ProfileImageModal = function ({ onCloseModal }) {
   const [previewImage, setPreviewImage] = useState(null);
   const reduxDispatch = useDispatch();
-  const activeUserId = useSelector((state) => state.activeUser.id);
+
+  const { id: activeUserId, profileImage: activeUserProfileImage } =
+    useSelector((state) => state.activeUser);
 
   const handleUploadImage = function (event) {
     const file = event.target.files[0];
@@ -17,8 +22,30 @@ const ProfileImageModal = function ({ onCloseModal }) {
     });
   };
 
-  const handleSaveImage = function () {
-    console.log(previewImage);
+  const handleSaveImage = async function () {
+    const newProfileImageUrl = `user-profile-images/${activeUserId}.jpeg`;
+    const newProfileImageRef = ref(storage, newProfileImageUrl);
+    await uploadString(
+      newProfileImageRef,
+      previewImage.split(",")[1],
+      "base64",
+      {
+        contentType: "image/jpeg",
+      }
+    );
+    const url = await getDownloadURL(ref(storage, newProfileImageUrl));
+    const response = await fetch(
+      `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}.json`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ profileImage: url }),
+      }
+    );
+
+    reduxDispatch(activeUserActions.changeUserImage(url));
   };
 
   const {
@@ -38,7 +65,7 @@ const ProfileImageModal = function ({ onCloseModal }) {
       <div className={profileImageModal__Image}>
         <img
           src={
-            previewImage ||
+            activeUserProfileImage ||
             "https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/misc%2Fplaceholder-profile-image.png?alt=media&token=d7ee83a6-7b08-49e1-9d75-14de009335c9"
           }
           alt="preview profile avatar"

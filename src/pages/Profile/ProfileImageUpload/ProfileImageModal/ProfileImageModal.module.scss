@@ -1,9 +1,8 @@
 @use "../../../../sass-styles/variables" as *;
 
 .profileImageModal {
-  width: 40vw;
-  height: 45vh;
   position: fixed;
+  width: 36%;
   background-color: #fff;
   z-index: 1800;
   left: 50%;
@@ -12,7 +11,7 @@
   border: $border;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 2rem 4rem 2rem;
+  padding: 1.5rem 4rem 4rem 4rem;
   gap: 2rem;
   border-radius: $borderRadius;
 

@@ -13,9 +13,10 @@
   &__Placeholder {
     width: 100%;
     height: 100%;
+    border-radius: 50rem;
+    overflow: hidden;
 
     img {
-      overflow: hidden;
       object-fit: cover;
       width: 100%;
       height: 100%;

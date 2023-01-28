@@ -3,7 +3,12 @@ import NameSettingForm from "./NameSettingForm/NameSettingForm";
 import EmailSettingForm from "./EmailSettingForm/EmailSettingForm";
 import PhoneSettingForm from "./PhoneSettingForm/PhoneSettingForm";
 import ProfileImageUpload from "../ProfileImageUpload/ProfileImageUpload";
+import { useSelector } from "react-redux";
+
 const ProfileSettings = function ({ className }) {
+  const { lastName, firstName, email, phone } = useSelector(
+    (state) => state.activeUser
+  );
   const {
     profile__Settings,
     profile__Settings__Heading,
@@ -16,13 +21,16 @@ const ProfileSettings = function ({ className }) {
       <ProfileImageUpload />
       <div className={profile__Settings__ItemsContainer}>
         <div className={profile__Settings__Item}>
-          <NameSettingForm />
+          <NameSettingForm
+            activeUserLastName={lastName}
+            activeUserFirstName={firstName}
+          />
         </div>
         <div className={profile__Settings__Item}>
-          <EmailSettingForm />
+          <EmailSettingForm activeUserEmail={email} />
         </div>
         <div className={profile__Settings__Item}>
-          <PhoneSettingForm />
+          <PhoneSettingForm activeUserPhone={phone} />
         </div>
       </div>
     </div>

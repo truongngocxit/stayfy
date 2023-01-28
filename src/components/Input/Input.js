@@ -12,12 +12,13 @@ const Input = function ({
   onChange,
   hasError,
   errorMessage = "Invalid input",
+  tooltipPlacement = "topRight",
 }) {
   const { input, input__Focus, input__Error } = styles;
   return (
     <Tooltip
       title={errorMessage}
-      placement="topRight"
+      placement={tooltipPlacement}
       color="#f92432"
       open={hasError && !isTyping}
     >

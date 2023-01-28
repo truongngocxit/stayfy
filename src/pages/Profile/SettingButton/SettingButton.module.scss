@@ -13,4 +13,8 @@
   &:hover {
     background-color: $shadeColor1;
   }
+
+  &__Disabled {
+    background-color: $grayColorFaint4;
+  }
 }

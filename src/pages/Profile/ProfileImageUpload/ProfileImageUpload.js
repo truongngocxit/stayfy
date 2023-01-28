@@ -6,11 +6,15 @@ import Overlay from "../../../components/UI/Overlay/Overlay";
 import { createPortal } from "react-dom";
 import { useState } from "react";
 import { Tooltip } from "antd";
+import { useSelector } from "react-redux";
 
 const ProfileImageUpload = function () {
   const { imageUpload, imageUpload__Placeholder, imageUpload__EditIcon } =
     styles;
   const [isChangingImage, setIsChangingImage] = useState(false);
+  const activeUserProfileImage = useSelector(
+    (state) => state.activeUser.profileImage
+  );
 
   const handleStartChangingImage = function () {
     setIsChangingImage(true);
@@ -33,7 +37,10 @@ const ProfileImageUpload = function () {
         </Tooltip>
         <div className={imageUpload__Placeholder}>
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/misc%2Fplaceholder-profile-image.png?alt=media&token=d7ee83a6-7b08-49e1-9d75-14de009335c9"
+            src={
+              activeUserProfileImage ||
+              "https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/misc%2Fplaceholder-profile-image.png?alt=media&token=d7ee83a6-7b08-49e1-9d75-14de009335c9"
+            }
             alt="profile-avatar"
           />
         </div>

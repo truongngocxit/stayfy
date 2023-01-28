@@ -36,8 +36,13 @@ const activeUserSlice = createSlice({
       state.profileImage = "";
       state.upcomingTrips = [];
     },
+    changeUserImage(state, action) {
+      state.profileImage = action.payload;
+    },
   },
 });
 
 export const activeUserActions = activeUserSlice.actions;
 export default activeUserSlice.reducer;
+
+const changeProfileImageThunk = function (imageUrl) {};
