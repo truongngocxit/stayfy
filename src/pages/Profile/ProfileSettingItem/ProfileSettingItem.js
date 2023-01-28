@@ -9,13 +9,10 @@ const ProfileSettingItem = function ({
   savedInfo,
   placeholder,
   className,
+  isEditing,
+  onOpenSetting,
+  onCloseSetting,
 }) {
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleToggleEdit = function () {
-    setIsEditing((e) => !e);
-  };
-
   const {
     settingItem,
     settingItem__Info,
@@ -28,7 +25,10 @@ const ProfileSettingItem = function ({
         <h4>{heading}</h4>
         <p>{!isEditing ? savedInfo : placeholder}</p>
       </div>
-      <div className={settingItem__Icon} onClick={handleToggleEdit}>
+      <div
+        className={settingItem__Icon}
+        onClick={isEditing ? onCloseSetting : onOpenSetting}
+      >
         {!isEditing ? <EditIcon /> : <CloseIcon />}
       </div>
       {isEditing && <div className={settingItem__Form}>{children}</div>}

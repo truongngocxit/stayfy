@@ -4,11 +4,34 @@ import EmailSettingForm from "./EmailSettingForm/EmailSettingForm";
 import PhoneSettingForm from "./PhoneSettingForm/PhoneSettingForm";
 import ProfileImageUpload from "../ProfileImageUpload/ProfileImageUpload";
 import { useSelector } from "react-redux";
+import { useReducer } from "react";
 
 const ProfileSettings = function ({ className }) {
   const { lastName, firstName, email, phone } = useSelector(
     (state) => state.activeUser
   );
+
+  const [
+    { emailIsActive, phoneIsActive, nameIsActive },
+    dispatchActiveProfileForm,
+  ] = useReducer(activeProfileFormReducer, initialActiveProfileFormState);
+
+  const handleNameFormActive = function () {
+    dispatchActiveProfileForm("NAME_ACTIVE");
+  };
+
+  const handleEmailFormActive = function () {
+    dispatchActiveProfileForm("EMAIL_ACTIVE");
+  };
+
+  const handlePhoneFormActive = function () {
+    dispatchActiveProfileForm("PHONE_ACTIVE");
+  };
+
+  const handleFormsInactive = function () {
+    dispatchActiveProfileForm("FORM_INACTIVE");
+  };
+
   const {
     profile__Settings,
     profile__Settings__Heading,
@@ -24,13 +47,26 @@ const ProfileSettings = function ({ className }) {
           <NameSettingForm
             activeUserLastName={lastName}
             activeUserFirstName={firstName}
+            nameFormIsActive={nameIsActive}
+            onOpenNameForm={handleNameFormActive}
+            onCloseNameForm={handleFormsInactive}
           />
         </div>
         <div className={profile__Settings__Item}>
-          <EmailSettingForm activeUserEmail={email} />
+          <EmailSettingForm
+            activeUserEmail={email}
+            emailFormIsActive={emailIsActive}
+            onOpenEmailForm={handleEmailFormActive}
+            onCloseEmailForm={handleFormsInactive}
+          />
         </div>
         <div className={profile__Settings__Item}>
-          <PhoneSettingForm activeUserPhone={phone} />
+          <PhoneSettingForm
+            activeUserPhone={phone}
+            phoneFormIsActive={phoneIsActive}
+            onOpenPhoneForm={handlePhoneFormActive}
+            onClosePhoneForm={handleFormsInactive}
+          />
         </div>
       </div>
     </div>
@@ -38,3 +74,42 @@ const ProfileSettings = function ({ className }) {
 };
 
 export default ProfileSettings;
+
+const activeProfileFormReducer = function (state, action) {
+  switch (action) {
+    case "EMAIL_ACTIVE":
+      return {
+        nameIsActive: false,
+        phoneIsActive: false,
+        emailIsActive: true,
+      };
+    case "NAME_ACTIVE":
+      return {
+        phoneIsActive: false,
+        emailIsActive: false,
+        nameIsActive: true,
+      };
+    case "PHONE_ACTIVE":
+      return {
+        emailIsActive: false,
+        nameIsActive: false,
+        phoneIsActive: true,
+      };
+
+    case "FORM_INACTIVE": {
+      return {
+        nameIsActive: false,
+        phoneIsActive: false,
+        emailIsActive: false,
+      };
+    }
+    default:
+      return { ...state };
+  }
+};
+
+const initialActiveProfileFormState = {
+  nameIsActive: false,
+  phoneIsActive: false,
+  emailIsActive: false,
+};

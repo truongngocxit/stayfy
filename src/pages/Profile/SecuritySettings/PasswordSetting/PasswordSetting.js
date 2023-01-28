@@ -1,6 +1,6 @@
 import styles from "./PasswordSetting.module.scss";
 import ProfileSettingItem from "../../ProfileSettingItem/ProfileSettingItem";
-import ProfileSettingInput from "../../SettingInput/ProfileSettingInput";
+import Input from "../../../../components/Input/Input";
 import SettingButton from "../../SettingButton/SettingButton";
 
 const PasswordSetting = function () {
@@ -12,17 +12,17 @@ const PasswordSetting = function () {
       placeholder="Last changed 22 days ago"
     >
       <form className={passwordSetting}>
-        <ProfileSettingInput
+        <Input
           type="password"
           label="Old password"
           className={passwordSetting__Input}
         />
-        <ProfileSettingInput
+        <Input
           type="password"
           label="New password"
           className={passwordSetting__Input}
         />
-        <ProfileSettingInput
+        <Input
           type="password"
           label="Confirm new password"
           className={passwordSetting__Input}

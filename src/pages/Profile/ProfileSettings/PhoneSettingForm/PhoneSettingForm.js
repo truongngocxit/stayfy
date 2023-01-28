@@ -4,7 +4,12 @@ import SettingButton from "../../SettingButton/SettingButton";
 import Input from "../../../../components/Input/Input";
 import useInput from "../../../../custom-hooks/useInput";
 
-const PhoneSettingForm = function ({ activeUserPhone }) {
+const PhoneSettingForm = function ({
+  activeUserPhone,
+  phoneFormIsActive,
+  onOpenPhoneForm,
+  onClosePhoneForm,
+}) {
   const {
     input: phone,
     handleInputChange: handlePhoneChange,
@@ -17,12 +22,21 @@ const PhoneSettingForm = function ({ activeUserPhone }) {
   } = useInput(
     (phone) => phone.trim() !== "" && !isNaN(-phone) && phone.length === 10
   );
+
+  const handleClosePhoneForm = function () {
+    resetPhone();
+    onClosePhoneForm();
+  };
+
   const { phoneSetting, phoneSetting__Btn } = styles;
   return (
     <ProfileSettingItem
       heading="Phone number"
       savedInfo={activeUserPhone}
       placeholder="For notifications, reminders, and help logging in"
+      isEditing={phoneFormIsActive}
+      onOpenSetting={onOpenPhoneForm}
+      onCloseSetting={handleClosePhoneForm}
     >
       <form className={phoneSetting}>
         <Input
@@ -36,7 +50,12 @@ const PhoneSettingForm = function ({ activeUserPhone }) {
           onChange={handlePhoneChange}
           tooltipPlacement="topLeft"
         />
-        <SettingButton text="Save" className={phoneSetting__Btn} />
+        <SettingButton
+          text="Save"
+          className={phoneSetting__Btn}
+          isDisabled={phoneIsInvalid}
+          errorMessage="New phone must NOT be empty"
+        />
       </form>
     </ProfileSettingItem>
   );

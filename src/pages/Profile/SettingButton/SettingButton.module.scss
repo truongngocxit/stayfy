@@ -16,5 +16,9 @@
 
   &__Disabled {
     background-color: $grayColorFaint4;
+    cursor: not-allowed;
+    &:hover {
+      background-color: $grayColorFaint4;
+    }
   }
 }

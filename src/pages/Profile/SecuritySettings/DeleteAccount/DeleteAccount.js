@@ -1,7 +1,8 @@
 import styles from "./DeleteAccount.module.scss";
 import ProfileSettingItem from "../../ProfileSettingItem/ProfileSettingItem";
-import ProfileSettingInput from "../../SettingInput/ProfileSettingInput";
 import SettingButton from "../../SettingButton/SettingButton";
+import Input from "../../../../components/Input/Input";
+
 const DeleteAccount = function () {
   const {
     deleteAccount,
@@ -17,7 +18,7 @@ const DeleteAccount = function () {
       className={deleteAccount__Container}
     >
       <form className={deleteAccount}>
-        <ProfileSettingInput
+        <Input
           label='Type "DELETE" to delete your account'
           className={deleteAccount__Input}
         />

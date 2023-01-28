@@ -1,11 +1,15 @@
 import styles from "./EmailSettingForm.module.scss";
 import ProfileSettingItem from "../../ProfileSettingItem/ProfileSettingItem";
-import ProfileSettingInput from "../../SettingInput/ProfileSettingInput";
 import SettingButton from "../../SettingButton/SettingButton";
 import Input from "../../../../components/Input/Input";
 import useInput from "../../../../custom-hooks/useInput";
 
-const EmailSettingForm = function ({ activeUserEmail }) {
+const EmailSettingForm = function ({
+  activeUserEmail,
+  emailFormIsActive,
+  onOpenEmailForm,
+  onCloseEmailForm,
+}) {
   const {
     input: mail,
     handleInputChange: handleMailChange,
@@ -17,12 +21,20 @@ const EmailSettingForm = function ({ activeUserEmail }) {
     inputIsInvalid: mailIsInvalid,
   } = useInput((mail) => mail.includes("@") && mail.includes("."));
 
+  const handleCloseEmailForm = function () {
+    onCloseEmailForm();
+    resetMail();
+  };
+
   const { emailSetting, emailSetting__Btn } = styles;
   return (
     <ProfileSettingItem
       heading="Email"
       savedInfo={activeUserEmail}
       placeholder="Use an address you'll always have access to."
+      isEditing={emailFormIsActive}
+      onCloseSetting={handleCloseEmailForm}
+      onOpenSetting={onOpenEmailForm}
     >
       <form className={emailSetting}>
         <Input
@@ -36,7 +48,11 @@ const EmailSettingForm = function ({ activeUserEmail }) {
           onChange={handleMailChange}
           tooltipPlacement="topLeft"
         />
-        <SettingButton text="Save" className={emailSetting__Btn} />
+        <SettingButton
+          text="Save"
+          className={emailSetting__Btn}
+          isDisabled={mailIsInvalid}
+        />
       </form>
     </ProfileSettingItem>
   );

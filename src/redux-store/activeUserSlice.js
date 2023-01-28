@@ -39,6 +39,12 @@ const activeUserSlice = createSlice({
     changeUserImage(state, action) {
       state.profileImage = action.payload;
     },
+    changeUserFirstName(state, action) {
+      state.firstName = action.payload;
+    },
+    changeUserLastName(state, action) {
+      state.lastName = action.payload;
+    },
   },
 });
 
