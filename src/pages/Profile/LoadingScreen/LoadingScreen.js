@@ -9,7 +9,7 @@ const LoadingScreen = function ({ onClick }) {
       <div className={loadingScreen__Spinner}>
         <LoadingSpinner color="#48cae4" width="0.6rem" />
       </div>
-      <Overlay zIndex={1500} backgroundOpacity={0.02} onClick={onClick} />
+      <Overlay zIndex={2200} backgroundOpacity={0.02} onClick={onClick} />
     </>
   );
 };

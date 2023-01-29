@@ -7,22 +7,22 @@
 
   &__Container {
     h4 {
-      color: $warningColor1;
+      color: $warningColor6;
     }
   }
 
   &__Input {
     input {
       font-weight: 700;
-      color: $warningColor1;
+      color: $warningColor6;
     }
   }
 
   &__Btn {
-    background-color: $warningColor1;
+    background-color: $warningColor6;
 
     &:hover {
-      background-color: $warningColor3;
+      background-color: $warningColor7;
     }
   }
 }

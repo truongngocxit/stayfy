@@ -1,0 +1,50 @@
+@use "../../../../../sass-styles/variables" as *;
+
+.logoutModal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 4rem 6rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: $border;
+  border-radius: $borderRadius;
+  z-index: 2000;
+  background-color: #fff;
+  gap: 3rem 2rem;
+
+  &__Heading {
+    font-size: 2rem;
+    font-weight: 700;
+    grid-column: 1 / -1;
+  }
+
+  &__AgreeBtn,
+  &__CancelBtn {
+    padding: 2rem 4rem;
+    border: none;
+    border-radius: $borderRadius;
+    font-weight: 700;
+    background: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  &__AgreeBtn {
+    color: $warningColor7;
+    box-shadow: inset 0 0 0 0.3rem $warningColor7;
+    &:hover {
+      background-color: $warningColor7;
+      color: #fff;
+    }
+  }
+
+  &__CancelBtn {
+    color: #fff;
+    background-color: $primaryColor;
+    &:hover {
+      background-color: $shadeColor1;
+    }
+  }
+}

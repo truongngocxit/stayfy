@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { activeUserActions } from "../redux-store/activeUserSlice";
 import axios from "axios";
 

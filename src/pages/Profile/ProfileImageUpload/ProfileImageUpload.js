@@ -1,59 +1,67 @@
 import styles from "./ProfileImageUpload.module.scss";
-import UserIcon from "../../../components/UI/SVG/UserIcon";
 import UploadIcon from "../../../components/UI/SVG/UploadIcon";
 import ProfileImageModal from "./ProfileImageModal/ProfileImageModal";
 import Overlay from "../../../components/UI/Overlay/Overlay";
 import { createPortal } from "react-dom";
-import { useState } from "react";
 import { Tooltip } from "antd";
+import useChangeProfileImage from "../../../custom-hooks/useChangeProfileImage";
 import { useSelector } from "react-redux";
 
-const ProfileImageUpload = function () {
-  const { imageUpload, imageUpload__Placeholder, imageUpload__EditIcon } =
-    styles;
-  const [isChangingImage, setIsChangingImage] = useState(false);
+const ProfileImageUpload = function ({
+  onOpenImageUpdate,
+  onCloseImageUpdate,
+  imageUpdateIsActive,
+}) {
   const activeUserProfileImage = useSelector(
     (state) => state.activeUser.profileImage
   );
 
-  const handleStartChangingImage = function () {
-    setIsChangingImage(true);
-  };
+  const { isLoading, changeProfileImage, error, hasUpdated } =
+    useChangeProfileImage();
 
-  const handleStopChangingImage = function () {
-    setIsChangingImage(false);
-  };
+  const { imageUpload, imageUpload__Image, imageUpload__EditIcon } = styles;
 
   return (
     <>
       <div className={imageUpload}>
         <Tooltip title="Change profile image" color="#333">
-          <button
-            className={imageUpload__EditIcon}
-            onClick={handleStartChangingImage}
-          >
+          <button className={imageUpload__EditIcon} onClick={onOpenImageUpdate}>
             <UploadIcon />
           </button>
         </Tooltip>
-        <div className={imageUpload__Placeholder}>
-          <img
-            src={
-              activeUserProfileImage ||
-              "https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/misc%2Fplaceholder-profile-image.png?alt=media&token=d7ee83a6-7b08-49e1-9d75-14de009335c9"
-            }
-            alt="profile-avatar"
-          />
-        </div>
+
+        <Tooltip
+          title="Change successully"
+          color="#00b4d8"
+          placement="topLeft"
+          open={hasUpdated}
+        >
+          <div className={imageUpload__Image}>
+            <img
+              src={
+                activeUserProfileImage ||
+                "https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/misc%2Fplaceholder-profile-image.png?alt=media&token=d7ee83a6-7b08-49e1-9d75-14de009335c9"
+              }
+              alt="profile-avatar"
+            />
+          </div>
+        </Tooltip>
       </div>
-      {isChangingImage &&
+
+      {imageUpdateIsActive &&
         createPortal(
-          <ProfileImageModal onCloseModal={handleStopChangingImage} />,
+          <ProfileImageModal
+            onCloseModal={onCloseImageUpdate}
+            activeUserProfileImage={activeUserProfileImage}
+            onChangeProfileImage={changeProfileImage}
+            isUpdatingImage={isLoading}
+          />,
           document.getElementById("modal-root")
         )}
 
-      {isChangingImage &&
+      {imageUpdateIsActive &&
         createPortal(
-          <Overlay zIndex={1500} onClick={handleStopChangingImage} />,
+          <Overlay zIndex={1500} onClick={onCloseImageUpdate} />,
           document.getElementById("overlay-root")
         )}
     </>

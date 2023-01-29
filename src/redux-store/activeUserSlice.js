@@ -4,18 +4,17 @@ const activeUserSlice = createSlice({
   name: "activeUser",
   initialState: {
     isActive: false,
-    lastName: "",
-    firstName: "",
-    email: "",
-    phone: "",
-    profileImage: "",
+    lastName: null,
+    firstName: null,
+    email: null,
+    phone: null,
+    profileImage: null,
     upcomingTrips: [],
-    id: "",
-    password: "",
+    id: null,
+    password: null,
   },
   reducers: {
     userLogin(state, action) {
-      console.log(action.payload);
       const { payload: userInfo } = action;
       state.isActive = true;
       state.lastName = userInfo.lastName;
@@ -31,12 +30,12 @@ const activeUserSlice = createSlice({
     },
     userLogout(state, action) {
       state.isActive = false;
-      state.lastName = "";
-      state.firstName = "";
-      state.id = "";
-      state.email = "";
-      state.phone = "";
-      state.profileImage = "";
+      state.lastName = null;
+      state.firstName = null;
+      state.id = null;
+      state.email = null;
+      state.phone = null;
+      state.profileImage = null;
       state.upcomingTrips = [];
     },
     changeUserImage(state, action) {

@@ -1,11 +1,13 @@
 import styles from "./GuestInfoForm.module.scss";
 import InfoRadio from "./InfoRadio/InfoRadio";
 import Input from "../../../../components/Input/Input";
-import { Tooltip } from "antd";
+import { useSelector } from "react-redux";
 import { useContext } from "react";
 import { guestGeneralInfoContext } from "../../../../contexts/guestBookingInfoContext/guestGeneralInfoContext";
 
 const GuestInfoForm = function () {
+  const isActive = useSelector((state) => state.activeUser.isActive);
+
   const {
     firstNameInput,
     lastNameInput,
@@ -76,6 +78,7 @@ const GuestInfoForm = function () {
           isTyping={isTypingFirstName}
           onFocus={handleStartTypingFirstName}
           onBlur={handleStopTypingFirstName}
+          isDisabled={isActive}
         />
 
         <Input
@@ -88,6 +91,7 @@ const GuestInfoForm = function () {
           isTyping={isTypingLastName}
           onFocus={handleStartTypingLastName}
           onBlur={handleStopTypingLastName}
+          isDisabled={isActive}
         />
         <Input
           className={infoForm__Email}
@@ -99,6 +103,7 @@ const GuestInfoForm = function () {
           isTyping={isTypingEmail}
           onFocus={handleStartTypingEmail}
           onBlur={handleStopTypingEmail}
+          isDisabled={isActive}
         />
         <Input
           className={infoForm__Phone}
@@ -110,6 +115,7 @@ const GuestInfoForm = function () {
           isTyping={isTypingPhone}
           onFocus={handleStartTypingPhone}
           onBlur={handleStopTypingPhone}
+          isDisabled={isActive}
         />
       </form>
       <InfoRadio

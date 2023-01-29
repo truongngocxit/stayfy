@@ -1,7 +1,7 @@
 import styles from "./ProfileButton.module.scss";
 import Hamburger from "../../UI/SVG/Hamburger";
 import useDropdown from "../../../custom-hooks/useDropdown";
-import LoginDropdown from "../LoginDropdown/LoginDropdown";
+import LoginDropdown from "./LoginDropdown/LoginDropdown";
 import { useSelector } from "react-redux";
 
 const ProfileButton = function ({ className }) {

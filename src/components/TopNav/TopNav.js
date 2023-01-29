@@ -2,8 +2,6 @@ import styles from "./TopNav.module.scss";
 import MainLogo from "../UI/MainLogo/MainLogo";
 import ProfileButton from "./ProfileButton/ProfileButton";
 import SearchBar from "../SearchBar/SearchBar";
-import LoginDropdown from "./LoginDropdown/LoginDropdown";
-import useDropdown from "../../custom-hooks/useDropdown";
 import { Link } from "react-router-dom";
 
 const TopNav = function ({ hasSearchBar = true }) {

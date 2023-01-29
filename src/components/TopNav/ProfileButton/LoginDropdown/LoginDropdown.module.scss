@@ -1,4 +1,4 @@
-@use "../../../sass-styles/variables" as *;
+@use "../../../../sass-styles/variables" as *;
 
 .loginDropdown {
   position: absolute;
@@ -15,18 +15,34 @@
   bottom: -10%;
   transform: translate(0, 100%);
 
-  &__Option {
+  &__Option,
+  &__Logout {
     padding: 1.5rem 3rem;
     cursor: pointer;
     text-decoration: none;
 
-    &:hover {
+    &:link,
+    &:visited {
+      color: inherit;
+    }
+  }
+
+  &__Option {
+    &:hover,
+    &:active {
       background-color: $tintColor1;
       color: $primaryColor;
     }
+  }
 
-    &:visited {
-      color: inherit;
+  &__Logout {
+    border: none;
+    background: none;
+    text-align: left;
+    &:hover,
+    &:active {
+      background-color: $warningColor1;
+      color: $warningColor7;
     }
   }
 }

@@ -32,11 +32,19 @@
   }
 
   &__Error {
-    box-shadow: 0 0 0 0.3rem $warningColor1;
-    border: 0.1rem solid $warningColor1;
+    box-shadow: 0 0 0 0.3rem $warningColor6;
+    border: 0.1rem solid $warningColor7;
 
     span {
-      color: $warningColor4;
+      color: $warningColor8;
+    }
+  }
+
+  &__Disabled {
+    background-color: $grayColorFaint7;
+    cursor: not-allowed;
+    input {
+      cursor: not-allowed;
     }
   }
 }

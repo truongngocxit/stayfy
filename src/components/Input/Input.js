@@ -2,6 +2,7 @@ import styles from "./Input.module.scss";
 import { Tooltip } from "antd";
 
 const Input = function ({
+  isDisabled,
   label,
   type,
   className,
@@ -14,18 +15,18 @@ const Input = function ({
   errorMessage = "Invalid input",
   tooltipPlacement = "topRight",
 }) {
-  const { input, input__Focus, input__Error } = styles;
+  const { input, input__Focus, input__Error, input__Disabled } = styles;
   return (
     <Tooltip
       title={errorMessage}
       placement={tooltipPlacement}
-      color="#f92432"
-      open={hasError && !isTyping}
+      color="#f03e3e"
+      open={hasError && !isTyping && !isDisabled}
     >
       <label
-        className={`${input} ${isTyping ? input__Focus : ""} ${
-          hasError ? input__Error : ""
-        } ${className}`}
+        className={`${input} ${isTyping && !isDisabled ? input__Focus : ""} ${
+          hasError && !isDisabled ? input__Error : ""
+        } ${isDisabled ? input__Disabled : ""} ${className}`}
       >
         <span>{label}</span>
         <input
@@ -35,6 +36,7 @@ const Input = function ({
           value={value}
           onChange={onChange}
           spellCheck={false}
+          disabled={isDisabled}
         />
       </label>
     </Tooltip>

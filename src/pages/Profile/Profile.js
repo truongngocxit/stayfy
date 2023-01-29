@@ -21,8 +21,8 @@ const Profile = function () {
           currentSetting={currentSetting}
           onChangeSetting={handleChangeSetting}
         />
-        {currentSetting === "personal" && <ProfileSettings items={[]} />}
-        {currentSetting === "security" && <SecuritySettings items={[]} />}
+        {currentSetting === "personal" && <ProfileSettings />}
+        {currentSetting === "security" && <SecuritySettings />}
       </div>
       <StaticFooter />
     </>

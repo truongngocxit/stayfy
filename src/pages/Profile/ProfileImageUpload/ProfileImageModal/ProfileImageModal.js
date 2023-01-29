@@ -1,17 +1,18 @@
 import styles from "./ProfileImageModal.module.scss";
 import CloseIcon from "../../../../components/UI/SVG/CloseIcon";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { activeUserActions } from "../../../../redux-store/activeUserSlice";
-import { ref, uploadString, getDownloadURL } from "firebase/storage";
-import { storage } from "../../../../myAppFirebase/myAppFirebase";
+import { useSelector } from "react-redux";
+import useChangeProfileImage from "../../../../custom-hooks/useChangeProfileImage";
+import { createPortal } from "react-dom";
+import LoadingScreen from "../../LoadingScreen/LoadingScreen";
 
-const ProfileImageModal = function ({ onCloseModal }) {
+const ProfileImageModal = function ({
+  onCloseModal,
+  activeUserProfileImage,
+  onChangeProfileImage,
+  isUpdatingImage,
+}) {
   const [previewImage, setPreviewImage] = useState(null);
-  const reduxDispatch = useDispatch();
-
-  const { id: activeUserId, profileImage: activeUserProfileImage } =
-    useSelector((state) => state.activeUser);
 
   const handleUploadImage = function (event) {
     const file = event.target.files[0];
@@ -23,29 +24,7 @@ const ProfileImageModal = function ({ onCloseModal }) {
   };
 
   const handleSaveImage = async function () {
-    const newProfileImageUrl = `user-profile-images/${activeUserId}.jpeg`;
-    const newProfileImageRef = ref(storage, newProfileImageUrl);
-    await uploadString(
-      newProfileImageRef,
-      previewImage.split(",")[1],
-      "base64",
-      {
-        contentType: "image/jpeg",
-      }
-    );
-    const url = await getDownloadURL(ref(storage, newProfileImageUrl));
-    const response = await fetch(
-      `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}.json`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ profileImage: url }),
-      }
-    );
-
-    reduxDispatch(activeUserActions.changeUserImage(url));
+    onChangeProfileImage(previewImage, onCloseModal);
   };
 
   const {
@@ -58,41 +37,50 @@ const ProfileImageModal = function ({ onCloseModal }) {
     profileImageModal__Actions__Save,
   } = styles;
   return (
-    <div className={profileImageModal}>
-      <div className={profileImageModal__Close} onClick={onCloseModal}>
-        <CloseIcon />
-      </div>
-      <div className={profileImageModal__Image}>
-        <img
-          src={previewImage || activeUserProfileImage}
-          alt="preview profile avatar"
-        />
-      </div>
-      <div className={profileImageModal__Actions}>
-        <label
-          htmlFor="image-upload"
-          className={profileImageModal__Actions__Upload}
-        >
-          <span>{previewImage ? "Upload file" : "Upload new"}</span>
-          <input
-            type="file"
-            id="image-upload"
-            onChange={handleUploadImage}
-            accept="image/*"
+    <>
+      <div className={profileImageModal}>
+        <div className={profileImageModal__Close} onClick={onCloseModal}>
+          <CloseIcon />
+        </div>
+        <div className={profileImageModal__Image}>
+          <img
+            src={previewImage || activeUserProfileImage}
+            alt="preview profile avatar"
           />
-        </label>
-        {previewImage ? (
-          <button
-            className={profileImageModal__Actions__Save}
-            onClick={handleSaveImage}
+        </div>
+        <div className={profileImageModal__Actions}>
+          <label
+            htmlFor="image-upload"
+            className={profileImageModal__Actions__Upload}
           >
-            Save
-          </button>
-        ) : (
-          <button className={profileImageModal__Actions__Delete}>Delete</button>
-        )}
+            <span>{previewImage ? "Upload file" : "Upload new"}</span>
+            <input
+              type="file"
+              id="image-upload"
+              onChange={handleUploadImage}
+              accept="image/*"
+            />
+          </label>
+          {previewImage ? (
+            <button
+              className={profileImageModal__Actions__Save}
+              onClick={handleSaveImage}
+            >
+              Save
+            </button>
+          ) : (
+            <button className={profileImageModal__Actions__Delete}>
+              Delete
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+      {isUpdatingImage &&
+        createPortal(
+          <LoadingScreen />,
+          document.getElementById("overlay-root")
+        )}
+    </>
   );
 };
 

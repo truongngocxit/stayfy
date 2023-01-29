@@ -12,7 +12,7 @@ const ProfileSettings = function ({ className }) {
   );
 
   const [
-    { emailIsActive, phoneIsActive, nameIsActive },
+    { emailIsActive, phoneIsActive, nameIsActive, imageIsActive },
     dispatchActiveProfileForm,
   ] = useReducer(activeProfileFormReducer, initialActiveProfileFormState);
 
@@ -28,6 +28,10 @@ const ProfileSettings = function ({ className }) {
     dispatchActiveProfileForm("PHONE_ACTIVE");
   };
 
+  const handleImageUpdateActive = function () {
+    dispatchActiveProfileForm("IMAGE_ACTIVE");
+  };
+
   const handleFormsInactive = function () {
     dispatchActiveProfileForm("FORM_INACTIVE");
   };
@@ -41,7 +45,11 @@ const ProfileSettings = function ({ className }) {
   return (
     <div className={`${profile__Settings} ${className}`}>
       <h3 className={profile__Settings__Heading}>Personal Details</h3>
-      <ProfileImageUpload />
+      <ProfileImageUpload
+        onOpenImageUpdate={handleImageUpdateActive}
+        onCloseImageUpdate={handleFormsInactive}
+        imageUpdateIsActive={imageIsActive}
+      />
       <div className={profile__Settings__ItemsContainer}>
         <div className={profile__Settings__Item}>
           <NameSettingForm
@@ -79,21 +87,31 @@ const activeProfileFormReducer = function (state, action) {
   switch (action) {
     case "EMAIL_ACTIVE":
       return {
+        imageIsActive: false,
         nameIsActive: false,
         phoneIsActive: false,
         emailIsActive: true,
       };
     case "NAME_ACTIVE":
       return {
+        imageIsActive: false,
         phoneIsActive: false,
         emailIsActive: false,
         nameIsActive: true,
       };
     case "PHONE_ACTIVE":
       return {
+        imageIsActive: false,
         emailIsActive: false,
         nameIsActive: false,
         phoneIsActive: true,
+      };
+    case "IMAGE_ACTIVE":
+      return {
+        emailIsActive: false,
+        nameIsActive: false,
+        phoneIsActive: false,
+        imageIsActive: true,
       };
 
     case "FORM_INACTIVE": {
@@ -101,6 +119,7 @@ const activeProfileFormReducer = function (state, action) {
         nameIsActive: false,
         phoneIsActive: false,
         emailIsActive: false,
+        imageIsActive: false,
       };
     }
     default:
@@ -109,6 +128,7 @@ const activeProfileFormReducer = function (state, action) {
 };
 
 const initialActiveProfileFormState = {
+  imageIsActive: false,
   nameIsActive: false,
   phoneIsActive: false,
   emailIsActive: false,
