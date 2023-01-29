@@ -11,9 +11,11 @@ const activeUserSlice = createSlice({
     profileImage: "",
     upcomingTrips: [],
     id: "",
+    password: "",
   },
   reducers: {
     userLogin(state, action) {
+      console.log(action.payload);
       const { payload: userInfo } = action;
       state.isActive = true;
       state.lastName = userInfo.lastName;
@@ -21,6 +23,7 @@ const activeUserSlice = createSlice({
       state.email = userInfo.email;
       state.phone = userInfo.phone;
       state.id = userInfo.id;
+      state.password = userInfo.password;
       state.profileImage =
         userInfo.profileImage ||
         "https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/misc%2Fplaceholder-profile-image.png?alt=media&token=d7ee83a6-7b08-49e1-9d75-14de009335c9";
@@ -39,16 +42,8 @@ const activeUserSlice = createSlice({
     changeUserImage(state, action) {
       state.profileImage = action.payload;
     },
-    changeUserFirstName(state, action) {
-      state.firstName = action.payload;
-    },
-    changeUserLastName(state, action) {
-      state.lastName = action.payload;
-    },
   },
 });
 
 export const activeUserActions = activeUserSlice.actions;
 export default activeUserSlice.reducer;
-
-const changeProfileImageThunk = function (imageUrl) {};

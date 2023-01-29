@@ -81,7 +81,7 @@ const LoginForm = function () {
     header = "Welcome back to Homefy :)";
     state = "success";
     stateMessage =
-      "You have successfully logged in. You will navigated to home page in 5 seconds";
+      "You have successfully logged in. You will be navigated to home page in 5 seconds";
     navigateMessage = "Or you could click here to go to home right now";
     doAfterSubmit = () => navigate("/");
   } else if (submitState === "hasFailed") {
@@ -138,7 +138,6 @@ const LoginForm = function () {
       {submitState !== "yetSubmit" &&
         createPortal(
           <AfterSubmitModal
-            submitState={submitState}
             header={header}
             state={state}
             stateMessage={stateMessage}

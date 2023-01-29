@@ -2,7 +2,10 @@ import styles from "./PhoneSettingForm.module.scss";
 import ProfileSettingItem from "../../ProfileSettingItem/ProfileSettingItem";
 import SettingButton from "../../SettingButton/SettingButton";
 import Input from "../../../../components/Input/Input";
+import { createPortal } from "react-dom";
 import useInput from "../../../../custom-hooks/useInput";
+import useChangeUserInfo from "../../../../custom-hooks/useChangeUserInfo";
+import LoadingScreen from "../../LoadingScreen/LoadingScreen";
 
 const PhoneSettingForm = function ({
   activeUserPhone,
@@ -23,41 +26,57 @@ const PhoneSettingForm = function ({
     (phone) => phone.trim() !== "" && !isNaN(-phone) && phone.length === 10
   );
 
+  const { isLoading, error, hasChanged, patchUserData, cancelRequest } =
+    useChangeUserInfo();
+
   const handleClosePhoneForm = function () {
     resetPhone();
     onClosePhoneForm();
   };
 
+  const handleSubmitPhoneChange = async function (event) {
+    event.preventDefault();
+    patchUserData({ phone }, handleClosePhoneForm);
+  };
+
   const { phoneSetting, phoneSetting__Btn } = styles;
   return (
-    <ProfileSettingItem
-      heading="Phone number"
-      savedInfo={activeUserPhone}
-      placeholder="For notifications, reminders, and help logging in"
-      isEditing={phoneFormIsActive}
-      onOpenSetting={onOpenPhoneForm}
-      onCloseSetting={handleClosePhoneForm}
-    >
-      <form className={phoneSetting}>
-        <Input
-          label="Phone number"
-          isTyping={isTypingPhone}
-          onBlur={handleStopTypingPhone}
-          onFocus={handleStartTypingPhone}
-          value={phone}
-          errorMessage="New phone must NOT be empty"
-          hasError={phoneHasError}
-          onChange={handlePhoneChange}
-          tooltipPlacement="topLeft"
-        />
-        <SettingButton
-          text="Save"
-          className={phoneSetting__Btn}
-          isDisabled={phoneIsInvalid}
-          errorMessage="New phone must NOT be empty"
-        />
-      </form>
-    </ProfileSettingItem>
+    <>
+      <ProfileSettingItem
+        heading="Phone number"
+        savedInfo={activeUserPhone}
+        placeholder="For notifications, reminders, and help logging in"
+        isEditing={phoneFormIsActive}
+        onOpenSetting={onOpenPhoneForm}
+        onCloseSetting={handleClosePhoneForm}
+        formHasUpdated={hasChanged}
+      >
+        <form className={phoneSetting} onSubmit={handleSubmitPhoneChange}>
+          <Input
+            label="Phone number"
+            isTyping={isTypingPhone}
+            onBlur={handleStopTypingPhone}
+            onFocus={handleStartTypingPhone}
+            value={phone}
+            errorMessage="New phone must NOT be empty"
+            hasError={phoneHasError}
+            onChange={handlePhoneChange}
+            tooltipPlacement="topLeft"
+          />
+          <SettingButton
+            text="Save"
+            className={phoneSetting__Btn}
+            isDisabled={phoneIsInvalid}
+            errorMessage="New phone must NOT be empty"
+          />
+        </form>
+      </ProfileSettingItem>
+      {isLoading &&
+        createPortal(
+          <LoadingScreen />,
+          document.getElementById("overlay-root")
+        )}
+    </>
   );
 };
 
