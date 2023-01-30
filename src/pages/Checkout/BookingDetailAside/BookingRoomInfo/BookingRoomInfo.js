@@ -1,5 +1,5 @@
 import styles from "./BookingRoomInfo.module.scss";
-import StarIcon from "../../../../components/UI/SVG/StartIcon";
+import StarIcon from "../../../../components/UI/SVG/StarIcon";
 
 const BookingRoomInfo = function ({ name, review, location, image }) {
   const {

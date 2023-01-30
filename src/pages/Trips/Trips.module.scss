@@ -1,5 +1,38 @@
 @use "../../sass-styles/variables" as *;
 
 .trips {
-  padding: 4rem 16rem;
+  padding: 6em 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  &__Heading {
+    font-size: 3.2rem;
+  }
+
+  &__NoTrip {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    button {
+      border: none;
+      background-color: $primaryColor;
+      padding: 1.5rem 3rem;
+      color: #fff;
+      border-radius: $borderRadius;
+      font-weight: 700;
+    }
+  }
+
+  &__TripList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 }

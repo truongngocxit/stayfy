@@ -1,12 +1,12 @@
 import styles from "./BookingButton.module.scss";
-import { useSelector } from "react-redux";
 import { Tooltip } from "antd";
 import { useContext } from "react";
 import { guestGeneralInfoContext } from "../../../../contexts/guestBookingInfoContext/guestGeneralInfoContext";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bookingInfoActions } from "../../../../redux-store/bookingInfoSlice";
 import { searchQueryActions } from "../../../../redux-store/searchQuerySlice";
+import { activeUserActions } from "../../../../redux-store/activeUserSlice";
 
 const BookingButton = function ({
   text,
@@ -22,11 +22,15 @@ const BookingButton = function ({
     bookedForInput,
   } = useContext(guestGeneralInfoContext);
 
+  const activeUserId = useSelector((state) => state.activeUser.id);
   const reduxDispatch = useDispatch();
 
-  const { id, name, date, rooms } = useSelector(
-    (state) => state.bookingInfo.roomInfo
-  );
+  const {
+    id: roomId,
+    name,
+    date,
+    rooms,
+  } = useSelector((state) => state.bookingInfo.roomInfo);
 
   const { input: firstName, inputIsInvalid: firstNameIsInvalid } =
     firstNameInput;
@@ -41,8 +45,9 @@ const BookingButton = function ({
   const handleSubmitBookingInfo = function () {
     if (!submittedInfoIsInvalid) {
       const data = {
+        date: new Date().toString(),
         roomInfo: {
-          roomId: id,
+          roomId,
           name,
           rooms,
           date,
@@ -63,6 +68,16 @@ const BookingButton = function ({
           url: "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/bookings.json",
           data,
         });
+
+        const newBookingId = response.data.name;
+
+        await axios({
+          method: "POST",
+          url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}/upcomingTrips.json`,
+          data: { bookingId: newBookingId },
+        });
+
+        reduxDispatch(activeUserActions.addTrip(newBookingId));
 
         setTimeout(() => {
           onHasSubmitted();

@@ -41,6 +41,9 @@ const activeUserSlice = createSlice({
     changeUserImage(state, action) {
       state.profileImage = action.payload;
     },
+    addTrip(state, action) {
+      state.upcomingTrips.push(action.payload);
+    },
   },
 });
 

@@ -25,8 +25,6 @@ const RoomMain = function ({
     lodgeInfo.types.map((type) => ({ ...type, quantity: 0 }))
   );
 
-  console.log(selectedRooms);
-
   const { roomMain, roomMain__Info, roomMain__Aside } = styles;
 
   return (

@@ -54,13 +54,22 @@ const LoginForm = function () {
         id: e[0],
         ...e[1],
       }));
+
       const retrievedUser = cleansedData.find(
         (data) => data.password === password && data.email === email
       );
 
       if (retrievedUser) {
         setSubmitState("hasSubmitted");
-        reduxDispatch(activeUserActions.userLogin(retrievedUser));
+        const cleansedUserTrips = Object.entries({
+          ...retrievedUser.upcomingTrips,
+        }).map((trip) => trip[1].bookingId);
+        console.log(retrievedUser.upcomingTrips);
+        const cleansedRetrivedUser = {
+          ...retrievedUser,
+          upcomingTrips: cleansedUserTrips,
+        };
+        reduxDispatch(activeUserActions.userLogin(cleansedRetrivedUser));
       } else {
         setSubmitState("hasFailed");
       }

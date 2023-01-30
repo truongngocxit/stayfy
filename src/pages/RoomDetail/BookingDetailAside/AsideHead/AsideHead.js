@@ -1,5 +1,5 @@
 import styles from "./AsideHead.module.scss";
-import StarIcon from "../../../../components/UI/SVG/StartIcon";
+import StarIcon from "../../../../components/UI/SVG/StarIcon";
 
 const AsideHead = function ({ name, stars, className }) {
   const { asideHead, asideHead__Name, asideHead__Review } = styles;

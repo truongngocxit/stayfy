@@ -1,5 +1,5 @@
 import styles from "./AboutHost.module.scss";
-import StarIcon from "../../../components/UI/SVG/StartIcon";
+import StarIcon from "../../../components/UI/SVG/StarIcon";
 import { forwardRef } from "react";
 
 const AboutHost = forwardRef(function ({ hostInfo }, ref) {

@@ -1,5 +1,5 @@
 import styles from "./RoomHead.module.scss";
-import StarIcon from "../../../components/UI/SVG/StartIcon";
+import StarIcon from "../../../components/UI/SVG/StarIcon";
 import HeartIcon from "../../../components/UI/SVG/HeartIcon";
 const RoomHead = function ({ name, location, review }) {
   const {

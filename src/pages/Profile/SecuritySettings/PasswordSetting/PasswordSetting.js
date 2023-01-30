@@ -57,7 +57,10 @@ const PasswordSetting = function ({
     resetInput: resetNewPasswordConfirm,
     inputHasError: newPasswordConfirmHasError,
     inputIsInvalid: newPasswordConfirmIsInvalid,
-  } = useInput((newPasswordConfirm) => newPasswordConfirm === newPassword);
+  } = useInput(
+    (newPasswordConfirm) =>
+      newPasswordConfirm === newPassword && newPasswordConfirm.trim() !== ""
+  );
 
   const handleClosePasswordChange = function () {
     onClosePasswordForm();
@@ -119,8 +122,17 @@ const PasswordSetting = function ({
             value={newPasswordConfirm}
             hasError={newPasswordConfirmHasError}
             errorMessage="Must be the same as your new password"
+            isDisabled={newPasswordHasError}
           />
-          <SettingButton text="Change password" />
+          <SettingButton
+            text="Change password"
+            isDisabled={
+              oldPasswordIsInvalid &&
+              newPasswordConfirmIsInvalid &&
+              newPasswordConfirmIsInvalid
+            }
+            errorMessage="Please fill in the form"
+          />
         </form>
       </ProfileSettingItem>
       {isLoading &&
