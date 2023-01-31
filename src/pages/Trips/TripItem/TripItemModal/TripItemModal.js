@@ -2,6 +2,7 @@ import styles from "./TripItemModal.module.scss";
 import BookingDetailAside from "../../../Checkout/BookingDetailAside/BookingDetailAside";
 import RoomInfo from "./RoomInfo/RoomInfo";
 import ItemModalTabs from "./ItemModalTabs/ItemModalTabs";
+import CloseIcon from "../../../../components/UI/SVG/CloseIcon";
 import { useState } from "react";
 
 const TripItemModal = function ({
@@ -15,6 +16,8 @@ const TripItemModal = function ({
   description,
   amenities,
   host,
+  onCloseModal,
+  bookingId,
 }) {
   const [activeTab, setActiveTab] = useState("images");
 
@@ -22,10 +25,18 @@ const TripItemModal = function ({
     setActiveTab(tab);
   };
 
-  const { itemModal, itemModal__Tabs, itemModal__Price, itemModal__Info } =
-    styles;
+  const {
+    itemModal,
+    itemModal__Tabs,
+    itemModal__Price,
+    itemModal__Info,
+    itemModal__CloseBtn,
+  } = styles;
   return (
     <div className={itemModal}>
+      <button className={itemModal__CloseBtn} onClick={onCloseModal}>
+        <CloseIcon />
+      </button>
       <ItemModalTabs
         className={itemModal__Tabs}
         activeTab={activeTab}
@@ -51,6 +62,8 @@ const TripItemModal = function ({
         amenities={amenities}
         location={location}
         host={host}
+        bookingId={bookingId}
+        onCloseModal={onCloseModal}
       />
     </div>
   );

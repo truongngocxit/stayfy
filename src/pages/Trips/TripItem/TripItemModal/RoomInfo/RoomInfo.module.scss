@@ -5,4 +5,21 @@
   height: 100%;
   padding: 2rem 0;
   border-top: $border;
+  display: flex;
+
+  & > * {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__Amenities {
+    h3 {
+      font-size: 2rem;
+    }
+  }
+
+  &__Contact {
+    align-self: center;
+    justify-self: center;
+  }
 }

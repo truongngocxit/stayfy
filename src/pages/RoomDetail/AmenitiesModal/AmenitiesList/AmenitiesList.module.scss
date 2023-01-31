@@ -1,0 +1,10 @@
+@use "../../../../sass-styles/variables" as *;
+
+.amenitiesList {
+  height: 100%;
+  overflow-y: scroll;
+  padding: 0 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}

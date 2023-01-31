@@ -1,19 +1,22 @@
 import styles from "./AboutHost.module.scss";
 import StarIcon from "../../../components/UI/SVG/StarIcon";
+import PhoneIcon from "../../../components/UI/SVG/PhoneIcon";
+import MailIcon from "../../../components/UI/SVG/MailIcon";
 import { forwardRef } from "react";
 
-const AboutHost = forwardRef(function ({ hostInfo }, ref) {
+const AboutHost = forwardRef(function ({ hostInfo, className }, ref) {
   const {
     aboutHost,
     aboutHost__Info,
     aboutHost__Info__Image,
     aboutHost__Info__Name,
     aboutHost__Info__Name__Reviews,
-    aboutHost__Description,
+    aboutHost__Contacts,
+    aboutHost__Contacts__Item,
   } = styles;
 
   return (
-    <div className={aboutHost} ref={ref} id="host">
+    <div className={`${aboutHost} ${className}`} ref={ref} id="host">
       <div className={aboutHost__Info}>
         <div className={aboutHost__Info__Image}>
           <img
@@ -39,17 +42,16 @@ const AboutHost = forwardRef(function ({ hostInfo }, ref) {
           </div>
         </div>
       </div>
-      {/* <div className={aboutHost__Description}>
-        <p>
-          Caly Villa includes balcony looking over the valley and our beautiful
-          garden. The room is equipped like a standard hotel. Wooden king bed
-          and natural mattress for your best sleep. If you're looking for a
-          Vietnamese homestay experience but still enjoy the comfort of staying
-          in a hotel then this is for you. We would like to make sure you will
-          have a comfortable stay at our place, so if you need anything please
-          just ask!
-        </p>
-      </div> */}
+      <div className={aboutHost__Contacts}>
+        <div className={aboutHost__Contacts__Item}>
+          <PhoneIcon />
+          <span>23123123312</span>
+        </div>
+        <div className={aboutHost__Contacts__Item}>
+          <MailIcon />
+          <span>thanhngan@gmail.com</span>
+        </div>
+      </div>
     </div>
   );
 });

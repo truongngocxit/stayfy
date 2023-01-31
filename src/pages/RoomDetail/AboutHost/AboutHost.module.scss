@@ -3,7 +3,7 @@
 .aboutHost {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 4rem;
 
   &__Info {
     display: flex;
@@ -51,7 +51,19 @@
     }
   }
 
-  &__Description {
+  &__Contacts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     font-size: 1.6rem;
+    &__Item {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      svg {
+        stroke: $primaryColor;
+        width: 2.2rem;
+        height: 2.2rem;
+      }
+    }
   }
 }

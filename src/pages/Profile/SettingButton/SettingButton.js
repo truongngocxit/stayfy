@@ -20,9 +20,9 @@ const SettingButton = function ({
   return (
     <Tooltip title={errorMessage} open={isDisabled && btnIsHovered}>
       <button
-        className={`${settingBtn} ${
+        className={`${settingBtn} ${className} ${
           isDisabled ? settingBtn__Disabled : ""
-        } ${className}`}
+        } `}
         onClick={onClick}
         onMouseOver={handleMouseOverButton}
         onMouseOut={handleMouseOutButton}

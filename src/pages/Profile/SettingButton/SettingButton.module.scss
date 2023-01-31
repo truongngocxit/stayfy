@@ -15,10 +15,10 @@
   }
 
   &__Disabled {
-    background-color: $grayColorFaint4;
-    cursor: not-allowed;
+    background-color: $grayColorFaint4 !important;
+    cursor: not-allowed !important;
     &:hover {
-      background-color: $grayColorFaint4;
+      background-color: $grayColorFaint4 !important;
     }
   }
 }

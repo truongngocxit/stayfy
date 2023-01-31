@@ -41,7 +41,7 @@ const Trips = function () {
         ...data,
         roomInfo: { ...data.roomInfo, ...settledLodgeInfos[index].value.data },
       }));
-      console.log(mergedList);
+
       setTripData(mergedList);
     })();
   }, [upcomingTrips]);
@@ -71,6 +71,7 @@ const Trips = function () {
             {tripData.map((trip) => (
               <TripItem
                 key={trip.id}
+                bookingId={trip.id}
                 book={trip}
                 roomInfo={trip.roomInfo}
                 bookedDate={trip.date}
