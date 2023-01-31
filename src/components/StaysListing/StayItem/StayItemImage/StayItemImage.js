@@ -14,7 +14,6 @@ const StayItemImage = function ({ className, imgs }) {
 
   const intersectionObserverRef = useRef(null);
 
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const imagesContainerRef = useRef(null);
   const handleHoverImg = function () {
     setBtnsIsHovered(true);

@@ -1,0 +1,23 @@
+@use "../../../../../../sass-styles/variables" as *;
+
+.cancel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__Btn {
+    align-self: flex-end;
+    padding: 2rem 4rem;
+    color: #fff;
+    font-weight: 700;
+    background-color: $warningColor7;
+    border-radius: $borderRadius;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+
+    &:hover {
+      background-color: $warningColor8;
+    }
+  }
+}

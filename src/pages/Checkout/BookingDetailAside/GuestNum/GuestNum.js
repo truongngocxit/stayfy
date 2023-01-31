@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import GuestNumAdjustModal from "./GuestNumAdjustModal/GuestNumAdjustModal";
 import Overlay from "../../../../components/UI/Overlay/Overlay";
 
-const GuestNum = function ({ guests }) {
+const GuestNum = function ({ guests, allowModify }) {
   let babiesNumText, animalsNumText;
   const { adults, children, babies, animals } = guests;
   const [guestNumModalIsVisible, setGuestNumModalIsVisible] = useState(false);
@@ -35,10 +35,12 @@ const GuestNum = function ({ guests }) {
   return (
     <>
       <div className={guestNum}>
-        <EditButton
-          className={guestNum__EditIcon}
-          onClick={handleOpenGuestNumModal}
-        />
+        {allowModify && (
+          <EditButton
+            className={guestNum__EditIcon}
+            onClick={handleOpenGuestNumModal}
+          />
+        )}
         <span className={guestNum__Label}>Guests</span>
         <span className={guestNum__Num}>
           {adults + children} guests{babies !== 0 ? `, ${babiesNumText}` : ""}

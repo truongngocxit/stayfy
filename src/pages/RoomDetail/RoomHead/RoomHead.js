@@ -12,14 +12,16 @@ const RoomHead = function ({ name, location, review }) {
   return (
     <div className={roomHead}>
       <h1 className={roomHead__Heading}>{name}</h1>
-      <div className={roomHead__Info}>
-        <div className={roomHead__Info__Rating}>
-          <StarIcon />
-          <span>{review}</span>
+      {location && review && (
+        <div className={roomHead__Info}>
+          <div className={roomHead__Info__Rating}>
+            <StarIcon />
+            <span>{review}</span>
+          </div>
+          <span>·</span>
+          <div>{location}</div>
         </div>
-        <span>·</span>
-        <div>{location}</div>
-      </div>
+      )}
       <div className={roomHead__Actions}>
         <HeartIcon />
         <span>Save</span>

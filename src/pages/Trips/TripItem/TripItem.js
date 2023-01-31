@@ -2,53 +2,69 @@ import styles from "./TripItem.module.scss";
 import NavigateAwayIcon from "../../../components/UI/SVG/NavigateAwayIcon";
 import TripItemDate from "./TripItemDate/TripItemDate";
 import TripItemDetails from "./TripItemDetails/TripItemDetails";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
+import Overlay from "../../../components/UI/Overlay/Overlay";
+import { createPortal } from "react-dom";
+import TripItemModal from "./TripItemModal/TripItemModal";
 
-const TripItem = function ({ tripDate, bookInfo, bookedDate }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [lodgeData, setLodgeData] = useState(null);
-  const [error, setError] = useState();
+const TripItem = function ({ roomInfo, bookedDate, guestInfo }) {
+  const [detailModalIsVisible, setDetailModalIsVisible] = useState(false);
 
-  useEffect(() => {
-    (async function () {
-      const response = await axios({
-        method: "GET",
-        url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/lodges/${bookInfo.roomId}.json`,
-      });
-      setLodgeData(response.data);
-    })();
-  }, [bookInfo.roomId]);
+  const roomReview = (
+    roomInfo.reviews.reduce((sum, curReview) => sum + Number(curReview), 0) /
+    roomInfo.reviews.length
+  ).toFixed(2);
+  const handleOpenDetailModal = function () {
+    setDetailModalIsVisible(true);
+  };
 
-  const lodgeReview = lodgeData?.reviews
-    ? (
-        lodgeData.reviews.reduce(
-          (sum, curReview) => sum + Number(curReview),
-          0
-        ) / lodgeData.reviews.length
-      ).toFixed(2)
-    : "";
+  const handleCloseDetailModal = function () {
+    setDetailModalIsVisible(false);
+  };
 
   const { tripItem, tripItem__Info, tripItem__Info__Image, tripItem__NavLink } =
     styles;
   return (
-    <div className={tripItem}>
-      <div className={tripItem__NavLink}>
-        <NavigateAwayIcon />
-      </div>
-      <TripItemDate date={bookInfo.date.start} />
-      <div className={tripItem__Info}>
-        <div className={tripItem__Info__Image}>
-          <img src={lodgeData?.images[0] || ""} alt="sample landscape" />
+    <>
+      <div className={tripItem}>
+        <div className={tripItem__NavLink} onClick={handleOpenDetailModal}>
+          <NavigateAwayIcon />
         </div>
-        <TripItemDetails
-          review={lodgeReview}
-          name={lodgeData?.name || ""}
-          location={lodgeData?.location || ""}
-          bookedDate={bookedDate}
-        />
+        <TripItemDate date={roomInfo.date.start} />
+        <div className={tripItem__Info}>
+          <div className={tripItem__Info__Image}>
+            <img src={roomInfo.images[0]} alt="sample landscape" />
+          </div>
+          <TripItemDetails
+            review={roomReview}
+            name={roomInfo.name}
+            location={roomInfo.location}
+            bookedDate={bookedDate}
+          />
+        </div>
       </div>
-    </div>
+      {detailModalIsVisible &&
+        createPortal(
+          <TripItemModal
+            name={roomInfo.name}
+            location={roomInfo.location}
+            date={roomInfo.date}
+            rooms={roomInfo.rooms}
+            review={roomReview}
+            guests={roomInfo.guests}
+            description={roomInfo.description}
+            images={roomInfo.images}
+            amenities={roomInfo.amenities}
+            host={roomInfo.host}
+          />,
+          document.getElementById("modal-root")
+        )}
+      {detailModalIsVisible &&
+        createPortal(
+          <Overlay zIndex={1200} onClick={handleCloseDetailModal} />,
+          document.getElementById("overlay-root")
+        )}
+    </>
   );
 };
 

@@ -8,13 +8,14 @@ import GuestBookingInfoContextProvider from "../../contexts/guestBookingInfoCont
 import { createPortal } from "react-dom";
 import Overlay from "../../components/UI/Overlay/Overlay";
 import AfterSubmitModal from "../../components/AfterSubmitModal/AfterSubmitModal";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Checkout = function () {
   const [submitState, setSubmitState] = useState("yetSubmit");
   const [submittingError, setSubmittingError] = useState(null);
-
+  const roomInfo = useSelector((state) => state.bookingInfo.roomInfo);
   const navigate = useNavigate();
 
   const handleIsSubmittingData = function () {
@@ -48,7 +49,7 @@ const Checkout = function () {
       <TopNav hasSearchBar={false} />
       <div className={checkout}>
         <div className={checkout__Aside}>
-          <BookingDetailAside />
+          <BookingDetailAside {...roomInfo} />
         </div>
         <GuestBookingInfoContextProvider>
           <div className={checkout__Details}>

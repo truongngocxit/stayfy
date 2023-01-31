@@ -6,9 +6,6 @@ import { useSelector } from "react-redux";
 import LineBreak from "../../components/UI/Cosmetics/LineBreak/LineBreak";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
-import TripItemModal from "./TripItem/TripItemModal/TripItemModal";
-import Overlay from "../../components/UI/Overlay/Overlay";
 
 const Trips = function () {
   const [tripData, setTripData] = useState([]);
@@ -17,7 +14,7 @@ const Trips = function () {
 
   useEffect(() => {
     (async function () {
-      const settledDataList = await Promise.allSettled(
+      const settledBookingInfos = await Promise.allSettled(
         upcomingTrips.map((trip) =>
           axios({
             method: "GET",
@@ -25,9 +22,27 @@ const Trips = function () {
           })
         )
       );
-      const cleansedDataList = settledDataList.map((data) => data.value.data);
 
-      setTripData(cleansedDataList);
+      const cleansedBookingInfos = settledBookingInfos.map(
+        (data) => data.value.data
+      );
+
+      const settledLodgeInfos = await Promise.allSettled(
+        cleansedBookingInfos.map((bookInfo) =>
+          axios({
+            method: "GET",
+            url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/lodges/${bookInfo.roomInfo.roomId}.json`,
+          })
+        )
+      );
+
+      const mergedList = cleansedBookingInfos.map((data, index) => ({
+        id: upcomingTrips[index],
+        ...data,
+        roomInfo: { ...data.roomInfo, ...settledLodgeInfos[index].value.data },
+      }));
+      console.log(mergedList);
+      setTripData(mergedList);
     })();
   }, [upcomingTrips]);
 
@@ -55,20 +70,17 @@ const Trips = function () {
           <div className={trips__TripList}>
             {tripData.map((trip) => (
               <TripItem
-                key={trip.roomInfo.roomId}
-                bookInfo={trip.roomInfo}
+                key={trip.id}
+                book={trip}
+                roomInfo={trip.roomInfo}
                 bookedDate={trip.date}
+                guestInfo={trip.guestInfo}
               />
             ))}
           </div>
         )}
       </div>
       <StaticFooter />
-      {createPortal(<TripItemModal />, document.getElementById("modal-root"))}
-      {createPortal(
-        <Overlay zIndex={1200} />,
-        document.getElementById("overlay-root")
-      )}
     </>
   );
 };

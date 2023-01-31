@@ -2,7 +2,7 @@ import styles from "./Input.module.scss";
 import { Tooltip } from "antd";
 
 const Input = function ({
-  isDisabled,
+  isDisabled = false,
   label,
   type,
   className,
@@ -14,6 +14,9 @@ const Input = function ({
   hasError,
   errorMessage = "Invalid input",
   tooltipPlacement = "topRight",
+  isTextarea = false,
+  isValidate = true,
+  rows,
 }) {
   const { input, input__Focus, input__Error, input__Disabled } = styles;
   return (
@@ -21,7 +24,7 @@ const Input = function ({
       title={errorMessage}
       placement={tooltipPlacement}
       color="#f03e3e"
-      open={hasError && !isTyping && !isDisabled}
+      open={hasError && !isTyping && !isDisabled && isValidate}
     >
       <label
         className={`${input} ${isTyping && !isDisabled ? input__Focus : ""} ${
@@ -29,15 +32,29 @@ const Input = function ({
         } ${isDisabled ? input__Disabled : ""} ${className}`}
       >
         <span>{label}</span>
-        <input
-          type={type}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          value={value}
-          onChange={onChange}
-          spellCheck={false}
-          disabled={isDisabled}
-        />
+        {!isTextarea && (
+          <input
+            type={type}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            value={value}
+            onChange={onChange}
+            spellCheck={false}
+            disabled={isDisabled}
+          />
+        )}
+        {isTextarea && (
+          <textarea
+            type={type}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            value={value}
+            onChange={onChange}
+            spellCheck={false}
+            disabled={isDisabled}
+            rows={rows}
+          />
+        )}
       </label>
     </Tooltip>
   );

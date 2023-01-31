@@ -30,6 +30,7 @@ const BookingButton = function ({
     name,
     date,
     rooms,
+    guests,
   } = useSelector((state) => state.bookingInfo.roomInfo);
 
   const { input: firstName, inputIsInvalid: firstNameIsInvalid } =
@@ -51,6 +52,7 @@ const BookingButton = function ({
           name,
           rooms,
           date,
+          guests,
         },
         guestInfo: {
           firstName,

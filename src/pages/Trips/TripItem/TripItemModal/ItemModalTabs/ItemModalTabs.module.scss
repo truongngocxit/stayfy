@@ -1,0 +1,44 @@
+@use "../../../../../sass-styles/variables" as *;
+
+.modalTabs {
+  font-size: 1.6rem;
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 4rem;
+  }
+
+  &__Tab {
+    padding: 1rem 0;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0.5rem 0 0 $grayColorMain;
+    }
+
+    &__Active {
+      color: $primaryColor;
+      box-shadow: 0 0.5rem 0 0 $primaryColor;
+      &:hover {
+        box-shadow: 0 0.5rem 0 0 $primaryColor;
+      }
+    }
+
+    &__Cancel {
+      color: $warningColor7;
+      font-weight: 700;
+
+      &:hover {
+        box-shadow: 0 0.5rem 0 0 $warningColor7;
+      }
+    }
+
+    &__Cancel#{&}__Active {
+      box-shadow: 0 0.5rem 0 0 $warningColor7;
+      &:hover {
+        box-shadow: 0 0.5rem 0 0 $warningColor7;
+      }
+    }
+  }
+}
