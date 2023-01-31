@@ -18,6 +18,7 @@ const TripItemModal = function ({
   host,
   onCloseModal,
   bookingId,
+  userTripId,
 }) {
   const [activeTab, setActiveTab] = useState("images");
 
@@ -63,6 +64,7 @@ const TripItemModal = function ({
         location={location}
         host={host}
         bookingId={bookingId}
+        userTripId={userTripId}
         onCloseModal={onCloseModal}
       />
     </div>

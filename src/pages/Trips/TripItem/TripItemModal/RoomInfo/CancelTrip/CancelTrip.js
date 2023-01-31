@@ -6,7 +6,7 @@ import useCancelTrip from "../../../../../../custom-hooks/useCancelTrip";
 import { createPortal } from "react-dom";
 import LoadingScreen from "../../../../../Profile/LoadingScreen/LoadingScreen";
 
-const CancelTrip = function ({ bookingId, onCloseModal }) {
+const CancelTrip = function ({ bookingId, userTripId, onCloseModal }) {
   const { isCancelling, error, cancelTrip } = useCancelTrip();
 
   const {
@@ -28,11 +28,11 @@ const CancelTrip = function ({ bookingId, onCloseModal }) {
     inputHasError: confirmHasError,
     inputIsInvalid: confirmIsInvalid,
   } = useInput((confirm) => confirm === "CANCEL");
-  console.log(bookingId);
+
   const handleConfirmCancel = function (event) {
     event.preventDefault();
     console.log("Click");
-    cancelTrip(bookingId, onCloseModal);
+    cancelTrip(bookingId, userTripId, onCloseModal);
   };
 
   const { cancel, cancel__Btn } = styles;

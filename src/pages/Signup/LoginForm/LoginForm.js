@@ -63,7 +63,10 @@ const LoginForm = function () {
         setSubmitState("hasSubmitted");
         const cleansedUserTrips = Object.entries({
           ...retrievedUser.upcomingTrips,
-        }).map((trip) => trip[1].bookingId);
+        }).map((trip) => ({
+          userTripId: trip[0],
+          bookingId: trip[1].bookingId,
+        }));
         console.log(retrievedUser.upcomingTrips);
         const cleansedRetrivedUser = {
           ...retrievedUser,

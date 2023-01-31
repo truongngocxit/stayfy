@@ -7,7 +7,13 @@ import Overlay from "../../../components/UI/Overlay/Overlay";
 import { createPortal } from "react-dom";
 import TripItemModal from "./TripItemModal/TripItemModal";
 
-const TripItem = function ({ roomInfo, bookedDate, guestInfo, bookingId }) {
+const TripItem = function ({
+  roomInfo,
+  bookedDate,
+  guestInfo,
+  bookingId,
+  userTripId,
+}) {
   const [detailModalIsVisible, setDetailModalIsVisible] = useState(false);
 
   const roomReview = (
@@ -58,6 +64,7 @@ const TripItem = function ({ roomInfo, bookedDate, guestInfo, bookingId }) {
             host={roomInfo.host}
             onCloseModal={handleCloseDetailModal}
             bookingId={bookingId}
+            userTripId={userTripId}
           />,
           document.getElementById("modal-root")
         )}

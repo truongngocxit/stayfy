@@ -18,7 +18,7 @@ const Trips = function () {
         upcomingTrips.map((trip) =>
           axios({
             method: "GET",
-            url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/bookings/${trip}.json`,
+            url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/bookings/${trip.bookingId}.json`,
           })
         )
       );
@@ -37,7 +37,7 @@ const Trips = function () {
       );
 
       const mergedList = cleansedBookingInfos.map((data, index) => ({
-        id: upcomingTrips[index],
+        ...upcomingTrips[index],
         ...data,
         roomInfo: { ...data.roomInfo, ...settledLodgeInfos[index].value.data },
       }));
@@ -45,6 +45,8 @@ const Trips = function () {
       setTripData(mergedList);
     })();
   }, [upcomingTrips]);
+
+  console.log(tripData);
 
   const { trips, trips__Heading, trips__TripList, trips__NoTrip } = styles;
   return (
@@ -70,8 +72,9 @@ const Trips = function () {
           <div className={trips__TripList}>
             {tripData.map((trip) => (
               <TripItem
-                key={trip.id}
-                bookingId={trip.id}
+                key={trip.bookingId}
+                bookingId={trip.bookingId}
+                userTripId={trip.userTripId}
                 book={trip}
                 roomInfo={trip.roomInfo}
                 bookedDate={trip.date}

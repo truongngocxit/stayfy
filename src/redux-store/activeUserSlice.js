@@ -44,6 +44,11 @@ const activeUserSlice = createSlice({
     addTrip(state, action) {
       state.upcomingTrips.push(action.payload);
     },
+    removeTrip(state, action) {
+      state.upcomingTrips = state.upcomingTrips.filter(
+        (trip) => trip.bookingId !== action.payload
+      );
+    },
   },
 });
 

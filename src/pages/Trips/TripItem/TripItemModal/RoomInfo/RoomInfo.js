@@ -14,6 +14,7 @@ const RoomInfo = function ({
   activeTab,
   bookingId,
   onCloseModal,
+  userTripId,
 }) {
   const amenitiesEntries = Object.entries(amenities);
   const availableAmenities = amenitiesEntries
@@ -38,7 +39,11 @@ const RoomInfo = function ({
       )}
       {activeTab === "location" && <LocationMap cityName={location} />}
       {activeTab === "cancel" && (
-        <CancelTrip bookingId={bookingId} onCloseModal={onCloseModal} />
+        <CancelTrip
+          bookingId={bookingId}
+          onCloseModal={onCloseModal}
+          userTripId={userTripId}
+        />
       )}
     </div>
   );
