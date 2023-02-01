@@ -10,6 +10,12 @@
     font-size: 3.2rem;
   }
 
+  &__Loading {
+    width: 4rem;
+    height: 4rem;
+    align-self: center;
+  }
+
   &__NoTrip {
     display: flex;
     flex-direction: column;

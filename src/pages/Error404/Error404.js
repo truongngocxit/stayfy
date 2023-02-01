@@ -1,32 +1,26 @@
 import styles from "./Error404.module.scss";
-import { useState, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const Error = function () {
-  const [width, setWidth] = useState(100);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const imageRef = useRef(null);
+
   useEffect(() => {
-    console.log("RUn effect");
-    const intervalId = setInterval(() => {
-      setWidth((w) => w - 20);
-    }, 100);
-
-    if (width <= 0) {
-      setWidth(0);
-      clearInterval(intervalId);
-    }
-
-    return () => clearInterval(intervalId);
-  }, [width]);
+    const loadPromise = new Promise((resolve, reject) => {
+      imageRef.current.addEventListener("load", function () {
+        setHasLoaded(true);
+      });
+    });
+  }, []);
+  console.log(imageRef);
   return (
     <div>
-      <div
-        style={{
-          width: `${width}%`,
-          height: "5rem",
-          backgroundColor: "red",
-          transition: "all 0.01",
-        }}
+      <h1>{hasLoaded ? "SUCCESSFUL" : "NOT YET"}</h1>
+      <img
+        src="https://images.unsplash.com/photo-1674786838888-0bbdbe2597b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+        alt="dummy"
+        ref={imageRef}
       />
-      <h1>{(width / 20).toFixed(0)}</h1>
     </div>
   );
 };

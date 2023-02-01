@@ -6,8 +6,7 @@ const StayItemInfo = function ({ className, name, location, review, price }) {
     itemInfo,
     itemInfo__Name,
     itemInfo__Review,
-    itemInfo__Feature,
-    itemInfo__Date,
+    itemInfo__Location,
     itemInfo__Price,
   } = styles;
 
@@ -17,8 +16,7 @@ const StayItemInfo = function ({ className, name, location, review, price }) {
       <span className={itemInfo__Review}>
         <StarIcon /> <span>{review.toFixed(1)}</span>
       </span>
-      <span className={itemInfo__Feature}>{location}</span>
-      {/* <span className={itemInfo__Date}>Jan 17 - 22</span> */}
+      <span className={itemInfo__Location}>{location}</span>
       <span className={itemInfo__Price}>
         <strong>${price.toFixed(2)}</strong> /night
       </span>

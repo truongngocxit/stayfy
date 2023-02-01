@@ -5,10 +5,13 @@ import StayItemInfo from "./StayItemInfo/StayItemInfo";
 
 const StayItem = function ({ item }) {
   const { stayItem, stayItem__Image } = styles;
-
+  console.log(item.images);
   return (
     <Link to={`detail/${item.id}`} state={item} className={stayItem}>
-      <StayItemImage imgs={item.images} className={stayItem__Image} />
+      <StayItemImage
+        imgs={[...new Set(item.images)]}
+        className={stayItem__Image}
+      />
       <StayItemInfo
         location={item.location}
         name={item.name}

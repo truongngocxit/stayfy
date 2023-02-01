@@ -3,8 +3,22 @@ import BareLogo from "../../components/UI/BareLogo/BareLogo";
 import SignupForm from "./SignupForm/SignupForm";
 import LoginForm from "./LoginForm/LoginForm";
 import ChevronLeftIcon from "../../components/UI/SVG/ChevronLeftIcon";
+import LoadingScreen from "../Profile/LoadingScreen/LoadingScreen";
+import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 const Signup = function ({ isLoggingIn = false }) {
+  const [bgImageHasLoaded, setBgImgHasLoaded] = useState(false);
+
+  const bgImageRef = useRef(null);
+
+  useEffect(() => {
+    const handleHasLoadBgImage = function (event) {
+      setBgImgHasLoaded(true);
+    };
+    bgImageRef.current.addEventListener("load", handleHasLoadBgImage);
+  }, []);
+
   const {
     signup,
     signup__Image,
@@ -25,6 +39,7 @@ const Signup = function ({ isLoggingIn = false }) {
           <img
             src="https://images.unsplash.com/photo-1605181063694-e64a8e7a267f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
             alt="signup"
+            ref={bgImageRef}
           />
         </div>
         <div className={signup__Form}>
@@ -40,6 +55,11 @@ const Signup = function ({ isLoggingIn = false }) {
           </div>
         </div>
       </div>
+      {!bgImageHasLoaded &&
+        createPortal(
+          <LoadingScreen />,
+          document.getElementById("overlay-root")
+        )}
     </>
   );
 };

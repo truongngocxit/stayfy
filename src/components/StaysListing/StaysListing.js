@@ -1,6 +1,7 @@
 import styles from "./StaysListing.module.scss";
 import StayItem from "./StayItem/StayItem";
 import useFetchData from "../../custom-hooks/useFetchData";
+import StaySkeleton from "./StaySkeleton/StaySkeleton";
 
 const StaysListing = function () {
   const { data, error, isLoading } = useFetchData(
@@ -12,7 +13,7 @@ const StaysListing = function () {
       id: d.id,
       name: d.name,
       location: d.location,
-      images: d.images,
+      images: d.images.filter((img) => img !== null),
       description: d.description,
       amenities: d.amenities,
       types: d.types,
@@ -31,9 +32,15 @@ const StaysListing = function () {
   const { staysListing } = styles;
   return (
     <main className={staysListing}>
-      {cleansedData.map((entry) => (
+      {/* {cleansedData.map((entry) => (
         <StayItem key={entry.id} item={entry} />
-      ))}
+      ))} */}
+      {!isLoading &&
+        cleansedData
+          .slice(0, 4)
+          .map((entry) => <StayItem key={entry.id} item={entry} />)}
+
+      {isLoading && new Array(4).fill().map(() => <StaySkeleton />)}
     </main>
   );
 };

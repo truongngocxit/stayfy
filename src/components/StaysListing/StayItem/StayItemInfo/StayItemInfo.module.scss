@@ -27,12 +27,8 @@
     }
   }
 
-  &__Feature,
-  &__Date,
+  &__Location,
   &__Price {
     grid-column: 1 / -1;
-  }
-
-  &__Price {
   }
 }

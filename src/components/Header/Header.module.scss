@@ -1,4 +1,14 @@
 .header {
+  visibility: 0;
+  opacity: 1;
+  height: auto;
+
+  &__Hidden {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+
   &__Buffer {
     height: 100%;
   }

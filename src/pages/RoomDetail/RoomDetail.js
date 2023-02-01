@@ -131,7 +131,6 @@ const RoomDetail = function () {
   const { roomDetail } = styles;
   return (
     <>
-      <Header isFixed={false} />
       <StickySectionNav
         activeId={activeId}
         isVisible={navIsSticky}

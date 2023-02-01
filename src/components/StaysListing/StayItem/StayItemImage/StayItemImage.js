@@ -8,13 +8,14 @@ const StayItemImage = function ({ className, imgs }) {
   const [btnsIsHovered, setBtnsIsHovered] = useState(false);
   const [leftBtnIsVisible, setLeftBtnIsVisible] = useState(false);
   const [rightBtnIsVisible, setRightBtnIsVisible] = useState(false);
-
+  const [firstImageHasLoaded, setFirstImageHasLoaded] = useState(false);
   const firstImageRef = useRef(null);
   const lastImageRef = useRef(null);
 
   const intersectionObserverRef = useRef(null);
-
   const imagesContainerRef = useRef(null);
+
+  //const [imgElementLoadCount, setImgElementLoadCount] = useState(0);
   const handleHoverImg = function () {
     setBtnsIsHovered(true);
   };
@@ -39,6 +40,25 @@ const StayItemImage = function ({ className, imgs }) {
       left: -imagesContainerRef.current.getBoundingClientRect().width,
       behavior: "smooth",
     });
+  };
+
+  // useEffect(() => {
+  //   console.log("Listen to image load");
+  //   imgElementsRef.current.forEach((el) => {
+  //     el.addEventListener("load", function () {
+  //       setImgElementLoadCount(imgElementLoadCount + 1);
+  //     });
+  //   });
+  //   return () => console.log("Clean");
+  // }, [imgElementLoadCount]);
+
+  const handleAddImageLoadCount = function (event) {
+    console.log(event.target);
+    if (
+      event.target === imagesContainerRef.current.querySelectorAll("img")[0]
+    ) {
+      setFirstImageHasLoaded(true);
+    }
   };
 
   useEffect(() => {
@@ -68,14 +88,20 @@ const StayItemImage = function ({ className, imgs }) {
       observerOptions
     );
 
-    intersectionObserverRef.current.observe(firstImageRef.current);
-    intersectionObserverRef.current.observe(lastImageRef.current);
+    if (firstImageRef.current && lastImageRef.current) {
+      intersectionObserverRef.current.observe(firstImageRef.current);
+      intersectionObserverRef.current.observe(lastImageRef.current);
+    }
 
     return () => intersectionObserverRef.current.disconnect();
   }, []);
 
+  // console.log(imgElementLoadCount);
+  // console.log(imgElementsRef);
+
   const {
     itemImage,
+    itemImage__Skeleton,
     itemImage__OuterContainer,
     itemImage__InnerContainer,
     itemImage__Image,
@@ -90,6 +116,8 @@ const StayItemImage = function ({ className, imgs }) {
       onMouseEnter={handleHoverImg}
       onMouseLeave={handleBlurImg}
     >
+      {!firstImageHasLoaded && <div className={itemImage__Skeleton} />}
+
       <button className={itemImage__LikeBtn}>
         <HeartIcon />
       </button>
@@ -114,7 +142,7 @@ const StayItemImage = function ({ className, imgs }) {
                 }
               }}
             >
-              <img src={img} alt="dummy" />
+              <img src={img} alt="dummy" onLoad={handleAddImageLoadCount} />
             </div>
           ))}
         </div>

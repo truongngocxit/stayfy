@@ -1,6 +1,8 @@
 @use "../../../sass-styles/variables" as *;
 
 .stayItem {
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-rows: 70% 1fr;
   row-gap: 1rem;
