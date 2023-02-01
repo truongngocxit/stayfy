@@ -30,7 +30,7 @@ const BookingDetailAside = function ({
       <LineBreak />
       <GuestNum guests={guests} allowModify={allowModify} />
       <LineBreak />
-      <BookingPriceSummary rooms={rooms} />
+      <BookingPriceSummary rooms={rooms} date={date} />
     </aside>
   );
 };

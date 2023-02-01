@@ -2,12 +2,10 @@ import styles from "./BookingPriceSummary.module.scss";
 import PriceItem from "./PriceItem/PriceItem";
 import TotalPrice from "./TotalPrice/TotalPrice";
 import LineBreak from "../../../../components/UI/Cosmetics/LineBreak/LineBreak";
-import { useSelector } from "react-redux";
-const BookingPriceSummary = function ({ rooms }) {
+
+const BookingPriceSummary = function ({ rooms, date }) {
   const { priceSummary, priceSummary__Items } = styles;
-  const { start: startDate, end: endDate } = useSelector(
-    (state) => state.bookingInfo.roomInfo.date
-  );
+  const { start: startDate, end: endDate } = date;
 
   const totalPrice =
     (rooms.reduce(
@@ -19,6 +17,7 @@ const BookingPriceSummary = function ({ rooms }) {
     60 /
     60 /
     24;
+
   return (
     <div className={priceSummary}>
       <h3>Price Details</h3>

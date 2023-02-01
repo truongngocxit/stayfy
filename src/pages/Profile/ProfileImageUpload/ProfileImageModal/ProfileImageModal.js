@@ -1,10 +1,9 @@
 import styles from "./ProfileImageModal.module.scss";
 import CloseIcon from "../../../../components/UI/SVG/CloseIcon";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import useChangeProfileImage from "../../../../custom-hooks/useChangeProfileImage";
 import { createPortal } from "react-dom";
 import LoadingScreen from "../../LoadingScreen/LoadingScreen";
+import SkeletonTransition from "../../../../components/SkeletonTransition/SkeletonTransition";
 
 const ProfileImageModal = function ({
   onCloseModal,
@@ -13,6 +12,11 @@ const ProfileImageModal = function ({
   isUpdatingImage,
 }) {
   const [previewImage, setPreviewImage] = useState(null);
+  const [previewImageHasLoaded, setPreviewImageHasLoaded] = useState(false);
+
+  const handlePreviewImageHasLoaded = function () {
+    setPreviewImageHasLoaded(true);
+  };
 
   const handleUploadImage = function (event) {
     const file = event.target.files[0];
@@ -31,6 +35,7 @@ const ProfileImageModal = function ({
     profileImageModal,
     profileImageModal__Close,
     profileImageModal__Image,
+    profileImageModal__Image__Skeleton,
     profileImageModal__Actions,
     profileImageModal__Actions__Upload,
     profileImageModal__Actions__Delete,
@@ -43,9 +48,14 @@ const ProfileImageModal = function ({
           <CloseIcon />
         </div>
         <div className={profileImageModal__Image}>
+          <SkeletonTransition
+            isLoading={!previewImageHasLoaded}
+            skeletonClassName={profileImageModal__Image__Skeleton}
+          />
           <img
             src={previewImage || activeUserProfileImage}
             alt="preview profile avatar"
+            onLoad={handlePreviewImageHasLoaded}
           />
         </div>
         <div className={profileImageModal__Actions}>

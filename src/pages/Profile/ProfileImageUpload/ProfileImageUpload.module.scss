@@ -16,6 +16,14 @@
     border-radius: 50rem;
     overflow: hidden;
     border: 0.2rem solid $primaryColor;
+    position: relative;
+
+    &__Skeleton {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color: $grayColorFaint6;
+    }
 
     img {
       object-fit: cover;

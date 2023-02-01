@@ -19,14 +19,14 @@
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0 0.4rem 0 0 $grayColorMain;
+      box-shadow: 0 0.4rem 0 -0.1rem $grayColorMain;
     }
 
     &__Active {
       color: $primaryColor;
-      box-shadow: 0 0.4rem 0 0 $primaryColor;
+      box-shadow: 0 0.4rem 0 -0.1rem $primaryColor;
       &:hover {
-        box-shadow: 0 0.4rem 0 0 $primaryColor;
+        box-shadow: 0 0.4rem 0 -0.1rem $primaryColor;
       }
     }
 
@@ -35,14 +35,14 @@
       font-weight: 700;
 
       &:hover {
-        box-shadow: 0 0.4rem 0 0 $warningColor7;
+        box-shadow: 0 0.4rem 0 -0.1rem $warningColor7;
       }
     }
 
     &__Cancel#{&}__Active {
-      box-shadow: 0 0.4rem 0 0 $warningColor7;
+      box-shadow: 0 0.4rem 0 -0.1rem $warningColor7;
       &:hover {
-        box-shadow: 0 0.4rem 0 0 $warningColor7;
+        box-shadow: 0 0.4rem 0 -0.1rem $warningColor7;
       }
     }
   }

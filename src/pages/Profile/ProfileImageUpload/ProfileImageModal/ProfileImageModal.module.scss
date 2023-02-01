@@ -29,13 +29,21 @@
   }
 
   &__Image {
-    background-color: $grayColorMain;
     border-radius: 100%;
     width: 12rem;
     height: 12rem;
     grid-column: 1 / -1;
     place-self: center;
     overflow: hidden;
+    position: relative;
+
+    &__Skeleton {
+      width: 100%;
+      height: 100%;
+      background-color: $grayColorFaint6;
+      position: absolute;
+      animation: skeletonFLickering 0.5s alternate ease-in-out infinite;
+    }
 
     svg {
       padding: 0.75rem;
@@ -46,6 +54,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
   }
 
@@ -109,5 +118,15 @@
         background-color: $secondaryColorYellowShader5;
       }
     }
+  }
+}
+
+@keyframes skeletonFLickering {
+  0% {
+    background-color: $grayColorFaint6;
+  }
+
+  100% {
+    background-color: $grayColorFaint7;
   }
 }

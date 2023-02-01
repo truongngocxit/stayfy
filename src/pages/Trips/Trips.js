@@ -59,7 +59,6 @@ const Trips = function () {
           </>
         )}
       </div>
-      {!isFetching && <StaticFooter />}
     </>
   );
 };

@@ -8,7 +8,6 @@ import RoomMoreInfo from "../RoomMoreInfo/RoomMoreInfo";
 import LineBreak from "../../../components/UI/Cosmetics/LineBreak/LineBreak";
 import RoomTypesSelect from "../RoomTypesSelect/RoomTypesSelect";
 import { useState } from "react";
-import { type } from "@testing-library/user-event/dist/type";
 
 const RoomMain = function ({
   stickyNavHeight,
