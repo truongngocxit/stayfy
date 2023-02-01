@@ -4,6 +4,7 @@ import RoomInfo from "./RoomInfo/RoomInfo";
 import ItemModalTabs from "./ItemModalTabs/ItemModalTabs";
 import CloseIcon from "../../../../components/UI/SVG/CloseIcon";
 import { useState } from "react";
+import ModalTransition from "../../../../components/ModalTransition/ModalTransition";
 
 const TripItemModal = function ({
   name,
@@ -19,6 +20,7 @@ const TripItemModal = function ({
   onCloseModal,
   bookingId,
   userTripId,
+  isVisible,
 }) {
   const [activeTab, setActiveTab] = useState("images");
 
@@ -34,7 +36,7 @@ const TripItemModal = function ({
     itemModal__CloseBtn,
   } = styles;
   return (
-    <div className={itemModal}>
+    <ModalTransition className={itemModal} isVisible={isVisible}>
       <button className={itemModal__CloseBtn} onClick={onCloseModal}>
         <CloseIcon />
       </button>
@@ -67,7 +69,7 @@ const TripItemModal = function ({
         userTripId={userTripId}
         onCloseModal={onCloseModal}
       />
-    </div>
+    </ModalTransition>
   );
 };
 

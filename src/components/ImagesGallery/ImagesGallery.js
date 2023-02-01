@@ -4,12 +4,14 @@ import GalleryHeader from "./GalleryHeader/GalleryHeader";
 import GalleryItem from "./GalleryItem/GalleryItem";
 import { createPortal } from "react-dom";
 import { useState, useRef, useEffect } from "react";
+import ModalTransition from "../ModalTransition/ModalTransition";
 
 const ImagesGallery = function ({
   onCloseGallery,
   images,
   name,
   imageScrolledTo,
+  isVisible,
 }) {
   const [sliderIsOpen, setSliderIsOpen] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
@@ -35,7 +37,7 @@ const ImagesGallery = function ({
   const { gallery, gallery__Container, gallery__Container__LargeImg } = styles;
   return (
     <>
-      <div className={gallery}>
+      <ModalTransition className={gallery} isVisible={isVisible}>
         <GalleryHeader name={name} onClick={onCloseGallery} />
 
         <div className={gallery__Container}>
@@ -59,7 +61,7 @@ const ImagesGallery = function ({
             />
           ))}
         </div>
-      </div>
+      </ModalTransition>
       {sliderIsOpen &&
         createPortal(
           <ImagesSlider

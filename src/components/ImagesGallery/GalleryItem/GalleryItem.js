@@ -1,7 +1,12 @@
 import styles from "./GalleryItem.module.scss";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
+import PreviewImageSkeleton from "../../../pages/RoomDetail/ImagesPreview/PreviewImage/PreviewImageSkeleton/PreviewImageSkeleton";
 
 const GalleryItem = function ({ src, className, onClick }, ref) {
+  const [imageHasLoaded, setImageHasLoaded] = useState(false);
+  const handleImageHasLoaded = function () {
+    setImageHasLoaded(true);
+  };
   const { galleryItem } = styles;
   return (
     <div
@@ -9,7 +14,8 @@ const GalleryItem = function ({ src, className, onClick }, ref) {
       onClick={onClick}
       ref={ref}
     >
-      <img src={src} alt="sample" />
+      <PreviewImageSkeleton isLoading={!imageHasLoaded} />
+      <img src={src} alt="sample" onLoad={handleImageHasLoaded} />
     </div>
   );
 };

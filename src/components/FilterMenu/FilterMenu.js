@@ -168,11 +168,13 @@ const FilterMenu = function () {
       <div className={filterMenu__FilterBtn}>
         <FilterButton onClick={handleOpenFilterModal} />
 
-        {filterModalIsVisible &&
-          createPortal(
-            <FilterModal onClick={handleCloseFilterModal} />,
-            document.getElementById("modal-root")
-          )}
+        {createPortal(
+          <FilterModal
+            onClick={handleCloseFilterModal}
+            isVisible={filterModalIsVisible}
+          />,
+          document.getElementById("modal-root")
+        )}
       </div>
     </div>
   );

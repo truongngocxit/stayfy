@@ -6,6 +6,7 @@
   border-radius: $borderRadius;
   overflow: hidden;
   cursor: pointer;
+  position: relative;
 
   &:hover {
     img {

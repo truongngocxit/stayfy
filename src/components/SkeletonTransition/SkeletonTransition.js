@@ -20,7 +20,7 @@ const SkeletonTransition = function ({
   isLoading,
 }) {
   return (
-    <Transition in={isLoading} timeout={duration}>
+    <Transition in={isLoading} timeout={duration} unmountOnExit={true}>
       {(state) => (
         <div
           className={skeletonClassName}

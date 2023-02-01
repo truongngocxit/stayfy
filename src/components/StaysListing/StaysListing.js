@@ -37,7 +37,7 @@ const StaysListing = function () {
       ))} */}
       {!isLoading &&
         cleansedData
-          .slice(0, 4)
+          .slice(0, 8)
           .map((entry) => <StayItem key={entry.id} item={entry} />)}
 
       {new Array(8).fill().map(() => (

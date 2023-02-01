@@ -16,5 +16,8 @@
 
   &__Image {
     height: 100%;
+    img {
+      display: block;
+    }
   }
 }

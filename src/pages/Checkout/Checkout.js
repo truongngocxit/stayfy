@@ -46,7 +46,6 @@ const Checkout = function () {
 
   return (
     <>
-      <TopNav hasSearchBar={false} />
       <div className={checkout}>
         <div className={checkout__Aside}>
           <BookingDetailAside {...roomInfo} />
@@ -63,7 +62,7 @@ const Checkout = function () {
           />
         </GuestBookingInfoContextProvider>
       </div>
-      <StaticFooter />
+
       {submitState !== "yetSubmit" &&
         createPortal(
           <AfterSubmitModal

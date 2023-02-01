@@ -51,16 +51,16 @@ const ImagesPreview = forwardRef(function ({ images, name }, ref) {
           <span>Show all</span>
         </button>
       </div>
-      {isShowGallery &&
-        createPortal(
-          <ImagesGallery
-            imageScrolledTo={imgIndexToScrollTo}
-            onCloseGallery={handleCloseGallery}
-            name={name}
-            images={images}
-          />,
-          document.getElementById("modal-root")
-        )}
+      {createPortal(
+        <ImagesGallery
+          imageScrolledTo={imgIndexToScrollTo}
+          onCloseGallery={handleCloseGallery}
+          name={name}
+          images={images}
+          isVisible={isShowGallery}
+        />,
+        document.getElementById("modal-root")
+      )}
     </>
   );
 });

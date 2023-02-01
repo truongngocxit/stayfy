@@ -6,22 +6,27 @@
     list-style: none;
     display: flex;
     gap: 4rem;
+
+    li {
+      display: block;
+    }
   }
 
   &__Tab {
     padding: 1rem 0;
     transition: all 0.3s;
+    border: none;
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0 0.5rem 0 0 $grayColorMain;
+      box-shadow: 0 0.4rem 0 0 $grayColorMain;
     }
 
     &__Active {
       color: $primaryColor;
-      box-shadow: 0 0.5rem 0 0 $primaryColor;
+      box-shadow: 0 0.4rem 0 0 $primaryColor;
       &:hover {
-        box-shadow: 0 0.5rem 0 0 $primaryColor;
+        box-shadow: 0 0.4rem 0 0 $primaryColor;
       }
     }
 
@@ -30,14 +35,14 @@
       font-weight: 700;
 
       &:hover {
-        box-shadow: 0 0.5rem 0 0 $warningColor7;
+        box-shadow: 0 0.4rem 0 0 $warningColor7;
       }
     }
 
     &__Cancel#{&}__Active {
-      box-shadow: 0 0.5rem 0 0 $warningColor7;
+      box-shadow: 0 0.4rem 0 0 $warningColor7;
       &:hover {
-        box-shadow: 0 0.5rem 0 0 $warningColor7;
+        box-shadow: 0 0.4rem 0 0 $warningColor7;
       }
     }
   }

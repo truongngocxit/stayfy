@@ -3,9 +3,10 @@ import Header from "../Header/Header";
 import BottomNav from "../BottomNav/BottomNav";
 import StaticFooter from "../Footer/StaticFooter";
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const PageLayout = function ({ children }) {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   let headerProps = {
     hasFilter: false,
@@ -16,25 +17,38 @@ const PageLayout = function ({ children }) {
 
   let footer = <StaticFooter />;
 
-  if (location.pathname === "/") {
+  if (pathname === "/") {
     headerProps = {
       hasFilter: true,
-      isFixed: false,
+      isFixed: true,
       hasSearchBar: true,
       isHidden: false,
     };
     footer = <BottomNav />;
   }
 
-  if (location.pathname === "/login" || location.pathname === "/signup") {
+  if (pathname === "/login" || pathname === "/signup") {
     headerProps = { ...headerProps, isHidden: true };
     footer = null;
   }
 
+  if (pathname === "/checkout" || pathname.startsWith("/checkout")) {
+    headerProps = { ...headerProps, isFixed: false };
+  }
+
+  console.log(pathname);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }, [pathname]);
+
   const { layout } = styles;
   return (
     <div className={layout}>
-      <Header {...headerProps} />
+      <Header {...headerProps} pathname={pathname} />
       {children}
       {footer}
     </div>

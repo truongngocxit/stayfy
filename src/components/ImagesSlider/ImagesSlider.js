@@ -52,7 +52,6 @@ const ImagesSlider = function ({ onCloseSlider, images, imageIndex }) {
     slider__Slider__Image,
     slider__Slider__BtnLeft,
     slider__Slider__BtnRight,
-    slider__Description,
   } = styles;
   return (
     <div className={slider}>
@@ -81,12 +80,6 @@ const ImagesSlider = function ({ onCloseSlider, images, imageIndex }) {
           <ChevronLeftIcon />
         </button>
       </div>
-      <footer className={slider__Description}>
-        <p>
-          The surrounding hills and paddy fields as seen from our Balai with
-          Gunung Raya, the highest peak in Langkawi.
-        </p>
-      </footer>
     </div>
   );
 };

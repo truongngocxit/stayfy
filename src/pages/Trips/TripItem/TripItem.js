@@ -7,13 +7,7 @@ import Overlay from "../../../components/UI/Overlay/Overlay";
 import { createPortal } from "react-dom";
 import TripItemModal from "./TripItemModal/TripItemModal";
 
-const TripItem = function ({
-  roomInfo,
-  bookedDate,
-  guestInfo,
-  bookingId,
-  userTripId,
-}) {
+const TripItem = function ({ roomInfo, bookedDate, bookingId, userTripId }) {
   const [detailModalIsVisible, setDetailModalIsVisible] = useState(false);
 
   const roomReview = (
@@ -49,25 +43,25 @@ const TripItem = function ({
           />
         </div>
       </div>
-      {detailModalIsVisible &&
-        createPortal(
-          <TripItemModal
-            name={roomInfo.name}
-            location={roomInfo.location}
-            date={roomInfo.date}
-            rooms={roomInfo.rooms}
-            review={roomReview}
-            guests={roomInfo.guests}
-            description={roomInfo.description}
-            images={roomInfo.images}
-            amenities={roomInfo.amenities}
-            host={roomInfo.host}
-            onCloseModal={handleCloseDetailModal}
-            bookingId={bookingId}
-            userTripId={userTripId}
-          />,
-          document.getElementById("modal-root")
-        )}
+      {createPortal(
+        <TripItemModal
+          name={roomInfo.name}
+          location={roomInfo.location}
+          date={roomInfo.date}
+          rooms={roomInfo.rooms}
+          review={roomReview}
+          guests={roomInfo.guests}
+          description={roomInfo.description}
+          images={roomInfo.images}
+          amenities={roomInfo.amenities}
+          host={roomInfo.host}
+          onCloseModal={handleCloseDetailModal}
+          bookingId={bookingId}
+          userTripId={userTripId}
+          isVisible={detailModalIsVisible}
+        />,
+        document.getElementById("modal-root")
+      )}
       {detailModalIsVisible &&
         createPortal(
           <Overlay zIndex={1200} onClick={handleCloseDetailModal} />,

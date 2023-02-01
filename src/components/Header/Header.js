@@ -8,15 +8,16 @@ const Header = function ({
   isFixed = true,
   hasSearchBar = false,
   isHidden = false,
+  pathname,
 }) {
-  const headerFixedRef = useRef(null);
+  const headerRef = useRef(null);
   const [bufferHeight, setBufferHeight] = useState(0);
   const headerBufferRef = useRef(null);
 
   useLayoutEffect(() => {
-    const headerHeight = headerFixedRef.current.getBoundingClientRect().height;
+    const headerHeight = headerRef.current.getBoundingClientRect().height;
     setBufferHeight(headerHeight);
-  }, []);
+  }, [pathname]);
 
   const {
     header,
@@ -30,10 +31,15 @@ const Header = function ({
     <header className={`${header} ${isHidden ? header__Hidden : ""}`}>
       <div
         className={header__Buffer}
-        style={{ height: hasSearchBar ? bufferHeight : bufferHeight / 2 }}
+        style={{ height: bufferHeight }}
         ref={headerBufferRef}
       ></div>
-      <div className={`${header__Main} ${header__Fixed}`} ref={headerFixedRef}>
+      <div
+        className={`${header__Main} ${
+          isFixed ? header__Fixed : header__Absolute
+        }`}
+        ref={headerRef}
+      >
         <TopNav hasSearchBar={hasSearchBar} isFixed={isFixed} />
         {hasFilter && <FilterMenu />}
       </div>

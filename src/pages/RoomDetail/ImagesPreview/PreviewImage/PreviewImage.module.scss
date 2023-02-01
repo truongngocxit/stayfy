@@ -3,6 +3,7 @@
 .previewImage {
   width: 100%;
   overflow: hidden;
+  position: relative;
   cursor: pointer;
   img {
     object-fit: cover;

@@ -3,7 +3,6 @@ import HeartIcon from "../../../UI/SVG/HeartIcon";
 import ChevronLeftIcon from "../../../UI/SVG/ChevronLeftIcon";
 import ChevronRightIcon from "../../../UI/SVG/ChevronRightIcon";
 import StayItemImageSkeleton from "./StateItemImageSkeleton/StayItemImageSkeleton";
-import SkeletonTransition from "../../../SkeletonTransition/SkeletonTransition";
 import { useState, useRef, useEffect } from "react";
 
 const StayItemImage = function ({ className, imgs }) {

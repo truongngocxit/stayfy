@@ -8,8 +8,8 @@ import HouseIcon from "../UI/SVG/HouseIcon";
 import { createPortal } from "react-dom";
 import Overlay from "../UI/Overlay/Overlay";
 import FacilitiesSelect from "./FacilitiesSelect/FacilitiesSelect";
-
-const FilterModal = function ({ onClick }) {
+import ModalTransition from "../ModalTransition/ModalTransition";
+const FilterModal = function ({ onClick, isVisible }) {
   const {
     filterModal,
     filterModal__Head,
@@ -24,7 +24,7 @@ const FilterModal = function ({ onClick }) {
   } = styles;
   return (
     <>
-      <div className={filterModal}>
+      <ModalTransition className={filterModal} isVisible={isVisible}>
         <header className={filterModal__Head}>
           <button onClick={onClick}>
             <CloseIcon />
@@ -70,11 +70,12 @@ const FilterModal = function ({ onClick }) {
             Show 1000 results
           </button>
         </footer>
-      </div>
-      {createPortal(
-        <Overlay zIndex={1100} onClick={onClick} />,
-        document.getElementById("overlay-root")
-      )}
+      </ModalTransition>
+      {isVisible &&
+        createPortal(
+          <Overlay zIndex={1100} onClick={onClick} />,
+          document.getElementById("overlay-root")
+        )}
     </>
   );
 };

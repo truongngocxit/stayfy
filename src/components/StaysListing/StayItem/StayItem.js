@@ -5,7 +5,7 @@ import StayItemInfo from "./StayItemInfo/StayItemInfo";
 
 const StayItem = function ({ item }) {
   const { stayItem, stayItem__Image } = styles;
-  console.log(item.images);
+
   return (
     <Link to={`detail/${item.id}`} state={item} className={stayItem}>
       <StayItemImage
