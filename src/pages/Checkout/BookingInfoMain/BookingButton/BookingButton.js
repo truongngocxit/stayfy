@@ -65,21 +65,26 @@ const BookingButton = function ({
       const sendBookingData = async function () {
         onSubmitting();
 
-        const response = await axios({
+        const bookingResponse = await axios({
           method: "POST",
           url: "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/bookings.json",
           data,
         });
 
-        const newBookingId = response.data.name;
+        const newBookingId = bookingResponse.data.name;
 
-        await axios({
+        const tripResponse = await axios({
           method: "POST",
           url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}/upcomingTrips.json`,
           data: { bookingId: newBookingId },
         });
 
-        reduxDispatch(activeUserActions.addTrip(newBookingId));
+        reduxDispatch(
+          activeUserActions.addTrip({
+            bookingId: newBookingId,
+            userTripId: tripResponse.data.name,
+          })
+        );
 
         setTimeout(() => {
           onHasSubmitted();

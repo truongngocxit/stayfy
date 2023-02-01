@@ -11,7 +11,7 @@ const Trips = function () {
   const [tripData, setTripData] = useState([]);
 
   const upcomingTrips = useSelector((state) => state.activeUser.upcomingTrips);
-
+  console.log(upcomingTrips);
   useEffect(() => {
     (async function () {
       const settledBookingInfos = await Promise.allSettled(
