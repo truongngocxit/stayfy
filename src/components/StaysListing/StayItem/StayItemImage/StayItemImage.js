@@ -2,6 +2,8 @@ import styles from "./StayItemImage.module.scss";
 import HeartIcon from "../../../UI/SVG/HeartIcon";
 import ChevronLeftIcon from "../../../UI/SVG/ChevronLeftIcon";
 import ChevronRightIcon from "../../../UI/SVG/ChevronRightIcon";
+import StayItemImageSkeleton from "./StateItemImageSkeleton/StayItemImageSkeleton";
+import SkeletonTransition from "../../../SkeletonTransition/SkeletonTransition";
 import { useState, useRef, useEffect } from "react";
 
 const StayItemImage = function ({ className, imgs }) {
@@ -53,7 +55,6 @@ const StayItemImage = function ({ className, imgs }) {
   // }, [imgElementLoadCount]);
 
   const handleAddImageLoadCount = function (event) {
-    console.log(event.target);
     if (
       event.target === imagesContainerRef.current.querySelectorAll("img")[0]
     ) {
@@ -116,8 +117,7 @@ const StayItemImage = function ({ className, imgs }) {
       onMouseEnter={handleHoverImg}
       onMouseLeave={handleBlurImg}
     >
-      {!firstImageHasLoaded && <div className={itemImage__Skeleton} />}
-
+      {<StayItemImageSkeleton isLoading={!firstImageHasLoaded} />}
       <button className={itemImage__LikeBtn}>
         <HeartIcon />
       </button>

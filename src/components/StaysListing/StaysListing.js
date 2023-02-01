@@ -40,7 +40,9 @@ const StaysListing = function () {
           .slice(0, 4)
           .map((entry) => <StayItem key={entry.id} item={entry} />)}
 
-      {isLoading && new Array(4).fill().map(() => <StaySkeleton />)}
+      {new Array(8).fill().map(() => (
+        <StaySkeleton isLoading={isLoading} />
+      ))}
     </main>
   );
 };

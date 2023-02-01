@@ -30,13 +30,10 @@ const Header = function ({
     <header className={`${header} ${isHidden ? header__Hidden : ""}`}>
       <div
         className={header__Buffer}
-        style={{ height: bufferHeight }}
+        style={{ height: hasSearchBar ? bufferHeight : bufferHeight / 2 }}
         ref={headerBufferRef}
       ></div>
-      <div
-        className={`${header__Main} ${header__Absolute}`}
-        ref={headerFixedRef}
-      >
+      <div className={`${header__Main} ${header__Fixed}`} ref={headerFixedRef}>
         <TopNav hasSearchBar={hasSearchBar} isFixed={isFixed} />
         {hasFilter && <FilterMenu />}
       </div>
