@@ -30,6 +30,11 @@ a {
   font-size: 1.6rem;
 }
 
+a:visited,
+a:active {
+  color: currentColor !important;
+}
+
 //Customize Ant Range Picker
 
 .ant-picker {

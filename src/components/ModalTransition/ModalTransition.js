@@ -3,7 +3,7 @@ import { Transition } from "react-transition-group";
 const duration = 300;
 
 const defaultStyle = {
-  transition: `all ${duration}ms ease-in-out`,
+  transition: `all ${duration}ms ease-in`,
   opacity: 0,
 };
 

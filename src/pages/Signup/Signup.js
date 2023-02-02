@@ -6,9 +6,15 @@ import ChevronLeftIcon from "../../components/UI/SVG/ChevronLeftIcon";
 import LoadingScreen from "../Profile/LoadingScreen/LoadingScreen";
 import { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import SlideInMessage from "../../components/SlideInMessage/SlideInMessage";
+
 const Signup = function ({ isLoggingIn = false }) {
   const [bgImageHasLoaded, setBgImgHasLoaded] = useState(false);
+
+  const { state } = useLocation();
+  const userIsActive = useSelector((state) => state.activeUser.isActive);
 
   const bgImageRef = useRef(null);
 
@@ -33,6 +39,7 @@ const Signup = function ({ isLoggingIn = false }) {
       <div className={signup}>
         <Link to="/" className={signup__Back}>
           <ChevronLeftIcon />
+
           <span>Back to home</span>
         </Link>
         <div className={signup__Image}>
@@ -60,6 +67,10 @@ const Signup = function ({ isLoggingIn = false }) {
           <LoadingScreen />,
           document.getElementById("overlay-root")
         )}
+
+      {!userIsActive && state && (
+        <SlideInMessage state={state?.state} text={state?.message} />
+      )}
     </>
   );
 };

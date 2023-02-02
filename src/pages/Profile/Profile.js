@@ -1,6 +1,4 @@
 import styles from "./Profile.module.scss";
-
-import StaticFooter from "../../components/Footer/StaticFooter";
 import ProfileNav from "./ProfileNav/ProfileNav";
 import ProfileSettings from "./ProfileSettings/ProfileSettings";
 import SecuritySettings from "./SecuritySettings/SecuritySettings";

@@ -4,7 +4,7 @@ import UserIcon from "../../../../components/UI/SVG/UserIcon";
 import RoomTypeTag from "./RoomTypeTag/RoomTypeTag";
 import CheckIcon from "../../../../components/UI/SVG/CheckIcon";
 import RoomTypeQuantity from "./RoomTypeQuantity/RoomTypeQuantity";
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 
 const RoomType = function (
   {

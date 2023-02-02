@@ -50,12 +50,17 @@ const ProfileImageUpload = function ({
           open={hasUpdated}
         >
           <div className={imageUpload__Image}>
+            <SkeletonTransition
+              className={imageUpload__Image__Skeleton}
+              isLoading={!profileImageHasLoaded}
+            />
             <img
               src={
                 activeUserProfileImage ||
                 "https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/misc%2Fplaceholder-profile-image.png?alt=media&token=d7ee83a6-7b08-49e1-9d75-14de009335c9"
               }
               alt="profile-avatar"
+              onLoad={handleProfileImageHasLoaded}
             />
           </div>
         </Tooltip>

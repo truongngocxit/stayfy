@@ -31,6 +31,11 @@ const PageLayout = function ({ children }) {
     footer = null;
   }
 
+  if (pathname === "/404") {
+    headerProps = { ...headerProps, isHidden: true };
+    footer = <BottomNav isTransparent={true} />;
+  }
+
   if (pathname === "/checkout" || pathname.startsWith("/checkout")) {
     headerProps = { ...headerProps, isFixed: false };
   }

@@ -4,7 +4,6 @@ import HomeButton from "../../components/TopNav/HomeButton/HomeButton";
 import LoadingScreen from "../Profile/LoadingScreen/LoadingScreen";
 import { createPortal } from "react-dom";
 import { useState } from "react";
-import BottomNav from "../../components/BottomNav/BottomNav";
 
 const NotFound = function () {
   const [backgroundHasLoad, setBackgroundHasLoad] = useState(false);
@@ -32,7 +31,6 @@ const NotFound = function () {
 
         <HomeButton>Get out now</HomeButton>
       </div>
-      <BottomNav isTransparent={true} />
       {!backgroundHasLoad &&
         createPortal(
           <LoadingScreen />,
