@@ -2,8 +2,6 @@ import styles from "./RoomDetail.module.scss";
 import RoomHead from "./RoomHead/RoomHead";
 import ImagesPreview from "./ImagesPreview/ImagesPreview";
 import RoomMain from "./RoomMain/RoomMain";
-import StaticFooter from "../../components/Footer/StaticFooter";
-import Header from "../../components/Header/Header";
 import StickySectionNav from "./StickySectionNav/StickySectionNav";
 import { useRef, useEffect, useState, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -175,7 +173,6 @@ const RoomDetail = function () {
           onScrollToElement={handleScrollToElement}
         />
       </div>
-      <StaticFooter />
     </>
   );
 };

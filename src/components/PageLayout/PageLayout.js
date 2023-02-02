@@ -7,7 +7,6 @@ import { useEffect } from "react";
 
 const PageLayout = function ({ children }) {
   const { pathname } = useLocation();
-
   let headerProps = {
     hasFilter: false,
     isFixed: true,
@@ -27,7 +26,7 @@ const PageLayout = function ({ children }) {
     footer = <BottomNav />;
   }
 
-  if (pathname === "/login" || pathname === "/signup") {
+  if (pathname === "/login" || pathname === "/signup" || pathname === "/404") {
     headerProps = { ...headerProps, isHidden: true };
     footer = null;
   }
@@ -35,8 +34,6 @@ const PageLayout = function ({ children }) {
   if (pathname === "/checkout" || pathname.startsWith("/checkout")) {
     headerProps = { ...headerProps, isFixed: false };
   }
-
-  console.log(pathname);
 
   useEffect(() => {
     window.scrollTo({

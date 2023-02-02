@@ -1,0 +1,85 @@
+@use "../../sass-styles/variables" as *;
+
+.notFound {
+  width: 100%;
+  height: 100vh;
+  padding: 4rem 6rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5rem;
+  position: relative;
+
+  & * {
+    z-index: 5;
+  }
+
+  &__Background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -100;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backdrop-filter: grayscale(100%);
+    z-index: 0;
+  }
+
+  &__Message {
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    h1 {
+      font-size: 7.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5rem;
+      text-shadow: 0 0 2rem $primaryColor;
+      animation: spookyText alternate 0.5s infinite;
+    }
+
+    p {
+      font-size: 2.4rem;
+      font-weight: 300;
+    }
+  }
+
+  &__Actions {
+    text-decoration: none;
+    background-color: $primaryColor;
+    color: #fff;
+    padding: 2rem 4rem;
+  }
+
+  &__Logo {
+    position: absolute;
+    top: 6rem;
+    left: 6rem;
+    z-index: 2000;
+  }
+}
+
+@keyframes spookyText {
+  0% {
+    text-shadow: 0 0 2rem $primaryColor;
+  }
+
+  100% {
+    text-shadow: 0 0 4rem $primaryColor;
+  }
+}

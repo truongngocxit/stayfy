@@ -40,9 +40,9 @@ const SearchBar = function ({ className, isCollapse, onStopSearching }) {
   const dateSearchRef = useRef(null);
   const guestNumSearchRef = useRef(null);
 
-  const handleFocusLocationSearch = function () {
-    locationSearchRef.current.focus();
-  };
+  // const handleFocusLocationSearch = function () {
+  //   locationSearchRef.current.focus();
+  // };
 
   const handleFocusDateSearch = function () {
     dateSearchRef.current.querySelector(".ant-picker-input").click();

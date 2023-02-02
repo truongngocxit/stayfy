@@ -5,7 +5,7 @@ import Overlay from "../UI/Overlay/Overlay";
 import { createPortal } from "react-dom";
 import { useState } from "react";
 
-const BottomNav = function () {
+const BottomNav = function ({ isTransparent = false }) {
   const [bottomIsVisible, setBottomIsVisible] = useState(false);
 
   const handleOpenFooter = function () {
@@ -16,10 +16,14 @@ const BottomNav = function () {
     setBottomIsVisible(false);
   };
 
-  const { bottomNav, bottomNav__Resources } = styles;
+  const { bottomNav, bottomNav__Transparent, bottomNav__Resources } = styles;
   return (
     <>
-      <div className={bottomNav}>
+      <div
+        className={`${bottomNav} ${
+          isTransparent ? bottomNav__Transparent : ""
+        }`}
+      >
         <div>
           <span>© {new Date().getFullYear()} Stayfy</span>
         </div>

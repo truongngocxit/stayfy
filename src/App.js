@@ -1,15 +1,14 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Profile from "./pages/Profile/Profile";
 import Wishlist from "./pages/WishList/Wishlist";
-import Error from "./pages/Error404/Error404";
+import NotFound from "./pages/NotFound/NotFound";
 import RoomDetail from "./pages/RoomDetail/RoomDetail";
 import Checkout from "./pages/Checkout/Checkout";
 import Trips from "./pages/Trips/Trips";
 import Signup from "./pages/Signup/Signup";
 import PageLayout from "./components/PageLayout/PageLayout";
-
 const App = function () {
   return (
     <PageLayout>
@@ -23,7 +22,8 @@ const App = function () {
         <Route path="trips" element={<Trips />} />
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Signup isLoggingIn={true} />} />
-        <Route path="*" element={<Error />} />
+        <Route path="404" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="404" replace />} />
       </Routes>
     </PageLayout>
   );

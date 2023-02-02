@@ -12,6 +12,12 @@
   font-size: 1.6rem;
   background-color: #fff;
 
+  &__Transparent {
+    background-color: transparent;
+    color: #fff;
+    border-top: none;
+  }
+
   &__Resources {
     display: flex;
     align-items: center;

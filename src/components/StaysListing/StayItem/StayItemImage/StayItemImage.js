@@ -101,7 +101,6 @@ const StayItemImage = function ({ className, imgs }) {
 
   const {
     itemImage,
-    itemImage__Skeleton,
     itemImage__OuterContainer,
     itemImage__InnerContainer,
     itemImage__Image,

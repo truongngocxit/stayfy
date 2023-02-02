@@ -1,0 +1,9 @@
+export const home = () => "/";
+export const roomDetail = () => "detail/:id";
+export const profile = () => "profile";
+export const about = () => "about";
+export const checkout = () => "checkout/:id";
+export const trips = () => "trips";
+export const signup = () => "signup";
+export const login = () => "login";
+export const notFound = () => "*";
