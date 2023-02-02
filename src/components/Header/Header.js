@@ -8,6 +8,7 @@ const Header = function ({
   isFixed = true,
   hasSearchBar = false,
   isHidden = false,
+  hasBuffer = true,
   pathname,
 }) {
   const headerRef = useRef(null);
@@ -31,7 +32,7 @@ const Header = function ({
     <header className={`${header} ${isHidden ? header__Hidden : ""}`}>
       <div
         className={header__Buffer}
-        style={{ height: bufferHeight }}
+        style={{ height: hasBuffer ? bufferHeight : 0 }}
         ref={headerBufferRef}
       ></div>
       <div

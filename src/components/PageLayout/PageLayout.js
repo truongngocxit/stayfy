@@ -40,6 +40,10 @@ const PageLayout = function ({ children }) {
     headerProps = { ...headerProps, isFixed: false };
   }
 
+  if (pathname === "/about") {
+    headerProps = { ...headerProps, isFixed: false, hasBuffer: false };
+  }
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
