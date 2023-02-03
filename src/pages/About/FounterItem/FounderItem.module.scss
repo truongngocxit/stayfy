@@ -3,28 +3,34 @@
 .founder {
   display: grid;
   grid-template-rows: 30rem 1fr;
+  gap: 1rem;
 
   &__Image {
     width: 100%;
     height: 100%;
     border-radius: $borderRadius;
     overflow: hidden;
+    box-shadow: 0 0 0 0.3rem $primaryColor;
 
     img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 
   &__Description {
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
     &__Name {
       font-size: 2.4rem;
       font-weight: 700;
+      color: $primaryColor;
     }
 
-    &__Role {
+    &__Title {
       font-size: 1.6rem;
       color: $grayColorFaint4;
     }
