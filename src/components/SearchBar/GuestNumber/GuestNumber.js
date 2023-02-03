@@ -6,8 +6,13 @@ import { useContext, forwardRef } from "react";
 import GuestNumberContext from "../../../contexts/searchContext/GuestNumberContextProvider";
 
 const GuestNumber = function ({ className, activeClassName }, ref) {
-  const { dropdownIsVisible, dropdownRef, containerRef, handleOpenDropdown } =
-    useDropdown();
+  const {
+    dropdownIsVisible,
+    dropdownRef,
+    containerRef,
+    handleOpenDropdown,
+    handleCloseDropdown,
+  } = useDropdown();
   const {
     resetContext: resetNumContext,
     adultsNumContextSlice,
@@ -72,6 +77,7 @@ const GuestNumber = function ({ className, activeClassName }, ref) {
           babiesData={babiesNumContextSlice}
           childrenData={childrenNumContextSlice}
           animalsData={animalsNumContextSlice}
+          onOk={handleCloseDropdown}
         />
       )}
     </div>

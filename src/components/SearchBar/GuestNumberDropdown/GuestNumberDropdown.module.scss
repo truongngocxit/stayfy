@@ -8,4 +8,21 @@
   font-size: 1.6rem;
   gap: 3.5rem;
   cursor: default;
+
+  &__OkBtn {
+    padding: 1rem 2rem;
+    background: none;
+    background-color: $primaryColor;
+    border-radius: $borderRadius;
+    color: #fff;
+    border: none;
+    align-self: flex-end;
+    grid-column: span 2;
+    align-self: flex-end;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $shadeColor1;
+    }
+  }
 }

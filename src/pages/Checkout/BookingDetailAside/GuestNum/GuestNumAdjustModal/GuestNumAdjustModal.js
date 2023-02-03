@@ -46,6 +46,7 @@ const GuestNumAdjustModal = function ({ onCloseGuestNumModal }) {
         childrenData={childrenData}
         babiesData={babiesData}
         animalsData={animalsData}
+        hasOkButton={false}
       />
       <div className={guestNumModal__Footer}>
         <button

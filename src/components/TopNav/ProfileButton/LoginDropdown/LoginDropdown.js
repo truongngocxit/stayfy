@@ -7,35 +7,43 @@ import { createPortal } from "react-dom";
 import Overlay from "../../../UI/Overlay/Overlay";
 import LogoutConfirmModal from "./LogoutConfirmModal/LogoutConfirmModal";
 
-const LoginDropdown = function () {
+const LoginDropdown = function ({ onClickOption }) {
   const { isActive } = useSelector((state) => state.activeUser);
   const { loginDropdown } = styles;
 
   return (
     <div className={loginDropdown}>
-      {!isActive && <InactiveDropdown />}
-      {isActive && <ActiveDropdown />}
+      {!isActive && <InactiveDropdown onClickOption={onClickOption} />}
+      {isActive && <ActiveDropdown onClickOption={onClickOption} />}
     </div>
   );
 };
 
 export default LoginDropdown;
 
-const InactiveDropdown = function () {
+const InactiveDropdown = function ({ onClickOption }) {
   const { loginDropdown__Option } = styles;
   return (
     <>
-      <Link to="/login" className={loginDropdown__Option}>
+      <Link
+        to="/login"
+        className={loginDropdown__Option}
+        onClick={onClickOption}
+      >
         <span>Login</span>
       </Link>
-      <Link to="/signup" className={loginDropdown__Option}>
+      <Link
+        to="/signup"
+        className={loginDropdown__Option}
+        onClick={onClickOption}
+      >
         <span>Signup</span>
       </Link>
     </>
   );
 };
 
-const ActiveDropdown = function () {
+const ActiveDropdown = function ({ onClickOption }) {
   const [isConfirmLogout, setIsConfirmLogout] = useState(false);
   const reduxDispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,15 +58,24 @@ const ActiveDropdown = function () {
 
   const handleCloseConfirmLogout = function () {
     setIsConfirmLogout(false);
+    onClickOption();
   };
 
   const { loginDropdown__Option, loginDropdown__Logout } = styles;
   return (
     <>
-      <Link to="/profile" className={loginDropdown__Option}>
+      <Link
+        to="/profile"
+        className={loginDropdown__Option}
+        onClick={onClickOption}
+      >
         <span>Profile</span>
       </Link>
-      <Link to="/trips" className={loginDropdown__Option}>
+      <Link
+        to="/trips"
+        className={loginDropdown__Option}
+        onClick={onClickOption}
+      >
         <span>Upcoming trips</span>
       </Link>
       <button

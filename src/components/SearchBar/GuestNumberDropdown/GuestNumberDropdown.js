@@ -3,7 +3,16 @@ import GuestTypeInput from "./GuestTypeInput/GuestTypeInput";
 import { forwardRef } from "react";
 
 const GuestNumberDropdown = forwardRef(function (
-  { adultsData, babiesData, childrenData, animalsData, style, className },
+  {
+    adultsData,
+    babiesData,
+    childrenData,
+    animalsData,
+    style,
+    className,
+    onOk,
+    hasOkButton = true,
+  },
   ref
 ) {
   const {
@@ -50,7 +59,12 @@ const GuestNumberDropdown = forwardRef(function (
     }
   };
 
-  const { guestNumberDropdown } = styles;
+  const handleCloseDropdown = function (event) {
+    event.stopPropagation();
+    onOk();
+  };
+
+  const { guestNumberDropdown, guestNumberDropdown__OkBtn } = styles;
   return (
     <div
       className={`${guestNumberDropdown} ${className}`}
@@ -93,6 +107,15 @@ const GuestNumberDropdown = forwardRef(function (
         onIncrease={handleIncreaseAnimalsNum}
         onDecrease={handleDecreaseAnimalsNum}
       />
+      {hasOkButton && (
+        <button
+          className={guestNumberDropdown__OkBtn}
+          onClick={handleCloseDropdown}
+          type="button"
+        >
+          Done
+        </button>
+      )}
     </div>
   );
 });

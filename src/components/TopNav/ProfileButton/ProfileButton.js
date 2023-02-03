@@ -5,7 +5,12 @@ import LoginDropdown from "./LoginDropdown/LoginDropdown";
 import { useSelector } from "react-redux";
 
 const ProfileButton = function ({ className }) {
-  const { dropdownIsVisible, containerRef, handleOpenDropdown } = useDropdown();
+  const {
+    dropdownIsVisible,
+    containerRef,
+    handleOpenDropdown,
+    handleCloseDropdown,
+  } = useDropdown();
   const activeUserProfileImage = useSelector(
     (state) => state.activeUser.profileImage
   );
@@ -31,7 +36,9 @@ const ProfileButton = function ({ className }) {
           />
         </div>
       </button>
-      {dropdownIsVisible && <LoginDropdown />}
+      {dropdownIsVisible && (
+        <LoginDropdown onClickOption={handleCloseDropdown} />
+      )}
     </div>
   );
 };

@@ -17,8 +17,13 @@ const AsideInfo = function ({
   animalsNumData,
 }) {
   const [datePickerIsActive, setDatePickerIsActive] = useState(false);
-  const { dropdownIsVisible, dropdownRef, containerRef, handleOpenDropdown } =
-    useDropdown();
+  const {
+    dropdownIsVisible,
+    dropdownRef,
+    containerRef,
+    handleOpenDropdown,
+    handleCloseDropdown,
+  } = useDropdown();
 
   const handleDatePickerFocus = function () {
     setDatePickerIsActive(true);
@@ -88,6 +93,7 @@ const AsideInfo = function ({
             childrenData={childrenNumData}
             babiesData={babiesNumData}
             animalsData={animalsNumData}
+            onOk={handleCloseDropdown}
           />
         )}
       </div>

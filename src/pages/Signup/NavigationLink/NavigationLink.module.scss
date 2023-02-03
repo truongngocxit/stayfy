@@ -1,4 +1,4 @@
-@use "../../../sass-styles/variables";
+@use "../../../sass-styles/variables" as *;
 
 .loginButton {
   width: 100%;
@@ -10,8 +10,11 @@
   justify-content: center;
   cursor: pointer;
 
-  &:visited {
-    color: inherit;
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: $grayColorMain;
   }
 
   &:hover {
