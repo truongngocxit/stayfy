@@ -7,15 +7,15 @@ const RoomTypeTag = function ({ type = "Shared", className }) {
   const { typeTag, typeTag__Shared, typeTag__Entire, typeTag__Private } =
     styles;
   let tagIcon, label, tagTypeClass;
-  if (type === "Shared") {
+  if (type === "shared") {
     tagIcon = <BunkBedIcon />;
     label = "shared room";
     tagTypeClass = typeTag__Shared;
-  } else if (type === "Entire place") {
+  } else if (type === "entire") {
     tagIcon = <HouseIcon />;
     label = "an entire house";
     tagTypeClass = typeTag__Entire;
-  } else if (type === "Private") {
+  } else if (type === "private") {
     tagIcon = <DoubleBedIcon />;
     label = "private room";
     tagTypeClass = typeTag__Private;

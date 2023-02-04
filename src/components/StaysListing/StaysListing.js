@@ -32,13 +32,12 @@ const StaysListing = function () {
   const { staysListing } = styles;
   return (
     <main className={staysListing}>
-      {/* {cleansedData.map((entry) => (
-        <StayItem key={entry.id} item={entry} />
-      ))} */}
       {!isLoading &&
+        cleansedData.map((entry) => <StayItem key={entry.id} item={entry} />)}
+      {/* {!isLoading &&
         cleansedData
           .slice(0, 8)
-          .map((entry) => <StayItem key={entry.id} item={entry} />)}
+          .map((entry) => <StayItem key={entry.id} item={entry} />)} */}
 
       {new Array(8).fill().map(() => (
         <StaySkeleton isLoading={isLoading} />

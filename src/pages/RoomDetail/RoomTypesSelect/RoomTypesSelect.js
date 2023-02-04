@@ -107,7 +107,7 @@ const RoomTypes = function ({ types, onSelectTypes, selectedRooms }, ref) {
           <RoomType
             key={item.type}
             className={roomTypes__Type}
-            src={item.img}
+            src={item.image}
             alt={item.name}
             title={item.name}
             type={item.type}

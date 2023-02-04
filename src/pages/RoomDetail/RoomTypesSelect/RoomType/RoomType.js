@@ -22,10 +22,10 @@ const RoomType = function (
 ) {
   const typeTarget = selectedTypes.find((roomType) => roomType.name === title);
   const handleToggleTypeSelect = function () {
-    if (type === "Entire place" && typeTarget.quantity === 0) {
+    if (type === "entire" && typeTarget.quantity === 0) {
       onSelectTypes((prevRooms) =>
         prevRooms.map((room) => {
-          if (room.type === "Entire place") {
+          if (room.type === "entire") {
             return { ...room, quantity: 1 };
           } else {
             return { ...room, quantity: 0 };
@@ -33,10 +33,10 @@ const RoomType = function (
         })
       );
     }
-    if (type === "Entire place" && typeTarget.quantity === 1) {
+    if (type === "entire" && typeTarget.quantity === 1) {
       onSelectTypes((prevRooms) =>
         prevRooms.map((room) => {
-          if (room.type === "Entire place") {
+          if (room.type === "entire") {
             return { ...room, quantity: 0 };
           } else {
             return { ...room };
@@ -44,13 +44,13 @@ const RoomType = function (
         })
       );
     }
-    if (type !== "Entire place" && typeTarget.quantity === 0) {
+    if (type !== "entire" && typeTarget.quantity === 0) {
       onSelectTypes((prevRooms) =>
         prevRooms.map((room) => {
           if (room.name === title) {
             return { ...room, quantity: 1 };
           }
-          if (room.type === "Entire place") {
+          if (room.type === "entire") {
             return { ...room, quantity: 0 };
           }
           return { ...room };
@@ -58,13 +58,13 @@ const RoomType = function (
       );
     }
 
-    if (type !== "Entire place" && typeTarget.quantity > 0) {
+    if (type !== "entire" && typeTarget.quantity > 0) {
       onSelectTypes((prevRooms) =>
         prevRooms.map((room) => {
           if (room.name === typeTarget.name) {
             return { ...room, quantity: 0 };
           }
-          if (room.type === "Entire place") {
+          if (room.type === "entire") {
             return { ...room, quantity: 0 };
           }
           return { ...room };
@@ -75,29 +75,57 @@ const RoomType = function (
 
   const handleIncreaseRoomNum = function (event) {
     event.stopPropagation();
-    if (type === "Entire place") return;
-    onSelectTypes((prevRooms) =>
-      prevRooms.map((room) => {
-        if (room.name === title) {
-          return { ...room, quantity: room.quantity + 1 };
-        }
-        return { ...room };
-      })
-    );
+    if (type === "entire") {
+      onSelectTypes((prevRooms) =>
+        prevRooms.map((room) => {
+          if (room.type === "entire") {
+            return { ...room, quantity: 1 };
+          }
+          return { ...room, quantity: 0 };
+        })
+      );
+    } else {
+      onSelectTypes((prevRooms) =>
+        prevRooms.map((room) => {
+          if (room.name === title) {
+            return { ...room, quantity: room.quantity + 1 };
+          }
+          if (room.type === "entire") {
+            return { ...room, quantity: 0 };
+          }
+          return { ...room };
+        })
+      );
+    }
   };
 
   const handleDecreaseRoomNum = function (event) {
     event.stopPropagation();
-    if (type === "Entire place") return;
-    onSelectTypes((prevRooms) =>
-      prevRooms.map((room) => {
-        if (room.name === title) {
-          return { ...room, quantity: room.quantity - 1 };
-        }
-        return { ...room };
-      })
-    );
+    if (type === "entire") {
+      onSelectTypes((prevRooms) =>
+        prevRooms.map((room) => {
+          if (room.type === "entire") {
+            return { ...room, quantity: 0 };
+          }
+          return { ...room };
+        })
+      );
+    } else {
+      onSelectTypes((prevRooms) =>
+        prevRooms.map((room) => {
+          if (room.name === title) {
+            return { ...room, quantity: room.quantity - 1 };
+          }
+          if (room.type === "entire") {
+            return { ...room, quantity: 0 };
+          }
+          return { ...room };
+        })
+      );
+    }
   };
+
+  console.log(selectedTypes);
 
   const {
     roomType,
