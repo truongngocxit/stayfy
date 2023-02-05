@@ -1,0 +1,15 @@
+@use "../../sass-styles/variables" as *;
+
+.test {
+  height: 100vh;
+  font-size: 1.6rem;
+
+  ul,
+  p {
+    font-size: 2rem;
+  }
+
+  div {
+    font-size: 1.6rem;
+  }
+}

@@ -44,6 +44,11 @@ const PageLayout = function ({ children }) {
     headerProps = { ...headerProps, isFixed: false, hasBuffer: false };
   }
 
+  if (pathname === "/test") {
+    headerProps = { ...headerProps, isHidden: true };
+    footer = null;
+  }
+
   useEffect(() => {
     window.scrollTo({
       top: 0,

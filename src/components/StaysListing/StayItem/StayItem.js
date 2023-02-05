@@ -2,12 +2,13 @@ import styles from "./StayItem.module.scss";
 import { Link } from "react-router-dom";
 import StayItemImage from "./StayItemImage/StayItemImage";
 import StayItemInfo from "./StayItemInfo/StayItemInfo";
+import { forwardRef } from "react";
 
-const StayItem = function ({ item }) {
+const StayItem = forwardRef(function ({ item }, ref) {
   const { stayItem, stayItem__Image } = styles;
 
   return (
-    <Link to={`detail/${item.id}`} state={item} className={stayItem}>
+    <Link to={`detail/${item.id}`} state={item} className={stayItem} ref={ref}>
       <StayItemImage
         imgs={[...new Set(item.images)]}
         className={stayItem__Image}
@@ -20,6 +21,6 @@ const StayItem = function ({ item }) {
       />
     </Link>
   );
-};
+});
 
 export default StayItem;

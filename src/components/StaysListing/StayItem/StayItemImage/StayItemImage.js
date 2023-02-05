@@ -43,16 +43,6 @@ const StayItemImage = function ({ className, imgs }) {
     });
   };
 
-  // useEffect(() => {
-  //   console.log("Listen to image load");
-  //   imgElementsRef.current.forEach((el) => {
-  //     el.addEventListener("load", function () {
-  //       setImgElementLoadCount(imgElementLoadCount + 1);
-  //     });
-  //   });
-  //   return () => console.log("Clean");
-  // }, [imgElementLoadCount]);
-
   const handleAddImageLoadCount = function (event) {
     if (
       event.target === imagesContainerRef.current.querySelectorAll("img")[0]
@@ -96,9 +86,6 @@ const StayItemImage = function ({ className, imgs }) {
     return () => intersectionObserverRef.current.disconnect();
   }, []);
 
-  // console.log(imgElementLoadCount);
-  // console.log(imgElementsRef);
-
   const {
     itemImage,
     itemImage__OuterContainer,
@@ -128,7 +115,7 @@ const StayItemImage = function ({ className, imgs }) {
             gridTemplateColumns: `repeat(${imgs.length}, 1fr)`,
           }}
         >
-          {imgs.map((img, index, array) => (
+          {[imgs[0]].map((img, index, array) => (
             <div
               className={itemImage__Image}
               ref={(node) => {

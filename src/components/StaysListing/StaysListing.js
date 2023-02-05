@@ -1,12 +1,43 @@
 import styles from "./StaysListing.module.scss";
 import StayItem from "./StayItem/StayItem";
-import useFetchData from "../../custom-hooks/useFetchData";
 import StaySkeleton from "./StaySkeleton/StaySkeleton";
+import useFetchLodges from "../../custom-hooks/useFetchLodges";
+import { useRef, useEffect, useState } from "react";
 
 const StaysListing = function () {
-  const { data, error, isLoading } = useFetchData(
-    "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/lodges.json"
-  );
+  const { data, isLoading, fetchLodgesData, lastCursor, hasReachedEnd } =
+    useFetchLodges();
+
+  const intersectionObserverRef = useRef(null);
+  const [lastLodgeRef, setLastLodgeRef] = useState(null);
+
+  useEffect(() => {
+    const observerCallback = function (entries, observer) {
+      entries.forEach((e) => {
+        if (e.isIntersecting && e.target === lastLodgeRef && !isLoading) {
+          fetchLodgesData(lastCursor);
+        } else {
+          return;
+        }
+      });
+    };
+
+    const observerOptions = {
+      root: null,
+      threshold: 1,
+    };
+
+    intersectionObserverRef.current = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    if (lastLodgeRef) {
+      intersectionObserverRef.current.observe(lastLodgeRef);
+    }
+
+    return () => intersectionObserverRef.current.disconnect();
+  }, [lastLodgeRef, fetchLodgesData, isLoading, lastCursor]);
 
   const cleansedData = data.map((d) => {
     return {
@@ -29,20 +60,32 @@ const StaysListing = function () {
     };
   });
 
-  const { staysListing } = styles;
+  const { staysListing, buffer, endMessage } = styles;
   return (
-    <main className={staysListing}>
-      {!isLoading &&
-        cleansedData.map((entry) => <StayItem key={entry.id} item={entry} />)}
-      {/* {!isLoading &&
-        cleansedData
-          .slice(0, 8)
-          .map((entry) => <StayItem key={entry.id} item={entry} />)} */}
-
-      {new Array(8).fill().map(() => (
-        <StaySkeleton isLoading={isLoading} />
-      ))}
-    </main>
+    <>
+      <main className={staysListing}>
+        {cleansedData.map((entry, index, data) => (
+          <StayItem
+            key={entry.id}
+            item={entry}
+            ref={(node) => {
+              if (index === data.length - 1) {
+                setLastLodgeRef(node);
+              }
+            }}
+          />
+        ))}
+        {new Array(8).fill().map((_, index) => (
+          <StaySkeleton key={index} isLoading={isLoading} />
+        ))}
+      </main>
+      {hasReachedEnd && (
+        <p className={endMessage}>
+          Looks like we are at the end of the road...
+        </p>
+      )}
+      <div className={buffer}></div>
+    </>
   );
 };
 
