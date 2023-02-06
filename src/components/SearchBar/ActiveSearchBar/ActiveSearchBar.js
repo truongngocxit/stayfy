@@ -3,6 +3,8 @@ import LocationSearch from "../LocationSearch/LocationSearch";
 import DateSearch from "../DateSearch/DateSearch";
 import GuestNumber from "../GuestNumber/GuestNumber";
 import SearchButton from "../SearchButton/SearchButton";
+import LargerScreenSearchBar from "./LargerScreenSearchBar/LargerScreenSearchBar";
+import SmallerScreenSearchBar from "./SmallerScreenSearchBar/SmallerScreenSearchBar";
 import { useContext } from "react";
 import DateSearchContext from "../../../contexts/searchContext/DateSearchContextProvider";
 import GuestNumberContext from "../../../contexts/searchContext/GuestNumberContextProvider";
@@ -11,7 +13,12 @@ import { useDispatch } from "react-redux";
 import { searchQueryActions } from "../../../redux-store/searchQuerySlice";
 import { useRef } from "react";
 
-const SearchBar = function ({ className, isCollapse, onStopSearching }) {
+const ActiveSearchBar = function ({
+  className,
+  isCollapse,
+  onStopSearching,
+  isSmallerScreen = false,
+}) {
   const reduxDispatch = useDispatch();
   const { searchQuery } = useContext(LocationSearchContext);
   const { selectedDate } = useContext(DateSearchContext);
@@ -40,10 +47,6 @@ const SearchBar = function ({ className, isCollapse, onStopSearching }) {
   const dateSearchRef = useRef(null);
   const guestNumSearchRef = useRef(null);
 
-  // const handleFocusLocationSearch = function () {
-  //   locationSearchRef.current.focus();
-  // };
-
   const handleFocusDateSearch = function () {
     dateSearchRef.current.querySelector(".ant-picker-input").click();
   };
@@ -52,45 +55,51 @@ const SearchBar = function ({ className, isCollapse, onStopSearching }) {
     guestNumSearchRef.current.click();
   };
 
-  const {
-    searchBar,
-    searchBar__Collapse,
-    searchBar__Place,
-    searchBar__Active,
-    searchBar__Time,
-    searchBar__Guests,
-  } = styles;
-
   return (
     <>
-      <div
-        className={`${searchBar}  ${className} ${
-          isCollapse ? searchBar__Collapse : ""
-        }`}
-      >
-        <LocationSearch
-          activeClassName={searchBar__Active}
-          className={searchBar__Place}
-          onFinishSearch={handleFocusDateSearch}
-          ref={locationSearchRef}
+      {!isSmallerScreen ? (
+        <LargerScreenSearchBar
+          guestNumSearchRef={guestNumSearchRef}
+          locationSearchRef={locationSearchRef}
+          dateSearchRef={dateSearchRef}
+          isCollapse={isCollapse}
+          className={className}
+          handleFocusDateSearch={handleFocusDateSearch}
+          handleFocusGuestNumSearch={handleFocusGuestNumSearch}
+          handleSearch={handleSearch}
         />
-
-        <DateSearch
-          className={searchBar__Time}
-          activeClassName={searchBar__Active}
-          onFinishSearch={handleFocusGuestNumSearch}
-          ref={dateSearchRef}
-        />
-
-        <GuestNumber
-          className={searchBar__Guests}
-          activeClassName={searchBar__Active}
-          ref={guestNumSearchRef}
-        />
-        <SearchButton onClick={handleSearch}>Search</SearchButton>
-      </div>
+      ) : (
+        <SmallerScreenSearchBar />
+      )}
     </>
   );
 };
 
-export default SearchBar;
+export default ActiveSearchBar;
+
+/* <div
+      className={`${searchBar} ${
+        isSmallerScreen ? searchBar__SmallerScreen : ""
+      }  ${className} ${isCollapse ? searchBar__Collapse : ""}`}
+    >
+      <LocationSearch
+        activeClassName={searchBar__Active}
+        className={searchBar__Place}
+        onFinishSearch={handleFocusDateSearch}
+        ref={locationSearchRef}
+      />
+
+      <DateSearch
+        className={searchBar__Time}
+        activeClassName={searchBar__Active}
+        onFinishSearch={handleFocusGuestNumSearch}
+        ref={dateSearchRef}
+      />
+
+      <GuestNumber
+        className={searchBar__Guests}
+        activeClassName={searchBar__Active}
+        ref={guestNumSearchRef}
+      />
+      <SearchButton onClick={handleSearch}>Search</SearchButton>
+    </div> */

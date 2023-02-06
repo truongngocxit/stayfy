@@ -4,7 +4,7 @@ import NoLocationFound from "./NoLocationFound/NoLocationFound";
 import { useState, useEffect, forwardRef } from "react";
 
 const LocationSearchDropdown = function (
-  { locations, setQuery, onCloseDropdown, onFinishSearch },
+  { locations, setQuery, onCloseDropdown, onFinishSearch, isAbsolute = true },
   ref
 ) {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -49,9 +49,15 @@ const LocationSearchDropdown = function (
     onFinishSearch();
   };
 
-  const { searchDropdown } = styles;
+  const { searchDropdown, searchDropdown__Absolute, searchDropdown__Static } =
+    styles;
   return (
-    <ul className={searchDropdown} ref={ref}>
+    <ul
+      className={`${searchDropdown} ${
+        isAbsolute ? searchDropdown__Absolute : searchDropdown__Static
+      }`}
+      ref={ref}
+    >
       {locations.length > 0 ? (
         locations.map((loc, i) => (
           <SearchSuggestion

@@ -19,7 +19,6 @@ const useDropdown = function () {
         containerRef.current &&
         !containerRef?.current.contains(event.target)
       ) {
-        console.log("Outside");
         setDropdownIsVisible(false);
       }
     };

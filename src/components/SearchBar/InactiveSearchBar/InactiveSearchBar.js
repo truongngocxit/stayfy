@@ -1,24 +1,21 @@
 import styles from "./InactiveSearchBar.module.scss";
 import SearchIcon from "../../UI/SVG/SearchIcon";
 import { useSelector } from "react-redux";
+import LargeScreenSearchBar from "./LargerScreenSearchBar/LargerScreenSearchBar";
+import SmallerScreenSearchBar from "./SmallerScreenSearchBar/SmallerScreenSearchBar";
+import { useEffect } from "react";
 
 const InactiveSearchBar = function ({
   className,
   onStartSearching,
   isCollapse,
+  isSmallerScreen,
 }) {
   const query = useSelector((state) => state.search.query) || null;
   const date = useSelector((state) => state.search.date) || null;
   const guests = useSelector((state) => state.search.guestNum) || null;
 
-  const {
-    searchBar,
-    searchBar__Collapse,
-    searchBar__Place,
-    searchBar__Time,
-    searchBar__Guests,
-    searchBar__Btn,
-  } = styles;
+  const { searchBar, searchBar__Collapse } = styles;
 
   let dateString = "Anytime";
 
@@ -33,29 +30,29 @@ const InactiveSearchBar = function ({
   }
 
   return (
-    <div
-      className={`${searchBar} ${className} ${
-        isCollapse ? searchBar__Collapse : ""
-      }`}
-      onClick={onStartSearching}
-    >
-      <div className={searchBar__Place}>
-        <button>{query || "All places"}</button>
-      </div>
-      <div className={searchBar__Time}>
-        <button>{dateString}</button>
-      </div>
-      <div className={searchBar__Guests}>
-        <button>
-          {guests.adults
-            ? `${guests.adults + guests.children} guests`
-            : "For 1 guest"}
-        </button>
-      </div>
-      <div className={searchBar__Btn}>
-        <SearchIcon />
-      </div>
-    </div>
+    <>
+      {!isSmallerScreen ? (
+        <LargeScreenSearchBar
+          className={`${searchBar}  ${
+            isCollapse ? searchBar__Collapse : ""
+          } ${className}`}
+          onClick={onStartSearching}
+          query={query}
+          dateString={dateString}
+          guests={guests}
+        />
+      ) : (
+        <SmallerScreenSearchBar
+          className={`${searchBar}  ${
+            isCollapse ? searchBar__Collapse : ""
+          } ${className}`}
+          onClick={onStartSearching}
+          query={query}
+          dateString={dateString}
+          guests={guests}
+        />
+      )}
+    </>
   );
 };
 

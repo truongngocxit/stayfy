@@ -1,25 +1,29 @@
-import styles from "./Test.module.scss";
-import { useState, useEffect, useCallback } from "react";
-import { ref, query, limitToFirst, orderByKey, get } from "firebase/database";
-import { database } from "../../myAppFirebase/myAppFirebase";
-import axios from "axios";
-import useBookSearch from "./useBookSearch";
+import { useEffect, useRef } from "react";
 
 const Test = function () {
-  const [query, setQuery] = useState("");
-  const [pageNumber, setPageNumber] = useState(1);
-  useBookSearch();
-  const { test } = styles;
+  const resizeObserverRef = useRef(null);
+  const redBoxRef = useRef(null);
+  useEffect(() => {
+    const resizeCallback = function (entries, callback) {
+      entries.forEach((e) => console.log(e));
+    };
+
+    resizeObserverRef.current = new ResizeObserver(resizeCallback);
+
+    resizeObserverRef.current.observe(document.documentElement);
+
+    return () => resizeObserverRef.current.disconnect();
+  }, []);
+
   return (
-    <div className={test}>
-      <input type="text" />
-      <div>Title</div>
-      <div>Title</div>
-      <div>Title</div>
-      <div>Title</div>
-      <div>Loading...</div>
-      <div>Error</div>
-    </div>
+    <div
+      ref={redBoxRef}
+      style={{
+        backgroundColor: "red",
+        width: "200px",
+        height: "200px",
+      }}
+    />
   );
 };
 

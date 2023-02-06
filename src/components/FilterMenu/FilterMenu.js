@@ -8,8 +8,11 @@ import { createPortal } from "react-dom";
 import useFetchData from "../../custom-hooks/useFetchData";
 import SkeletonFilterSlider from "./SkeletonFilterSlider/SkeletonFilterSlider";
 import FilterModal from "../FilterModal/FilterModal";
+import { useDispatch } from "react-redux";
+import { filterActions } from "../../redux-store/filterSlice";
 
 const FilterMenu = function () {
+  const reduxDispatch = useDispatch();
   const [filterModalIsVisible, setFilterModalIsVisible] = useState(false);
   const [leftBtnIsVisible, setLeftBtnIsVisible] = useState(false);
   const [rightBtnIsVisible, setRightBtnIsVisible] = useState(false);
@@ -96,7 +99,9 @@ const FilterMenu = function () {
   };
 
   const handleChangeSelectedFilter = function (tag) {
+    console.log(tag);
     setSelectedFilter(tag);
+    reduxDispatch(filterActions.changeFeature(tag));
   };
 
   const {

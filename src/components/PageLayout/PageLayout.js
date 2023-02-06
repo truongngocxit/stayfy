@@ -4,6 +4,7 @@ import BottomNav from "../BottomNav/BottomNav";
 import StaticFooter from "../Footer/StaticFooter";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import PageResizingTracker from "./PageResizingTracker/PageResizingTracker";
 
 const PageLayout = function ({ children }) {
   const { pathname } = useLocation();
@@ -59,6 +60,7 @@ const PageLayout = function ({ children }) {
   const { layout } = styles;
   return (
     <div className={layout}>
+      <PageResizingTracker />
       <Header {...headerProps} pathname={pathname} />
       {children}
       {footer}

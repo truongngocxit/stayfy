@@ -19,6 +19,28 @@ body {
 
 html {
   font-size: 62.5%;
+
+  //smaller than 1200
+  @media only screen and (max-width: 75em) {
+    font-size: 56.25%;
+  }
+
+  //smaller than 1024
+  @media only screen and (max-width: 64em) {
+    font-size: 50%;
+  }
+
+  //smaller than 944
+  @media only screen and (max-width: 59em) {
+    //font-size: 43.75%;
+  }
+
+  //smaller than 768 - small tablets
+  @media only screen and (max-width: 48em) {
+    //font-size: 37.5%;
+  }
+
+  //smaller than 544 - phones
 }
 
 button,

@@ -3,19 +3,65 @@ import StayItem from "./StayItem/StayItem";
 import StaySkeleton from "./StaySkeleton/StaySkeleton";
 import useFetchLodges from "../../custom-hooks/useFetchLodges";
 import { useRef, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const StaysListing = function () {
+  const featureFilter = useSelector((state) => state.filter.feature);
+
+  const resizeObserverRef = useRef(null);
+
+  const [numOfGridColumns, setNumOfGridColumns] = useState(4);
   const { data, isLoading, fetchLodgesData, lastCursor, hasReachedEnd } =
-    useFetchLodges();
+    useFetchLodges(numOfGridColumns, featureFilter);
 
   const intersectionObserverRef = useRef(null);
   const [lastLodgeRef, setLastLodgeRef] = useState(null);
 
   useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver(function (
+      entries,
+      observer
+    ) {
+      const currentViewportWidth = entries[0].contentRect.width;
+
+      if (currentViewportWidth <= 375) {
+        setNumOfGridColumns(1);
+      } else if (currentViewportWidth <= 544) {
+        setNumOfGridColumns(2);
+      } else if (currentViewportWidth <= 1024) {
+        setNumOfGridColumns(3);
+      } else if (currentViewportWidth <= 1600) {
+        setNumOfGridColumns(4);
+      } else if (currentViewportWidth > 1600) {
+        setNumOfGridColumns(5);
+      }
+    });
+
+    resizeObserverRef.current.observe(document.documentElement);
+
+    return () => resizeObserverRef.current.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let ignore = false;
+
+    if (!ignore) {
+      fetchLodgesData(null);
+    }
+
+    return () => {
+      ignore = true;
+    };
+  }, [fetchLodgesData]);
+
+  useEffect(() => {
     const observerCallback = function (entries, observer) {
       entries.forEach((e) => {
         if (e.isIntersecting && e.target === lastLodgeRef && !isLoading) {
-          fetchLodgesData(lastCursor);
+          fetchLodgesData(
+            lastCursor,
+            numOfGridColumns === 1 ? 4 : numOfGridColumns * 2
+          );
         } else {
           return;
         }
@@ -37,7 +83,7 @@ const StaysListing = function () {
     }
 
     return () => intersectionObserverRef.current.disconnect();
-  }, [lastLodgeRef, fetchLodgesData, isLoading, lastCursor]);
+  }, [lastLodgeRef, fetchLodgesData, isLoading, lastCursor, numOfGridColumns]);
 
   const cleansedData = data.map((d) => {
     return {
@@ -63,7 +109,12 @@ const StaysListing = function () {
   const { staysListing, buffer, endMessage } = styles;
   return (
     <>
-      <main className={staysListing}>
+      <main
+        className={staysListing}
+        style={{
+          gridTemplateColumns: `repeat(${numOfGridColumns}, 1fr)`,
+        }}
+      >
         {cleansedData.map((entry, index, data) => (
           <StayItem
             key={entry.id}
@@ -75,9 +126,11 @@ const StaysListing = function () {
             }}
           />
         ))}
-        {new Array(8).fill().map((_, index) => (
-          <StaySkeleton key={index} isLoading={isLoading} />
-        ))}
+        {new Array(numOfGridColumns === 1 ? 4 : numOfGridColumns * 2)
+          .fill()
+          .map((_, index) => (
+            <StaySkeleton key={index} isLoading={isLoading} />
+          ))}
       </main>
       {hasReachedEnd && (
         <p className={endMessage}>

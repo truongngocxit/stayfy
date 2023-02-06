@@ -9,8 +9,9 @@ import {
   orderByKey,
 } from "firebase/database";
 import timeoutPromiseDelay from "../utils/timeoutPromiseDelay";
+import { cloneDeep } from "lodash";
 
-const useFetchLodges = function () {
+const useFetchLodges = function (numOfItems = null, featureFilter = null) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
@@ -19,15 +20,17 @@ const useFetchLodges = function () {
 
   const fetchLodgesData = useCallback(
     async function (cursor = null) {
+      console.log(numOfItems);
       if (hasReachedEnd) return;
       setIsLoading(true);
       await timeoutPromiseDelay(2.5);
       try {
         const lodgesRef = ref(database, "lodges");
+
         const nextEightLodgesRef = query(
           lodgesRef,
           ...(!cursor ? [orderByKey()] : [orderByKey(), startAfter(cursor)]),
-          limitToFirst(8)
+          limitToFirst(numOfItems * 2)
         );
 
         const snapshot = await get(nextEightLodgesRef);
@@ -43,7 +46,17 @@ const useFetchLodges = function () {
           ...entry[1],
         }));
 
-        setData((prevData) => [...prevData, ...cleansedData]);
+        let filteredData = cloneDeep(cleansedData);
+
+        // if (featureFilter && featureFilter !== "isAllStays") {
+        //   filteredData = filteredData.filter(
+        //     (entry) => entry.features[featureFilter]
+        //   );
+        // } else {
+
+        // }
+
+        setData((prevData) => [...prevData, ...filteredData]);
         setLastCursor(cleansedData[cleansedData.length - 1].id);
         setIsLoading(false);
       } catch (error) {
@@ -51,20 +64,8 @@ const useFetchLodges = function () {
         setIsLoading(false);
       }
     },
-    [hasReachedEnd]
+    [hasReachedEnd, numOfItems]
   );
-
-  useEffect(() => {
-    let ignore = false;
-
-    if (!ignore) {
-      fetchLodgesData(null);
-    }
-
-    return () => {
-      ignore = true;
-    };
-  }, [fetchLodgesData]);
 
   return { isLoading, error, data, fetchLodgesData, lastCursor, hasReachedEnd };
 };

@@ -1,88 +1,10 @@
 @use "../../../sass-styles/variables" as *;
 
 .searchBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: $border;
-  border-radius: 50rem;
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
-  cursor: pointer;
-  transition: all 0.4s;
-
+  width: 100%;
   &__Collapse {
     position: absolute;
     visibility: hidden;
     animation: inactiveBarCollapse backwards 0.4s;
-  }
-
-  &:hover {
-    transform: translateY(-0.2rem);
-    box-shadow: $boxShadow;
-  }
-
-  button {
-    display: block;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-
-  &__Btn {
-    width: 3.2rem;
-    height: 3.2rem;
-    background-color: $primaryColor;
-    border-radius: 50%;
-    padding: 0.5rem;
-    margin-left: 1.5rem;
-
-    svg {
-      stroke: #fff;
-    }
-  }
-
-  &__Place,
-  &__Time {
-    padding: 0 2rem;
-    border-right: $border;
-
-    button {
-      font-weight: 500;
-    }
-  }
-
-  &__Guests {
-    padding-left: 2rem;
-
-    button {
-      color: $grayColorFaint3;
-    }
-  }
-}
-
-@keyframes inactiveBarCollapse {
-  0% {
-    opacity: 0.2;
-    transform: scale(1.2);
-  }
-
-  20% {
-    transform: scale(1.4);
-    opacity: 0;
-  }
-
-  50% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
-
-  75% {
-    opacity: 0;
-    transform: scale(1.6);
-  }
-
-  100% {
-    transform: scale(1.6);
-    opacity: 0;
   }
 }

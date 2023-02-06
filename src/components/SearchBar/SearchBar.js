@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import Overlay from "../UI/Overlay/Overlay";
 import SearchContextProvider from "../../contexts/searchContext/SearchContextProvider";
 
-const SearchBar = function () {
+const SearchBar = function ({ isSmallerScreen }) {
   const [isSearching, setIsSearching] = useState(false);
 
   const handleStartSearching = function () {
@@ -24,10 +24,12 @@ const SearchBar = function () {
         <InactiveSearchBar
           onStartSearching={handleStartSearching}
           isCollapse={isSearching}
+          isSmallerScreen={isSmallerScreen}
         />
         <ActiveSearchBar
           onStopSearching={handleStopSearching}
           isCollapse={!isSearching}
+          isSmallerScreen={isSmallerScreen}
         />
       </div>
       {isSearching &&

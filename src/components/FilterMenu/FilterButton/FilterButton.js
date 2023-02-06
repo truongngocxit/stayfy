@@ -1,12 +1,15 @@
 import styles from "./FilterButton.module.scss";
 import FilterIcon from "../../UI/SVG/FilterIcon";
 
-const FilterButton = function ({ onClick }) {
-  const { filterBtn } = styles;
+const FilterButton = function ({ onClick, hasText = true }) {
+  const { filterBtn, filterBtn__NoText } = styles;
   return (
-    <button className={filterBtn} onClick={onClick}>
+    <button
+      className={`${filterBtn} ${!hasText ? filterBtn__NoText : ""}`}
+      onClick={onClick}
+    >
       <FilterIcon />
-      <span>Filter</span>
+      {hasText && <span>Filter</span>}
     </button>
   );
 };

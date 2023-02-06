@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 4rem;
+  gap: 1.5rem;
   border-bottom: $border;
   background-color: #fff;
   z-index: 1000;
@@ -14,52 +15,23 @@
     text-decoration: none;
   }
 
-  &__Menu {
+  &__ProfileBtn {
     position: relative;
   }
 
-  &__HomeRedirect {
-    cursor: pointer;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    background-color: $primaryColor;
-    border-radius: $borderRadius;
-    padding: 1rem 2rem;
-    z-index: 105;
-    position: relative;
-    transition: all 0.3s;
-    span {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #fff;
-      z-index: 100;
-    }
+  &__SearchBar {
+    //align-self: center;
+  }
 
-    svg {
-      fill: #fff;
-      width: 2.8rem;
-      height: 2.8rem;
-      z-index: 100;
+  @media only screen and (max-width: 46.5em) {
+    &__Logo {
+      display: none;
     }
-
-    &::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: inherit;
-      border-radius: inherit;
-      background-color: inherit;
-      z-index: 0;
-      animation: buttonPulsing infinite ease 0.8s;
-      top: 0;
-      left: 0;
+    &__ProfileBtn {
+      display: none;
     }
-
-    &:hover {
-      background-color: $shadeColor1;
+    &__SearchBar {
+      flex: 1;
     }
   }
 }

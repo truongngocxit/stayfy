@@ -5,6 +5,27 @@
   grid-auto-rows: 36rem;
   gap: 6rem 2.5rem;
   padding: 2rem 4rem;
+
+  //larger than 1600
+  @media only screen and (min-width: 100em) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  //smaller than 1600
+  @media only screen and (max-width: 100em) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  //smaller than 1024
+  @media only screen and (max-width: 64em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  //smaller than 544 - phones
+  @media only screen and (max-width: 34em) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  //smaller than 375 - phones
+  @media only screen and (max-width: 23.4375em) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .buffer {

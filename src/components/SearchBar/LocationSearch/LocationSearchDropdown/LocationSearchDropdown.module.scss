@@ -1,16 +1,24 @@
 @use "../../../../sass-styles/variables" as *;
 
 .searchDropdown {
-  position: absolute;
-  bottom: -30%;
   width: 100%;
   background-color: #fff;
-  padding: 2rem 0;
+
   border-radius: 1.6rem;
-  transform: translate(-10%, 100%);
-  border: $border;
-  box-shadow: $boxShadow;
+
   list-style: none;
   display: flex;
   flex-direction: column;
+
+  &__Absolute {
+    position: absolute;
+    bottom: -30%;
+    transform: translate(-10%, 100%);
+    border: $border;
+    box-shadow: $boxShadow;
+    padding: 2rem 0;
+  }
+
+  &__Static {
+  }
 }

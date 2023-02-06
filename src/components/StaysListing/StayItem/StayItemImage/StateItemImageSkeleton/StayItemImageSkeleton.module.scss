@@ -8,3 +8,13 @@
   position: absolute;
   animation: skeletonFlashing 1s infinite alternate;
 }
+
+@keyframes skeletonFlashing {
+  0% {
+    background-color: $grayColorFaint5;
+  }
+
+  100% {
+    background-color: $grayColorFaint6;
+  }
+}
