@@ -6,7 +6,7 @@ import { forwardRef, useState } from "react";
 import { createPortal } from "react-dom";
 import useModalIsOpen from "../../../custom-hooks/useModalIsOpen";
 
-const ImagesPreview = forwardRef(function ({ images, name }, ref) {
+const ImagesPreview = forwardRef(function ({ images, name, className }, ref) {
   const [isShowGallery, setIsShowGallery] = useState(false);
   const [imgIndexToScrollTo, setImgIndexToScrollTo] = useState(null);
 
@@ -31,7 +31,7 @@ const ImagesPreview = forwardRef(function ({ images, name }, ref) {
   const [mainPreviewImage, ...restPreviewImages] = images;
   return (
     <>
-      <div className={imagesPreview} ref={ref} id="images">
+      <div className={`${imagesPreview} ${className}`} ref={ref} id="images">
         <PreviewImage
           onClick={handleClickImage.bind(null, 0)}
           className={imagesPreview__MainImg}

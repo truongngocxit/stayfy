@@ -3,11 +3,31 @@ import Header from "../Header/Header";
 import BottomNav from "../BottomNav/BottomNav";
 import StaticFooter from "../Footer/StaticFooter";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import PageResizingTracker from "./PageResizingTracker/PageResizingTracker";
+import { useEffect, useRef, useState } from "react";
 
 const PageLayout = function ({ children }) {
   const { pathname } = useLocation();
+
+  console.log(pathname);
+
+  const resizeObserverRef = useRef(null);
+
+  const [isSmallerScreen, setIsSmallerScreen] = useState(false);
+
+  useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver(function (entries) {
+      if (entries[0].contentRect.width <= 744) {
+        setIsSmallerScreen(true);
+      } else {
+        setIsSmallerScreen(false);
+      }
+    });
+
+    resizeObserverRef.current.observe(document.documentElement);
+
+    return () => resizeObserverRef.current.disconnect();
+  }, []);
+
   let headerProps = {
     hasFilter: false,
     isFixed: true,
@@ -57,11 +77,18 @@ const PageLayout = function ({ children }) {
     });
   }, [pathname]);
 
+  let header = <Header {...headerProps} pathname={pathname} />;
+
+  console.log(pathname.startsWith("/detail"));
+
+  if (isSmallerScreen && pathname.startsWith("/detail")) {
+    header = null;
+  }
+
   const { layout } = styles;
   return (
     <div className={layout}>
-      <PageResizingTracker />
-      <Header {...headerProps} pathname={pathname} />
+      {header}
       {children}
       {footer}
     </div>

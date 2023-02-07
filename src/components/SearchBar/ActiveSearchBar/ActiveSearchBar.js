@@ -69,7 +69,10 @@ const ActiveSearchBar = function ({
           handleSearch={handleSearch}
         />
       ) : (
-        <SmallerScreenSearchBar />
+        <SmallerScreenSearchBar
+          onCloseSearch={onStopSearching}
+          isCollapse={isCollapse}
+        />
       )}
     </>
   );

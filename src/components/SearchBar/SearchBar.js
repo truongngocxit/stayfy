@@ -9,7 +9,7 @@ import SearchContextProvider from "../../contexts/searchContext/SearchContextPro
 const SearchBar = function ({ isSmallerScreen }) {
   const [isSearching, setIsSearching] = useState(false);
 
-  const handleStartSearching = function () {
+  const handleStartSearching = function (event) {
     setIsSearching(true);
   };
 

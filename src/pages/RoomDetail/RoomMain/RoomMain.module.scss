@@ -3,9 +3,16 @@
 .roomMain {
   width: 100%;
   display: grid;
-  grid-template-columns: 62% 1fr;
   gap: 8rem;
-  padding: 2rem 0 6rem;
+  //padding: 2rem 0 6rem;
+
+  &__SmallerScreen {
+    grid-template-columns: 1fr;
+  }
+
+  &__LargerScreen {
+    grid-template-columns: 62% 1fr;
+  }
 
   &__Info {
     display: flex;

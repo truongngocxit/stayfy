@@ -26,6 +26,13 @@ const DateSearchContextProvider = function ({ children }) {
       end: event[1].$d.toString(),
     });
   };
+
+  const handleClearDatePicker = function (event) {
+    setSelectedDate({
+      start: null,
+      end: null,
+    });
+  };
   return (
     <DateSearchContext.Provider
       value={{
@@ -34,6 +41,7 @@ const DateSearchContextProvider = function ({ children }) {
         handleBlurDatePicker,
         handleFocusDatePicker,
         handleDatePickerChange,
+        handleClearDatePicker,
       }}
     >
       {children}

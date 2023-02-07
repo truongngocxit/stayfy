@@ -14,6 +14,11 @@
   display: grid;
   grid-template-rows: min-content 1fr min-content;
 
+  &__FullScreen {
+    height: 100vh;
+    width: 100vw;
+  }
+
   &__Head {
     display: flex;
     align-items: center;

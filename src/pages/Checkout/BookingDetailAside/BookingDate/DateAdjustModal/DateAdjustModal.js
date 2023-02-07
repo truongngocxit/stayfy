@@ -50,7 +50,6 @@ const DateAdjustModal = function ({ onCloseDatePicker }) {
         getPopupContainer={(popup) => {
           return popup.parentElement;
         }}
-        onCalendarChange={(event) => console.log(event)}
       />
       <button className={dateModal__SaveBtn} onClick={handleSaveSelectedDate}>
         Save

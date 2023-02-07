@@ -61,7 +61,13 @@ const LocationSearchDropdown = function (
       {locations.length > 0 ? (
         locations.map((loc, i) => (
           <SearchSuggestion
-            onClick={handleClickSuggestion.bind(null, null, loc.name)}
+            // onClick={handleClickSuggestion.bind(null, null, loc.name)}
+            onClick={(event) => {
+              event.stopPropagation();
+              setQuery(loc.name);
+              onCloseDropdown();
+              onFinishSearch();
+            }}
             key={loc.id}
             search={loc.name}
             isActive={i === activeIndex}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const useDropdown = function () {
+const useDropdown = function (onAfterCloseDropdown = null) {
   const [dropdownIsVisible, setDropdownIsVisible] = useState(false);
   const dropdownRef = useRef(null);
   const containerRef = useRef(null);
@@ -11,6 +11,9 @@ const useDropdown = function () {
 
   const handleCloseDropdown = function () {
     setDropdownIsVisible(false);
+    if (onAfterCloseDropdown) {
+      onAfterCloseDropdown();
+    }
   };
 
   useEffect(() => {
@@ -19,7 +22,7 @@ const useDropdown = function () {
         containerRef.current &&
         !containerRef?.current.contains(event.target)
       ) {
-        setDropdownIsVisible(false);
+        handleCloseDropdown();
       }
     };
 

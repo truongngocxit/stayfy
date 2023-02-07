@@ -9,7 +9,7 @@ const searchQuerySlice = createSlice({
       end: null,
     },
     guestNum: {
-      adults: 0,
+      adults: 1,
       children: 0,
       babies: 0,
       animals: 0,

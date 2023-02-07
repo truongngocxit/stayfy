@@ -4,13 +4,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 3rem;
+  padding: 1.5rem 3rem;
   position: fixed;
   width: 100%;
   bottom: 0;
   border-top: $border;
   font-size: 1.6rem;
   background-color: #fff;
+  transition: all 0.2s;
+
+  &__Up {
+    transform: translateY(0%);
+  }
+
+  &__Down {
+    transform: translateY(100%);
+  }
 
   &__Transparent {
     background-color: transparent;

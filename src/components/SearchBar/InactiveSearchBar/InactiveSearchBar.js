@@ -1,9 +1,7 @@
 import styles from "./InactiveSearchBar.module.scss";
-import SearchIcon from "../../UI/SVG/SearchIcon";
 import { useSelector } from "react-redux";
 import LargeScreenSearchBar from "./LargerScreenSearchBar/LargerScreenSearchBar";
 import SmallerScreenSearchBar from "./SmallerScreenSearchBar/SmallerScreenSearchBar";
-import { useEffect } from "react";
 
 const InactiveSearchBar = function ({
   className,

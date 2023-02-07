@@ -1,0 +1,36 @@
+@use "../../../../../sass-styles/variables" as *;
+
+.smallerScreenSearchDate {
+  & > * {
+    position: static !important;
+  }
+
+  .ant-picker {
+    &-dropdown {
+      position: static !important;
+      animation: none !important;
+      opacity: 1 !important;
+      transform: scale(1) !important;
+    }
+
+    &-panel-container {
+      box-shadow: none !important;
+    }
+
+    &-range-arrow {
+      display: none !important;
+    }
+
+    &-content {
+      width: 100% !important;
+    }
+
+    &-panels {
+      flex-direction: column;
+    }
+
+    &-date-panel {
+      width: 100%;
+    }
+  }
+}

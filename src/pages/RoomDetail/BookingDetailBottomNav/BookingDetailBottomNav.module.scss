@@ -1,0 +1,41 @@
+@use "../../../sass-styles/variables" as *;
+
+.bookingDetail {
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+  border-top: $border;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 3rem;
+  z-index: 800;
+
+  &__Btn {
+    text-decoration: none;
+    background: none;
+    border: none;
+    background-color: $primaryColor;
+    font-weight: 700;
+    padding: 1.5rem 3rem;
+    border-radius: $borderRadius;
+    color: #fff;
+  }
+
+  &__Info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    font-weight: 700;
+
+    span {
+      text-decoration: underline;
+    }
+
+    &__RoomsAndGuests {
+      display: flex;
+      gap: 1.5rem;
+    }
+  }
+}

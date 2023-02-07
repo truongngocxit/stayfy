@@ -1,7 +1,7 @@
 import styles from "./RoomHead.module.scss";
 import StarIcon from "../../../components/UI/SVG/StarIcon";
 import HeartIcon from "../../../components/UI/SVG/HeartIcon";
-const RoomHead = function ({ name, location, review }) {
+const RoomHead = function ({ name, location, review, className }) {
   const {
     roomHead,
     roomHead__Heading,
@@ -10,7 +10,7 @@ const RoomHead = function ({ name, location, review }) {
     roomHead__Actions,
   } = styles;
   return (
-    <div className={roomHead}>
+    <div className={`${roomHead} ${className}`}>
       <h1 className={roomHead__Heading}>{name}</h1>
       {location && review && (
         <div className={roomHead__Info}>

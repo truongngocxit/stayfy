@@ -3,6 +3,9 @@ import DateRangePicker from "../../../../components/DateRangePicker/DateRangePic
 import GuestNumberDropdown from "../../../../components/SearchBar/GuestNumberDropdown/GuestNumberDropdown";
 import useDropdown from "../../../../custom-hooks/useDropdown";
 import ChevronTopIcon from "../../../../components/UI/SVG/ChevronTopIcon";
+import useGuestNum from "../../../../custom-hooks/useGuestNum";
+import { useDispatch } from "react-redux";
+import { searchQueryActions } from "../../../../redux-store/searchQuerySlice";
 import { useState } from "react";
 import dayjs from "dayjs";
 
@@ -11,19 +14,19 @@ const AsideInfo = function ({
   startDate,
   endDate,
   onChangeDate,
-  adultsNumData,
-  childrenNumData,
-  babiesNumData,
-  animalsNumData,
+  reduxAdults,
+  reduxChildren,
+  reduxBabies,
+  reduxAnimals,
 }) {
   const [datePickerIsActive, setDatePickerIsActive] = useState(false);
-  const {
-    dropdownIsVisible,
-    dropdownRef,
-    containerRef,
-    handleOpenDropdown,
-    handleCloseDropdown,
-  } = useDropdown();
+
+  const adultsNumData = useGuestNum(7, reduxAdults || 1);
+  const childrenNumData = useGuestNum(7, reduxChildren || 0);
+  const babiesNumData = useGuestNum(5, reduxBabies || 0);
+  const animalsNumData = useGuestNum(3, reduxAnimals || 0);
+
+  const reduxDispatch = useDispatch();
 
   const handleDatePickerFocus = function () {
     setDatePickerIsActive(true);
@@ -33,10 +36,27 @@ const AsideInfo = function ({
     setDatePickerIsActive(false);
   };
 
-  const { guestNum: localAdults } = adultsNumData;
-  const { guestNum: localChildren } = childrenNumData;
-  const { guestNum: localBabies } = babiesNumData;
-  const { guestNum: localAnimals } = animalsNumData;
+  const { guestNum: localAdults, setGuestNum: setLocalAdults } = adultsNumData;
+  const { guestNum: localChildren, setGuestNum: setLocalChildren } =
+    childrenNumData;
+  const { guestNum: localBabies, setGuestNum: setLocalBabies } = babiesNumData;
+  const { guestNum: localAnimals, setGuestNum: setLocalAnimals } =
+    animalsNumData;
+
+  const handleResetLocalGuestNum = function () {
+    setLocalAdults(reduxAdults);
+    setLocalChildren(reduxChildren);
+    setLocalBabies(reduxBabies);
+    setLocalAnimals(reduxAnimals);
+  };
+
+  const {
+    dropdownIsVisible,
+    dropdownRef,
+    containerRef,
+    handleOpenDropdown,
+    handleCloseDropdown,
+  } = useDropdown(handleResetLocalGuestNum);
 
   const {
     asideInfo,
@@ -48,13 +68,30 @@ const AsideInfo = function ({
     asideInfo__GuestNum__DropdownBtn,
   } = styles;
 
+  const handleAddGuestNum = function () {
+    reduxDispatch(
+      searchQueryActions.setGuestNum({
+        adults: localAdults,
+        children: localChildren,
+        babies: localBabies,
+        animal: localAnimals,
+      })
+    );
+
+    handleCloseDropdown();
+  };
+
   let guestLabel;
 
-  if (localAdults === 0) {
-    guestLabel = "Add guests";
-  } else if (localAdults === 1) {
+  if (reduxAdults === 1) {
     guestLabel = "1 guest";
   } else {
+    guestLabel = `${reduxAdults + reduxChildren} guests`;
+  }
+
+  if (dropdownIsVisible && localAdults === 1) {
+    guestLabel = "1 guest";
+  } else if (dropdownIsVisible && localAdults > 1) {
     guestLabel = `${localAdults + localChildren} guests`;
   }
 
@@ -93,7 +130,7 @@ const AsideInfo = function ({
             childrenData={childrenNumData}
             babiesData={babiesNumData}
             animalsData={animalsNumData}
-            onOk={handleCloseDropdown}
+            onOk={handleAddGuestNum}
           />
         )}
       </div>

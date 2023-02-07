@@ -13,6 +13,10 @@ const LocationSearchContextProvider = function ({ children }) {
     setInput: setQuery,
   } = useInput();
 
+  const resetLocationQuery = function () {
+    setQuery("");
+  };
+
   return (
     <LocationSearchContext.Provider
       value={{
@@ -22,6 +26,7 @@ const LocationSearchContextProvider = function ({ children }) {
         handleStopTypingQuery,
         handleStartTypingQuery,
         setQuery,
+        resetLocationQuery,
       }}
     >
       {children}

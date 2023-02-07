@@ -6,8 +6,10 @@ import RoomLocation from "../RoomLocation/RoomLocation";
 import AboutHost from "../AboutHost/AboutHost";
 import RoomMoreInfo from "../RoomMoreInfo/RoomMoreInfo";
 import LineBreak from "../../../components/UI/Cosmetics/LineBreak/LineBreak";
+import BookingDetailBottomNav from "../BookingDetailBottomNav/BookingDetailBottomNav";
 import RoomTypesSelect from "../RoomTypesSelect/RoomTypesSelect";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 const RoomMain = function ({
   stickyNavHeight,
@@ -19,15 +21,41 @@ const RoomMain = function ({
   lodgeInfo,
   roomTypesRef,
   onScrollToElement,
+  className,
 }) {
   const [selectedRooms, setSelectedRooms] = useState(
     lodgeInfo.types.map((type) => ({ ...type, quantity: 0 }))
   );
 
-  const { roomMain, roomMain__Info, roomMain__Aside } = styles;
+  const [isSmallerScreen, setIsSmallerScreen] = useState(false);
+  const resizeObserverRef = useRef(null);
+  useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver(function (entries) {
+      if (entries[0].contentRect.width <= 744) {
+        setIsSmallerScreen(true);
+      } else {
+        setIsSmallerScreen(false);
+      }
+    });
+
+    resizeObserverRef.current.observe(document.documentElement);
+    return () => resizeObserverRef.current.disconnect();
+  }, []);
+
+  const {
+    roomMain,
+    roomMain__SmallerScreen,
+    roomMain__LargerScreen,
+    roomMain__Info,
+    roomMain__Aside,
+  } = styles;
 
   return (
-    <div className={roomMain}>
+    <div
+      className={`${roomMain} ${
+        isSmallerScreen ? roomMain__SmallerScreen : roomMain__LargerScreen
+      } ${className}`}
+    >
       <div className={roomMain__Info}>
         <AboutRoom ref={aboutRef} description={lodgeInfo.description} />
         <LineBreak />
@@ -46,19 +74,30 @@ const RoomMain = function ({
         <LineBreak />
         <RoomMoreInfo ref={rulesRef} />
       </div>
-      <aside className={roomMain__Aside}>
-        <BookingDetailAside
-          stickyNavHeight={stickyNavHeight}
-          review={lodgeInfo.review}
-          name={lodgeInfo.name}
-          price={lodgeInfo.price}
-          location={lodgeInfo.location}
-          images={lodgeInfo.images}
-          id={lodgeInfo.id}
-          onScrollToRoomTypes={onScrollToElement.bind(null, roomTypesRef)}
-          selectedRooms={selectedRooms}
-        />
-      </aside>
+      {!isSmallerScreen && (
+        <aside className={roomMain__Aside}>
+          <BookingDetailAside
+            stickyNavHeight={stickyNavHeight}
+            review={lodgeInfo.review}
+            name={lodgeInfo.name}
+            price={lodgeInfo.price}
+            location={lodgeInfo.location}
+            images={lodgeInfo.images}
+            id={lodgeInfo.id}
+            onScrollToRoomTypes={onScrollToElement.bind(null, roomTypesRef)}
+            selectedRooms={selectedRooms}
+          />
+        </aside>
+      )}
+
+      {isSmallerScreen &&
+        createPortal(
+          <BookingDetailBottomNav
+            selectedRooms={selectedRooms}
+            id={lodgeInfo.id}
+          />,
+          document.getElementById("modal-root")
+        )}
     </div>
   );
 };

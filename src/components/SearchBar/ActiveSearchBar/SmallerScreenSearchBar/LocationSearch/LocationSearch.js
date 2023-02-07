@@ -5,7 +5,7 @@ import useFetchData from "../../../../../custom-hooks/useFetchData";
 import LocationSearchDropdown from "../../../LocationSearch/LocationSearchDropdown/LocationSearchDropdown";
 import LocationSearchContext from "../../../../../contexts/searchContext/LocationSearchContextProvider";
 
-const LocationSearch = function () {
+const LocationSearch = function ({ onFinishSearch }) {
   const {
     searchQuery,
     handleQueryChange,
@@ -48,6 +48,8 @@ const LocationSearch = function () {
           isAbsolute={false}
           locations={filteredLocations}
           setQuery={setQuery}
+          onFinishSearch={onFinishSearch}
+          onCloseDropdown={onFinishSearch}
         />
       </div>
     </div>

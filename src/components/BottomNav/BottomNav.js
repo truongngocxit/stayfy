@@ -2,42 +2,93 @@ import styles from "./BottomNav.module.scss";
 import ChevronTopIcon from "../UI/SVG/ChevronTopIcon";
 import PopupFooter from "../Footer/PopupFooter";
 import Overlay from "../UI/Overlay/Overlay";
+import ProfileButton from "../TopNav/ProfileButton/ProfileButton";
 import { createPortal } from "react-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const BottomNav = function ({ isTransparent = false }) {
-  const [bottomIsVisible, setBottomIsVisible] = useState(false);
+  const [bottomFooterIsVisible, setBottomFooterIsVisible] = useState(false);
+  const resizeObserverRef = useRef(null);
+  const [isSmallerScreen, setIsSmallerScreen] = useState(false);
+  const [isScrollDown, setIsScrollDown] = useState(false);
+  const lastScrollPosition = useRef(null);
+
+  useEffect(() => {
+    if (!lastScrollPosition.current) {
+      lastScrollPosition.current = 0;
+    }
+    const handleScrollY = function (event) {
+      const currentScrollY = event.currentTarget.scrollY;
+
+      setIsScrollDown(currentScrollY > lastScrollPosition.current);
+      lastScrollPosition.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScrollY);
+
+    return () => window.removeEventListener("scroll", handleScrollY);
+  }, []);
+
+  useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver(function (
+      entries,
+      observer
+    ) {
+      if (entries[0].contentRect.width <= 744) {
+        setIsSmallerScreen(true);
+      } else {
+        setIsSmallerScreen(false);
+      }
+    });
+
+    resizeObserverRef.current.observe(document.documentElement);
+
+    return () => resizeObserverRef.current.disconnect();
+  }, []);
 
   const handleOpenFooter = function () {
-    setBottomIsVisible(true);
+    setBottomFooterIsVisible(true);
   };
 
   const handleCloseFooter = function () {
-    setBottomIsVisible(false);
+    setBottomFooterIsVisible(false);
   };
 
-  const { bottomNav, bottomNav__Transparent, bottomNav__Resources } = styles;
+  const {
+    bottomNav,
+    bottomNav__Up,
+    bottomNav__Down,
+    bottomNav__Transparent,
+    bottomNav__Resources,
+  } = styles;
   return (
     <>
       <div
         className={`${bottomNav} ${
-          isTransparent ? bottomNav__Transparent : ""
-        }`}
+          isScrollDown ? bottomNav__Down : bottomNav__Up
+        } ${isTransparent ? bottomNav__Transparent : ""}`}
       >
-        <div>
+        {isSmallerScreen ? (
+          <ProfileButton
+            loginDropdownStyle={{
+              transform: "translate(60%, -45%)",
+            }}
+          />
+        ) : (
           <span>© {new Date().getFullYear()} Stayfy</span>
-        </div>
+        )}
+
         <div className={bottomNav__Resources} onClick={handleOpenFooter}>
           <span>Support & Resources</span>
           <ChevronTopIcon />
         </div>
       </div>
-      {bottomIsVisible &&
+      {bottomFooterIsVisible &&
         createPortal(
           <PopupFooter onCloseFooter={handleCloseFooter} />,
           document.getElementById("modal-root")
         )}
-      {bottomIsVisible &&
+      {bottomFooterIsVisible &&
         createPortal(
           <Overlay zIndex={1500} onClick={handleCloseFooter} />,
           document.getElementById("overlay-root")

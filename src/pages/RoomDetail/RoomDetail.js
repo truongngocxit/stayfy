@@ -3,12 +3,12 @@ import RoomHead from "./RoomHead/RoomHead";
 import ImagesPreview from "./ImagesPreview/ImagesPreview";
 import RoomMain from "./RoomMain/RoomMain";
 import StickySectionNav from "./StickySectionNav/StickySectionNav";
+import ImagesSlider from "./ImagesSlider/ImagesSlider";
 import { useRef, useEffect, useState, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const RoomDetail = function () {
   const { state: lodge } = useLocation();
-
   const stickyNavIntersectionObserverRef = useRef(null);
   const stickyNavRef = useRef(null);
   const [navIsSticky, setNavIsSticky] = useState(false);
@@ -25,6 +25,26 @@ const RoomDetail = function () {
   const hostSectionref = useRef(null);
   const roomTypesSectionRef = useRef(null);
   //
+
+  //Resize observer
+  const resizeObserverRef = useRef(null);
+  const [isSmallerScreen, setIsSmallerScreen] = useState(false);
+  useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver(function (
+      entries,
+      observer
+    ) {
+      if (entries[0].contentRect.width <= 744) {
+        setIsSmallerScreen(true);
+      } else {
+        setIsSmallerScreen(false);
+      }
+    });
+
+    resizeObserverRef.current.observe(document.documentElement);
+
+    return () => resizeObserverRef.current.disconnect();
+  }, []);
 
   const handleScrollToElement = function (elementRef) {
     window.scrollTo({
@@ -126,7 +146,12 @@ const RoomDetail = function () {
     setStickyNavHeight(stickyNavRef.current.getBoundingClientRect().height);
   }, []);
 
-  const { roomDetail } = styles;
+  const {
+    roomDetail,
+    roomDetail__Main,
+    roomDetail__Head,
+    roomDetail__PreviewImages,
+  } = styles;
   return (
     <>
       <StickySectionNav
@@ -151,16 +176,23 @@ const RoomDetail = function () {
         )}
       />
       <div className={roomDetail}>
+        {isSmallerScreen && (
+          <ImagesSlider images={lodge.images.filter((img) => img !== "")} />
+        )}
         <RoomHead
           name={lodge.name}
           location={lodge.location}
           review={lodge.review.toFixed(2)}
+          className={roomDetail__Head}
         />
-        <ImagesPreview
-          ref={imagePreviewRef}
-          images={lodge.images.filter((img) => img !== "")}
-          name={lodge.name}
-        />
+        {!isSmallerScreen && (
+          <ImagesPreview
+            ref={imagePreviewRef}
+            images={lodge.images.filter((img) => img !== "")}
+            name={lodge.name}
+            className={roomDetail__PreviewImages}
+          />
+        )}
         <RoomMain
           lodgeInfo={lodge}
           stickyNavHeight={stickyNavHeight}
@@ -171,6 +203,7 @@ const RoomDetail = function () {
           hostRef={hostSectionref}
           roomTypesRef={roomTypesSectionRef}
           onScrollToElement={handleScrollToElement}
+          className={roomDetail__Main}
         />
       </div>
     </>

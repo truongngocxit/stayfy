@@ -1,6 +1,9 @@
 import styles from "./SmallerScreenSearchBar.module.scss";
 import SearchIcon from "../../../UI/SVG/SearchIcon";
 import FilterButton from "../../../FilterMenu/FilterButton/FilterButton";
+import FilterModal from "../../../FilterModal/FilterModal";
+import { createPortal } from "react-dom";
+import { useState } from "react";
 
 const SmallerScreenSearchBar = function ({
   query,
@@ -9,6 +12,17 @@ const SmallerScreenSearchBar = function ({
   className,
   onClick,
 }) {
+  const [filterModalIsVisible, setFilterModalIsVisible] = useState(false);
+
+  const handleOpenFilterModal = function (event) {
+    event.stopPropagation();
+    setFilterModalIsVisible(true);
+  };
+
+  const handleCloseFilterModal = function (event) {
+    event.stopPropagation();
+    setFilterModalIsVisible(false);
+  };
   const {
     searchBar,
     searchBar__Filter,
@@ -40,7 +54,16 @@ const SmallerScreenSearchBar = function ({
         </div>
       </div>
       <div className={searchBar__Filter}>
-        <FilterButton hasText={false} />
+        <FilterButton hasText={false} onClick={handleOpenFilterModal} />
+
+        {createPortal(
+          <FilterModal
+            isFullScreen={true}
+            onClick={handleCloseFilterModal}
+            isVisible={filterModalIsVisible}
+          />,
+          document.getElementById("modal-root")
+        )}
       </div>
     </div>
   );

@@ -45,14 +45,12 @@ const BookingDetailAside = function ({
 
   // Guest state
 
-  const { reduxAdults, reduxChildren, reduxBabies, reduxAnimals } = useSelector(
-    (state) => state.search.guestNum
-  );
-
-  const adultsNumData = useGuestNum(7, reduxAdults || 1);
-  const childrenNumData = useGuestNum(7, reduxChildren || 0);
-  const babiesNumData = useGuestNum(5, reduxBabies || 0);
-  const animalsNumData = useGuestNum(3, reduxAnimals || 0);
+  const {
+    adults: reduxAdults,
+    children: reduxChildren,
+    babies: reduxBabies,
+    animals: reduxAnimals,
+  } = useSelector((state) => state.search.guestNum);
 
   const handleConfirmInformation = function () {
     const bookingInfo = {
@@ -67,10 +65,10 @@ const BookingDetailAside = function ({
         end: endDate.toString(),
       },
       guests: {
-        adults: adultsNumData.guestNum,
-        children: childrenNumData.guestNum,
-        babies: babiesNumData.guestNum,
-        animals: animalsNumData.guestNum,
+        adults: reduxAdults,
+        children: reduxChildren,
+        babies: reduxBabies,
+        animals: reduxAnimals,
       },
     };
     reduxDispatch(bookingInfoActions.addRoomInfo(bookingInfo));
@@ -86,10 +84,10 @@ const BookingDetailAside = function ({
         startDate={startDate}
         endDate={endDate}
         onChangeDate={handleChangeDate}
-        adultsNumData={adultsNumData}
-        childrenNumData={childrenNumData}
-        babiesNumData={babiesNumData}
-        animalsNumData={animalsNumData}
+        reduxAdults={reduxAdults}
+        reduxChildren={reduxChildren}
+        reduxBabies={reduxBabies}
+        reduxAnimals={reduxAnimals}
       />
       {!atLeastOneItemIsAdded && (
         <ButtonScroll label="Choose room" onClick={onScrollToRoomTypes} />

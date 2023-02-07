@@ -1,0 +1,41 @@
+@use "../../../sass-styles/variables" as *;
+
+.slider {
+  width: 100%;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 50rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::webkit-scrollbar {
+    display: none;
+  }
+
+  &__ImagesContainer {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-rows: 100%;
+    height: 100%;
+  }
+
+  &__Image {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: center;
+  }
+
+  &__BackBtn {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    padding: 0.5rem;
+    top: 3rem;
+    left: 3rem;
+    border-radius: 50%;
+    background-color: #fff;
+    border: $grayColorMain;
+  }
+}

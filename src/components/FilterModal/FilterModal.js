@@ -9,9 +9,10 @@ import { createPortal } from "react-dom";
 import Overlay from "../UI/Overlay/Overlay";
 import FacilitiesSelect from "./FacilitiesSelect/FacilitiesSelect";
 import ModalTransition from "../ModalTransition/ModalTransition";
-const FilterModal = function ({ onClick, isVisible }) {
+const FilterModal = function ({ onClick, isVisible, isFullScreen = false }) {
   const {
     filterModal,
+    filterModal__FullScreen,
     filterModal__Head,
     filterModal__Main,
     filterModal__Main__Price,
@@ -24,7 +25,12 @@ const FilterModal = function ({ onClick, isVisible }) {
   } = styles;
   return (
     <>
-      <ModalTransition className={filterModal} isVisible={isVisible}>
+      <ModalTransition
+        className={`${filterModal} ${
+          isFullScreen ? filterModal__FullScreen : ""
+        }`}
+        isVisible={isVisible}
+      >
         <header className={filterModal__Head}>
           <button onClick={onClick}>
             <CloseIcon />

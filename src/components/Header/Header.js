@@ -19,7 +19,9 @@ const Header = function ({
 
   useEffect(() => {
     resizeObserverRef.current = new ResizeObserver(function (entries, action) {
-      const headerHeight = headerRef.current.getBoundingClientRect().height;
+      const headerHeight =
+        headerRef.current?.getBoundingClientRect().height || 0;
+
       setBufferHeight(headerHeight);
 
       if (entries[0].contentRect.width <= 744) {
@@ -31,8 +33,6 @@ const Header = function ({
 
     resizeObserverRef.current.observe(document.documentElement);
   }, []);
-
-  useEffect(() => {}, []);
 
   const {
     header,
@@ -60,6 +60,7 @@ const Header = function ({
           isFixed={isFixed}
           isSmallerScreen={isSmallerScreen}
         />
+
         {hasFilter && <FilterMenu isSmallerScreen={isSmallerScreen} />}
       </div>
     </header>
