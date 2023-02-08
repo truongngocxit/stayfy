@@ -18,7 +18,7 @@ const BookingDetailAside = function ({
 }) {
   const { bookingDetail } = styles;
   return (
-    <aside className={`${bookingDetail} ${className}`}>
+    <aside className={`${bookingDetail} ${className || ""}`}>
       <BookingRoomInfo
         name={name}
         review={review}

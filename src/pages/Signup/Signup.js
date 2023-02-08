@@ -13,6 +13,24 @@ import SlideInMessage from "../../components/SlideInMessage/SlideInMessage";
 const Signup = function ({ isLoggingIn = false }) {
   const [bgImageHasLoaded, setBgImgHasLoaded] = useState(false);
 
+  const resizeObserverRef = useRef(null);
+  const [isMobileScreen, setIsMobileScreen] = useState(false);
+
+  useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver(function (entries) {
+      if (entries[0].contentRect.width <= 505) {
+        console.log("true");
+        setIsMobileScreen(true);
+      } else {
+        setIsMobileScreen(false);
+      }
+    });
+
+    resizeObserverRef.current.observe(document.documentElement);
+
+    return () => resizeObserverRef.current.disconnect();
+  }, []);
+
   const { state } = useLocation();
   const userIsActive = useSelector((state) => state.activeUser.isActive);
 
@@ -42,14 +60,23 @@ const Signup = function ({ isLoggingIn = false }) {
 
           <span>Back to home</span>
         </Link>
-        <div className={signup__Image}>
-          <img
-            src="https://images.unsplash.com/photo-1605181063694-e64a8e7a267f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-            alt="signup"
-            ref={bgImageRef}
-          />
-        </div>
-        <div className={signup__Form}>
+        {!isMobileScreen && (
+          <div className={signup__Image}>
+            <img
+              src="https://images.unsplash.com/photo-1605181063694-e64a8e7a267f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
+              alt="signup"
+              ref={bgImageRef}
+            />
+          </div>
+        )}
+        <div
+          className={signup__Form}
+          {...(isMobileScreen && {
+            style: {
+              gridColumn: "1 / -1",
+            },
+          })}
+        >
           <div className={signup__Form__Logo}>
             <BareLogo />
           </div>

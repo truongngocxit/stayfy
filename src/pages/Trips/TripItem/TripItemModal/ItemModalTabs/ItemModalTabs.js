@@ -49,7 +49,7 @@ const ItemModalTabs = function ({ className, activeTab, onChangeTab }) {
           }`}
           onClick={onChangeTab.bind(null, "cancel")}
         >
-          Cancel trip
+          Cancel
         </li>
       </ul>
     </nav>

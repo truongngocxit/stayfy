@@ -16,6 +16,11 @@
   gap: 1.5rem 6rem;
   padding: 3rem 6rem;
 
+  @media only screen and (max-width: 59em) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 3rem;
+  }
+
   &__CloseBtn {
     width: 3.2rem;
     border-radius: 50%;
@@ -25,7 +30,9 @@
     border: none;
     cursor: pointer;
     transition: all 0.3s;
-
+    position: absolute;
+    top: 3.2rem;
+    left: 3.2rem;
     &:hover {
       background-color: $grayColorFaint6;
     }
@@ -42,9 +49,18 @@
     align-self: flex-start;
   }
 
+  &__Smaller &__Tabs {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
   &__Info {
     grid-column: 2;
     grid-row: 2;
     height: 100%;
+  }
+
+  &__Smaller &__Info {
+    grid-column: 1 / -1;
   }
 }

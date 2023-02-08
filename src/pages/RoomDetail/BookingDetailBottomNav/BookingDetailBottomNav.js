@@ -2,40 +2,62 @@ import styles from "./BookingDetailBottomNav.module.scss";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
-import useGuestNum from "../../../custom-hooks/useGuestNum";
+import { Link, useNavigate } from "react-router-dom";
+import GuestNumModal from "./GuestNumModal/GuestNumModal";
+import DatePickerModal from "./DatePickerModal/DatePickerModal";
 import { bookingInfoActions } from "../../../redux-store/bookingInfoSlice";
 import { searchQueryActions } from "../../../redux-store/searchQuerySlice";
-import { Link } from "react-router-dom";
-import GuestNumberDropdown from "../../../components/SearchBar/GuestNumberDropdown/GuestNumberDropdown";
-import GuestNumModal from "./GuestNumModal/GuestNumModal";
 
-const BookingDetailBottomNav = function ({ selectedRooms, id }) {
+const BookingDetailBottomNav = function ({
+  selectedRooms,
+  id,
+  onScrollToRoomTypes,
+  review,
+  name,
+  price,
+  location,
+  images,
+}) {
   const reduxDispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // Date state
-  const { start, end } = useSelector((state) => state.search.date);
+  const { start: startDate, end: endDate } = useSelector(
+    (state) => state.search.date
+  );
 
   const today = new Date().getDate();
 
   const [selectedDate, setSelectedDate] = useState({
-    start: start || new Date(new Date().setDate(today + 7)),
-    end: end || new Date(new Date().setDate(today + 13)),
+    start: startDate || new Date(new Date().setDate(today + 7)),
+    end: endDate || new Date(new Date().setDate(today + 13)),
   });
-  const handleChangeDate = function (event) {
+
+  const handleChangeSelectedDate = function (event) {
     setSelectedDate({
       start: event[0].$d.toString(),
       end: event[1].$d.toString(),
     });
   };
 
-  const { start: startDate, end: endDate } = selectedDate;
+  const handleSaveDateAndCloseModal = function () {
+    reduxDispatch(
+      searchQueryActions.setDateSearch({
+        start: selectedDate.start.toString(),
+        end: selectedDate.end.toString(),
+      })
+    );
+    handleStopPickingDate();
+  };
 
-  const startDateLabel = new Date(startDate).toLocaleDateString("en-us", {
-    month: "short",
-    day: "2-digit",
-  });
+  const startDateLabel = new Date(selectedDate.start).toLocaleDateString(
+    "en-us",
+    {
+      month: "short",
+      day: "2-digit",
+    }
+  );
 
-  const endDateLabel = new Date(endDate).toLocaleDateString("en-us", {
+  const endDateLabel = new Date(selectedDate.end).toLocaleDateString("en-us", {
     month: "short",
     day: "2-digit",
   });
@@ -56,7 +78,11 @@ const BookingDetailBottomNav = function ({ selectedRooms, id }) {
   }
 
   const numOfDays =
-    (new Date(endDate) - new Date(startDate)) / 1000 / 60 / 60 / 24;
+    (new Date(selectedDate.end) - new Date(selectedDate.start)) /
+    1000 /
+    60 /
+    60 /
+    24;
 
   const totalPrice =
     selectedRooms.reduce(
@@ -101,6 +127,30 @@ const BookingDetailBottomNav = function ({ selectedRooms, id }) {
     setIsPickingDate(false);
   };
 
+  const handleConfirmInformation = function () {
+    const bookingInfo = {
+      id,
+      name,
+      rooms: selectedRooms,
+      review,
+      location,
+      image: images[0],
+      date: {
+        start: selectedDate.start,
+        end: selectedDate.end,
+      },
+      guests: {
+        adults: reduxAdults,
+        children: reduxChildren,
+        babies: reduxBabies,
+        animals: reduxAnimals,
+      },
+    };
+
+    reduxDispatch(bookingInfoActions.addRoomInfo(bookingInfo));
+    navigate(`/checkout/${id}`);
+  };
+
   const {
     bookingDetail,
     bookingDetail__Info,
@@ -113,21 +163,46 @@ const BookingDetailBottomNav = function ({ selectedRooms, id }) {
       <div className={bookingDetail}>
         <div className={bookingDetail__Info}>
           <div className={bookingDetail__Info__RoomsAndGuests}>
-            <span>{numOfRoomsLabel}</span>·
+            <span onClick={onScrollToRoomTypes}>{numOfRoomsLabel}</span>·
             <span onClick={handleStartAddingGuestNum}>{guestsLabel}</span>
           </div>
-          <span className={bookingDetail__Date}>
+          <span
+            className={bookingDetail__Date}
+            onClick={handleStartPickingDate}
+          >
             {startDateLabel} - {endDateLabel}
           </span>
         </div>
-        <Link className={bookingDetail__Btn} {...{ to: `/checkout/${id}` }}>
-          {totalRooms === 0 ? "Choose Room" : `Reserve at $${totalPrice}`}
-        </Link>
+
+        {totalRooms === 0 ? (
+          <button className={bookingDetail__Btn} onClick={onScrollToRoomTypes}>
+            Choose Room
+          </button>
+        ) : (
+          <button
+            className={bookingDetail__Btn}
+            onClick={handleConfirmInformation}
+          >
+            Reserve at ${totalPrice.toFixed(2)}
+          </button>
+        )}
       </div>
 
       {isAddingGuestNum &&
         createPortal(
           <GuestNumModal onCloseModal={handleStopAddingGuestNum} />,
+          document.getElementById("modal-root")
+        )}
+
+      {isPickingDate &&
+        createPortal(
+          <DatePickerModal
+            onCloseModal={handleStopPickingDate}
+            onSaveDateAndCloseModal={handleSaveDateAndCloseModal}
+            onChangeSelectedData={handleChangeSelectedDate}
+            startDate={selectedDate.start}
+            endData={selectedDate.end}
+          />,
           document.getElementById("modal-root")
         )}
     </>

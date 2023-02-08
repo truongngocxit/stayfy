@@ -95,6 +95,12 @@ const RoomMain = function ({
           <BookingDetailBottomNav
             selectedRooms={selectedRooms}
             id={lodgeInfo.id}
+            onScrollToRoomTypes={onScrollToElement.bind(null, roomTypesRef)}
+            review={lodgeInfo.review}
+            name={lodgeInfo.name}
+            price={lodgeInfo.price}
+            location={lodgeInfo.location}
+            images={lodgeInfo.images}
           />,
           document.getElementById("modal-root")
         )}

@@ -2,9 +2,30 @@
 
 .checkout {
   display: grid;
-  grid-template-columns: 2fr 3fr;
   padding: 4rem 8rem;
   gap: 2rem;
+
+  @media only screen and (max-width: 46.5em) {
+    padding: 2rem 4rem;
+  }
+
+  @media only screen and (max-width: 26.5625em) {
+    padding: 2rem 2rem;
+  }
+
+  &__SmallerScreen {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+  }
+
+  &__SmallerScreen &__Details {
+    grid-column: 1 / -1;
+  }
+
+  &__LargerScreen {
+    grid-template-columns: 2fr 3fr;
+    // /grid-auto-flow: column;
+  }
 
   &__Btn {
     grid-column: 2;

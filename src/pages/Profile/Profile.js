@@ -2,20 +2,52 @@ import styles from "./Profile.module.scss";
 import ProfileNav from "./ProfileNav/ProfileNav";
 import ProfileSettings from "./ProfileSettings/ProfileSettings";
 import SecuritySettings from "./SecuritySettings/SecuritySettings";
-import { useState } from "react";
+import ChevronLeftIcon from "../../components/UI/SVG/ChevronLeftIcon";
+import { Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
 
 const Profile = function () {
   const [currentSetting, setCurrentSetting] = useState("personal");
   const handleChangeSetting = function (setting) {
     setCurrentSetting(setting);
   };
-  const { profile, profile__Nav } = styles;
+
+  const resizeObserverRef = useRef(null);
+  const [isSmallerScreen, setIsSmallerScreen] = useState(false);
+  useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver(function (entries) {
+      if (entries[0].contentRect.width <= 744) {
+        setIsSmallerScreen(true);
+      } else {
+        setIsSmallerScreen(false);
+      }
+    });
+
+    resizeObserverRef.current.observe(document.documentElement);
+
+    return () => resizeObserverRef.current.disconnect();
+  }, []);
+  const {
+    profile,
+    profile__Larger,
+    profile__Smaller,
+    profile__Nav,
+    profile__BackBtn,
+  } = styles;
   return (
-    <div className={profile}>
+    <div
+      className={`${profile} ${
+        !isSmallerScreen ? profile__Larger : profile__Smaller
+      }`}
+    >
+      <Link className={profile__BackBtn} to="/">
+        <ChevronLeftIcon />
+      </Link>
       <ProfileNav
         className={profile__Nav}
         currentSetting={currentSetting}
         onChangeSetting={handleChangeSetting}
+        isSmallerScreen={isSmallerScreen}
       />
       {currentSetting === "personal" && <ProfileSettings />}
       {currentSetting === "security" && <SecuritySettings />}

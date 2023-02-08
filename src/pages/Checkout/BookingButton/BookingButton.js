@@ -1,12 +1,12 @@
 import styles from "./BookingButton.module.scss";
 import { Tooltip } from "antd";
 import { useContext } from "react";
-import { guestGeneralInfoContext } from "../../../../contexts/guestBookingInfoContext/guestGeneralInfoContext";
+import { guestGeneralInfoContext } from "../../../contexts/guestBookingInfoContext/guestGeneralInfoContext";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { bookingInfoActions } from "../../../../redux-store/bookingInfoSlice";
-import { searchQueryActions } from "../../../../redux-store/searchQuerySlice";
-import { activeUserActions } from "../../../../redux-store/activeUserSlice";
+import { bookingInfoActions } from "../../../redux-store/bookingInfoSlice";
+import { searchQueryActions } from "../../../redux-store/searchQuerySlice";
+import { activeUserActions } from "../../../redux-store/activeUserSlice";
 
 const BookingButton = function ({
   text,
@@ -99,16 +99,20 @@ const BookingButton = function ({
 
   const { bookingBtn, bookingBtn__Disabled } = styles;
   return (
-    <Tooltip title="Please fill the form ↑" open={submittedInfoIsInvalid}>
-      <div
-        className={`${bookingBtn} ${
-          submittedInfoIsInvalid ? bookingBtn__Disabled : ""
-        } ${className}`}
-        onClick={handleSubmitBookingInfo}
+    <div
+      className={`${bookingBtn} ${
+        submittedInfoIsInvalid ? bookingBtn__Disabled : ""
+      } ${className || ""}`}
+      onClick={handleSubmitBookingInfo}
+    >
+      <Tooltip
+        title="Please fill the form ↑"
+        open={submittedInfoIsInvalid}
+        getPopupContainer={(node) => node.parentElement}
       >
         {text}
-      </div>
-    </Tooltip>
+      </Tooltip>
+    </div>
   );
 };
 

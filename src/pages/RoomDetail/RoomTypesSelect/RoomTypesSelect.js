@@ -16,14 +16,14 @@ const RoomTypes = function ({ types, onSelectTypes, selectedRooms }, ref) {
 
   const handleSlideRight = function () {
     roomTypesRef.current.scrollBy({
-      left: roomTypesRef.current.getBoundingClientRect().width / 2,
+      left: firstItemRef.current.getBoundingClientRect().width,
       behavior: "smooth",
     });
   };
 
   const handleSlideLeft = function () {
     roomTypesRef.current.scrollBy({
-      left: -(roomTypesRef.current.getBoundingClientRect().width / 2),
+      left: -firstItemRef.current.getBoundingClientRect().width,
       behavior: "smooth",
     });
   };

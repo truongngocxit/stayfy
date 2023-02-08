@@ -8,8 +8,6 @@ import { useEffect, useRef, useState } from "react";
 const PageLayout = function ({ children }) {
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   const resizeObserverRef = useRef(null);
 
   const [isSmallerScreen, setIsSmallerScreen] = useState(false);
@@ -79,9 +77,12 @@ const PageLayout = function ({ children }) {
 
   let header = <Header {...headerProps} pathname={pathname} />;
 
-  console.log(pathname.startsWith("/detail"));
-
-  if (isSmallerScreen && pathname.startsWith("/detail")) {
+  if (
+    isSmallerScreen &&
+    (pathname.startsWith("/detail") ||
+      pathname.startsWith("/checkout") ||
+      pathname === "/profile")
+  ) {
     header = null;
   }
 

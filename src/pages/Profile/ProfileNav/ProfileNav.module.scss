@@ -2,11 +2,11 @@
 
 .profileNav {
   display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  //justify-content: space-between;
   border: $border;
   border-radius: $borderRadius;
   overflow: hidden;
+  position: relative;
 
   &__Btn {
     background: none;
@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    padding: 2rem 4rem;
+
     cursor: pointer;
     overflow: hidden;
 
@@ -25,14 +25,36 @@
     &:hover {
       background-color: $grayColorFaint7;
     }
+  }
 
+  &__Icon {
+    min-width: 2.8rem;
+    height: 2.8rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+
+    background-color: $tintColor1;
     svg {
-      width: 2.8rem;
-      height: 2.8rem;
-      padding: 0.5rem;
-      border-radius: 50%;
       stroke: $primaryColor;
-      background-color: $tintColor1;
+      width: 100%;
+      height: 100%;
     }
+  }
+
+  &__Smaller {
+    flex-direction: row;
+    align-self: center !important;
+  }
+
+  &__Smaller &__Btn {
+    padding: 0.5rem 2rem;
+  }
+
+  &__Larger {
+    flex-direction: column;
+  }
+
+  &__Larger &__Btn {
+    padding: 2rem 4rem;
   }
 }

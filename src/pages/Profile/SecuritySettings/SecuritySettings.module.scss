@@ -12,5 +12,9 @@
   &__Item {
     padding: 2rem;
     border-bottom: 0.1rem solid $grayColorFaint5;
+
+    @media only screen and (max-width: 46.5em) {
+      padding: 2rem 0;
+    }
   }
 }

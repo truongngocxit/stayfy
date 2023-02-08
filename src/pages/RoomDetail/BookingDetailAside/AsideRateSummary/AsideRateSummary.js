@@ -7,6 +7,9 @@ const AsideRateSummary = function ({ numOfDays, price, selectedRooms }) {
       totalPrice + Number(currentRoom.price) * currentRoom.quantity,
     0
   );
+
+  console.log(selectedRooms);
+  console.log(numOfDays);
   const { rateSummary, rateSummary__Items, rateSummary__Total } = styles;
   return (
     <div className={rateSummary}>

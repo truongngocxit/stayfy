@@ -12,6 +12,10 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    @media only screen and (max-width: 46.5em) {
+      padding: 1rem 2rem;
+    }
   }
 
   h3 {
@@ -20,10 +24,17 @@
 
   &__FName {
     grid-column: 1;
+    @media only screen and (max-width: 46.5em) {
+      grid-column: 1 / -1;
+    }
   }
 
   &__LName {
     grid-column: 2;
+
+    @media only screen and (max-width: 46.5em) {
+      grid-column: 1 / -1;
+    }
   }
 
   &__Email {

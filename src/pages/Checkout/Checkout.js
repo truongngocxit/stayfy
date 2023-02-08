@@ -1,8 +1,7 @@
 import styles from "./Checkout.module.scss";
-import TopNav from "../../components/TopNav/TopNav";
-import StaticFooter from "../../components/Footer/StaticFooter";
+
 import BookingDetailAside from "./BookingDetailAside/BookingDetailAside";
-import BookingButton from "./BookingInfoMain/BookingButton/BookingButton";
+import BookingButton from "./BookingButton/BookingButton";
 import BookingInfoMain from "./BookingInfoMain/BookingInfoMain";
 import GuestBookingInfoContextProvider from "../../contexts/guestBookingInfoContext/GuestBookingInfoContextProvider";
 import { createPortal } from "react-dom";
@@ -10,13 +9,32 @@ import Overlay from "../../components/UI/Overlay/Overlay";
 import AfterSubmitModal from "../../components/AfterSubmitModal/AfterSubmitModal";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import SmallerScreenBottomNav from "./SmallerScreenBottomNav/SmallerScreenBottomNav";
 
 const Checkout = function () {
   const [submitState, setSubmitState] = useState("yetSubmit");
-  const [submittingError, setSubmittingError] = useState(null);
   const roomInfo = useSelector((state) => state.bookingInfo.roomInfo);
   const navigate = useNavigate();
+
+  console.log(roomInfo);
+
+  const [isSmallerScreen, setIsSmallerScreen] = useState(false);
+
+  const resizeObserverRef = useRef(null);
+  useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver(function (entries) {
+      if (entries[0].contentRect.width <= 744) {
+        setIsSmallerScreen(true);
+      } else {
+        setIsSmallerScreen(false);
+      }
+    });
+
+    resizeObserverRef.current.observe(document.documentElement);
+
+    return () => resizeObserverRef.current.disconnect();
+  }, []);
 
   const handleIsSubmittingData = function () {
     setSubmitState("isSubmitting");
@@ -26,8 +44,14 @@ const Checkout = function () {
     setSubmitState("hasSubmitted");
   };
 
-  const { checkout, checkout__Aside, checkout__Details, checkout__Btn } =
-    styles;
+  const {
+    checkout,
+    checkout__SmallerScreen,
+    checkout__LargerScreen,
+    checkout__Aside,
+    checkout__Details,
+    checkout__Btn,
+  } = styles;
 
   let header, state, stateMessage, navigateMessage;
 
@@ -46,23 +70,39 @@ const Checkout = function () {
 
   return (
     <>
-      <div className={checkout}>
-        <div className={checkout__Aside}>
-          <BookingDetailAside {...roomInfo} />
-        </div>
-        <GuestBookingInfoContextProvider>
+      <GuestBookingInfoContextProvider>
+        <div
+          className={`${checkout} ${
+            !isSmallerScreen ? checkout__LargerScreen : checkout__SmallerScreen
+          }`}
+        >
+          {!isSmallerScreen && (
+            <div className={checkout__Aside}>
+              <BookingDetailAside {...roomInfo} />
+            </div>
+          )}
+
           <div className={checkout__Details}>
             <BookingInfoMain />
           </div>
-          <BookingButton
-            text="Book now"
-            className={checkout__Btn}
+          {!isSmallerScreen && (
+            <BookingButton
+              text="Book now"
+              className={checkout__Btn}
+              onSubmitting={handleIsSubmittingData}
+              onHasSubmitted={handleHasSubmittedData}
+            />
+          )}
+        </div>
+
+        {isSmallerScreen && (
+          <SmallerScreenBottomNav
+            roomInfo={roomInfo}
             onSubmitting={handleIsSubmittingData}
             onHasSubmitted={handleHasSubmittedData}
           />
-        </GuestBookingInfoContextProvider>
-      </div>
-
+        )}
+      </GuestBookingInfoContextProvider>
       {submitState !== "yetSubmit" &&
         createPortal(
           <AfterSubmitModal

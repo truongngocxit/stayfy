@@ -3,7 +3,7 @@ import BookingDetailAside from "../../../Checkout/BookingDetailAside/BookingDeta
 import RoomInfo from "./RoomInfo/RoomInfo";
 import ItemModalTabs from "./ItemModalTabs/ItemModalTabs";
 import CloseIcon from "../../../../components/UI/SVG/CloseIcon";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ModalTransition from "../../../../components/ModalTransition/ModalTransition";
 
 const TripItemModal = function ({
@@ -24,19 +24,42 @@ const TripItemModal = function ({
 }) {
   const [activeTab, setActiveTab] = useState("images");
 
+  const [isSmallerScreen, setIsSmallerScreen] = useState(false);
+  const resizeObserverRef = useRef(null);
+  useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver(function (entries) {
+      if (entries[0].contentRect.width <= 744) {
+        setIsSmallerScreen(true);
+      } else {
+        setIsSmallerScreen(false);
+      }
+    });
+
+    resizeObserverRef.current.observe(document.documentElement);
+
+    return () => resizeObserverRef.current.disconnect();
+  }, []);
+
   const handleChangeTab = function (tab) {
     setActiveTab(tab);
   };
 
   const {
     itemModal,
+    itemModal__Smaller,
+    itemModal__Larger,
     itemModal__Tabs,
     itemModal__Price,
     itemModal__Info,
     itemModal__CloseBtn,
   } = styles;
   return (
-    <ModalTransition className={itemModal} isVisible={isVisible}>
+    <ModalTransition
+      className={`${itemModal} ${
+        isSmallerScreen ? itemModal__Smaller : itemModal__Larger
+      }`}
+      isVisible={isVisible}
+    >
       <button className={itemModal__CloseBtn} onClick={onCloseModal}>
         <CloseIcon />
       </button>
@@ -45,17 +68,19 @@ const TripItemModal = function ({
         activeTab={activeTab}
         onChangeTab={handleChangeTab}
       />
-      <BookingDetailAside
-        name={name}
-        rooms={rooms}
-        review={review}
-        location={location}
-        date={date}
-        image={images[0]}
-        guests={guests}
-        allowModify={false}
-        className={itemModal__Price}
-      />
+      {!isSmallerScreen && (
+        <BookingDetailAside
+          name={name}
+          rooms={rooms}
+          review={review}
+          location={location}
+          date={date}
+          image={images[0]}
+          guests={guests}
+          allowModify={false}
+          className={itemModal__Price}
+        />
+      )}
       <RoomInfo
         description={description}
         name={name}

@@ -4,10 +4,11 @@ import AsideInfo from "./AsideInfo/AsideInfo";
 import AsideRateSummary from "./AsideRateSummary/AsideRateSummary";
 import ButtonScroll from "./ButtonScroll/ButtonScroll";
 import useGuestNum from "../../../custom-hooks/useGuestNum";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { bookingInfoActions } from "../../../redux-store/bookingInfoSlice";
+import { searchQueryActions } from "../../../redux-store/searchQuerySlice";
 
 const BookingDetailAside = function ({
   stickyNavHeight,
@@ -21,6 +22,7 @@ const BookingDetailAside = function ({
   id,
 }) {
   const reduxDispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Date state
   const { start, end } = useSelector((state) => state.search.date);
@@ -36,12 +38,21 @@ const BookingDetailAside = function ({
       start: event[0].$d.toString(),
       end: event[1].$d.toString(),
     });
+
+    reduxDispatch(
+      searchQueryActions.setDateSearch({
+        start: event[0].$d.toString(),
+        end: event[1].$d.toString(),
+      })
+    );
   };
 
-  const { start: startDate, end: endDate } = selectedDate;
-
   const numOfDays =
-    (new Date(endDate) - new Date(startDate)) / 1000 / 60 / 60 / 24;
+    (new Date(selectedDate.end) - new Date(selectedDate.start)) /
+    1000 /
+    60 /
+    60 /
+    24;
 
   // Guest state
 
@@ -61,8 +72,8 @@ const BookingDetailAside = function ({
       location,
       image: images[0],
       date: {
-        start: startDate.toString(),
-        end: endDate.toString(),
+        start: selectedDate.start,
+        end: selectedDate.end,
       },
       guests: {
         adults: reduxAdults,
@@ -71,7 +82,10 @@ const BookingDetailAside = function ({
         animals: reduxAnimals,
       },
     };
+
+    console.log(bookingInfo);
     reduxDispatch(bookingInfoActions.addRoomInfo(bookingInfo));
+    navigate(`/checkout/${id}`);
   };
 
   const atLeastOneItemIsAdded = selectedRooms.some((room) => room.quantity > 0);
@@ -81,8 +95,8 @@ const BookingDetailAside = function ({
     <div className={bookingDetail} style={{ top: `${40 + stickyNavHeight}px` }}>
       <AsideHead name={name} stars={review.toFixed(2)} />
       <AsideInfo
-        startDate={startDate}
-        endDate={endDate}
+        startDate={selectedDate.start}
+        endDate={selectedDate.end}
         onChangeDate={handleChangeDate}
         reduxAdults={reduxAdults}
         reduxChildren={reduxChildren}
@@ -94,13 +108,13 @@ const BookingDetailAside = function ({
       )}
       {atLeastOneItemIsAdded && (
         <>
-          <Link
-            to={`/checkout/${id}`}
+          <button
+            //to={`/checkout/${id}`}
             className={bookingDetail__Btn}
             onClick={handleConfirmInformation}
           >
             Reserve
-          </Link>
+          </button>
           <AsideRateSummary
             numOfDays={numOfDays}
             price={price}

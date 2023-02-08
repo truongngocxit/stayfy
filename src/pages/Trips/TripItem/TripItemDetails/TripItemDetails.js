@@ -2,10 +2,14 @@ import styles from "./TripItemDetails.module.scss";
 import StarIcon from "../../../../components/UI/SVG/StarIcon";
 import LocationIcon from "../../../../components/UI/SVG/LocationIcon";
 import PhoneIcon from "../../../../components/UI/SVG/PhoneIcon";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
-const TripItemDetails = function ({ review, location, name, bookedDate }) {
+const TripItemDetails = function ({
+  review,
+  location,
+  name,
+  bookedDate,
+  isSmallerScreen,
+}) {
   const {
     tripDetails,
     tripDetails__Head,
@@ -20,6 +24,7 @@ const TripItemDetails = function ({ review, location, name, bookedDate }) {
     <div className={tripDetails}>
       <div className={tripDetails__Head}>
         <h3 className={tripDetails__Head__Heading}>{name}</h3>
+
         <div className={tripDetails__Head__Review}>
           <StarIcon />
           <span>{review}</span>
@@ -36,6 +41,7 @@ const TripItemDetails = function ({ review, location, name, bookedDate }) {
             <span>323123123312</span>
           </div>
         </div>
+
         <p className={tripDetails__Footer__BookedDate}>
           Booked on:{" "}
           <strong>{new Date(bookedDate).toLocaleDateString("vi-vn")}</strong>

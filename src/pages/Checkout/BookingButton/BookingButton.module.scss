@@ -1,4 +1,4 @@
-@use "../../../../sass-styles/variables" as *;
+@use "../../../sass-styles/variables" as *;
 
 .bookingBtn {
   padding: 2rem 6rem;
@@ -10,6 +10,13 @@
   cursor: pointer;
   border: none;
   font-size: 1.6rem;
+
+  @media only screen and (max-width: 46.5em) {
+    padding: 2rem 4rem;
+  }
+  @media only screen and (max-width: 26.5625em) {
+    padding: 1.5rem 3rem;
+  }
 
   &:hover {
     background-color: $shadeColor1;

@@ -125,8 +125,6 @@ const RoomType = function (
     }
   };
 
-  console.log(selectedTypes);
-
   const {
     roomType,
     roomType__Selected,

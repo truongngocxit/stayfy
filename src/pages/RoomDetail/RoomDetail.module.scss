@@ -11,9 +11,11 @@
   }
 
   &__Head,
-  &__Main,
-  &__PreviewImages {
+  &__Main {
     padding: 0 12rem;
+  }
+  &__PreviewImages {
+    margin: 0 12rem;
   }
 
   &__Head {
@@ -28,7 +30,7 @@
     &__Head,
     &__Main,
     &__PreviewImages {
-      padding: 0 4rem;
+      margin: 0 4rem;
     }
   }
 }

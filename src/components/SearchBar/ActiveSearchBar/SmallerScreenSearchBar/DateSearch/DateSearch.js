@@ -15,7 +15,6 @@ const DateSearch = function ({ onFinishSearch, isOn }) {
   } = useContext(DateSearchContext);
 
   const handleDateChangeAndFocusGuestNum = function (event) {
-    console.log("Run");
     handleDatePickerChange(event);
     handleBlurDatePicker();
     onFinishSearch();

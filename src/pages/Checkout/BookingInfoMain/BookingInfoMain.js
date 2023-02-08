@@ -4,10 +4,10 @@ import ArrivalTimeForm from "./ArrivalTimeForm/ArrivalTimeForm";
 import SpecialRequestForm from "./SpecialRequestForm/SpecialRequestForm";
 import HouseRules from "./GuestInfoForm/HouseRules/HouseRules";
 
-const BookingInfo = function () {
+const BookingInfo = function ({ className }) {
   const { bookingInfo } = styles;
   return (
-    <div className={bookingInfo}>
+    <div className={`${bookingInfo} ${className || ""}`}>
       <GuestInfoForm />
       <ArrivalTimeForm />
       <SpecialRequestForm />
