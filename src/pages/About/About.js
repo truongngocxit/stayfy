@@ -25,6 +25,14 @@ const About = function () {
     error: factsRequestError,
   } = useFetchData("https://stayfy-backend.onrender.com/get-about-facts");
 
+  // const {
+  //   data: factItems,
+  //   isLoading: isLoadingFacts,
+  //   error: factsRequestError,
+  // } = useFetchData(
+  //   "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/facts.json"
+  // );
+
   const {
     data: founders,
     isLoading: isLoadingFounders,

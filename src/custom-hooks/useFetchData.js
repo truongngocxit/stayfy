@@ -18,7 +18,7 @@ const useFetchData = function (url) {
             (token) => (cancelRequest = token)
           ),
         });
-        console.log(response.data);
+
         const cleansedData = Object.entries(response.data).map((entry) => ({
           id: entry[0],
           ...entry[1],
