@@ -27,7 +27,7 @@ const LocationSearch = function (
   } = useDropdown();
 
   const { data: locations } = useFetchData(
-    "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/locations.json"
+    "https://stayfy-backend.onrender.com/all-docs/locations"
   );
 
   let filteredLocations = locations.filter((l) =>
