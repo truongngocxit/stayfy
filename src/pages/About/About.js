@@ -23,7 +23,7 @@ const About = function () {
     data: factItems,
     isLoading: isLoadingFacts,
     error: factsRequestError,
-  } = useFetchData("https://stayfy-backend.onrender.com/get-about-facts");
+  } = useFetchData("https://stayfy-backend.onrender.com/all-docs/facts");
 
   // const {
   //   data: factItems,
@@ -37,9 +37,7 @@ const About = function () {
     data: founders,
     isLoading: isLoadingFounders,
     error: foundersRequestError,
-  } = useFetchData(
-    "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/founders.json"
-  );
+  } = useFetchData("https://stayfy-backend.onrender.com/all-docs/founders");
 
   const intersectionObserverRef = useRef(null);
   const factsRef = useRef([]);

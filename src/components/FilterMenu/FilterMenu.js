@@ -26,9 +26,7 @@ const FilterMenu = function () {
     data: filterItems,
     isLoading,
     error,
-  } = useFetchData(
-    "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/filters.json"
-  );
+  } = useFetchData("https://stayfy-backend.onrender.com/all-docs/filters");
 
   useEffect(() => {
     let unobserve = false;
