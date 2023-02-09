@@ -47,28 +47,27 @@ const About = function () {
     const observerCallback = function (entries) {
       if (entries[0].isIntersecting) {
         factsRef.current.forEach((factEl, index) => {
-          console.log(factEl);
           setTimeout(() => (factEl.style.opacity = 1), index * 250);
         });
       }
     };
     const observerOptions = {
       root: null,
-      threshold: 0,
+      threshold: 0.1,
     };
     intersectionObserverRef.current = new IntersectionObserver(
       observerCallback,
       observerOptions
     );
 
-    if (factsRef.current.length > 0) {
-      factsRef.current.forEach((factEl) => (factEl.style.opacity = 0));
-
+    if (factsRef.current[0]) {
       intersectionObserverRef.current.observe(factsRef.current[0]);
     }
 
-    return () => intersectionObserverRef.current.disconnect();
-  }, [factsRef.current.length]);
+    return () => {
+      intersectionObserverRef.current.disconnect();
+    };
+  }, [factItems.length]);
 
   return (
     <div className={about}>
@@ -98,9 +97,6 @@ const About = function () {
                 key={item.id}
                 {...item}
                 ref={(node) => {
-                  if (!factsRef.current) {
-                    factsRef.current = [];
-                  }
                   if (!node) return;
                   factsRef.current = [...new Set([...factsRef.current, node])];
                 }}
