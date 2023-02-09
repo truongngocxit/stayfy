@@ -54,6 +54,7 @@
 
         svg {
           height: 2rem;
+          min-width: 2rem;
           fill: $grayColorMain;
           &:hover {
             fill: $primaryColor;

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const useDropdown = function (onAfterCloseDropdown = null) {
   const [dropdownIsVisible, setDropdownIsVisible] = useState(false);
@@ -9,12 +9,15 @@ const useDropdown = function (onAfterCloseDropdown = null) {
     setDropdownIsVisible(true);
   };
 
-  const handleCloseDropdown = function () {
-    setDropdownIsVisible(false);
-    if (onAfterCloseDropdown) {
-      onAfterCloseDropdown();
-    }
-  };
+  const handleCloseDropdown = useCallback(
+    function () {
+      setDropdownIsVisible(false);
+      if (onAfterCloseDropdown) {
+        onAfterCloseDropdown();
+      }
+    },
+    [onAfterCloseDropdown]
+  );
 
   useEffect(() => {
     const handleClickOutside = function (event) {
@@ -29,7 +32,7 @@ const useDropdown = function (onAfterCloseDropdown = null) {
     document.addEventListener("click", handleClickOutside);
 
     return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+  }, [handleCloseDropdown]);
 
   return {
     dropdownIsVisible,

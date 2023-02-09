@@ -40,9 +40,11 @@ const Profile = function () {
         !isSmallerScreen ? profile__Larger : profile__Smaller
       }`}
     >
-      <Link className={profile__BackBtn} to="/">
-        <ChevronLeftIcon />
-      </Link>
+      {isSmallerScreen && (
+        <Link className={profile__BackBtn} to="/">
+          <ChevronLeftIcon />
+        </Link>
+      )}
       <ProfileNav
         className={profile__Nav}
         currentSetting={currentSetting}

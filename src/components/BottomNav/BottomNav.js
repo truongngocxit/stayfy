@@ -1,6 +1,7 @@
 import styles from "./BottomNav.module.scss";
 import ChevronTopIcon from "../UI/SVG/ChevronTopIcon";
 import PopupFooter from "../Footer/PopupFooter";
+import MoreIcon from "../UI/SVG/MoreIcon";
 import Overlay from "../UI/Overlay/Overlay";
 import ProfileButton from "../TopNav/ProfileButton/ProfileButton";
 import { createPortal } from "react-dom";
@@ -79,8 +80,14 @@ const BottomNav = function ({ isTransparent = false }) {
         )}
 
         <div className={bottomNav__Resources} onClick={handleOpenFooter}>
-          <span>Support & Resources</span>
-          <ChevronTopIcon />
+          {isSmallerScreen ? (
+            <MoreIcon />
+          ) : (
+            <>
+              <span>More</span>
+              <ChevronTopIcon />
+            </>
+          )}
         </div>
       </div>
       {bottomFooterIsVisible &&

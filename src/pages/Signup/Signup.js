@@ -45,6 +45,8 @@ const Signup = function ({ isLoggingIn = false }) {
 
   const {
     signup,
+    signup__Smaller,
+    signup__Larger,
     signup__Image,
     signup__Form,
     signup__Form__Logo,
@@ -54,7 +56,11 @@ const Signup = function ({ isLoggingIn = false }) {
   } = styles;
   return (
     <>
-      <div className={signup}>
+      <div
+        className={`${signup} ${
+          isMobileScreen ? signup__Smaller : signup__Larger
+        }`}
+      >
         <Link to="/" className={signup__Back}>
           <ChevronLeftIcon />
 

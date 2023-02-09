@@ -43,6 +43,7 @@ const TripItemModal = function ({
   const handleChangeTab = function (tab) {
     setActiveTab(tab);
   };
+  console.log(date);
 
   const {
     itemModal,
@@ -67,6 +68,7 @@ const TripItemModal = function ({
         className={itemModal__Tabs}
         activeTab={activeTab}
         onChangeTab={handleChangeTab}
+        isSmallerScreen={isSmallerScreen}
       />
       {!isSmallerScreen && (
         <BookingDetailAside
@@ -93,6 +95,10 @@ const TripItemModal = function ({
         bookingId={bookingId}
         userTripId={userTripId}
         onCloseModal={onCloseModal}
+        date={date}
+        guests={guests}
+        rooms={rooms}
+        review={review}
       />
     </ModalTransition>
   );

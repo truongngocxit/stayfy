@@ -11,7 +11,7 @@
   cursor: pointer;
 
   svg {
-    width: 2.8rem;
+    min-width: 2.8rem;
     height: 2.8rem;
   }
 
@@ -45,7 +45,7 @@
 
     svg {
       position: absolute;
-      width: 80%;
+      min-width: 80%;
       height: 80%;
       top: 50%;
       left: 50%;

@@ -11,7 +11,7 @@ import {
 import timeoutPromiseDelay from "../utils/timeoutPromiseDelay";
 import { cloneDeep } from "lodash";
 
-const useFetchLodges = function (numOfItems = null, featureFilter = null) {
+const useFetchLodges = function (numOfItems = null) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
@@ -20,7 +20,6 @@ const useFetchLodges = function (numOfItems = null, featureFilter = null) {
 
   const fetchLodgesData = useCallback(
     async function (cursor = null) {
-      console.log(numOfItems);
       if (hasReachedEnd) return;
       setIsLoading(true);
       await timeoutPromiseDelay(2.5);
@@ -47,14 +46,6 @@ const useFetchLodges = function (numOfItems = null, featureFilter = null) {
         }));
 
         let filteredData = cloneDeep(cleansedData);
-
-        // if (featureFilter && featureFilter !== "isAllStays") {
-        //   filteredData = filteredData.filter(
-        //     (entry) => entry.features[featureFilter]
-        //   );
-        // } else {
-
-        // }
 
         setData((prevData) => [...prevData, ...filteredData]);
         setLastCursor(cleansedData[cleansedData.length - 1].id);

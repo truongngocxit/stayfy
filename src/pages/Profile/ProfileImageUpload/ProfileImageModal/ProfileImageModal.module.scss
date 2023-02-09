@@ -2,7 +2,7 @@
 
 .profileImageModal {
   position: fixed;
-  width: 36%;
+  // width: 36%;
   background-color: #fff;
   z-index: 1800;
   left: 50%;
@@ -64,6 +64,10 @@
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 
+    @media only screen and (max-width: 37.5em) {
+      grid-template-columns: 1fr;
+    }
+
     &__Upload {
       display: block;
       background-color: $primaryColor;
@@ -74,6 +78,7 @@
       padding: 1rem 2rem;
       border-radius: $borderRadius;
       cursor: pointer;
+      white-space: nowrap;
 
       span {
         color: #fff;

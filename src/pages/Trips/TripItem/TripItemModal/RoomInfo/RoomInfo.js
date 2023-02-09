@@ -4,6 +4,7 @@ import AboutHost from "../../../../RoomDetail/AboutHost/AboutHost";
 import LocationMap from "../../../../../components/LocationMap/LocationMap";
 import CancelTrip from "./CancelTrip/CancelTrip";
 import AmenitiesList from "../../../../RoomDetail/AmenitiesModal/AmenitiesList/AmenitiesList";
+import BookingDetailAside from "../../../../Checkout/BookingDetailAside/BookingDetailAside";
 
 const RoomInfo = function ({
   images,
@@ -15,6 +16,11 @@ const RoomInfo = function ({
   bookingId,
   onCloseModal,
   userTripId,
+  name,
+  rooms,
+  review,
+  date,
+  guests,
 }) {
   const amenitiesEntries = Object.entries(amenities);
   const availableAmenities = amenitiesEntries
@@ -27,6 +33,18 @@ const RoomInfo = function ({
   return (
     <div className={`${roomInfo} ${className}`}>
       {activeTab === "images" && <ImagesPreview images={images} />}
+      {activeTab === "details" && (
+        <BookingDetailAside
+          name={name}
+          rooms={rooms}
+          review={review}
+          location={location}
+          date={date}
+          image={images[0]}
+          guests={guests}
+          allowModify={false}
+        />
+      )}
       {activeTab === "facilities" && (
         <AmenitiesList
           availableAmenities={availableAmenities}

@@ -6,6 +6,16 @@
   height: 100vh;
   overflow: hidden;
 
+  &__Smaller &__Back {
+    svg {
+      stroke: $grayColorMain;
+    }
+
+    span {
+      color: $grayColorMain;
+    }
+  }
+
   &__Back {
     position: absolute;
     top: 5rem;
@@ -17,7 +27,7 @@
     display: flex;
     gap: 1rem;
     align-items: center;
-    z-index: 5;
+    z-index: 2;
 
     &:hover {
       text-decoration: underline;

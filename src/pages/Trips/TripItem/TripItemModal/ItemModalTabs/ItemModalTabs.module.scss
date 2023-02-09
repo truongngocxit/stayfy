@@ -2,10 +2,21 @@
 
 .modalTabs {
   font-size: 1.6rem;
+  justify-self: end;
+  position: relative;
+
   ul {
     list-style: none;
     display: flex;
     gap: 4rem;
+
+    @media only screen and (max-width: 59em) {
+      gap: 3rem;
+    }
+
+    @media only screen and (max-width: 46.5em) {
+      gap: 2.5rem;
+    }
 
     li {
       display: block;
@@ -43,6 +54,53 @@
       box-shadow: 0 0.4rem 0 -0.1rem $warningColor7;
       &:hover {
         box-shadow: 0 0.4rem 0 -0.1rem $warningColor7;
+      }
+    }
+  }
+
+  &__MoreBtn {
+    width: 3.2rem;
+    height: 3.2rem;
+    background: none;
+    border: none;
+  }
+
+  &__Smaller ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    position: absolute;
+    background-color: #fff;
+    border: $border;
+    border-radius: $borderRadius;
+    padding: 1rem 0;
+    right: -1rem;
+    z-index: 1500;
+  }
+
+  &__Smaller &__Tab {
+    padding: 1rem 3rem;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    &__Active {
+      color: $primaryColor;
+      box-shadow: none;
+      background: $tintColor1;
+      &:hover {
+        box-shadow: none;
+        background: $tintColor1;
+      }
+    }
+
+    &__Cancel {
+      color: $warningColor7;
+      box-shadow: none;
+
+      &:hover {
+        box-shadow: none;
+        background: $warningColor1;
       }
     }
   }

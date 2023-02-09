@@ -117,6 +117,7 @@ const StayItemImage = function ({ className, imgs }) {
         >
           {[imgs[0]].map((img, index, array) => (
             <div
+              key={img}
               className={itemImage__Image}
               ref={(node) => {
                 if (index === 0) {
