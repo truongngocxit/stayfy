@@ -11,7 +11,7 @@ import {
 import timeoutPromiseDelay from "../utils/timeoutPromiseDelay";
 import { cloneDeep } from "lodash";
 
-const useFetchLodges = function (numOfItems = null) {
+const useFetchLodges = function () {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
@@ -19,7 +19,7 @@ const useFetchLodges = function (numOfItems = null) {
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
 
   const fetchLodgesData = useCallback(
-    async function (cursor = null) {
+    async function (cursor = null, numOfItems) {
       if (hasReachedEnd) return;
       setIsLoading(true);
       await timeoutPromiseDelay(2.5);
@@ -55,10 +55,18 @@ const useFetchLodges = function (numOfItems = null) {
         setIsLoading(false);
       }
     },
-    [hasReachedEnd, numOfItems]
+    [hasReachedEnd]
   );
 
-  return { isLoading, error, data, fetchLodgesData, lastCursor, hasReachedEnd };
+  return {
+    isLoading,
+    error,
+    data,
+    fetchLodgesData,
+    lastCursor,
+    hasReachedEnd,
+    setData,
+  };
 };
 
 export default useFetchLodges;

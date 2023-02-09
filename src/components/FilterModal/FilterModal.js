@@ -15,6 +15,7 @@ const FilterModal = function ({ onClick, isVisible, isFullScreen = false }) {
     filterModal__FullScreen,
     filterModal__Head,
     filterModal__Main,
+    filterModal__Main__ScrollContainer,
     filterModal__Main__Price,
     filterModal__Main__Type,
     filterModal__Main__Type__Container,
@@ -38,34 +39,36 @@ const FilterModal = function ({ onClick, isVisible, isFullScreen = false }) {
           <h2>Filters</h2>
         </header>
         <main className={filterModal__Main}>
-          <div className={filterModal__Main__Price}>
-            <h3>Price range</h3>
+          <div className={filterModal__Main__ScrollContainer}>
+            <div className={filterModal__Main__Price}>
+              <h3>Price range</h3>
 
-            <PriceRangeSlider />
-          </div>
-          <form className={filterModal__Main__Type}>
-            <h3>Type of Stay</h3>
-            <div className={filterModal__Main__Type__Container}>
-              <StayType
-                icon={<HouseIcon />}
-                heading="Entire place"
-                description="...all to yourself"
-              />
-              <StayType
-                icon={<DoubleBedIcon />}
-                heading="Private room"
-                description="...for a group of 2 - 5"
-              />
-              <StayType
-                icon={<BunkBedIcon />}
-                heading="Shared room"
-                description="...with other guests"
-              />
+              <PriceRangeSlider />
             </div>
-          </form>
-          <div className={filterModal__Main__Facilities}>
-            <h3>Facilities</h3>
-            <FacilitiesSelect />
+            <form className={filterModal__Main__Type}>
+              <h3>Type of Stay</h3>
+              <div className={filterModal__Main__Type__Container}>
+                <StayType
+                  icon={<HouseIcon />}
+                  heading="Entire place"
+                  description="...all to yourself"
+                />
+                <StayType
+                  icon={<DoubleBedIcon />}
+                  heading="Private room"
+                  description="...for a group of 2 - 5"
+                />
+                <StayType
+                  icon={<BunkBedIcon />}
+                  heading="Shared room"
+                  description="...with other guests"
+                />
+              </div>
+            </form>
+            <div className={filterModal__Main__Facilities}>
+              <h3>Facilities</h3>
+              <FacilitiesSelect />
+            </div>
           </div>
         </main>
         <footer className={filterModal__Foot}>

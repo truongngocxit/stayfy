@@ -2,31 +2,34 @@ import styles from "./StaysListing.module.scss";
 import StayItem from "./StayItem/StayItem";
 import StaySkeleton from "./StaySkeleton/StaySkeleton";
 import useFetchLodges from "../../custom-hooks/useFetchLodges";
-import { useRef, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useRef, useEffect, useState, useLayoutEffect } from "react";
 
 const StaysListing = function () {
-  const featureFilter = useSelector((state) => state.filter.feature);
-
   const resizeObserverRef = useRef(null);
 
   const [numOfGridColumns, setNumOfGridColumns] = useState(4);
-  const { data, isLoading, fetchLodgesData, lastCursor, hasReachedEnd } =
-    useFetchLodges(numOfGridColumns, featureFilter);
+  const {
+    data,
+    isLoading,
+    fetchLodgesData,
+    lastCursor,
+    hasReachedEnd,
+    setData,
+  } = useFetchLodges();
 
   const intersectionObserverRef = useRef(null);
   const [lastLodgeRef, setLastLodgeRef] = useState(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     resizeObserverRef.current = new ResizeObserver(function (
       entries,
       observer
     ) {
       const currentViewportWidth = entries[0].contentRect.width;
 
-      if (currentViewportWidth <= 375) {
+      if (currentViewportWidth <= 544) {
         setNumOfGridColumns(1);
-      } else if (currentViewportWidth <= 544) {
+      } else if (currentViewportWidth <= 744) {
         setNumOfGridColumns(2);
       } else if (currentViewportWidth <= 1024) {
         setNumOfGridColumns(3);
@@ -44,15 +47,15 @@ const StaysListing = function () {
 
   useEffect(() => {
     let ignore = false;
-
+    setData([]);
     if (!ignore) {
-      fetchLodgesData(null);
+      fetchLodgesData(null, 12);
     }
 
     return () => {
       ignore = true;
     };
-  }, [fetchLodgesData]);
+  }, [fetchLodgesData, setData]);
 
   useEffect(() => {
     const observerCallback = function (entries, observer) {
@@ -138,6 +141,7 @@ const StaysListing = function () {
         </p>
       )}
       <div className={buffer}></div>
+      {console.log("REnder")}
     </>
   );
 };

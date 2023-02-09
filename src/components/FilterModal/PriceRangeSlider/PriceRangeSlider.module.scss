@@ -2,7 +2,12 @@
 
 .filterModal__Main__Price__Inputs {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 1.5rem;
+
+  @media only screen and (max-width: 34em) {
+    flex-direction: column;
+  }
 }
 
 .filterModal__Main__Price__Input {
@@ -12,6 +17,7 @@
   gap: 1rem;
   padding: 1rem 2rem;
   border-radius: $borderRadius;
+  white-space: nowrap;
 
   label {
     font-size: 1.6rem;

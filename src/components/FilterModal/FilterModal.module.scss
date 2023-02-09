@@ -2,7 +2,8 @@
 
 .filterModal {
   height: 85vh;
-  width: 50vw;
+  // width: 50vw;
+  width: auto;
   background-color: #fff;
   border: $border;
   position: fixed;
@@ -11,8 +12,8 @@
   transform: translate(-50%, -50%);
   z-index: 2000;
   border-radius: $borderRadius;
-  display: grid;
-  grid-template-rows: min-content 1fr min-content;
+  display: flex;
+  flex-direction: column;
 
   &__FullScreen {
     height: 100vh;
@@ -50,10 +51,16 @@
   &__Main {
     padding: 4rem;
     height: 100%;
+    width: 100%;
     overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
+
+    &__ScrollContainer {
+      display: grid;
+      width: 100%;
+      grid-auto-flow: row;
+      grid-auto-rows: max-content;
+      gap: 5rem;
+    }
 
     &__Price {
       display: flex;
@@ -73,7 +80,15 @@
       &__Container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        column-gap: 1.5rem;
+        gap: 1.5rem;
+
+        @media only screen and (max-width: 46.5em) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media only screen and (max-width: 34em) {
+          grid-template-columns: 0.6fr;
+        }
       }
     }
 

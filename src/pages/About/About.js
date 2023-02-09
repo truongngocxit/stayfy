@@ -2,6 +2,7 @@ import styles from "./About.module.scss";
 import FactItem from "./FactItem/FactItem";
 import useFetchData from "../../custom-hooks/useFetchData";
 import FounderItem from "./FounterItem/FounderItem";
+import { useEffect, useRef } from "react";
 
 const About = function () {
   const {
@@ -22,9 +23,7 @@ const About = function () {
     data: factItems,
     isLoading: isLoadingFacts,
     error: factsRequestError,
-  } = useFetchData(
-    "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/facts.json"
-  );
+  } = useFetchData("https://stayfy-backend.onrender.com/get-about-facts");
 
   const {
     data: founders,
@@ -33,6 +32,35 @@ const About = function () {
   } = useFetchData(
     "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/founders.json"
   );
+
+  const intersectionObserverRef = useRef(null);
+  const factsRef = useRef([]);
+  useEffect(() => {
+    const observerCallback = function (entries) {
+      if (entries[0].isIntersecting) {
+        factsRef.current.forEach((factEl, index) => {
+          console.log(factEl);
+          setTimeout(() => (factEl.style.opacity = 1), index * 250);
+        });
+      }
+    };
+    const observerOptions = {
+      root: null,
+      threshold: 0,
+    };
+    intersectionObserverRef.current = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    if (factsRef.current.length > 0) {
+      factsRef.current.forEach((factEl) => (factEl.style.opacity = 0));
+
+      intersectionObserverRef.current.observe(factsRef.current[0]);
+    }
+
+    return () => intersectionObserverRef.current.disconnect();
+  }, [factsRef.current.length]);
 
   return (
     <div className={about}>
@@ -57,7 +85,19 @@ const About = function () {
         <h2 className={about__Facts__Heading}>Fast facts</h2>
         <div className={about__Facts__Items}>
           {!isLoadingFacts &&
-            factItems.map((item) => <FactItem key={item.id} {...item} />)}
+            factItems.map((item) => (
+              <FactItem
+                key={item.id}
+                {...item}
+                ref={(node) => {
+                  if (!factsRef.current) {
+                    factsRef.current = [];
+                  }
+                  if (!node) return;
+                  factsRef.current = [...new Set([...factsRef.current, node])];
+                }}
+              />
+            ))}
         </div>
       </div>
       <div className={about__Founders}>

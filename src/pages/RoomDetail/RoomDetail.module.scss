@@ -26,11 +26,33 @@
     margin-bottom: 3rem;
   }
 
+  @media only screen and (max-width: 59em) {
+    &__Head,
+    &__Main,
+    &__PreviewImages {
+      margin: 0 4rem;
+    }
+
+    &__Head {
+      padding: 5rem 8rem;
+    }
+
+    &__Main,
+    &__PreviewImages {
+      padding: 0 8rem;
+    }
+  }
+
   @media only screen and (max-width: 46.5em) {
     &__Head,
     &__Main,
     &__PreviewImages {
       margin: 0 4rem;
+    }
+
+    &__Head,
+    &__Main {
+      padding: 0 6rem;
     }
   }
 }

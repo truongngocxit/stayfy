@@ -3,9 +3,13 @@
 .facilitySection {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  row-gap: 3rem;
+  gap: 3rem;
   margin-bottom: 4rem;
   transition: all 0.3s;
+
+  // @media only screen and (max-width: 34em) {
+  //   grid-template-columns: 1fr;
+  // }
 
   h4 {
     font-size: 1.6rem;

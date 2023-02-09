@@ -9,14 +9,16 @@
   padding: 2rem;
   position: relative;
   cursor: pointer;
+  justify-content: start;
 
   svg {
-    min-width: 2.8rem;
+    width: 2.8rem;
     height: 2.8rem;
   }
 
   h4 {
     font-size: 1.8rem;
+    white-space: nowrap;
   }
 
   p {

@@ -87,7 +87,7 @@ const SmallerScreenSearchBar = function ({ onCloseSearch, isCollapse }) {
     if (adultsNum === 0) {
       guestLabel = "1 guest";
     } else {
-      guestLabel = `${adultsNum + adultsNum} guests`;
+      guestLabel = `${adultsNum + childrenNum} guests`;
     }
   }
 
