@@ -12,12 +12,6 @@ const useCancelTrip = function () {
   const cancelTrip = async function (bookingId, userTripId, onAfterCancel) {
     setIsCancelling(true);
     setError(null);
-    console.log(
-      `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/bookings/${bookingId}.json`
-    );
-    console.log(
-      `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}/upcomingTrips/${userTripId}.json`
-    );
     try {
       await axios({
         method: "DELETE",

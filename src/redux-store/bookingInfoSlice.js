@@ -47,7 +47,7 @@ const bookingInfoSlice = createSlice({
           end: null,
         },
         guests: {
-          adults: 0,
+          adults: 1,
           children: 0,
           babies: 0,
           animals: 0,

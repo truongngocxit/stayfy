@@ -24,16 +24,6 @@ const useChangeProfileImage = function () {
         contentType: "image/jpeg",
       });
       const url = await getDownloadURL(ref(storage, newProfileImageUrl));
-      await fetch(
-        `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}.json`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ profileImage: url }),
-        }
-      );
 
       await axios({
         method: "PATCH",
@@ -65,3 +55,14 @@ const useChangeProfileImage = function () {
 };
 
 export default useChangeProfileImage;
+
+// await fetch(
+//   `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}.json`,
+//   {
+//     method: "PATCH",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ profileImage: url }),
+//   }
+// );

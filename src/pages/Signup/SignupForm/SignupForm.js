@@ -103,16 +103,6 @@ const SignupForm = function () {
 
     (async function () {
       setSubmitState("isSubmitting");
-      // await fetch(
-      //   "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users.json",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(userData),
-      //   }
-      // );
 
       await axios({
         method: "POST",
@@ -259,3 +249,14 @@ const SignupForm = function () {
 };
 
 export default SignupForm;
+
+// await fetch(
+//   "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users.json",
+//   {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(userData),
+//   }
+// );

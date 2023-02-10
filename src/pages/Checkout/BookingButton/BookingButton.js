@@ -55,6 +55,7 @@ const BookingButton = function ({
           guests,
         },
         guestInfo: {
+          userId: activeUserId,
           firstName,
           lastName,
           email,
@@ -86,11 +87,22 @@ const BookingButton = function ({
           })
         );
 
+        const response = await axios({
+          method: "POST",
+          url: "https://stayfy-backend.onrender.com/add-booking",
+          data: {
+            bookingData: data,
+            userId: activeUserId,
+          },
+        });
+
+        console.log(response.data);
+
         setTimeout(() => {
           onHasSubmitted();
           reduxDispatch(bookingInfoActions.resetBookingInfo());
           reduxDispatch(searchQueryActions.resetSearchQuery());
-        }, 5000);
+        }, 2500);
       };
       sendBookingData();
     } else {

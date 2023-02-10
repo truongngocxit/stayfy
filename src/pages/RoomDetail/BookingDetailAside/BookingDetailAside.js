@@ -72,8 +72,8 @@ const BookingDetailAside = function ({
       location,
       image: images[0],
       date: {
-        start: selectedDate.start,
-        end: selectedDate.end,
+        start: selectedDate.start.toString(),
+        end: selectedDate.end.toString(),
       },
       guests: {
         adults: reduxAdults,
@@ -83,7 +83,6 @@ const BookingDetailAside = function ({
       },
     };
 
-    console.log(bookingInfo);
     reduxDispatch(bookingInfoActions.addRoomInfo(bookingInfo));
     navigate(`/checkout/${id}`);
   };

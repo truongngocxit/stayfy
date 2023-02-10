@@ -10,7 +10,7 @@ const FacilitiesSelect = function () {
   };
 
   const { data, isLoading, error } = useFetchData(
-    "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/facilities.json"
+    "https://stayfy-backend.onrender.com/all-docs/facilities"
   );
 
   const cleansedData = Object.entries(

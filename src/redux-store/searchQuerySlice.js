@@ -32,7 +32,7 @@ const searchQuerySlice = createSlice({
         end: null,
       };
       state.guestNum = {
-        adults: 0,
+        adults: 1,
         children: 0,
         babies: 0,
         animals: 0,
