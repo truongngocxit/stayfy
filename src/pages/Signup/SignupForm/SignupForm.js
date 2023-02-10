@@ -8,6 +8,7 @@ import Overlay from "../../../components/UI/Overlay/Overlay";
 import AfterSubmitModal from "../../../components/AfterSubmitModal/AfterSubmitModal";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 const SignupForm = function () {
   const navigate = useNavigate();
@@ -102,19 +103,26 @@ const SignupForm = function () {
 
     (async function () {
       setSubmitState("isSubmitting");
-      await fetch(
-        "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users.json",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userData),
-        }
-      );
+      // await fetch(
+      //   "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users.json",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(userData),
+      //   }
+      // );
+
+      await axios({
+        method: "POST",
+        url: "https://stayfy-backend.onrender.com/signup",
+        data: userData,
+      });
+
       setTimeout(() => {
         setSubmitState("hasSubmitted");
-      }, 4000);
+      }, 3000);
     })();
   };
 

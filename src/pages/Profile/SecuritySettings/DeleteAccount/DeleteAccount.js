@@ -73,7 +73,7 @@ const DeleteAccount = function ({
         onOpenSetting={onOpenDeleteAccountForm}
         onCloseSetting={handleCloseDeleteAccountForm}
       >
-        <form className={accountDelete}>
+        <form className={accountDelete} onSubmit={handleConfirmDeleteAccount}>
           <Input
             label='Type "DELETE" to delete your account'
             className={accountDelete__Input}

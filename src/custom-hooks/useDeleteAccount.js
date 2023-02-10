@@ -10,18 +10,14 @@ const useDeleteAccount = function () {
   const reduxDispatch = useDispatch();
 
   const deleteAccount = async function (onAfterDelete) {
-    const targetUserUrl = `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}.json`;
-
     setIsDeleting(true);
     try {
-      const response = await axios({
+      await axios({
         method: "DELETE",
-        url: targetUserUrl,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        url: "https://stayfy-backend.onrender.com/delete-user",
+        data: { userId: activeUserId },
       });
-      console.log(response);
+
       reduxDispatch(activeUserActions.userLogout());
       onAfterDelete();
     } catch (error) {

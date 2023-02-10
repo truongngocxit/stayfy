@@ -36,11 +36,16 @@ const Signup = function ({ isLoggingIn = false }) {
 
   const bgImageRef = useRef(null);
 
+  const handleBgImageHasLoad = function (event) {
+    setBgImgHasLoaded(true);
+  };
+
   useEffect(() => {
-    const handleHasLoadBgImage = function (event) {
+    const timeoutId = setTimeout(() => {
       setBgImgHasLoaded(true);
-    };
-    bgImageRef.current.addEventListener("load", handleHasLoadBgImage);
+    }, 4500);
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const {
@@ -72,6 +77,7 @@ const Signup = function ({ isLoggingIn = false }) {
               src="https://images.unsplash.com/photo-1605181063694-e64a8e7a267f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
               alt="signup"
               ref={bgImageRef}
+              onLoad={handleBgImageHasLoad}
             />
           </div>
         )}

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import AfterSubmitModal from "../../../components/AfterSubmitModal/AfterSubmitModal";
 import { useDispatch } from "react-redux";
 import { activeUserActions } from "../../../redux-store/activeUserSlice";
+import axios from "axios";
 
 const LoginForm = function () {
   const [submitState, setSubmitState] = useState("yetSubmit");
@@ -46,35 +47,34 @@ const LoginForm = function () {
 
     (async function () {
       setSubmitState("isSubmitting");
-      const response = await fetch(
-        "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users.json"
-      );
-      const data = await response.json();
-      const cleansedData = Object.entries(data).map((e) => ({
-        id: e[0],
-        ...e[1],
-      }));
 
-      const retrievedUser = cleansedData.find(
-        (data) => data.password === password && data.email === email
-      );
+      const backendResponse = await axios({
+        method: "POST",
+        url: "https://stayfy-backend.onrender.com/login",
+        data: {
+          password,
+          email,
+        },
+      });
 
-      if (retrievedUser) {
+      const userData = backendResponse.data;
+
+      if (userData.error) {
+        setSubmitState("hasFailed");
+      } else {
         setSubmitState("hasSubmitted");
         const cleansedUserTrips = Object.entries({
-          ...retrievedUser.upcomingTrips,
+          ...userData.upcomingTrips,
         }).map((trip) => ({
           userTripId: trip[0],
           bookingId: trip[1].bookingId,
         }));
-        console.log(retrievedUser.upcomingTrips);
+        console.log(userData.upcomingTrips);
         const cleansedRetrivedUser = {
-          ...retrievedUser,
+          ...userData,
           upcomingTrips: cleansedUserTrips,
         };
         reduxDispatch(activeUserActions.userLogin(cleansedRetrivedUser));
-      } else {
-        setSubmitState("hasFailed");
       }
 
       resetEmail();

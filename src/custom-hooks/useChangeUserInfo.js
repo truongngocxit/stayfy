@@ -17,31 +17,19 @@ const useChangeUserInfo = function () {
   };
 
   const patchUserData = async function (data, onAfterChange) {
-    const targetUserUrl = `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}.json`;
     setIsLoading(true);
     setHasChanged(false);
     setError(null);
     try {
-      await axios({
+      const response = await axios({
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        url: targetUserUrl,
-        data,
-        cancelToken: new axios.CancelToken((cancelToken) => {
-          setCancelRequest((_) => cancelToken);
-        }),
+        url: "https://stayfy-backend.onrender.com/update-user",
+        data: { userId: activeUserId, updatedData: data },
       });
 
-      const fetchResponse = await axios({
-        method: "GET",
-        url: targetUserUrl,
-      });
+      const updatedUser = response.data;
 
-      reduxDispatch(
-        activeUserActions.userLogin({ id: activeUserId, ...fetchResponse.data })
-      );
+      reduxDispatch(activeUserActions.userLogin(updatedUser));
       onAfterChange();
     } catch (error) {
       setError(`Failed to patch data. Error: ${error}`);
@@ -60,3 +48,23 @@ const useChangeUserInfo = function () {
 };
 
 export default useChangeUserInfo;
+
+// const targetUserUrl = `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}.json`;
+
+// await axios({
+//   method: "PATCH",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   url: targetUserUrl,
+//   data,
+//   cancelToken: new axios.CancelToken((cancelToken) => {
+//     setCancelRequest((_) => cancelToken);
+//   }),
+// });
+
+// console.log(activeUserId);
+// const fetchResponse = await axios({
+//   method: "GET",
+//   url: targetUserUrl,
+// });

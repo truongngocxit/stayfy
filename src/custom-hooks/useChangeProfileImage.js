@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { activeUserActions } from "../redux-store/activeUserSlice";
 import { storage } from "../myAppFirebase/myAppFirebase";
+import axios from "axios";
 
 const useChangeProfileImage = function () {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +34,18 @@ const useChangeProfileImage = function () {
           body: JSON.stringify({ profileImage: url }),
         }
       );
+
+      await axios({
+        method: "PATCH",
+        url: "https://stayfy-backend.onrender.com/update-user",
+        data: {
+          userId: activeUserId,
+          updatedData: {
+            profileImage: url,
+          },
+        },
+      });
+
       reduxDispatch(activeUserActions.changeUserImage(url));
       onAfterUpdate();
     } catch (error) {

@@ -1,29 +1,38 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 const Test = function () {
-  const resizeObserverRef = useRef(null);
-  const redBoxRef = useRef(null);
-  useEffect(() => {
-    const resizeCallback = function (entries, callback) {
-      entries.forEach((e) => console.log(e));
-    };
+  const [userName, setUserName] = useState("");
+  const [data, setData] = useState("");
 
-    resizeObserverRef.current = new ResizeObserver(resizeCallback);
+  const handleSubmit = async function (event) {
+    event.preventDefault();
 
-    resizeObserverRef.current.observe(document.documentElement);
+    const response = await axios({
+      method: "POST",
+      url: "https://stayfy-backend.onrender.com/login",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: {
+        userName,
+      },
+    });
 
-    return () => resizeObserverRef.current.disconnect();
-  }, []);
+    setData(response.data);
+  };
 
   return (
-    <div
-      ref={redBoxRef}
-      style={{
-        backgroundColor: "red",
-        width: "200px",
-        height: "200px",
-      }}
-    />
+    <form onSubmit={handleSubmit}>
+      <label>
+        <h1>Your input: {data.userName}</h1>
+        <input
+          value={userName}
+          onChange={(event) => setUserName(event.target.value)}
+        />
+        <button type="submit">Submit</button>
+      </label>
+    </form>
   );
 };
 
