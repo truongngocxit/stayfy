@@ -16,7 +16,7 @@ const useFetchUpcomingTrips = function () {
       setError(null);
       try {
         const getTripsResponse = await axios({
-          url: `https://stayfy-backend.onrender.com/${userId}`,
+          url: `https://stayfy-backend.onrender.com/upcoming-trips/${userId}`,
           method: "GET",
         });
 
