@@ -44,6 +44,8 @@ const useFetchUpcomingTrips = function () {
           },
         }));
 
+        console.log(consolidatedTripsData);
+
         setTripData(consolidatedTripsData);
       } catch (error) {
         setError(`Failed to fetch upcoming trips. Error: ${error}`);

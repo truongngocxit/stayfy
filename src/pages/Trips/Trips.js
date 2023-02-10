@@ -46,7 +46,7 @@ const Trips = function () {
                 {tripData.map((trip) => (
                   <TripItem
                     key={trip.bookingId}
-                    bookingId={trip.bookingId}
+                    bookingId={trip.id}
                     userTripId={trip.userTripId}
                     book={trip}
                     roomInfo={trip.roomInfo}

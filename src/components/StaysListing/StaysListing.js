@@ -15,6 +15,7 @@ const StaysListing = function () {
     lastCursor,
     hasReachedEnd,
     setData,
+    locationSearch,
   } = useFetchLodges();
 
   const intersectionObserverRef = useRef(null);
@@ -47,7 +48,11 @@ const StaysListing = function () {
 
   useEffect(() => {
     let ignore = false;
-    setData([]);
+
+    if (!hasReachedEnd) {
+      setData([]);
+    }
+
     if (!ignore) {
       fetchLodgesData(null, 12);
     }
@@ -55,7 +60,7 @@ const StaysListing = function () {
     return () => {
       ignore = true;
     };
-  }, [fetchLodgesData, setData]);
+  }, [fetchLodgesData, setData, hasReachedEnd, locationSearch]);
 
   useEffect(() => {
     const observerCallback = function (entries, observer) {
@@ -86,7 +91,14 @@ const StaysListing = function () {
     }
 
     return () => intersectionObserverRef.current.disconnect();
-  }, [lastLodgeRef, fetchLodgesData, isLoading, lastCursor, numOfGridColumns]);
+  }, [
+    lastLodgeRef,
+    fetchLodgesData,
+    isLoading,
+    lastCursor,
+    numOfGridColumns,
+    locationSearch,
+  ]);
 
   const cleansedData = data.map((d) => {
     return {
@@ -141,7 +153,6 @@ const StaysListing = function () {
         </p>
       )}
       <div className={buffer}></div>
-      {console.log("REnder")}
     </>
   );
 };

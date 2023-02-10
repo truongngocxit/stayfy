@@ -8,15 +8,16 @@ import { createPortal } from "react-dom";
 import useFetchData from "../../custom-hooks/useFetchData";
 import SkeletonFilterSlider from "./SkeletonFilterSlider/SkeletonFilterSlider";
 import FilterModal from "../FilterModal/FilterModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { filterActions } from "../../redux-store/filterSlice";
 
 const FilterMenu = function () {
+  const featureFilter = useSelector((state) => state.filter.feature);
   const reduxDispatch = useDispatch();
   const [filterModalIsVisible, setFilterModalIsVisible] = useState(false);
   const [leftBtnIsVisible, setLeftBtnIsVisible] = useState(false);
   const [rightBtnIsVisible, setRightBtnIsVisible] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState("all-stays");
+  const [selectedFilter, setSelectedFilter] = useState(featureFilter);
   const sliderIntersectionObserverRef = useRef(null);
   const firstItemRef = useRef(null);
   const lastItemRef = useRef(null);
@@ -116,6 +117,11 @@ const FilterMenu = function () {
 
   let filterSliderContent;
 
+  const sortedFilterItems = [
+    ...filterItems.filter((i) => i.tag === "isAllStays"),
+    ...filterItems.filter((i) => i.tag !== "isAllStays"),
+  ];
+
   if (isLoading || filterItems.length === 0) {
     filterSliderContent = isLoading && <SkeletonFilterSlider />;
   } else if (!isLoading && filterItems.length > 0) {
@@ -123,9 +129,9 @@ const FilterMenu = function () {
       <div className={filterMenu__Container}>
         <div className={filterMenu__Items} ref={filterSliderRef}>
           <div className={filterMenu__Items__Slider}>
-            {filterItems.map((item, index, array) => (
+            {sortedFilterItems.map((item, index, array) => (
               <FilterItem
-                onClick={() => handleChangeSelectedFilter(item.tag)}
+                onClick={handleChangeSelectedFilter.bind(null, item.tag)}
                 isSelected={item.tag === selectedFilter}
                 text={item.name}
                 key={item.id}

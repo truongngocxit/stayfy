@@ -66,26 +66,19 @@ const BookingButton = function ({
       const sendBookingData = async function () {
         onSubmitting();
 
-        const bookingResponse = await axios({
-          method: "POST",
-          url: "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/bookings.json",
-          data,
-        });
+        // const bookingResponse = await axios({
+        //   method: "POST",
+        //   url: "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/bookings.json",
+        //   data,
+        // });
 
-        const newBookingId = bookingResponse.data.name;
+        // const newBookingId = bookingResponse.data.name;
 
-        const tripResponse = await axios({
-          method: "POST",
-          url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}/upcomingTrips.json`,
-          data: { bookingId: newBookingId },
-        });
-
-        reduxDispatch(
-          activeUserActions.addTrip({
-            bookingId: newBookingId,
-            userTripId: tripResponse.data.name,
-          })
-        );
+        // const tripResponse = await axios({
+        //   method: "POST",
+        //   url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}/upcomingTrips.json`,
+        //   data: { bookingId: newBookingId },
+        // });
 
         const response = await axios({
           method: "POST",
@@ -97,6 +90,13 @@ const BookingButton = function ({
         });
 
         console.log(response.data);
+
+        reduxDispatch(
+          activeUserActions.addTrip({
+            bookingId: response.data.bookingId,
+            userTripId: response.data.tripId,
+          })
+        );
 
         setTimeout(() => {
           onHasSubmitted();

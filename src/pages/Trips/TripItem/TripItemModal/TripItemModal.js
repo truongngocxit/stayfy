@@ -43,7 +43,6 @@ const TripItemModal = function ({
   const handleChangeTab = function (tab) {
     setActiveTab(tab);
   };
-  console.log(date);
 
   const {
     itemModal,

@@ -2,37 +2,40 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 const Test = function () {
-  const [userName, setUserName] = useState("");
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
+  const [cursor, setCursor] = useState(null);
 
-  const handleSubmit = async function (event) {
-    event.preventDefault();
-
+  const handleLoadData = async function () {
     const response = await axios({
-      method: "POST",
-      url: "https://stayfy-backend.onrender.com/login",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: {
-        userName,
+      method: "GET",
+      url: "http://127.0.0.1:8080/test-infinite-scrolling",
+      params: {
+        cursor,
       },
     });
 
-    setData(response.data);
+    console.log(response.data);
+
+    const cleansedData = Object.entries(response.data.data).map((e) => ({
+      id: e[0],
+      ...e[1],
+    }));
+
+    setCursor(response.data.lastCursor);
+    setData((prevData) => [...prevData, ...cleansedData]);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <h1>Your input: {data.userName}</h1>
-        <input
-          value={userName}
-          onChange={(event) => setUserName(event.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </label>
-    </form>
+    <div>
+      <button onClick={handleLoadData}>Load facilities</button>
+      <ul>
+        {data.map((d) => (
+          <li key={d.id} style={{ fontSize: 16 }}>
+            {d.name}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

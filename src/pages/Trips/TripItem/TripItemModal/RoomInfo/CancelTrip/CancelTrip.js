@@ -31,7 +31,7 @@ const CancelTrip = function ({ bookingId, userTripId, onCloseModal }) {
 
   const handleConfirmCancel = function (event) {
     event.preventDefault();
-    console.log("Click");
+
     cancelTrip(bookingId, userTripId, onCloseModal);
   };
 

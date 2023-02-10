@@ -14,13 +14,12 @@ const useCancelTrip = function () {
     setError(null);
     try {
       await axios({
+        url: "https://stayfy-backend.onrender.com/delete-trip",
         method: "DELETE",
-        url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/bookings/${bookingId}.json`,
-      });
-
-      await axios({
-        method: "DELETE",
-        url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}/upcomingTrips/${userTripId}.json`,
+        params: {
+          bookingId,
+          userId: activeUserId,
+        },
       });
 
       reduxDispatch(activeUserActions.removeTrip(bookingId));

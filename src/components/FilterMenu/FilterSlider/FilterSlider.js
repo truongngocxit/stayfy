@@ -44,7 +44,7 @@ const FilterSlider = function ({ onHandleLeftBtn, onHandleRightBtn }) {
 
     intersectionObserverRef.current.observe(firstItemRef.current);
     intersectionObserverRef.current.observe(lastItemRef.current);
-  }, []);
+  }, [onHandleLeftBtn, onHandleRightBtn]);
   const { filterMenu__Items, filterMenu__Items__Slider } = styles;
   return (
     <div className={filterMenu__Items} ref={filterSliderRef}>

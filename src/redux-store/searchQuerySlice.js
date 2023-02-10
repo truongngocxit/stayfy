@@ -17,6 +17,7 @@ const searchQuerySlice = createSlice({
   },
   reducers: {
     setQuerySearch(state, action) {
+      console.log(action.payload);
       state.query = action.payload || null;
     },
     setDateSearch(state, action) {
