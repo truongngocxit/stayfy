@@ -1,12 +1,17 @@
 import { createContext, useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 const priceRangeContext = createContext();
 
 export const PriceRangeContextProvider = function ({ children }) {
+  const {
+    priceRange: { min: minRange, max: maxRange },
+  } = useSelector((state) => state.search.filters);
+
   const [priceRange, setPriceRange] = useState({
-    min: 0,
-    max: 200,
+    min: minRange || 0,
+    max: maxRange || 200,
   });
 
   const maxPriceRef = useRef(null);
@@ -29,7 +34,7 @@ export const PriceRangeContextProvider = function ({ children }) {
 
       setPriceRange((prevRange) => ({
         ...prevRange,
-        max: higestLodgePrice,
+        max: maxRange || higestLodgePrice,
       }));
 
       maxPriceRef.current = higestLodgePrice;

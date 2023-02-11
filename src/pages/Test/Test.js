@@ -8,7 +8,7 @@ const Test = function () {
   const handleLoadData = async function () {
     const response = await axios({
       method: "GET",
-      url: "https://stayfy-backend.onrender.com/write-lodges",
+      url: "http://127.0.0.1:8080/add-lodge-types",
     });
 
     console.log(response.data);

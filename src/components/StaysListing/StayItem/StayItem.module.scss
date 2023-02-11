@@ -8,10 +8,20 @@
   row-gap: 1rem;
   cursor: pointer;
   text-decoration: none;
+  transition: all 0.3s;
+  border-radius: $borderRadius;
 
   &:link,
   &:visited {
     color: inherit;
+  }
+
+  &:hover {
+    transform: translate(0, -0.1rem);
+    box-shadow: 0 0 0 0.5rem #fff, 0 0 0 0.7rem $primaryColor;
+  }
+
+  &__Info {
   }
 
   &__Image {

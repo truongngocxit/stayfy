@@ -1,9 +1,11 @@
 import styles from "./Footer.module.scss";
-
+import { Link } from "react-router-dom";
 import FacebookIcon from "../UI/SVG/FacebookIcon";
 import TwitterIcon from "../UI/SVG/TwitterIcon";
 import InstagramIcon from "../UI/SVG/InstagramIcon";
 import LinkedinIcon from "../UI/SVG/LinkedinIcon";
+import AfterSubmitModal from "../AfterSubmitModal/AfterSubmitModal";
+import SubscriptionForm from "./SubscriptionForm/SubscriptionForm";
 
 const Footer = function ({ onCloseFooter }) {
   const {
@@ -19,16 +21,13 @@ const Footer = function ({ onCloseFooter }) {
       <footer className={footer}>
         <div className={footer__Links}>
           <section className={footer__Links__Info}>
-            <h3>Info</h3>
+            <h3>Account</h3>
             <ul>
               <li>
-                <a href="#">FAQs</a>
+                <Link to="/terms">Terms & Services</Link>
               </li>
               <li>
-                <a href="#">Terms & Conditions</a>
-              </li>
-              <li>
-                <a href="#">Privacy Policy</a>
+                <Link to="/privacy-policy">Privacy Policy</Link>
               </li>
             </ul>
           </section>
@@ -36,10 +35,7 @@ const Footer = function ({ onCloseFooter }) {
             <h3>Company</h3>
             <ul>
               <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a href="#">Letters from our founder</a>
+                <Link to="/about">About</Link>
               </li>
             </ul>
           </section>
@@ -47,34 +43,42 @@ const Footer = function ({ onCloseFooter }) {
             <h3>Social</h3>
             <ul>
               <li>
-                <a href="#">
+                <a
+                  href="https://www.facebook.com/ng.phu.truong"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <FacebookIcon />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a
+                  href="https://www.instagram.com/truong.nguyen.7797"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <InstagramIcon />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a
+                  href="https://www.linkedin.com/in/truongnguyen1997/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <LinkedinIcon />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://twitter.com/" target="_blank" rel="noreferrer">
                   <TwitterIcon />
                 </a>
               </li>
             </ul>
           </section>
         </div>
-        <form className={footer__Subscription}>
-          <label>Get special offers and more from Stayfy</label>
 
-          <input type="email" />
-          <button>Subscribe</button>
-        </form>
+        <SubscriptionForm className={footer__Subscription} />
       </footer>
     </>
   );

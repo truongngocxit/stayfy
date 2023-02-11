@@ -1,9 +1,11 @@
 import { createContext, useState } from "react";
-
+import { useSelector } from "react-redux";
 const typesFilterContext = createContext();
 
 export const TypesFilterContextProvider = function ({ children }) {
-  const [typeFilters, setTypeFilters] = useState([]);
+  const { typesOfStay } = useSelector((state) => state.search.filters);
+
+  const [typeFilters, setTypeFilters] = useState(typesOfStay);
   const handleToggleType = function (type) {
     if (typeFilters.some((curType) => curType === type)) {
       setTypeFilters((prevTypes) =>

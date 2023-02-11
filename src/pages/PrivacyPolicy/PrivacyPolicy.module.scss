@@ -1,0 +1,61 @@
+@use "../../sass-styles/variables" as *;
+
+.privacy {
+  font-size: 1.6rem;
+  padding: 6rem 32rem;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  line-height: 1.8;
+
+  @media only screen and (max-width: 59em) {
+    padding: 6rem 24rem;
+  }
+
+  @media only screen and (max-width: 46.5em) {
+    &__Heading {
+      h1 {
+        font-size: 3.6rem !important;
+      }
+    }
+    padding: 6rem 18rem;
+  }
+
+  @media only screen and (max-width: 46.5em) {
+    padding: 6rem 8rem;
+  }
+
+  @media only screen and (max-width: 26.5626em) {
+    &__Heading {
+      h1 {
+        font-size: 2.4rem !important;
+      }
+    }
+    padding: 6rem 6rem;
+  }
+
+  &__Heading {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    h6 {
+      color: $grayColorFaint3;
+      font-size: 1.4rem;
+    }
+
+    h1 {
+      font-size: 5.2rem;
+    }
+  }
+
+  &__Content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    ul {
+      margin-left: 6rem;
+    }
+  }
+}

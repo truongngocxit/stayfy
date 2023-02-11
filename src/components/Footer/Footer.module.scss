@@ -78,35 +78,35 @@
       justify-self: start;
     }
 
-    label {
+    h3 {
       grid-column: 1 / -1;
       font-size: 2rem;
       font-weight: 700;
     }
 
-    input {
-      border: $border;
-      border-radius: $borderRadius;
-      background: none;
-      padding: 1.5rem 2rem;
-      background-color: #fff;
+    // input {
+    //   border: $border;
+    //   border-radius: $borderRadius;
+    //   background: none;
+    //   padding: 1.5rem 2rem;
+    //   background-color: #fff;
 
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.2rem $primaryColor;
-      }
-    }
+    //   &:focus {
+    //     outline: none;
+    //     box-shadow: 0 0 0 0.2rem $primaryColor;
+    //   }
+    // }
 
-    button {
-      background-color: $primaryColor;
-      border: none;
-      border-radius: $borderRadius;
-      color: #fff;
-      cursor: pointer;
+    // button {
+    //   background-color: $primaryColor;
+    //   border: none;
+    //   border-radius: $borderRadius;
+    //   color: #fff;
+    //   cursor: pointer;
 
-      &:hover {
-        background-color: $shadeColor1;
-      }
-    }
+    //   &:hover {
+    //     background-color: $shadeColor1;
+    //   }
+    // }
   }
 }

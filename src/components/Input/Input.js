@@ -25,6 +25,7 @@ const Input = function ({
       placement={tooltipPlacement}
       color="#f03e3e"
       open={hasError && !isTyping && !isDisabled && isValidate}
+      getPopupContainer={(node) => node.parentElement}
     >
       <label
         className={`${input} ${isTyping && !isDisabled ? input__Focus : ""} ${

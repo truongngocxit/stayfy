@@ -26,11 +26,7 @@ const useFetchLodges = function () {
         return;
       }
       setIsLoading(true);
-
-      console.log(typesOfStay);
-      console.log(facilities);
-      console.log(typesOfStay);
-
+      //url: "https://stayfy-backend.onrender.com/get-paginated-lodges",
       try {
         const response = await axios({
           method: "GET",

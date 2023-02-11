@@ -1,9 +1,12 @@
 import { createContext, useState } from "react";
+import { useSelector } from "react-redux";
 
 const facilitiesFilterContext = createContext();
 
 export const FacilitiesFilterContextProvider = function ({ children }) {
-  const [facilitiesSelect, setFaciltiesSelect] = useState([]);
+  const { facilities } = useSelector((state) => state.search.filters);
+
+  const [facilitiesSelect, setFaciltiesSelect] = useState(facilities);
 
   const handleSelectFacility = function (fac) {
     console.log(fac);

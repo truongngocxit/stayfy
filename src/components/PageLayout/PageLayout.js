@@ -2,8 +2,10 @@ import styles from "./PageLayout.module.scss";
 import Header from "../Header/Header";
 import BottomNav from "../BottomNav/BottomNav";
 import StaticFooter from "../Footer/StaticFooter";
+import { createPortal } from "react-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import Notification from "./Notification/Notification";
 
 const PageLayout = function ({ children }) {
   const { pathname } = useLocation();
@@ -88,11 +90,15 @@ const PageLayout = function ({ children }) {
 
   const { layout } = styles;
   return (
-    <div className={layout}>
-      {header}
-      {children}
-      {footer}
-    </div>
+    <>
+      <div className={layout}>
+        {header}
+        {children}
+        {footer}
+      </div>
+
+      {createPortal(<Notification />, document.getElementById("modal-root"))}
+    </>
   );
 };
 

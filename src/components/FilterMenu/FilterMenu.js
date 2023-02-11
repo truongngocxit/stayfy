@@ -10,12 +10,11 @@ import SkeletonFilterSlider from "./SkeletonFilterSlider/SkeletonFilterSlider";
 import FilterModal from "../FilterModal/FilterModal";
 import { useDispatch, useSelector } from "react-redux";
 import { searchQueryActions } from "../../redux-store/searchQuerySlice";
-import FilterModalContextProvider from "../../contexts/filterModalContext/filterModalContextProvider";
-import ModalTransition from "../ModalTransition/ModalTransition";
+
 import axios from "axios";
 
 const FilterMenu = function () {
-  const featureFilter = useSelector((state) => state.filter.feature);
+  const featureFilter = useSelector((state) => state.search.feature);
   const reduxDispatch = useDispatch();
   const [filterModalIsVisible, setFilterModalIsVisible] = useState(false);
   const [leftBtnIsVisible, setLeftBtnIsVisible] = useState(false);
@@ -45,8 +44,6 @@ const FilterMenu = function () {
           limit: 1,
         },
       });
-
-      console.log(response.data);
 
       setMaxPrice(
         Number(Object.entries(response.data)[0][1].price.max.toFixed(2))
