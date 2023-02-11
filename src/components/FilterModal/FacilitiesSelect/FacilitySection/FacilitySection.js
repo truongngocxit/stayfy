@@ -1,13 +1,24 @@
 import styles from "./FacilitySection.module.scss";
-import FacilitySelect from "../FacilitySelectItem/FacilitySelect";
+import FacilitySelect from "../FacilitySelectItem/FacilitySelectItem";
 
-const FacilitySection = function ({ heading, items }) {
+const FacilitySection = function ({
+  heading,
+  items,
+  onSelectFacility,
+  facilitiesSelect,
+}) {
   const { facilitySection } = styles;
   return (
     <div className={facilitySection}>
       <h4>{heading}</h4>
       {items.map((i) => (
-        <FacilitySelect key={i.id} name={i.name} />
+        <FacilitySelect
+          key={i.id}
+          name={i.name}
+          tag={i.tag}
+          onSelectFacility={onSelectFacility}
+          facilitiesSelect={facilitiesSelect}
+        />
       ))}
     </div>
   );

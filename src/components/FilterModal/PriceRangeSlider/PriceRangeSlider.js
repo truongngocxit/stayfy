@@ -1,43 +1,18 @@
 import styles from "./PriceRangeSlider.module.scss";
 import { ConfigProvider, Slider } from "antd";
-import { useState } from "react";
+import { useState, useRef, useContext } from "react";
+import priceRangeContext from "../../../contexts/filterModalContext/priceRangeContextProvider";
 
-const PriceRangeSlider = function () {
-  const [priceRange, setPriceRange] = useState({
-    min: 0,
-    max: 1000,
-  });
-
-  const handleRangeChange = function (event) {
-    setPriceRange({
-      min: event[0],
-      max: event[1],
-    });
-  };
-
-  const handleInputMin = function (event) {
-    const input = Number(event.target.value);
-    if (!isFinite(input) || input < 0 || input > priceRange.max) return;
-    setPriceRange({
-      ...priceRange,
-      min: Number(input),
-    });
-  };
-
-  const handleInputMax = function (event) {
-    const input = Number(event.target.value);
-    if (!isFinite(input) || input > 1000 || input < priceRange.min) return;
-    setPriceRange({
-      ...priceRange,
-      max: input,
-    });
-  };
+const PriceRangeSlider = function ({ maxPrice }) {
+  const { priceRange, handleRangeChange, handleInputMin, handleInputMax } =
+    useContext(priceRangeContext);
 
   const { filterModal__Main__Price__Inputs, filterModal__Main__Price__Input } =
     styles;
   return (
     <>
       <ConfigProvider
+        getPopupContainer={(node) => node.parentElement}
         theme={{
           token: {
             colorPrimary: "#00b4d8",
@@ -51,11 +26,14 @@ const PriceRangeSlider = function () {
           onChange={handleRangeChange}
           range
           value={[priceRange.min, priceRange.max]}
-          defaultValue={[0, 1000]}
+          defaultValue={[0, maxPrice]}
           min={0}
-          max={1000}
+          max={maxPrice}
           tooltip={{ formatter: (val) => `$${val}` }}
-          zIndex={8000}
+          getTooltipPopupContainer={() =>
+            document.querySelector(".ant-slider-step")
+          }
+          // /zIndex={8000}
         />
       </ConfigProvider>
 
@@ -88,3 +66,34 @@ const PriceRangeSlider = function () {
 };
 
 export default PriceRangeSlider;
+
+// const [priceRange, setPriceRange] = useState({
+//   min: 0,
+//   max: maxPrice,
+// });
+
+// const handleRangeChange = function (event) {
+//   setPriceRange({
+//     min: event[0],
+//     max: event[1],
+//   });
+// };
+
+// const handleInputMin = function (event) {
+//   const input = Number(event.target.value);
+//   if (!isFinite(input) || input < 0 || input > priceRange.max) return;
+//   setPriceRange({
+//     ...priceRange,
+//     min: Number(input),
+//   });
+// };
+
+// const handleInputMax = function (event) {
+//   const input = Number(event.target.value);
+//   if (!isFinite(input) || input > priceRange.max || input < priceRange.min)
+//     return;
+//   setPriceRange({
+//     ...priceRange,
+//     max: input,
+//   });
+// };

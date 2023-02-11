@@ -3,26 +3,15 @@ import axios from "axios";
 
 const Test = function () {
   const [data, setData] = useState([]);
-  const [cursor, setCursor] = useState(null);
+  //const [cursor, setCursor] = useState(null);
 
   const handleLoadData = async function () {
     const response = await axios({
       method: "GET",
-      url: "http://127.0.0.1:8080/test-infinite-scrolling",
-      params: {
-        cursor,
-      },
+      url: "https://stayfy-backend.onrender.com/write-lodges",
     });
 
     console.log(response.data);
-
-    const cleansedData = Object.entries(response.data.data).map((e) => ({
-      id: e[0],
-      ...e[1],
-    }));
-
-    setCursor(response.data.lastCursor);
-    setData((prevData) => [...prevData, ...cleansedData]);
   };
 
   return (
@@ -38,6 +27,8 @@ const Test = function () {
     </div>
   );
 };
+
+export default Test;
 
 // const Test = function () {
 //   const [data, setData] = useState([]);
@@ -97,5 +88,18 @@ const Test = function () {
 //     </div>
 //   );
 // };
+// const response = await axios({
+//   method: "GET",
+//   url: "http://127.0.0.1:8080/test-infinite-scrolling",
+//   params: {
+//     cursor,
+//   },
+// });
 
-export default Test;
+// const cleansedData = Object.entries(response.data.data).map((e) => ({
+//   id: e[0],
+//   ...e[1],
+// }));
+
+// setCursor(response.data.lastCursor);
+// setData((prevData) => [...prevData, ...cleansedData]);

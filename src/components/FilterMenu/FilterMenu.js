@@ -9,7 +9,10 @@ import useFetchData from "../../custom-hooks/useFetchData";
 import SkeletonFilterSlider from "./SkeletonFilterSlider/SkeletonFilterSlider";
 import FilterModal from "../FilterModal/FilterModal";
 import { useDispatch, useSelector } from "react-redux";
-import { filterActions } from "../../redux-store/filterSlice";
+import { searchQueryActions } from "../../redux-store/searchQuerySlice";
+import FilterModalContextProvider from "../../contexts/filterModalContext/filterModalContextProvider";
+import ModalTransition from "../ModalTransition/ModalTransition";
+import axios from "axios";
 
 const FilterMenu = function () {
   const featureFilter = useSelector((state) => state.filter.feature);
@@ -28,6 +31,28 @@ const FilterMenu = function () {
     isLoading,
     error,
   } = useFetchData("https://stayfy-backend.onrender.com/all-docs/filters");
+
+  const [maxPrice, setMaxPrice] = useState(null);
+
+  useEffect(() => {
+    (async function () {
+      const response = await axios({
+        method: "GET",
+        url: "https://stayfy-backend.onrender.com/query-lodge",
+        params: {
+          orderBy: "price.avg",
+          descending: true,
+          limit: 1,
+        },
+      });
+
+      console.log(response.data);
+
+      setMaxPrice(
+        Number(Object.entries(response.data)[0][1].price.max.toFixed(2))
+      );
+    })();
+  }, []);
 
   useEffect(() => {
     let unobserve = false;
@@ -98,9 +123,8 @@ const FilterMenu = function () {
   };
 
   const handleChangeSelectedFilter = function (tag) {
-    console.log(tag);
     setSelectedFilter(tag);
-    reduxDispatch(filterActions.changeFeature(tag));
+    reduxDispatch(searchQueryActions.changeFeature(tag));
   };
 
   const {
@@ -181,6 +205,7 @@ const FilterMenu = function () {
           <FilterModal
             onClick={handleCloseFilterModal}
             isVisible={filterModalIsVisible}
+            maxPrice={maxPrice}
           />,
           document.getElementById("modal-root")
         )}

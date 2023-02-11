@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const searchQuerySlice = createSlice({
   name: "search",
   initialState: {
+    lastCursor: null,
+    hasReachedEnd: false,
     query: "",
     date: {
       start: null,
@@ -14,10 +16,18 @@ const searchQuerySlice = createSlice({
       babies: 0,
       animals: 0,
     },
+    feature: null,
+    filters: {
+      typesOfStay: [],
+      priceRange: {
+        min: null,
+        max: null,
+      },
+      facilities: [],
+    },
   },
   reducers: {
     setQuerySearch(state, action) {
-      console.log(action.payload);
       state.query = action.payload || null;
     },
     setDateSearch(state, action) {
@@ -38,6 +48,22 @@ const searchQuerySlice = createSlice({
         babies: 0,
         animals: 0,
       };
+    },
+    changeFeature(state, action) {
+      state.feature = action.payload;
+      state.lastCursor = null;
+      state.hasReachedEnd = false;
+    },
+    updateCursor(state, action) {
+      state.lastCursor = action.payload;
+    },
+    changeFilters(state, action) {
+      state.filters = action.payload;
+      state.lastCursor = null;
+      state.hasReachedEnd = false;
+    },
+    onHasReachedEnd(state) {
+      state.hasReachedEnd = true;
     },
   },
 });

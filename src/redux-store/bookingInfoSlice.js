@@ -21,6 +21,7 @@ const bookingInfoSlice = createSlice({
       },
     },
     guestInfo: null,
+    feature: "isAllStays",
   },
   reducers: {
     replaceGuestNum(state, action) {
@@ -54,6 +55,10 @@ const bookingInfoSlice = createSlice({
         },
       };
       state.guestInfo = null;
+    },
+    changeFeature(state, action) {
+      console.log(action.payload);
+      state.feature = action.payload;
     },
   },
 });

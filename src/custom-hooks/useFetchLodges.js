@@ -1,25 +1,35 @@
 import { useState, useEffect, useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { searchQueryActions } from "../redux-store/searchQuerySlice";
 import { cloneDeep } from "lodash";
 import axios from "axios";
 
 const useFetchLodges = function () {
-  const featureFilter = useSelector((state) => state.filter.feature);
+  const {
+    lastCursor,
+    query: locationSearch,
+    feature: featureFilter,
+    hasReachedEnd,
+    filters: { typesOfStay, priceRange, facilities },
+  } = useSelector((state) => state.search);
 
-  const locationSearch = useSelector((state) => state.search.query);
-
+  const reduxDispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
-  const [lastCursor, setLastCursor] = useState(null);
-  const [hasReachedEnd, setHasReachedEnd] = useState(false);
+  //const [hasReachedEnd, setHasReachedEnd] = useState(false);
 
   const fetchLodgesData = useCallback(
     async function (cursor = null, numOfItems) {
-      if (hasReachedEnd) return;
+      if (hasReachedEnd) {
+        setIsLoading(false);
+        return;
+      }
       setIsLoading(true);
 
-      console.log(locationSearch);
+      console.log(typesOfStay);
+      console.log(facilities);
+      console.log(typesOfStay);
 
       try {
         const response = await axios({
@@ -31,11 +41,14 @@ const useFetchLodges = function () {
             featureFilter:
               featureFilter === "isAllStays" ? null : featureFilter,
             locationFilter: locationSearch === "" ? null : locationSearch,
+            price: priceRange.min ? priceRange : null,
+            facilities: facilities,
+            typesOfStay: typesOfStay,
           },
         });
 
         if (response.data.hasEnded) {
-          setHasReachedEnd(true);
+          reduxDispatch(searchQueryActions.onHasReachedEnd());
           setIsLoading(false);
           return;
         }
@@ -48,14 +61,16 @@ const useFetchLodges = function () {
         let filteredData = cloneDeep(cleansedData);
 
         setData((prevData) => [...prevData, ...filteredData]);
-        setLastCursor(response.data.lastCursor);
+        reduxDispatch(
+          searchQueryActions.updateCursor(response.data.lastCursor)
+        );
         setIsLoading(false);
       } catch (error) {
         setError(`Failed to fetch data. Error: ${error}`);
         setIsLoading(false);
       }
     },
-    [hasReachedEnd, featureFilter, locationSearch]
+    [hasReachedEnd, featureFilter, locationSearch, reduxDispatch, priceRange]
   );
 
   return {
@@ -67,7 +82,6 @@ const useFetchLodges = function () {
     hasReachedEnd,
     setData,
     locationSearch,
-    setLastCursor,
   };
 };
 

@@ -47,6 +47,7 @@ const StaysListing = function () {
   }, []);
 
   useEffect(() => {
+    //console.log("FIRST LOAD RUN");
     let ignore = false;
 
     if (!hasReachedEnd) {
@@ -60,18 +61,23 @@ const StaysListing = function () {
     return () => {
       ignore = true;
     };
-  }, [fetchLodgesData, setData, hasReachedEnd, locationSearch]);
+  }, [fetchLodgesData, setData, hasReachedEnd]);
 
   useEffect(() => {
+    //console.log("SCROLLING LOAD RUN", hasReachedEnd);
     const observerCallback = function (entries, observer) {
       entries.forEach((e) => {
-        if (e.isIntersecting && e.target === lastLodgeRef && !isLoading) {
+        if (
+          e.isIntersecting &&
+          e.target === lastLodgeRef &&
+          !isLoading &&
+          !hasReachedEnd
+        ) {
+          //console.log("REQUEST");
           fetchLodgesData(
             lastCursor,
             numOfGridColumns === 1 ? 4 : numOfGridColumns * 2
           );
-        } else {
-          return;
         }
       });
     };
@@ -97,7 +103,7 @@ const StaysListing = function () {
     isLoading,
     lastCursor,
     numOfGridColumns,
-    locationSearch,
+    hasReachedEnd,
   ]);
 
   const cleansedData = data.map((d) => {
