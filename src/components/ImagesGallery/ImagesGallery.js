@@ -45,6 +45,8 @@ const ImagesGallery = function ({
             <GalleryItem
               key={img}
               src={img}
+              index={index}
+              lodgeName={name}
               className={index % 3 === 0 ? gallery__Container__LargeImg : ""}
               onClick={handleOpenSlider.bind(null, index)}
               ref={(node) => {
@@ -68,6 +70,7 @@ const ImagesGallery = function ({
             onCloseSlider={handleCloseSlider}
             images={images}
             imageIndex={imageIndex}
+            lodgeName={name}
           />,
           document.getElementById("modal-root")
         )}

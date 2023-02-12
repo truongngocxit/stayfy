@@ -24,7 +24,7 @@ const AboutHost = forwardRef(function ({ hostInfo, className }, ref) {
               hostInfo.img ||
               "https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240"
             }
-            alt="placeholder host"
+            alt="Host avatar"
           />
         </div>
         <div className={aboutHost__Info__Name}>

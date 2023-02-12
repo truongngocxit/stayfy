@@ -67,7 +67,7 @@ const TripItem = function ({ roomInfo, bookedDate, bookingId, userTripId }) {
         />
         <div className={tripItem__Info}>
           <div className={tripItem__Info__Image}>
-            <img src={roomInfo.images[0]} alt="sample landscape" />
+            <img src={roomInfo.images[0]} alt="Upcoming trip preview pic" />
           </div>
           <TripItemDetails
             isSmallerScreen={screenSize === "large"}

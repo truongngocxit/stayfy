@@ -2,7 +2,7 @@ import styles from "./PreviewImage.module.scss";
 import PreviewImageSkeleton from "./PreviewImageSkeleton/PreviewImageSkeleton";
 import { useState } from "react";
 
-const PreviewImage = function ({ className, onClick, src }) {
+const PreviewImage = function ({ className, onClick, src, lodgeName }) {
   const [imageHasLoaded, setImageHasLoaded] = useState(false);
 
   const handleImageHasLoaded = function () {
@@ -13,7 +13,11 @@ const PreviewImage = function ({ className, onClick, src }) {
   return (
     <div className={`${previewImage} ${className}`} onClick={onClick}>
       <PreviewImageSkeleton isLoading={!imageHasLoaded} />
-      <img src={src} alt="dummy pic" onLoad={handleImageHasLoaded} />
+      <img
+        src={src}
+        alt={`${lodgeName} preview`}
+        onLoad={handleImageHasLoaded}
+      />
     </div>
   );
 };

@@ -16,7 +16,7 @@ const searchQuerySlice = createSlice({
       babies: 0,
       animals: 0,
     },
-    feature: null,
+    feature: "isAllStays",
     filters: {
       typesOfStay: [],
       priceRange: {

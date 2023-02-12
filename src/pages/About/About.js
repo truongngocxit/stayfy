@@ -72,7 +72,7 @@ const About = function () {
       <div className={about__Hero}>
         <img
           src={require("../../assets/about-background.webp")}
-          alt="about-hero"
+          alt="About hero"
         />
       </div>
       <div className={about__Intro}>

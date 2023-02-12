@@ -19,7 +19,6 @@ const Signup = function ({ isLoggingIn = false }) {
   useEffect(() => {
     resizeObserverRef.current = new ResizeObserver(function (entries) {
       if (entries[0].contentRect.width <= 505) {
-        console.log("true");
         setIsMobileScreen(true);
       } else {
         setIsMobileScreen(false);
@@ -75,7 +74,7 @@ const Signup = function ({ isLoggingIn = false }) {
           <div className={signup__Image}>
             <img
               src="https://images.unsplash.com/photo-1605181063694-e64a8e7a267f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-              alt="signup"
+              alt="Signup background"
               ref={bgImageRef}
               onLoad={handleBgImageHasLoad}
             />

@@ -14,6 +14,12 @@ const Test = function () {
     console.log(response.data);
   };
 
+  useEffect(() => {
+    const retrieveUserInfo = localStorage.getItem("loginInfo");
+
+    console.log(JSON.parse(retrieveUserInfo));
+  }, []);
+
   return (
     <div>
       <button onClick={handleLoadData}>Load facilities</button>

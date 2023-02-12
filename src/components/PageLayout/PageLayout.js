@@ -4,12 +4,14 @@ import BottomNav from "../BottomNav/BottomNav";
 import StaticFooter from "../Footer/StaticFooter";
 import { createPortal } from "react-dom";
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
+import { activeUserActions } from "../../redux-store/activeUserSlice";
 import Notification from "./Notification/Notification";
 
 const PageLayout = function ({ children }) {
   const { pathname } = useLocation();
-
+  const reduxDispatch = useDispatch();
   const resizeObserverRef = useRef(null);
 
   const [isSmallerScreen, setIsSmallerScreen] = useState(false);
@@ -27,6 +29,14 @@ const PageLayout = function ({ children }) {
 
     return () => resizeObserverRef.current.disconnect();
   }, []);
+
+  useEffect(() => {
+    const retrievedUserInfo = localStorage.getItem("loginInfo");
+
+    if (retrievedUserInfo) {
+      reduxDispatch(activeUserActions.userLogin(JSON.parse(retrievedUserInfo)));
+    }
+  }, [reduxDispatch]);
 
   let headerProps = {
     hasFilter: false,

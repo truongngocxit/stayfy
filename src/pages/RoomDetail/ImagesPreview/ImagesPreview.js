@@ -36,7 +36,7 @@ const ImagesPreview = forwardRef(function ({ images, name, className }, ref) {
           onClick={handleClickImage.bind(null, 0)}
           className={imagesPreview__MainImg}
           src={mainPreviewImage}
-          alt="dummy pic"
+          alt={`${name} main preview image`}
         />
 
         {restPreviewImages.slice(1, 5).map((image, index) => (
@@ -44,6 +44,7 @@ const ImagesPreview = forwardRef(function ({ images, name, className }, ref) {
             onClick={handleClickImage.bind(null, index + 1)}
             key={image}
             src={image}
+            lodgeName={name}
           />
         ))}
         <button className={imagesPreview__ShowBtn} onClick={handleShowGallery}>

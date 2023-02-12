@@ -13,13 +13,13 @@ const BookingRoomInfo = function ({ name, review, location, image }) {
   return (
     <div className={roomInfo}>
       <div className={roomInfo__Image}>
-        <img src={image} alt="sample room" />
+        <img src={image} alt="Room preview pic" />
       </div>
       <div className={roomInfo__Details}>
         <h3 className={roomInfo__Details__Name}>{name}</h3>
         <div className={roomInfo__Details__Review}>
           <StarIcon />
-          <span>{"6.89" || review.toFixed(2)}</span>
+          <span>{review.toFixed(2)}</span>
         </div>
         <p className={roomInfo__Details__Address}>{location}</p>
       </div>

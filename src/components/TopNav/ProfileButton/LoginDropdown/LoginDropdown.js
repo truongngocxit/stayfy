@@ -49,6 +49,7 @@ const ActiveDropdown = function ({ onClickOption }) {
   const navigate = useNavigate();
   const handleConfirmLogout = function () {
     reduxDispatch(activeUserActions.userLogout());
+    localStorage.removeItem("loginInfo");
     navigate("/", { replace: true });
   };
 

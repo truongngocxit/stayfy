@@ -52,13 +52,13 @@ const FilterMenu = function () {
   }, []);
 
   useEffect(() => {
-    let unobserve = false;
     const observerOptions = {
       root: filterSliderRef.current,
       threshold: 0,
     };
     const observerCallback = function (entries, observer) {
       entries.forEach((entry) => {
+        console.log(entry);
         if (entry.target === firstItemRef.current && entry.isIntersecting) {
           setLeftBtnIsVisible(false);
         } else if (
@@ -89,13 +89,8 @@ const FilterMenu = function () {
       sliderIntersectionObserverRef.current.observe(lastItemRef.current);
     }
 
-    if (unobserve) {
-      sliderIntersectionObserverRef.current.disconnect();
-    }
-    return () => {
-      unobserve = true;
-    };
-  }, [filterItems]);
+    return () => sliderIntersectionObserverRef.current.disconnect();
+  }, [filterItems, isLoading]);
 
   const handleClickLeft = function () {
     filterSliderRef.current.scrollBy({

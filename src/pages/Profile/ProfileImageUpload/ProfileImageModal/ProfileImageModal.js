@@ -54,7 +54,7 @@ const ProfileImageModal = function ({
           />
           <img
             src={previewImage || activeUserProfileImage}
-            alt="preview profile avatar"
+            alt="Preview profile avatar"
             onLoad={handlePreviewImageHasLoaded}
           />
         </div>

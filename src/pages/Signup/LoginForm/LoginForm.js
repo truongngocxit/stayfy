@@ -69,11 +69,14 @@ const LoginForm = function () {
           userTripId: trip[0],
           bookingId: trip[1].bookingId,
         }));
-        console.log(userData.upcomingTrips);
+
         const cleansedRetrivedUser = {
           ...userData,
           upcomingTrips: cleansedUserTrips,
         };
+
+        localStorage.setItem("loginInfo", JSON.stringify(cleansedRetrivedUser));
+
         reduxDispatch(activeUserActions.userLogin(cleansedRetrivedUser));
       }
 

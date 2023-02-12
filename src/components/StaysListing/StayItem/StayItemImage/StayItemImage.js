@@ -128,7 +128,11 @@ const StayItemImage = function ({ className, imgs }) {
                 }
               }}
             >
-              <img src={img} alt="dummy" onLoad={handleAddImageLoadCount} />
+              <img
+                src={img}
+                alt={`Preview no.${index}`}
+                onLoad={handleAddImageLoadCount}
+              />
             </div>
           ))}
         </div>

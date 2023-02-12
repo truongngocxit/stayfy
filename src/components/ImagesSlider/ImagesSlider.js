@@ -3,7 +3,12 @@ import CloseIcon from "../UI/SVG/CloseIcon";
 import ChevronLeftIcon from "../UI/SVG/ChevronLeftIcon";
 import { useState, useEffect, useCallback } from "react";
 
-const ImagesSlider = function ({ onCloseSlider, images, imageIndex }) {
+const ImagesSlider = function ({
+  onCloseSlider,
+  images,
+  imageIndex,
+  lodgeName,
+}) {
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
 
   const handleToPreviousImage = useCallback(
@@ -71,7 +76,10 @@ const ImagesSlider = function ({ onCloseSlider, images, imageIndex }) {
           <ChevronLeftIcon />
         </button>
         <div className={slider__Slider__Image}>
-          <img src={images[currentImageIndex]} alt="sample" />
+          <img
+            src={images[currentImageIndex]}
+            alt={`${lodgeName} preview no.${imageIndex}`}
+          />
         </div>
         <button
           className={slider__Slider__BtnRight}

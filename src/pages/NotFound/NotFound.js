@@ -19,7 +19,7 @@ const NotFound = function () {
         <MainLogo className={notFound__Logo} isWhite={true} />
         <div className={notFound__Background}>
           <img
-            alt="not found page background"
+            alt="Not found page background"
             src={require("../../assets/notfound-background.jpg")}
             onLoad={handleBackgroundHasLoad}
           />
