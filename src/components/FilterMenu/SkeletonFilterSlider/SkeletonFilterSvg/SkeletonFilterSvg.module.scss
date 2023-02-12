@@ -1,0 +1,19 @@
+@use "../../../../sass-styles/variables" as *;
+
+.skeletonSvg {
+  height: 100%;
+  width: 100%;
+  border-radius: $borderRadius;
+  animation: skeletonFlashing 1s infinite alternate;
+  position: absolute;
+}
+
+@keyframes skeletonFlashing {
+  0% {
+    background-color: $grayColorFaint5;
+  }
+
+  100% {
+    background-color: $grayColorFaint6;
+  }
+}

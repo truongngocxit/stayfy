@@ -7,13 +7,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 4rem;
   height: 100%;
   gap: 1rem;
   transition: all 0.15s;
   max-height: 100%;
   //width: fit-content;
   cursor: pointer;
+
+  @media only screen and (max-width: 49.5em) {
+    padding: 1.5rem 2.5rem;
+  }
+
+  @media only screen and (max-width: 34.5em) {
+    padding: 1.5rem;
+  }
+
+  &__Img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
 
   &:hover {
     box-shadow: inset 0 -0.3rem 0 0 $grayColorFaint5;
@@ -29,6 +43,9 @@
 
   &:focus {
     outline: none;
+  }
+
+  &__Img {
   }
 
   img {

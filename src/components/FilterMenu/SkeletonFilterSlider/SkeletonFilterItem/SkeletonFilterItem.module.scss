@@ -8,28 +8,30 @@
   width: 8rem;
   height: 8rem;
   gap: 1rem;
-  animation: skeletonGlimmering infinite 1s ease-in alternate;
+
   &__Icon {
     width: 30%;
     height: 30%;
-    background-color: $grayColorFaint4;
+    background-color: $grayColorFaint5;
     border-radius: 50%;
+    animation: skeletonGlimmering infinite 1s ease-in alternate;
   }
 
   &__Text {
     width: 50%;
     height: 15%;
     border-radius: $borderRadius;
-    background-color: $grayColorFaint4;
+    background-color: $grayColorFaint5;
+    animation: skeletonGlimmering infinite 1s ease-in alternate;
   }
 }
 
 @keyframes skeletonGlimmering {
   0% {
-    opacity: 0.4;
+    background-color: $grayColorFaint5;
   }
 
   100% {
-    opacity: 1;
+    background-color: $grayColorFaint6;
   }
 }

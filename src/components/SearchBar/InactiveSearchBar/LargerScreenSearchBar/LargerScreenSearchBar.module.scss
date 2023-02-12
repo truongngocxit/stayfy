@@ -9,7 +9,8 @@
   border-radius: 50rem;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   cursor: pointer;
-  transition: all 0.4s;
+  // transition: all 0.1s;
+  //animation: inactiveBarCollapse 0.3s alternate backwards;
   &:hover {
     transform: translateY(-0.2rem);
     box-shadow: $boxShadow;
@@ -63,7 +64,7 @@
     transform: scale(1.2);
   }
 
-  20% {
+  4% {
     transform: scale(1.4);
     opacity: 0;
   }

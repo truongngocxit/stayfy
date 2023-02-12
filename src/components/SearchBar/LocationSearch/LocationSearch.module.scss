@@ -1,8 +1,9 @@
 @use "../../../sass-styles/variables" as *;
 
 .locationSearch {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  grid-template-rows: repeat(2, max-content);
   font-size: 1.6rem;
   gap: 0.5rem;
   position: relative;
@@ -23,5 +24,33 @@
     &::placeholder {
       color: $grayColorFaint4;
     }
+
+    grid-row: 2;
+  }
+
+  &__ClearBtn {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    width: 2.4rem;
+    height: 2.4rem;
+    place-self: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: $grayColorFaint6;
+    opacity: 1;
+    visibility: visible;
+    &:hover {
+      background-color: $grayColorFaint5;
+    }
+
+    svg {
+      padding: 0.3rem;
+    }
+  }
+
+  &__ClearBtn__Hidden {
+    opacity: 0;
+    visibility: hidden;
   }
 }

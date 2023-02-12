@@ -56,6 +56,10 @@ a {
   font-size: 1.6rem;
 }
 
+input {
+  caret-color: $primaryColor;
+}
+
 a:visited,
 a:active {
   // color: currentColor !important;
