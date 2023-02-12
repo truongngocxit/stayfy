@@ -17,7 +17,6 @@ const SlideInMessage = function ({
   const { slideIn, slideIn__Successful, slideIn__Failed, slideIn__Warning } =
     styles;
 
-  console.log(text, state, isIn);
   let messageStyle;
   let messageIcon;
 

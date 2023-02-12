@@ -1,5 +1,5 @@
 import styles from "./StayItemImageSkeleton.module.scss";
-import SkeletonTransition from "../../../../SkeletonTransition/SkeletonTransition";
+import SkeletonTransition from "../../../../../../components/SkeletonTransition/SkeletonTransition";
 
 const StayItemImageSkeleton = function ({ className, isLoading }) {
   const { imageSkeleton } = styles;

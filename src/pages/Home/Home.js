@@ -1,4 +1,4 @@
-import StaysListing from "../../components/StaysListing/StaysListing";
+import StaysListing from "./StaysListing/StaysListing";
 
 const Home = function () {
   return (

@@ -8,8 +8,6 @@ const AsideRateSummary = function ({ numOfDays, price, selectedRooms }) {
     0
   );
 
-  console.log(selectedRooms);
-  console.log(numOfDays);
   const { rateSummary, rateSummary__Items, rateSummary__Total } = styles;
   return (
     <div className={rateSummary}>
@@ -18,7 +16,7 @@ const AsideRateSummary = function ({ numOfDays, price, selectedRooms }) {
           if (room.quantity > 0) {
             return (
               <PriceItem
-                key={room.id}
+                key={`${room.name}-${room.price}`}
                 title={room.name}
                 quantity={room.quantity}
                 price={room.price}

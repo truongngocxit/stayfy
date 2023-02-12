@@ -3,6 +3,7 @@ import ProfileSettingItem from "../../ProfileSettingItem/ProfileSettingItem";
 import SettingButton from "../../SettingButton/SettingButton";
 import Input from "../../../../components/Input/Input";
 import useInput from "../../../../custom-hooks/useInput";
+import Button from "../../../../components/Button/Button";
 import { createPortal } from "react-dom";
 import LoadingScreen from "../../LoadingScreen/LoadingScreen";
 import useChangeUserInfo from "../../../../custom-hooks/useChangeUserInfo";
@@ -50,7 +51,7 @@ const EmailSettingForm = function ({
       >
         <form className={emailSetting} onSubmit={handleSubmitEmailChange}>
           <Input
-            label="email"
+            label="Your email"
             isTyping={isTypingEmail}
             onBlur={handleStopTypingEmail}
             onFocus={handleStartTypingEmail}
@@ -60,11 +61,13 @@ const EmailSettingForm = function ({
             onChange={handleEmailChange}
             tooltipPlacement="topLeft"
           />
-          <SettingButton
-            text="Save"
+          <Button
             className={emailSetting__Btn}
             isDisabled={emailIsInvalid}
-          />
+            errorMessage={"Please fill in a valid email"}
+          >
+            Save
+          </Button>
         </form>
       </ProfileSettingItem>
       {isLoading &&

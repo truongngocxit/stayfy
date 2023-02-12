@@ -8,6 +8,7 @@ import { createPortal } from "react-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AfterSubmitModal from "../../../components/AfterSubmitModal/AfterSubmitModal";
+import Button from "../../../components/Button/Button";
 import { useDispatch } from "react-redux";
 import { activeUserActions } from "../../../redux-store/activeUserSlice";
 import axios from "axios";
@@ -108,7 +109,13 @@ const LoginForm = function () {
     doAfterSubmit = () => setSubmitState("yetSubmit");
   }
 
-  const { login, login__Email, login__Password, login__Actions } = styles;
+  const {
+    login,
+    login__Email,
+    login__Password,
+    login__Actions,
+    login__Actions__Btn,
+  } = styles;
   return (
     <>
       <form className={login} onSubmit={handleSubmitUserData}>
@@ -136,11 +143,14 @@ const LoginForm = function () {
           onBlur={handleStopTypingPassword}
         />
         <div className={login__Actions}>
-          <SignupButton
-            text="Login"
+          <Button
+            className={login__Actions__Btn}
             isDisabled={formIsInvalid}
-            tooltipTitle="Please fill in your info"
-          />
+            errorMessage="Please fill in your info"
+          >
+            Login
+          </Button>
+
           <NavigationLink text="Don't have an account? Sign up" to="/signup" />
         </div>
       </form>

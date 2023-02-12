@@ -59,8 +59,13 @@
     visibility: hidden;
     transition: all 0.3s;
     height: 2rem;
-    a {
+    button {
+      display: block;
+      border: none;
+      background: none;
+      text-decoration: underline;
       color: $primaryColor;
+      cursor: pointer;
     }
 
     &__Ok {

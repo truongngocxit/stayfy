@@ -1,7 +1,7 @@
 import styles from "./StaysListing.module.scss";
 import StayItem from "./StayItem/StayItem";
 import StaySkeleton from "./StaySkeleton/StaySkeleton";
-import useFetchLodges from "../../custom-hooks/useFetchLodges";
+import useFetchLodges from "../../../custom-hooks/useFetchLodges";
 import { useRef, useEffect, useState, useLayoutEffect } from "react";
 
 const StaysListing = function () {

@@ -3,6 +3,7 @@ import Input from "../../../components/Input/Input";
 import SignupButton from "../SignupButton/SignupButton";
 import NavigationLink from "../NavigationLink/NavigationLink";
 import useInput from "../../../custom-hooks/useInput";
+import Button from "../../../components/Button/Button";
 import { createPortal } from "react-dom";
 import Overlay from "../../../components/UI/Overlay/Overlay";
 import AfterSubmitModal from "../../../components/AfterSubmitModal/AfterSubmitModal";
@@ -128,14 +129,15 @@ const SignupForm = function () {
     header = "Welcome to Homefy";
     state = "success";
     stateMessage =
-      "You have successfully signed up to Homefy. You will be navigated away to home in 5 seconds";
-    navigateMessage = "Or you could click here to go to home right now.";
-    doAfterSubmit = () => navigate("/");
+      "You have signed up to Homefy. You will be navigated to the login page in 5 seconds";
+    navigateMessage = "Or you could click here to login right now.";
+    doAfterSubmit = () => navigate("/login");
   }
 
   const {
     signupForm,
     signupForm__Actions,
+    signupForm__Actions__Btn,
     signupForm__firstName,
     signupForm__lastName,
     signupForm__Email,
@@ -221,7 +223,14 @@ const SignupForm = function () {
           onBlur={handleStopTypingConfirmPassword}
         />
         <div className={signupForm__Actions}>
-          <SignupButton text="Sign up" isDisabled={formIsInvalid} />
+          <Button
+            className={signupForm__Actions__Btn}
+            isDisabled={formIsInvalid}
+            errorMessage="Please fill in all the information"
+          >
+            Sign up
+          </Button>
+
           <NavigationLink text="Already have an account? Login" to="/login" />
         </div>
       </form>
@@ -240,7 +249,7 @@ const SignupForm = function () {
             navigateMessage={navigateMessage}
             doAfterSubmit={doAfterSubmit}
             navigateSeconds={5}
-            to="/"
+            to="/login"
           />,
           document.getElementById("modal-root")
         )}

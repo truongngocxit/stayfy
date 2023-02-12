@@ -58,7 +58,6 @@ const FilterMenu = function () {
     };
     const observerCallback = function (entries, observer) {
       entries.forEach((entry) => {
-        console.log(entry);
         if (entry.target === firstItemRef.current && entry.isIntersecting) {
           setLeftBtnIsVisible(false);
         } else if (

@@ -5,6 +5,7 @@ import Input from "../../../../components/Input/Input";
 import { createPortal } from "react-dom";
 import useInput from "../../../../custom-hooks/useInput";
 import useChangeUserInfo from "../../../../custom-hooks/useChangeUserInfo";
+import Button from "../../../../components/Button/Button";
 import LoadingScreen from "../../LoadingScreen/LoadingScreen";
 
 const PhoneSettingForm = function ({
@@ -63,12 +64,14 @@ const PhoneSettingForm = function ({
             onChange={handlePhoneChange}
             tooltipPlacement="topLeft"
           />
-          <SettingButton
-            text="Save"
+
+          <Button
             className={phoneSetting__Btn}
             isDisabled={phoneIsInvalid}
             errorMessage="New phone must NOT be empty"
-          />
+          >
+            Save
+          </Button>
         </form>
       </ProfileSettingItem>
       {isLoading &&

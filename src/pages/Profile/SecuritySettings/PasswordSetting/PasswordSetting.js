@@ -1,6 +1,7 @@
 import styles from "./PasswordSetting.module.scss";
 import ProfileSettingItem from "../../ProfileSettingItem/ProfileSettingItem";
 import Input from "../../../../components/Input/Input";
+import Button from "../../../../components/Button/Button";
 import SettingButton from "../../SettingButton/SettingButton";
 import useInput from "../../../../custom-hooks/useInput";
 import maskPassword from "../../../../utils/maskPassword";
@@ -124,15 +125,17 @@ const PasswordSetting = function ({
             errorMessage="Must be the same as your new password"
             isDisabled={newPasswordHasError}
           />
-          <SettingButton
-            text="Change password"
+
+          <Button
             isDisabled={
-              oldPasswordIsInvalid &&
-              newPasswordConfirmIsInvalid &&
+              oldPasswordIsInvalid ||
+              newPasswordIsInvalid ||
               newPasswordConfirmIsInvalid
             }
-            errorMessage="Please fill in the form"
-          />
+            errorMessage="Please validate your password"
+          >
+            Change Password
+          </Button>
         </form>
       </ProfileSettingItem>
       {isLoading &&

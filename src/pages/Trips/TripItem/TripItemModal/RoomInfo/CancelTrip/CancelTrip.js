@@ -5,6 +5,7 @@ import SettingButton from "../../../../../Profile/SettingButton/SettingButton";
 import useCancelTrip from "../../../../../../custom-hooks/useCancelTrip";
 import { createPortal } from "react-dom";
 import LoadingScreen from "../../../../../Profile/LoadingScreen/LoadingScreen";
+import Button from "../../../../../../components/Button/Button";
 
 const CancelTrip = function ({ bookingId, userTripId, onCloseModal }) {
   const { isCancelling, error, cancelTrip } = useCancelTrip();
@@ -66,6 +67,7 @@ const CancelTrip = function ({ bookingId, userTripId, onCloseModal }) {
           className={cancel__Btn}
           isDisabled={confirmIsInvalid || reasonIsInvalid}
         />
+        <Button>Cancel trip</Button>
       </form>
       {isCancelling &&
         createPortal(

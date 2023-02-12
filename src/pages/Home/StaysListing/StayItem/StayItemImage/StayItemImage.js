@@ -1,7 +1,7 @@
 import styles from "./StayItemImage.module.scss";
-import HeartIcon from "../../../UI/SVG/HeartIcon";
-import ChevronLeftIcon from "../../../UI/SVG/ChevronLeftIcon";
-import ChevronRightIcon from "../../../UI/SVG/ChevronRightIcon";
+import HeartIcon from "../../../../../components/UI/SVG/HeartIcon";
+import ChevronLeftIcon from "../../../../../components/UI/SVG/ChevronLeftIcon";
+import ChevronRightIcon from "../../../../../components/UI/SVG/ChevronRightIcon";
 import StayItemImageSkeleton from "./StateItemImageSkeleton/StayItemImageSkeleton";
 import { useState, useRef, useEffect } from "react";
 

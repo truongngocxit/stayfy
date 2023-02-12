@@ -105,7 +105,7 @@ const RoomTypes = function ({ types, onSelectTypes, selectedRooms }, ref) {
       <ul className={roomTypes} ref={roomTypesRef}>
         {types.map((item, index, array) => (
           <RoomType
-            key={item.type}
+            key={`${item.name}-${item.price}`}
             className={roomTypes__Type}
             src={item.image}
             alt={item.name}

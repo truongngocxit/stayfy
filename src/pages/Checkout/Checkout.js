@@ -7,17 +7,18 @@ import GuestBookingInfoContextProvider from "../../contexts/guestBookingInfoCont
 import { createPortal } from "react-dom";
 import Overlay from "../../components/UI/Overlay/Overlay";
 import AfterSubmitModal from "../../components/AfterSubmitModal/AfterSubmitModal";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import SmallerScreenBottomNav from "./SmallerScreenBottomNav/SmallerScreenBottomNav";
+import { bookingInfoActions } from "../../redux-store/bookingInfoSlice";
+import { searchQueryActions } from "../../redux-store/searchQuerySlice";
 
 const Checkout = function () {
   const [submitState, setSubmitState] = useState("yetSubmit");
   const roomInfo = useSelector((state) => state.bookingInfo.roomInfo);
   const navigate = useNavigate();
-
-  console.log(roomInfo);
+  const reduxDispatch = useDispatch();
 
   const [isSmallerScreen, setIsSmallerScreen] = useState(false);
 
@@ -42,6 +43,12 @@ const Checkout = function () {
 
   const handleHasSubmittedData = function () {
     setSubmitState("hasSubmitted");
+  };
+
+  const onAfterSubmit = function () {
+    reduxDispatch(bookingInfoActions.resetBookingInfo());
+    reduxDispatch(searchQueryActions.resetSearchQuery());
+    navigate("/");
   };
 
   const {
@@ -110,7 +117,7 @@ const Checkout = function () {
             state={state}
             stateMessage={stateMessage}
             navigateMessage={navigateMessage}
-            doAfterSubmit={() => navigate("/")}
+            doAfterSubmit={onAfterSubmit}
             navigateSeconds={5}
             to="/"
           />,

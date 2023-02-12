@@ -10,8 +10,6 @@ const Test = function () {
       method: "GET",
       url: "http://127.0.0.1:8080/add-lodge-types",
     });
-
-    console.log(response.data);
   };
 
   useEffect(() => {

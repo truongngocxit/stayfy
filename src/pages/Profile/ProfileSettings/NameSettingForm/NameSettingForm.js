@@ -1,5 +1,5 @@
 import styles from "./NameSettingForm.module.scss";
-
+import Button from "../../../../components/Button/Button";
 import SettingButton from "../../SettingButton/SettingButton";
 import ProfileSettingItem from "../../ProfileSettingItem/ProfileSettingItem";
 import useInput from "../../../../custom-hooks/useInput";
@@ -89,12 +89,14 @@ const NameSettingForm = function ({
             onChange={handleLastNameChange}
             tooltipPlacement="topLeft"
           />
-          <SettingButton
+
+          <Button
             className={nameSetting__Btn}
-            text="Save"
             isDisabled={formIsInvalid}
             errorMessage={"Please fill in the form above"}
-          />
+          >
+            Save
+          </Button>
         </form>
       </ProfileSettingItem>
       {isLoading &&

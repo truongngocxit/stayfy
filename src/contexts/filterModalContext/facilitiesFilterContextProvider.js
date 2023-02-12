@@ -9,7 +9,6 @@ export const FacilitiesFilterContextProvider = function ({ children }) {
   const [facilitiesSelect, setFaciltiesSelect] = useState(facilities);
 
   const handleSelectFacility = function (fac) {
-    console.log(fac);
     if (facilitiesSelect.some((curFac) => curFac === fac)) {
       setFaciltiesSelect((allFacs) =>
         allFacs.filter((curFac) => curFac !== fac)

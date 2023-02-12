@@ -1,6 +1,6 @@
-@use "../../../sass-styles/variables" as *;
+@use "../../sass-styles/variables" as *;
 
-.settingBtn {
+.btn {
   padding: 1.5rem 3rem;
   border: none;
   border-radius: $borderRadius;
@@ -9,17 +9,18 @@
   font-weight: 700;
   align-self: flex-start;
   cursor: pointer;
-  height: 100%;
+  //   height: 100%;
+  //   width: 100%;
 
   &:hover {
     background-color: $shadeColor1;
   }
 
   &__Disabled {
-    background-color: $grayColorFaint4 !important;
+    background-color: $grayColorFaint5 !important;
     cursor: not-allowed !important;
     &:hover {
-      background-color: $grayColorFaint4 !important;
+      background-color: $grayColorFaint5 !important;
     }
   }
 }

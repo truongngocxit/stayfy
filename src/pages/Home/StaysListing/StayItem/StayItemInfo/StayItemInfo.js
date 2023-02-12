@@ -1,5 +1,5 @@
 import styles from "./StayItemInfo.module.scss";
-import StarIcon from "../../../UI/SVG/StarIcon";
+import StarIcon from "../../../../../components/UI/SVG/StarIcon";
 
 const StayItemInfo = function ({ className, name, location, review, price }) {
   const {

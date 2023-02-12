@@ -1,6 +1,7 @@
 import styles from "./StaySkeleton.module.scss";
 import { Transition } from "react-transition-group";
-import SkeletonTransition from "../../SkeletonTransition/SkeletonTransition";
+
+import SkeletonTransition from "../../../../components/SkeletonTransition/SkeletonTransition";
 const duration = 2000;
 
 const defaultStyle = {

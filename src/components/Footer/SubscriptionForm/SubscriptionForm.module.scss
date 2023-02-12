@@ -1,1 +1,8 @@
 @use "../../../sass-styles/variables" as *;
+
+.subscription {
+  &__Btn {
+    width: 100%;
+    height: 100%;
+  }
+}

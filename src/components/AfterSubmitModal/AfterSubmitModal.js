@@ -3,7 +3,7 @@ import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 import CheckIcon from "../UI/SVG/CheckIcon";
 import WarningIcon from "../UI/SVG/WarningIcon";
 import CountdownLine from "./CountdownLine/CountdownLine";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const AfterSubmitModal = function ({
@@ -24,6 +24,13 @@ const AfterSubmitModal = function ({
     }
     return () => clearTimeout(timeoutId);
   }, [state, doAfterSubmit, navigateSeconds]);
+
+  const navigate = useNavigate();
+
+  const handleNavigate = function () {
+    doAfterSubmit && doAfterSubmit();
+    to && navigate(to);
+  };
 
   const {
     afterSubmit,
@@ -58,7 +65,11 @@ const AfterSubmitModal = function ({
         }`}
       >
         <p>{stateMessage}</p>
-        {navigateMessage && <Link to={to}>{navigateMessage}</Link>}
+        {navigateMessage && (
+          <button type="button" onClick={handleNavigate}>
+            {navigateMessage}
+          </button>
+        )}
       </div>
       {(state === "success" || state === "failure") && (
         <CountdownLine

@@ -40,6 +40,10 @@
     span {
       color: $warningColor8;
     }
+
+    input {
+      caret-color: $warningColor8 !important;
+    }
   }
 
   &__Disabled {

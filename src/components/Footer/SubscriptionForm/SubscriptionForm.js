@@ -1,8 +1,8 @@
 import styles from "./SubscriptionForm.module.scss";
 import Input from "../../Input/Input";
 import useInput from "../../../custom-hooks/useInput";
-import SignupButton from "../../../pages/Signup/SignupButton/SignupButton";
 import LoadingScreen from "../../../pages/Profile/LoadingScreen/LoadingScreen";
+import Button from "../../Button/Button";
 import SlideInMessage from "../../SlideInMessage/SlideInMessage";
 import { showAndHideNotification } from "../../../redux-store/notificationSlice";
 import { useDispatch } from "react-redux";
@@ -32,7 +32,7 @@ const SubscriptionForm = function ({ className }) {
 
     await axios({
       method: "POST",
-      url: "http://localhost:8080/add-subscription",
+      url: "https://stayfy-backend.onrender.com/add-subscription",
       data: { email: input },
     });
     resetInput();
@@ -46,9 +46,14 @@ const SubscriptionForm = function ({ className }) {
     );
   };
 
+  const { subscription, subscription__Btn } = styles;
+
   return (
     <>
-      <form className={className} onSubmit={handleSubmitSubscription}>
+      <form
+        className={`${subscription} ${className}`}
+        onSubmit={handleSubmitSubscription}
+      >
         <h3>Get special offers and more from Stayfy</h3>
 
         <Input
@@ -61,7 +66,10 @@ const SubscriptionForm = function ({ className }) {
           hasError={inputHasError}
           errorMessage="Please enter a valid email"
         />
-        <SignupButton text="Subscribe" isDisabled={inputIsInvalid} />
+
+        <Button isDisabled={inputIsInvalid} className={subscription__Btn}>
+          Subscribe
+        </Button>
       </form>
       {isSubmitting && <LoadingScreen zIndex={2000} />}
     </>

@@ -24,8 +24,6 @@ const FilterSlider = function ({ onHandleLeftBtn, onHandleRightBtn }) {
           onHandleLeftBtn(true);
         }
 
-        console.log(entry.target === lastItemRef.current);
-
         if (entry.target === lastItemRef.current && entry.isIntersecting) {
           onHandleRightBtn(false);
         } else if (

@@ -70,7 +70,6 @@ const LocationSearch = function (
     locationSearch__ClearBtn__Hidden,
   } = styles;
 
-  console.log(isTypingQuery);
   return (
     <label
       className={`${locationSearch} ${className} ${

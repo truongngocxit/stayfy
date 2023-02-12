@@ -89,8 +89,6 @@ const BookingButton = function ({
           },
         });
 
-        console.log(response.data);
-
         reduxDispatch(
           activeUserActions.addTrip({
             bookingId: response.data.bookingId,
@@ -98,11 +96,9 @@ const BookingButton = function ({
           })
         );
 
-        setTimeout(() => {
-          onHasSubmitted();
-          reduxDispatch(bookingInfoActions.resetBookingInfo());
-          reduxDispatch(searchQueryActions.resetSearchQuery());
-        }, 2500);
+        onHasSubmitted();
+        // reduxDispatch(bookingInfoActions.resetBookingInfo());
+        // reduxDispatch(searchQueryActions.resetSearchQuery());
       };
       sendBookingData();
     } else {

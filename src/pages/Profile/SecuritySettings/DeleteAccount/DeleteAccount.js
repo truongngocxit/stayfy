@@ -1,5 +1,6 @@
 import styles from "./DeleteAccount.module.scss";
 import ProfileSettingItem from "../../ProfileSettingItem/ProfileSettingItem";
+import Button from "../../../../components/Button/Button";
 import SettingButton from "../../SettingButton/SettingButton";
 import Input from "../../../../components/Input/Input";
 import useInput from "../../../../custom-hooks/useInput";
@@ -84,9 +85,16 @@ const DeleteAccount = function ({
             onFocus={handleStartTypingConfirmation}
             hasError={confirmationHasError}
             tooltipPlacement="topLeft"
-            errorMessage="Are you sure you are typing 'DELETE'"
+            errorMessage="Are you sure you are typing 'DELETE'?"
           />
-          <SettingButton text="Delete account" className={accountDelete__Btn} />
+
+          <Button
+            className={accountDelete__Btn}
+            isDisabled={confirmationIsInvalid}
+            errorMessage="Are you sure you are typing 'DELETE'?"
+          >
+            Delete account
+          </Button>
         </form>
       </ProfileSettingItem>
       {isDeleting &&
