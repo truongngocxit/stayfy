@@ -13,11 +13,12 @@ const LocationMap = function ({ cityName }) {
     const fetchGeoData = async function () {
       setIsLoading(true);
       setError(null);
+
       const url = `https://geocode.maps.co/search?q=${cityName
         .toLowerCase()
         .split(" ")
         .join("+")}`;
-
+      console.log(url);
       try {
         const response = await axios({
           method: "GET",

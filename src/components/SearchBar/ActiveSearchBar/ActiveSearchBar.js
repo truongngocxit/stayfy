@@ -1,8 +1,3 @@
-import styles from "./ActiveSearchBar.module.scss";
-import LocationSearch from "../LocationSearch/LocationSearch";
-import DateSearch from "../DateSearch/DateSearch";
-import GuestNumber from "../GuestNumber/GuestNumber";
-import SearchButton from "../SearchButton/SearchButton";
 import LargerScreenSearchBar from "./LargerScreenSearchBar/LargerScreenSearchBar";
 import SmallerScreenSearchBar from "./SmallerScreenSearchBar/SmallerScreenSearchBar";
 import { useContext } from "react";
@@ -17,9 +12,10 @@ const ActiveSearchBar = function ({
   className,
   isCollapse,
   onStopSearching,
-  isSmallerScreen = false,
+  isTabletScreen = false,
 }) {
   const reduxDispatch = useDispatch();
+
   const { searchQuery } = useContext(LocationSearchContext);
   const { selectedDate } = useContext(DateSearchContext);
   const {
@@ -57,7 +53,7 @@ const ActiveSearchBar = function ({
 
   return (
     <>
-      {!isSmallerScreen ? (
+      {!isTabletScreen ? (
         <LargerScreenSearchBar
           guestNumSearchRef={guestNumSearchRef}
           locationSearchRef={locationSearchRef}
@@ -82,7 +78,7 @@ export default ActiveSearchBar;
 
 /* <div
       className={`${searchBar} ${
-        isSmallerScreen ? searchBar__SmallerScreen : ""
+        isTabletScreen ? searchBar__SmallerScreen : ""
       }  ${className} ${isCollapse ? searchBar__Collapse : ""}`}
     >
       <LocationSearch

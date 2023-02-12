@@ -2,9 +2,8 @@
 
 .searchBar {
   width: 100%;
-  &__Collapse {
+  &--Collapse {
     position: absolute;
     visibility: hidden;
-    //animation: inactiveBarCollapse backwards 0.4s;
   }
 }

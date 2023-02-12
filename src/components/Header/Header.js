@@ -1,7 +1,8 @@
 import styles from "./Header.module.scss";
 import TopNav from "../TopNav/TopNav";
 import FilterMenu from "../FilterMenu/FilterMenu";
-import { useLayoutEffect, useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
+import { tabletWidth } from "../../utils/conts";
 
 const Header = function ({
   hasFilter = false,
@@ -9,11 +10,10 @@ const Header = function ({
   hasSearchBar = false,
   isHidden = false,
   hasBuffer = true,
-  pathname,
 }) {
   const headerRef = useRef(null);
   const [bufferHeight, setBufferHeight] = useState(0);
-  const [isSmallerScreen, setIsSmallerScreen] = useState(false);
+  const [isTabletScreen, setIsTabletScreen] = useState(false);
   const resizeObserverRef = useRef(null);
   const headerBufferRef = useRef(null);
 
@@ -24,47 +24,45 @@ const Header = function ({
 
       setBufferHeight(headerHeight);
 
-      if (entries[0].contentRect.width <= 744) {
-        setIsSmallerScreen(true);
+      if (entries[0].contentRect.width <= tabletWidth) {
+        setIsTabletScreen(true);
       } else {
-        setIsSmallerScreen(false);
+        setIsTabletScreen(false);
       }
     });
 
     resizeObserverRef.current.observe(document.documentElement);
   }, []);
 
-  const {
-    header,
-    header__Hidden,
-    header__Main,
-    header__Fixed,
-    header__Absolute,
-    header__Buffer,
-  } = styles;
   return (
-    <header className={`${header} ${isHidden ? header__Hidden : ""}`}>
+    <header className={`${header} ${isHidden ? headerHidden : ""}`}>
       <div
         className={header__Buffer}
         style={{ height: hasBuffer ? bufferHeight : 0 }}
         ref={headerBufferRef}
       ></div>
       <div
-        className={`${header__Main} ${
-          isFixed ? header__Fixed : header__Absolute
-        }`}
+        className={`${header__Main} ${isFixed ? headerFixed : headerAbsolute}`}
         ref={headerRef}
       >
         <TopNav
           hasSearchBar={hasSearchBar}
           isFixed={isFixed}
-          isSmallerScreen={isSmallerScreen}
+          isTabletScreen={isTabletScreen}
         />
-
-        {hasFilter && <FilterMenu isSmallerScreen={isSmallerScreen} />}
+        {hasFilter && <FilterMenu isTabletScreen={isTabletScreen} />}
       </div>
     </header>
   );
 };
 
 export default Header;
+
+const {
+  header,
+  ["header--Hidden"]: headerHidden,
+  header__Main,
+  ["header--Fixed"]: headerFixed,
+  ["header--Absolute"]: headerAbsolute,
+  header__Buffer,
+} = styles;

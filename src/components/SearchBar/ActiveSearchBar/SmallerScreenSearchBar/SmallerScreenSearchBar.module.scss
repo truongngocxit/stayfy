@@ -10,7 +10,7 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
 
-  &__Collapse {
+  &--Collapse {
     display: none;
   }
 
@@ -82,7 +82,7 @@
     border-radius: $borderRadius;
     box-shadow: $boxShadow;
 
-    &__Inactive {
+    &--Inactive {
       display: flex;
       justify-content: space-between;
     }

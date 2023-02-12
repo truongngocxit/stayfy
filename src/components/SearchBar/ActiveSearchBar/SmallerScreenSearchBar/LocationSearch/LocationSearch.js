@@ -27,7 +27,6 @@ const LocationSearch = function ({ onFinishSearch }) {
     filteredLocations = filteredLocations.slice(0, 5);
   }
 
-  const { location, location__Input, location__Searches } = styles;
   return (
     <div className={location}>
       <label className={location__Input}>
@@ -36,9 +35,7 @@ const LocationSearch = function ({ onFinishSearch }) {
           autoComplete="off"
           placeholder="Search for places"
           value={searchQuery}
-          onChange={(event) => {
-            handleQueryChange(event);
-          }}
+          onChange={handleQueryChange}
           onBlur={handleStopTypingQuery}
           onFocus={handleStartTypingQuery}
         />
@@ -57,3 +54,5 @@ const LocationSearch = function ({ onFinishSearch }) {
 };
 
 export default LocationSearch;
+
+const { location, location__Input, location__Searches } = styles;

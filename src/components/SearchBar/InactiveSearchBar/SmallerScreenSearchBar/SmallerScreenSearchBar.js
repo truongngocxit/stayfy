@@ -23,37 +23,29 @@ const SmallerScreenSearchBar = function ({
     event.stopPropagation();
     setFilterModalIsVisible(false);
   };
-  const {
-    searchBar,
-    searchBar__Filter,
-    searchBar__Search,
-    searchBar__Search__Icon,
-    searchBar__Search__Main,
-    searchBar__Search__Main__Place,
-    searchBar__Search__Main__DateAndGuests,
-  } = styles;
+
   return (
     <div className={`${searchBar} ${className}`} onClick={onClick}>
-      <div className={searchBar__Search}>
-        <div className={searchBar__Search__Icon}>
-          <SearchIcon />
+      <div className={searchBar__Icon}>
+        <SearchIcon />
+      </div>
+
+      <div className={searchBar__Main}>
+        <div className={searchBar__Main__Place}>
+          <span>{query || "All places"}</span>
         </div>
-        <div className={searchBar__Search__Main}>
-          <div className={searchBar__Search__Main__Place}>
-            <span>{query || "All places"}</span>
-          </div>
-          <div className={searchBar__Search__Main__DateAndGuests}>
-            <span>{dateString}</span>
-            <span>·</span>
-            <span>
-              {guests.adults
-                ? `${guests.adults + guests.children} guests`
-                : "For 1 guest"}
-            </span>
-          </div>
+        <div className={searchBar__Main__DateGuests}>
+          <span>{dateString}</span>
+          <span>·</span>
+          <span>
+            {guests.adults
+              ? `${guests.adults + guests.children} guests`
+              : "For 1 guest"}
+          </span>
         </div>
       </div>
-      <div className={searchBar__Filter}>
+
+      <div className={searchBar__FilterBtn}>
         <FilterButton hasText={false} onClick={handleOpenFilterModal} />
 
         {createPortal(
@@ -70,3 +62,12 @@ const SmallerScreenSearchBar = function ({
 };
 
 export default SmallerScreenSearchBar;
+
+const {
+  searchBar,
+  searchBar__FilterBtn,
+  searchBar__Icon,
+  searchBar__Main,
+  searchBar__Main__Place,
+  searchBar__Main__DateGuests,
+} = styles;

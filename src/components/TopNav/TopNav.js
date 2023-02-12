@@ -5,18 +5,10 @@ import SearchBar from "../SearchBar/SearchBar";
 import HomeButton from "./HomeButton/HomeButton";
 import { Link } from "react-router-dom";
 
-const TopNav = function ({ hasSearchBar = true, isSmallerScreen }) {
-  const {
-    topNav,
-    topNav__Logo,
-    topNav__SearchBar,
-    topNav__Home,
-    topNav__ProfileBtn,
-  } = styles;
-
+const TopNav = function ({ hasSearchBar = true, isTabletScreen }) {
   return (
     <nav className={topNav}>
-      {!isSmallerScreen && (
+      {!isTabletScreen && (
         <Link to="/" className={topNav__Logo}>
           <MainLogo />
         </Link>
@@ -24,17 +16,24 @@ const TopNav = function ({ hasSearchBar = true, isSmallerScreen }) {
 
       {hasSearchBar ? (
         <div className={topNav__SearchBar}>
-          <SearchBar isSmallerScreen={isSmallerScreen} />
+          <SearchBar isTabletScreen={isTabletScreen} />
         </div>
       ) : (
         <div className={topNav__Home}>
           <HomeButton>Explore all stays</HomeButton>
         </div>
       )}
-
-      {!isSmallerScreen && <ProfileButton className={topNav__ProfileBtn} />}
+      {!isTabletScreen && <ProfileButton className={topNav__ProfileBtn} />}
     </nav>
   );
 };
 
 export default TopNav;
+
+const {
+  topNav,
+  topNav__Logo,
+  topNav__SearchBar,
+  topNav__Home,
+  topNav__ProfileBtn,
+} = styles;

@@ -8,8 +8,6 @@ const LargeScreenSearchBar = function ({
   guests,
   onClick,
 }) {
-  const { searchBar, searchBar__Place, searchBar__Guests, searchBar__Btn } =
-    styles;
   return (
     <div className={`${searchBar} ${className}`} onClick={onClick}>
       <div className={searchBar__Place}>
@@ -33,3 +31,6 @@ const LargeScreenSearchBar = function ({
 };
 
 export default LargeScreenSearchBar;
+
+const { searchBar, searchBar__Place, searchBar__Guests, searchBar__Btn } =
+  styles;

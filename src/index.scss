@@ -56,6 +56,13 @@ a {
   font-size: 1.6rem;
 }
 
+button {
+  background: none;
+  border: none;
+  display: block;
+  cursor: pointer;
+}
+
 input {
   caret-color: $primaryColor;
 }

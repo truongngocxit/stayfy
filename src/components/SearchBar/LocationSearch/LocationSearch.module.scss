@@ -8,11 +8,11 @@
   gap: 0.5rem;
   position: relative;
 
-  label {
+  &__Label {
     font-size: inherit;
   }
 
-  input {
+  &__Input {
     border: none;
     background: none;
     font-size: inherit;
@@ -49,7 +49,7 @@
     }
   }
 
-  &__ClearBtn__Hidden {
+  &__ClearBtn--Hidden {
     opacity: 0;
     visibility: hidden;
   }

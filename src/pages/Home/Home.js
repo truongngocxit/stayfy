@@ -1,11 +1,7 @@
 import StaysListing from "./StaysListing/StaysListing";
 
 const Home = function () {
-  return (
-    <>
-      <StaysListing />
-    </>
-  );
+  return <StaysListing />;
 };
 
 export default Home;

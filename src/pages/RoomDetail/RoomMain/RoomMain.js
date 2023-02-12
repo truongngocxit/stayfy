@@ -68,7 +68,14 @@ const RoomMain = function ({
           selectedRooms={selectedRooms}
         />
         <LineBreak />
-        <RoomLocation ref={locationRef} cityName={lodgeInfo.city} />
+        <RoomLocation
+          ref={locationRef}
+          cityName={
+            lodgeInfo.location.includes(",")
+              ? lodgeInfo.city
+              : lodgeInfo.location
+          }
+        />
         <LineBreak />
         <AboutHost ref={hostRef} hostInfo={lodgeInfo.host} />
         <LineBreak />

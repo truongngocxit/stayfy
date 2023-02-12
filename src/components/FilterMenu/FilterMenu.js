@@ -10,7 +10,6 @@ import SkeletonFilterSlider from "./SkeletonFilterSlider/SkeletonFilterSlider";
 import FilterModal from "../FilterModal/FilterModal";
 import { useDispatch, useSelector } from "react-redux";
 import { searchQueryActions } from "../../redux-store/searchQuerySlice";
-
 import axios from "axios";
 
 const FilterMenu = function () {

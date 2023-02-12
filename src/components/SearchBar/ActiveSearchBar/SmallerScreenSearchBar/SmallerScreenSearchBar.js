@@ -116,21 +116,8 @@ const SmallerScreenSearchBar = function ({ onCloseSearch, isCollapse }) {
     handleClearDatePicker();
   };
 
-  const {
-    searchBar,
-    searchBar__Collapse,
-    searchBar__Head,
-    searchBar__Foot,
-    searchBar__Main,
-    searchBar__Field,
-    searchBar__Field__Inactive,
-    searchBar__Field__Label,
-    searchBar__Field__Info,
-    searchBar__Foot__ClearBtn,
-    searchBar__Foot__SearchBtn,
-  } = styles;
   return (
-    <div className={`${searchBar} ${isCollapse ? searchBar__Collapse : ""}`}>
+    <div className={`${searchBar} ${isCollapse ? searchBarCollapse : ""}`}>
       <div className={searchBar__Head}>
         <CloseIcon onClick={onCloseSearch} />
         <h2>Search</h2>
@@ -143,7 +130,7 @@ const SmallerScreenSearchBar = function ({ onCloseSearch, isCollapse }) {
           {whereIsOn ? (
             <LocationSearch onFinishSearch={handleActivateDateSearch} />
           ) : (
-            <div className={searchBar__Field__Inactive}>
+            <div className={searchBar__FieldInactive}>
               <span className={searchBar__Field__Label}>Where</span>
               <span className={searchBar__Field__Info}>
                 {searchQuery || query || "Anywhere"}
@@ -159,7 +146,7 @@ const SmallerScreenSearchBar = function ({ onCloseSearch, isCollapse }) {
             />
           ) : (
             <div
-              className={searchBar__Field__Inactive}
+              className={searchBar__FieldInactive}
               onClick={handleActivateDateSearch}
             >
               <span className={searchBar__Field__Label}>When</span>
@@ -171,7 +158,7 @@ const SmallerScreenSearchBar = function ({ onCloseSearch, isCollapse }) {
           {whoIsOn ? (
             <GuestSearch />
           ) : (
-            <div className={searchBar__Field__Inactive}>
+            <div className={searchBar__FieldInactive}>
               <span className={searchBar__Field__Label}>Who</span>
               <span className={searchBar__Field__Info}>{guestLabel}</span>
             </div>
@@ -198,6 +185,20 @@ const SmallerScreenSearchBar = function ({ onCloseSearch, isCollapse }) {
 };
 
 export default SmallerScreenSearchBar;
+
+const {
+  searchBar,
+  ["searchBar--Collapse"]: searchBarCollapse,
+  searchBar__Head,
+  searchBar__Foot,
+  searchBar__Main,
+  searchBar__Field,
+  ["searchBar__Field--Inactive"]: searchBar__FieldInactive,
+  searchBar__Field__Label,
+  searchBar__Field__Info,
+  searchBar__Foot__ClearBtn,
+  searchBar__Foot__SearchBtn,
+} = styles;
 
 const searchModalReducer = function (state, action) {
   switch (action) {

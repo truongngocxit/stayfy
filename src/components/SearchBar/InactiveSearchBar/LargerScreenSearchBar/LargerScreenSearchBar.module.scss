@@ -9,34 +9,9 @@
   border-radius: 50rem;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   cursor: pointer;
-  // transition: all 0.1s;
-  //animation: inactiveBarCollapse 0.3s alternate backwards;
   &:hover {
     transform: translateY(-0.2rem);
     box-shadow: $boxShadow;
-  }
-
-  button {
-    display: block;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-
-  &__Btn {
-    width: 3.2rem;
-    height: 3.2rem;
-    background-color: $primaryColor;
-    border-radius: 50%;
-    padding: 0.5rem;
-    margin-left: 1.5rem;
-
-    svg {
-      display: block;
-      stroke: #fff;
-      min-width: 100%;
-      height: 100%;
-    }
   }
 
   &__Place,
@@ -54,6 +29,22 @@
 
     button {
       color: $grayColorFaint3;
+    }
+  }
+
+  &__Btn {
+    width: 3.2rem;
+    height: 3.2rem;
+    background-color: $primaryColor;
+    border-radius: 50%;
+    padding: 0.5rem;
+    margin-left: 1.5rem;
+
+    svg {
+      display: block;
+      stroke: #fff;
+      min-width: 100%;
+      height: 100%;
     }
   }
 }

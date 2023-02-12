@@ -7,13 +7,11 @@ const InactiveSearchBar = function ({
   className,
   onStartSearching,
   isCollapse,
-  isSmallerScreen,
+  isTabletScreen,
 }) {
   const query = useSelector((state) => state.search.query) || null;
   const date = useSelector((state) => state.search.date) || null;
   const guests = useSelector((state) => state.search.guestNum) || null;
-
-  const { searchBar, searchBar__Collapse } = styles;
 
   let dateString = "Anytime";
 
@@ -29,10 +27,10 @@ const InactiveSearchBar = function ({
 
   return (
     <>
-      {!isSmallerScreen ? (
+      {!isTabletScreen ? (
         <LargeScreenSearchBar
           className={`${searchBar}  ${
-            isCollapse ? searchBar__Collapse : ""
+            isCollapse ? searchBarCollapse : ""
           } ${className}`}
           onClick={onStartSearching}
           query={query}
@@ -42,7 +40,7 @@ const InactiveSearchBar = function ({
       ) : (
         <SmallerScreenSearchBar
           className={`${searchBar}  ${
-            isCollapse ? searchBar__Collapse : ""
+            isCollapse ? searchBarCollapse : ""
           } ${className}`}
           onClick={onStartSearching}
           query={query}
@@ -55,3 +53,5 @@ const InactiveSearchBar = function ({
 };
 
 export default InactiveSearchBar;
+
+const { searchBar, ["searchBar--Collapse"]: searchBarCollapse } = styles;

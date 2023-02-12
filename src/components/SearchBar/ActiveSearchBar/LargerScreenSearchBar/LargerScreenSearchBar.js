@@ -14,22 +14,14 @@ const LargerScreenSearchBar = function ({
   handleFocusGuestNumSearch,
   handleSearch,
 }) {
-  const {
-    searchBar,
-    searchBar__Collapse,
-    searchBar__Place,
-    searchBar__Time,
-    searchBar__Guests,
-    searchBar__Active,
-  } = styles;
   return (
     <div
       className={`${searchBar}  ${className} ${
-        isCollapse ? searchBar__Collapse : ""
+        isCollapse ? searchBarCollapse : ""
       }`}
     >
       <LocationSearch
-        activeClassName={searchBar__Active}
+        activeClassName={searchBarActive}
         className={searchBar__Place}
         onFinishSearch={handleFocusDateSearch}
         ref={locationSearchRef}
@@ -37,14 +29,14 @@ const LargerScreenSearchBar = function ({
 
       <DateSearch
         className={searchBar__Time}
-        activeClassName={searchBar__Active}
+        activeClassName={searchBarActive}
         onFinishSearch={handleFocusGuestNumSearch}
         ref={dateSearchRef}
       />
 
       <GuestNumber
         className={searchBar__Guests}
-        activeClassName={searchBar__Active}
+        activeClassName={searchBarActive}
         ref={guestNumSearchRef}
       />
       <SearchButton onClick={handleSearch}>Search</SearchButton>
@@ -53,3 +45,12 @@ const LargerScreenSearchBar = function ({
 };
 
 export default LargerScreenSearchBar;
+
+const {
+  searchBar,
+  ["searchBar--Collapse"]: searchBarCollapse,
+  searchBar__Place,
+  searchBar__Time,
+  searchBar__Guests,
+  ["searchBar--Active"]: searchBarActive,
+} = styles;

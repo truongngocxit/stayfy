@@ -1,9 +1,11 @@
+@use "../../sass-styles/variables" as *;
+
 .header {
   visibility: 0;
   opacity: 1;
   height: auto;
 
-  &__Hidden {
+  &--Hidden {
     height: 0;
     opacity: 0;
     visibility: hidden;
@@ -19,11 +21,11 @@
     z-index: 500;
   }
 
-  &__Fixed {
+  &--Fixed {
     position: fixed;
   }
 
-  &__Absolute {
+  &--Absolute {
     position: absolute;
   }
 }

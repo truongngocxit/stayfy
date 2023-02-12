@@ -7,40 +7,39 @@
   border-radius: 50rem;
   align-items: center;
   width: 100%;
+  &__Icon {
+    padding: 2rem;
+    svg {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+
+  &__Main {
+    font-size: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &__Place {
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+
+    &__DateGuests {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      color: $grayColorFaint3;
+    }
+  }
 
   &__Search {
     display: flex;
     align-items: center;
-
-    &__Icon {
-      padding: 2rem;
-      svg {
-        width: 2.4rem;
-        height: 2.4rem;
-      }
-    }
-
-    &__Main {
-      font-size: 1.6rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-
-      &__Place {
-        font-weight: 700;
-        font-size: 1.8rem;
-      }
-
-      &__DateAndGuests {
-        display: flex;
-        justify-content: space-between;
-        gap: 1.5rem;
-        color: $grayColorFaint3;
-      }
-    }
   }
 
-  &__Filter {
+  &__FilterBtn {
     margin-left: auto;
     padding: 1rem;
   }

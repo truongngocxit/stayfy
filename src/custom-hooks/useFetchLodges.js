@@ -30,7 +30,7 @@ const useFetchLodges = function () {
       try {
         const response = await axios({
           method: "GET",
-          url: "https://stayfy-backend.onrender.com/get-paginated-lodges",
+          url: "https://stayfy-backend-production.up.railway.app/get-paginated-lodges",
           params: {
             cursor,
             numOfItems: Number(numOfItems),

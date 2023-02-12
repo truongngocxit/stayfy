@@ -64,11 +64,10 @@ const LocationSearch = function (
       );
   }, [containerRef, handleStopTypingQuery]);
 
-  const {
-    locationSearch,
-    locationSearch__ClearBtn,
-    locationSearch__ClearBtn__Hidden,
-  } = styles;
+  const handleInputChange = function (event) {
+    handleQueryChange(event);
+    handleOpenDropdown();
+  };
 
   return (
     <label
@@ -79,24 +78,24 @@ const LocationSearch = function (
       htmlFor="place"
       onClick={handleStartTypingQuery}
     >
-      <span htmlFor="place">Where</span>
+      <span htmlFor="place" className={locationSearch__Label}>
+        Where
+      </span>
       <input
+        className={locationSearch__Input}
         ref={ref}
         autoComplete="off"
         id="place"
         placeholder="Search for places"
         value={searchQuery}
-        onChange={(event) => {
-          handleQueryChange(event);
-          handleOpenDropdown();
-        }}
+        onChange={handleInputChange}
       />
       <button
         type="button"
         className={`${locationSearch__ClearBtn} ${
           isTypingQuery && searchQuery !== ""
             ? ""
-            : locationSearch__ClearBtn__Hidden
+            : locationSearch__ClearBtnHidden
         }`}
         onClick={handleClearQuery}
       >
@@ -116,3 +115,11 @@ const LocationSearch = function (
 };
 
 export default forwardRef(LocationSearch);
+
+const {
+  locationSearch,
+  locationSearch__Label,
+  locationSearch__Input,
+  locationSearch__ClearBtn,
+  ["locationSearch__ClearBtn--Hidden"]: locationSearch__ClearBtnHidden,
+} = styles;

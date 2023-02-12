@@ -24,8 +24,6 @@ const DateSearch = function (
 
   const { start, end } = selectedDate;
 
-  const { dateSearch } = styles;
-
   return (
     <div
       ref={ref}
@@ -45,3 +43,5 @@ const DateSearch = function (
 };
 
 export default forwardRef(DateSearch);
+
+const { dateSearch } = styles;

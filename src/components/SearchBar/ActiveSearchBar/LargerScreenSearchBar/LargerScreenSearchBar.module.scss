@@ -12,7 +12,7 @@
   background-color: $grayColorFaint6;
   transition: all 0.4s;
 
-  &__Collapse {
+  &--Collapse {
     position: absolute;
     margin: 0;
     border: none;
@@ -20,7 +20,7 @@
     animation: activeBarCollapse 0.4s forwards;
   }
 
-  &__Active {
+  &--Active {
     background-color: #fff;
     border-radius: 50rem;
     box-shadow: 0 0 0 0.3rem #fff, 0 0 1rem 0.8rem rgba(0, 0, 0, 0.1);
