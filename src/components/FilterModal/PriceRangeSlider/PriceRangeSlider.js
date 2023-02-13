@@ -7,8 +7,6 @@ const PriceRangeSlider = function ({ maxPrice }) {
   const { priceRange, handleRangeChange, handleInputMin, handleInputMax } =
     useContext(priceRangeContext);
 
-  const { filterModal__Main__Price__Inputs, filterModal__Main__Price__Input } =
-    styles;
   return (
     <>
       <ConfigProvider
@@ -37,8 +35,8 @@ const PriceRangeSlider = function ({ maxPrice }) {
         />
       </ConfigProvider>
 
-      <div className={filterModal__Main__Price__Inputs}>
-        <div className={filterModal__Main__Price__Input}>
+      <div className={priceRange__Inputs}>
+        <div className={priceRange__Input}>
           <label htmlFor="minPrice">min</label>
           <div>
             <span>$</span>
@@ -49,7 +47,7 @@ const PriceRangeSlider = function ({ maxPrice }) {
             />
           </div>
         </div>
-        <div className={filterModal__Main__Price__Input}>
+        <div className={priceRange__Input}>
           <label htmlFor="maxPrice">max</label>
           <div>
             <span>$</span>
@@ -66,6 +64,8 @@ const PriceRangeSlider = function ({ maxPrice }) {
 };
 
 export default PriceRangeSlider;
+
+const { priceRange__Inputs, priceRange__Input } = styles;
 
 // const [priceRange, setPriceRange] = useState({
 //   min: 0,

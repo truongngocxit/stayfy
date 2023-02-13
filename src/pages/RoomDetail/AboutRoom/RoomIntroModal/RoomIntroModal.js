@@ -1,12 +1,13 @@
 import styles from "./RoomIntroModal.module.scss";
-import CloseIcon from "../../../components/UI/SVG/CloseIcon";
+import CloseIcon from "../../../../components/UI/SVG/CloseIcon";
+import ModalTransition from "../../../../components/ModalTransition/ModalTransition";
 
-const RoomIntroModal = function ({ description }) {
+const RoomIntroModal = function ({ description, onCloseModal, isVisible }) {
   const { introModal, introModal__CloseBtn, introModal__Content } = styles;
 
   return (
-    <div className={introModal}>
-      <button className={introModal__CloseBtn}>
+    <ModalTransition className={introModal} isVisible={isVisible}>
+      <button className={introModal__CloseBtn} onClick={onCloseModal}>
         <CloseIcon />
       </button>
       <div className={introModal__Content}>
@@ -15,7 +16,7 @@ const RoomIntroModal = function ({ description }) {
           <p key={p}>{p}</p>
         ))}
       </div>
-    </div>
+    </ModalTransition>
   );
 };
 

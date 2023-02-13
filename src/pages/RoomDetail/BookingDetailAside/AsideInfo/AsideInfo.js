@@ -58,16 +58,6 @@ const AsideInfo = function ({
     handleCloseDropdown,
   } = useDropdown(handleResetLocalGuestNum);
 
-  const {
-    asideInfo,
-    asideInfo__DatePicker,
-    asideInfo__DatePicker__Active,
-    asideInfo__GuestNum,
-    asideInfo__GuestNum__Active,
-    asideInfo__GuestNum__Modal,
-    asideInfo__GuestNum__DropdownBtn,
-  } = styles;
-
   const handleAddGuestNum = function () {
     reduxDispatch(
       searchQueryActions.setGuestNum({
@@ -99,7 +89,7 @@ const AsideInfo = function ({
     <div className={`${asideInfo} ${className}`}>
       <div
         className={`${asideInfo__DatePicker} ${
-          datePickerIsActive ? asideInfo__DatePicker__Active : ""
+          datePickerIsActive ? asideInfo__DatePickerActive : ""
         }`}
       >
         <DateRangePicker
@@ -115,7 +105,7 @@ const AsideInfo = function ({
 
       <div
         className={`${asideInfo__GuestNum} ${
-          dropdownIsVisible ? asideInfo__GuestNum__Active : ""
+          dropdownIsVisible ? asideInfo__GuestNumActive : ""
         }`}
         onClick={handleOpenDropdown}
         ref={containerRef}
@@ -139,3 +129,13 @@ const AsideInfo = function ({
 };
 
 export default AsideInfo;
+
+const {
+  asideInfo,
+  asideInfo__DatePicker,
+  ["asideInfo__DatePicker--Active"]: asideInfo__DatePickerActive,
+  asideInfo__GuestNum,
+  ["asideInfo__GuestNum--Active"]: asideInfo__GuestNumActive,
+  asideInfo__GuestNum__Modal,
+  asideInfo__GuestNum__DropdownBtn,
+} = styles;

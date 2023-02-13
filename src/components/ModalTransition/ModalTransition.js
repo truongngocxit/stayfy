@@ -1,13 +1,6 @@
 import { Transition } from "react-transition-group";
 
-const duration = 300;
-
-const defaultStyle = {
-  transition: `all ${duration}ms ease-in`,
-  opacity: 0,
-};
-
-const transitionStyles = {
+const defaultTransitionStyles = {
   entering: {
     opacity: 1,
     transform: "translate(-50%, -50%)",
@@ -26,7 +19,20 @@ const transitionStyles = {
   },
 };
 
-const ModalTransition = function ({ isVisible, className, children }) {
+const defaultDuration = 300;
+
+const ModalTransition = function ({
+  isVisible,
+  className,
+  children,
+  transitionStyles = defaultTransitionStyles,
+  duration = defaultDuration,
+}) {
+  const defaultStyle = {
+    transition: `all ${duration}ms ease-in`,
+    opacity: 0,
+  };
+
   return (
     <Transition in={isVisible} timeout={duration} unmountOnExit={true}>
       {(state) => (

@@ -4,14 +4,26 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 20rem;
-  gap: 1.5rem;
-  border-radius: $borderRadius;
-  overflow: hidden;
+  gap: 1.2rem;
+
+  //overflow: hidden;
   position: relative;
 
-  &__MainImg {
+  &__Img--Main {
     grid-column: span 2;
     grid-row: span 2;
+  }
+
+  &__Img--Small {
+  }
+
+  &__Img--Main,
+  &__Img--Small {
+    border-radius: $borderRadius;
+    transition: all 0.3s;
+    &:hover {
+      box-shadow: 0 0 0 0.5rem $primaryColor;
+    }
   }
 
   &__ShowBtn {
@@ -29,9 +41,17 @@
     box-shadow: $boxShadow;
     cursor: pointer;
 
+    &:hover {
+      background-color: $grayColorFaint6;
+    }
+
     svg {
       height: 2.4rem;
       width: 2.4rem;
+    }
+
+    span {
+      font-weight: 700;
     }
 
     &:active {

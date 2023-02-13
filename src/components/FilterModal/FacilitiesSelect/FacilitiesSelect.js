@@ -50,14 +50,6 @@ const FacilitiesSelect = function () {
 
   const [visibleSection, ...hiddenSection] = cleansedData;
 
-  const {
-    facilities,
-
-    facilities__Section__Hidden,
-    facilities__Section__Shown,
-    facilities__ShowBtn,
-  } = styles;
-
   return (
     <div className={facilities}>
       {visibleSection?.length > 0 && (
@@ -71,8 +63,8 @@ const FacilitiesSelect = function () {
       <div
         className={
           !showMoreIsShown
-            ? facilities__Section__Hidden
-            : facilities__Section__Shown
+            ? facilities__SectionHidden
+            : facilities__SectionShown
         }
       >
         {hiddenSection?.length > 0 &&
@@ -94,6 +86,13 @@ const FacilitiesSelect = function () {
 };
 
 export default FacilitiesSelect;
+
+const {
+  facilities,
+  ["facilities__Section--Hidden"]: facilities__SectionHidden,
+  ["facilities__Section--Shown"]: facilities__SectionShown,
+  facilities__ShowBtn,
+} = styles;
 
 // const [facilitiesSelect, setFaciltiesSelect] = useState([]);
 

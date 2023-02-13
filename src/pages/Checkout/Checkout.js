@@ -1,5 +1,5 @@
 import styles from "./Checkout.module.scss";
-
+import { tabletWidth } from "../../utils/conts";
 import BookingDetailAside from "./BookingDetailAside/BookingDetailAside";
 import BookingButton from "./BookingButton/BookingButton";
 import BookingInfoMain from "./BookingInfoMain/BookingInfoMain";
@@ -25,7 +25,7 @@ const Checkout = function () {
   const resizeObserverRef = useRef(null);
   useEffect(() => {
     resizeObserverRef.current = new ResizeObserver(function (entries) {
-      if (entries[0].contentRect.width <= 744) {
+      if (entries[0].contentRect.width <= tabletWidth) {
         setIsSmallerScreen(true);
       } else {
         setIsSmallerScreen(false);
@@ -51,15 +51,6 @@ const Checkout = function () {
     navigate("/");
   };
 
-  const {
-    checkout,
-    checkout__SmallerScreen,
-    checkout__LargerScreen,
-    checkout__Aside,
-    checkout__Details,
-    checkout__Btn,
-  } = styles;
-
   let header, state, stateMessage, navigateMessage;
 
   if (submitState === "isSubmitting") {
@@ -80,7 +71,7 @@ const Checkout = function () {
       <GuestBookingInfoContextProvider>
         <div
           className={`${checkout} ${
-            !isSmallerScreen ? checkout__LargerScreen : checkout__SmallerScreen
+            !isSmallerScreen ? checkoutLargerScreen : checkoutSmallerScreen
           }`}
         >
           {!isSmallerScreen && (
@@ -133,3 +124,12 @@ const Checkout = function () {
 };
 
 export default Checkout;
+
+const {
+  checkout,
+  ["checkout--SmallerScreen"]: checkoutSmallerScreen,
+  ["checkout--LargerScreen"]: checkoutLargerScreen,
+  checkout__Aside,
+  checkout__Details,
+  checkout__Btn,
+} = styles;

@@ -105,6 +105,11 @@ a:active {
   display: none !important;
 }
 
+.ant-picker-header-view {
+  display: flex;
+  justify-content: center;
+}
+
 .ant-picker-cell-inner,
 .ant-picker-content {
   font-family: "Montserrat", sans-serif !important;

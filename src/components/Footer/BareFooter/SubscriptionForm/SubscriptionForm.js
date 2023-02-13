@@ -1,10 +1,9 @@
 import styles from "./SubscriptionForm.module.scss";
-import Input from "../../Input/Input";
-import useInput from "../../../custom-hooks/useInput";
-import LoadingScreen from "../../../pages/Profile/LoadingScreen/LoadingScreen";
-import Button from "../../Button/Button";
-import SlideInMessage from "../../SlideInMessage/SlideInMessage";
-import { showAndHideNotification } from "../../../redux-store/notificationSlice";
+import Input from "../../../Input/Input";
+import useInput from "../../../../custom-hooks/useInput";
+import LoadingScreen from "../../../../pages/Profile/LoadingScreen/LoadingScreen";
+import Button from "../../../Button/Button";
+import { showAndHideNotification } from "../../../../redux-store/notificationSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useState } from "react";

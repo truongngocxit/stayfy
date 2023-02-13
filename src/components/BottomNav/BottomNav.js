@@ -55,19 +55,12 @@ const BottomNav = function ({ isTransparent = false }) {
     setBottomFooterIsVisible(false);
   };
 
-  const {
-    bottomNav,
-    bottomNav__Up,
-    bottomNav__Down,
-    bottomNav__Transparent,
-    bottomNav__Resources,
-  } = styles;
   return (
     <>
       <div
         className={`${bottomNav} ${
-          isScrollDown ? bottomNav__Down : bottomNav__Up
-        } ${isTransparent ? bottomNav__Transparent : ""}`}
+          isScrollDown ? bottomNavDown : bottomNavUp
+        } ${isTransparent ? bottomNavTransparent : ""}`}
       >
         {isSmallerScreen ? (
           <ProfileButton
@@ -79,7 +72,7 @@ const BottomNav = function ({ isTransparent = false }) {
           <span>© {new Date().getFullYear()} Stayfy</span>
         )}
 
-        <div className={bottomNav__Resources} onClick={handleOpenFooter}>
+        <div className={bottomNav__MoreBtn} onClick={handleOpenFooter}>
           {isSmallerScreen ? (
             <MoreIcon />
           ) : (
@@ -90,11 +83,13 @@ const BottomNav = function ({ isTransparent = false }) {
           )}
         </div>
       </div>
-      {bottomFooterIsVisible &&
-        createPortal(
-          <PopupFooter onCloseFooter={handleCloseFooter} />,
-          document.getElementById("modal-root")
-        )}
+      {createPortal(
+        <PopupFooter
+          onCloseFooter={handleCloseFooter}
+          isVisible={bottomFooterIsVisible}
+        />,
+        document.getElementById("modal-root")
+      )}
       {bottomFooterIsVisible &&
         createPortal(
           <Overlay zIndex={1500} onClick={handleCloseFooter} />,
@@ -105,3 +100,11 @@ const BottomNav = function ({ isTransparent = false }) {
 };
 
 export default BottomNav;
+
+const {
+  bottomNav,
+  ["bottomNav--Up"]: bottomNavUp,
+  ["bottomNav--Down"]: bottomNavDown,
+  ["bottomNav--Transparent"]: bottomNavTransparent,
+  bottomNav__MoreBtn,
+} = styles;

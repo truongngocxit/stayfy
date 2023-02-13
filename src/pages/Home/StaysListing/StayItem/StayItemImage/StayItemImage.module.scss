@@ -64,15 +64,15 @@
     }
   }
 
-  &__LeftBtn,
-  &__RightBtn {
+  &__SlideBtnLeft,
+  &__SlideBtnRight {
     background: none;
     border: none;
     position: absolute;
-    width: 3.2rem;
-    height: 3.2rem;
+    width: 2.8rem;
+    height: 2.8rem;
     top: 50%;
-    padding: 0.5rem;
+    padding: 0.4rem;
     border-radius: 50%;
     border: $border;
     background-color: #fff;
@@ -81,16 +81,16 @@
     transition: all 0.4s;
   }
 
-  &__HiddenBtn {
+  &__SlideBtn--Hidden {
     opacity: 0;
     visibility: none;
   }
 
-  &__LeftBtn {
+  &__SlideBtnLeft {
     left: 1.5rem;
   }
 
-  &__RightBtn {
+  &__SlideBtnRight {
     right: 1.5rem;
   }
 }

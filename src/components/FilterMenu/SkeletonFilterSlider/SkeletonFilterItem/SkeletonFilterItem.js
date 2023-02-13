@@ -4,8 +4,8 @@ const SkeletonFilterItem = function () {
   const { skeletonItem, skeletonItem__Icon, skeletonItem__Text } = styles;
   return (
     <div className={skeletonItem}>
-      <div className={skeletonItem__Icon}></div>
-      <div className={skeletonItem__Text}></div>
+      <div className={skeletonItem__Icon} />
+      <div className={skeletonItem__Text} />
     </div>
   );
 };

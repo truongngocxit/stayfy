@@ -13,21 +13,21 @@
   background-color: #fff;
   transition: all 0.2s;
 
-  &__Up {
+  &--Up {
     transform: translateY(0%);
   }
 
-  &__Down {
+  &--Down {
     transform: translateY(100%);
   }
 
-  &__Transparent {
+  &--Transparent {
     background-color: transparent;
     color: #fff;
     border-top: none;
   }
 
-  &__Resources {
+  &__MoreBtn {
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -3,7 +3,7 @@ import BookingRoomInfo from "./BookingRoomInfo/BookingRoomInfo";
 import BookingPriceSummary from "./BookingPriceSummary/BookingPriceSummary";
 import BookingDate from "./BookingDate/BookingDate";
 import GuestNum from "./GuestNum/GuestNum";
-import LineBreak from "../../../components/UI/Cosmetics/LineBreak/LineBreak";
+import LnBr from "../../../components/UI/Cosmetics/LineBreak/LineBreak";
 
 const BookingDetailAside = function ({
   className,
@@ -25,11 +25,11 @@ const BookingDetailAside = function ({
         location={location}
         image={image}
       />
-      <LineBreak />
+      <LnBr />
       <BookingDate date={date} allowModify={allowModify} />
-      <LineBreak />
+      <LnBr />
       <GuestNum guests={guests} allowModify={allowModify} />
-      <LineBreak />
+      <LnBr />
       <BookingPriceSummary rooms={rooms} date={date} />
     </aside>
   );

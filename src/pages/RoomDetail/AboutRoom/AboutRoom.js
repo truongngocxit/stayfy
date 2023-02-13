@@ -1,6 +1,6 @@
 import styles from "./AboutRoom.module.scss";
 import { createPortal } from "react-dom";
-import RoomIntroModal from "../RoomIntroModal/RoomIntroModal";
+import RoomIntroModal from "./RoomIntroModal/RoomIntroModal";
 import Overlay from "../../../components/UI/Overlay/Overlay";
 import { useState, forwardRef } from "react";
 const AboutRoom = forwardRef(function ({ description }, ref) {
@@ -14,9 +14,7 @@ const AboutRoom = forwardRef(function ({ description }, ref) {
     setShowMoreModal(false);
   };
 
-  const { aboutRoom } = styles;
-
-  let truncatedDescription = description.slice(0, 150);
+  let truncatedDescription = description.slice(0, 200);
   if (truncatedDescription[truncatedDescription.length - 1] === " ") {
     truncatedDescription = truncatedDescription.substring(
       0,
@@ -27,17 +25,22 @@ const AboutRoom = forwardRef(function ({ description }, ref) {
   return (
     <>
       <section className={aboutRoom} ref={ref} id="about">
-        <p>{truncatedDescription}</p>
-        <button onClick={handleShowModal}>Show more</button>
+        <p className={aboutRoom__Content}>{truncatedDescription}</p>
+        <button className={aboutRoom__MoreBtn} onClick={handleShowModal}>
+          Show more
+        </button>
       </section>
+      {createPortal(
+        <RoomIntroModal
+          description={description}
+          onCloseModal={handleCloseModal}
+          isVisible={showMoreModal}
+        />,
+        document.getElementById("modal-root")
+      )}
       {showMoreModal &&
         createPortal(
-          <RoomIntroModal description={description} />,
-          document.getElementById("modal-root")
-        )}
-      {showMoreModal &&
-        createPortal(
-          <Overlay onClick={handleCloseModal} />,
+          <Overlay onClick={handleCloseModal} zIndex={1200} />,
           document.getElementById("overlay-root")
         )}
     </>
@@ -45,3 +48,5 @@ const AboutRoom = forwardRef(function ({ description }, ref) {
 });
 
 export default AboutRoom;
+
+const { aboutRoom, aboutRoom__Content, aboutRoom__MoreBtn } = styles;

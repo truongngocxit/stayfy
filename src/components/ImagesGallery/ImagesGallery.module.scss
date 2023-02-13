@@ -16,7 +16,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  &__Container {
+  &__GalleryContainer {
     padding: 0 30rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -25,9 +25,13 @@
     gap: 1.5rem;
     height: 100%;
     overflow-y: scroll;
+  }
 
-    &__LargeImg {
-      grid-column: 1 / -1;
-    }
+  &__Img--Large {
+    grid-column: 1 / -1;
+  }
+
+  &__Img--Small {
+    grid-column: span 1;
   }
 }

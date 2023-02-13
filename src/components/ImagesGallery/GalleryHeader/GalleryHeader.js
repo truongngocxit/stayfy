@@ -16,7 +16,7 @@ const GalleryHeader = function ({ name, onClick, className }) {
       </button>
       <h2 className={galleryHeader__Heading}>{name}</h2>
       <button className={galleryHeader__LikeBtn}>
-        <HeartIcon />
+        {/* {<HeartIcon />} */}
       </button>
     </div>
   );

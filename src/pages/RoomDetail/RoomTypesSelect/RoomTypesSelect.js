@@ -68,17 +68,8 @@ const RoomTypes = function ({ types, onSelectTypes, selectedRooms }, ref) {
     return () => intersectionObserverRef.current.disconnect();
   }, [types.length]);
 
-  const {
-    roomTypes__Container,
-    roomTypes__BtnLeft,
-    roomTypes__BtnHidden,
-    roomTypes__BtnRight,
-    roomTypes,
-    roomTypes__Heading,
-    roomTypes__Type,
-  } = styles;
   return (
-    <div className={roomTypes__Container} ref={ref}>
+    <div className={roomTypes} ref={ref}>
       <h2 className={roomTypes__Heading}>Room Types</h2>
       {types.length > 2 && (
         <>
@@ -102,7 +93,7 @@ const RoomTypes = function ({ types, onSelectTypes, selectedRooms }, ref) {
           </div>
         </>
       )}
-      <ul className={roomTypes} ref={roomTypesRef}>
+      <ul className={roomTypes__ScrollContainer} ref={roomTypesRef}>
         {types.map((item, index, array) => (
           <RoomType
             key={`${item.name}-${item.price}`}
@@ -130,3 +121,13 @@ const RoomTypes = function ({ types, onSelectTypes, selectedRooms }, ref) {
 };
 
 export default forwardRef(RoomTypes);
+
+const {
+  roomTypes__ScrollContainer,
+  roomTypes__BtnLeft,
+  roomTypes__BtnHidden,
+  roomTypes__BtnRight,
+  roomTypes,
+  roomTypes__Heading,
+  roomTypes__Type,
+} = styles;

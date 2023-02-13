@@ -127,7 +127,6 @@ const StaysListing = function () {
     };
   });
 
-  const { staysListing, buffer, endMessage } = styles;
   return (
     <>
       <main
@@ -158,9 +157,11 @@ const StaysListing = function () {
           Looks like we are at the end of the road...
         </p>
       )}
-      <div className={buffer}></div>
+      <div className={buffer} />
     </>
   );
 };
 
 export default StaysListing;
+
+const { staysListing, buffer, endMessage } = styles;

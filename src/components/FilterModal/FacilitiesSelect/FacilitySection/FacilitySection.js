@@ -1,5 +1,5 @@
 import styles from "./FacilitySection.module.scss";
-import FacilitySelect from "../FacilitySelectItem/FacilitySelectItem";
+import FacilitySelect from "./FacilitySelectItem/FacilitySelectItem";
 
 const FacilitySection = function ({
   heading,
@@ -7,7 +7,6 @@ const FacilitySection = function ({
   onSelectFacility,
   facilitiesSelect,
 }) {
-  const { facilitySection } = styles;
   return (
     <div className={facilitySection}>
       <h4>{heading}</h4>
@@ -25,3 +24,5 @@ const FacilitySection = function ({
 };
 
 export default FacilitySection;
+
+const { facilitySection } = styles;

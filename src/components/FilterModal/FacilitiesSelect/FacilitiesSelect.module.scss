@@ -16,7 +16,7 @@
       margin-bottom: -0.5rem;
     }
 
-    &__Hidden {
+    &--Hidden {
       opacity: 0;
       visibility: hidden;
       position: absolute;
@@ -25,7 +25,7 @@
       animation: modalCollapsing 0.3s;
     }
 
-    &__Shown {
+    &--Shown {
       position: relative;
       visibility: visible;
       animation: modalShowing 0.3s;

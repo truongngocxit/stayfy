@@ -1,6 +1,6 @@
 @use "../../../sass-styles/variables" as *;
 
-.filterModal__Main__Price__Inputs {
+.priceRange__Inputs {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
@@ -10,7 +10,7 @@
   }
 }
 
-.filterModal__Main__Price__Input {
+.priceRange__Input {
   display: flex;
   flex-direction: column;
   border: $border;

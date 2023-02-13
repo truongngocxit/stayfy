@@ -64,7 +64,6 @@ const GuestNumberDropdown = forwardRef(function (
     onOk();
   };
 
-  const { guestNumberDropdown, guestNumberDropdown__OkBtn } = styles;
   return (
     <div
       className={`${guestNumberDropdown} ${className}`}
@@ -113,7 +112,7 @@ const GuestNumberDropdown = forwardRef(function (
           onClick={handleCloseDropdown}
           type="button"
         >
-          Done
+          OK
         </button>
       )}
     </div>
@@ -121,3 +120,9 @@ const GuestNumberDropdown = forwardRef(function (
 });
 
 export default GuestNumberDropdown;
+
+const {
+  guestNumberDropdown,
+  guestNumberDropdown__OkBtn,
+  guestNumberDropdown__Input,
+} = styles;

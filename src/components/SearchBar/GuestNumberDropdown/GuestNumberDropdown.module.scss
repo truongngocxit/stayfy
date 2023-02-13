@@ -4,9 +4,10 @@
   background-color: #fff;
   border-radius: 1.6rem;
   display: grid;
-  grid-template-columns: max-content 4fr;
+  grid-template-columns: 1fr max-content;
   font-size: 1.6rem;
   gap: 3.5rem;
+  //width: 100%;
   cursor: default;
 
   &__OkBtn {
@@ -24,5 +25,8 @@
     &:hover {
       background-color: $shadeColor1;
     }
+  }
+
+  &__Input {
   }
 }

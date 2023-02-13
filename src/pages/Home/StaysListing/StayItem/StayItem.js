@@ -5,8 +5,6 @@ import StayItemInfo from "./StayItemInfo/StayItemInfo";
 import { forwardRef } from "react";
 
 const StayItem = forwardRef(function ({ item }, ref) {
-  const { stayItem, stayItem__Image, stayItem__Info } = styles;
-
   return (
     <Link to={`detail/${item.id}`} state={item} className={stayItem} ref={ref}>
       <StayItemImage
@@ -25,3 +23,5 @@ const StayItem = forwardRef(function ({ item }, ref) {
 });
 
 export default StayItem;
+
+const { stayItem, stayItem__Image, stayItem__Info } = styles;

@@ -15,63 +15,65 @@ const StickySectionNav = forwardRef(function (
   },
   ref
 ) {
-  const { stickyNav, link__Active } = styles;
   return (
     <nav
-      className={stickyNav}
-      style={
-        !isVisible
-          ? {
-              visibility: "hidden",
-              opacity: "0",
-            }
-          : {
-              visibility: "visible",
-              opacity: "1",
-            }
-      }
+      className={`${stickyNav} ${!isVisible ? stickyNavHidden : ""}`}
       ref={ref}
     >
-      <ul>
+      <ul className={stickyNav__Links}>
         <li
           onClick={onScrollToPhotos}
-          className={activeId === "images" ? link__Active : ""}
+          className={`${stickyNav__Link} ${
+            activeId === "images" ? stickyNav__LinkActive : ""
+          }`}
         >
           <button>Photos</button>
         </li>
         <li
           onClick={onScrollToAbout}
-          className={activeId === "about" ? link__Active : ""}
+          className={`${stickyNav__Link} ${
+            activeId === "about" ? stickyNav__LinkActive : ""
+          }`}
         >
           <button>About</button>
         </li>
         <li
           onClick={onScrollToFacilities}
-          className={activeId === "facilities" ? link__Active : ""}
+          className={`${stickyNav__Link} ${
+            activeId === "facilities" ? stickyNav__LinkActive : ""
+          }`}
         >
           <button>Facilities</button>
         </li>
         <li
           onClick={onScrollToRoomTypes}
-          className={activeId === "roomTypes" ? link__Active : ""}
+          className={`${stickyNav__Link} ${
+            activeId === "roomTypes" ? stickyNav__LinkActive : ""
+          }`}
         >
           <button>Room types</button>
         </li>
         <li
           onClick={onScrollToLocation}
-          className={activeId === "location" ? link__Active : ""}
+          className={`${stickyNav__Link} ${
+            activeId === "location" ? stickyNav__LinkActive : ""
+          }`}
         >
           <button>Location</button>
         </li>
         <li
           onClick={onScrollToHost}
-          className={activeId === "host" ? link__Active : ""}
+          className={`${stickyNav__Link} ${
+            activeId === "host" ? stickyNav__LinkActive : ""
+          }`}
         >
           <button>Host</button>
         </li>
         <li
           onClick={onScrollToRules}
-          className={activeId === "rules" ? link__Active : ""}
+          className={`${stickyNav__Link} ${
+            activeId === "rules" ? stickyNav__LinkActive : ""
+          }`}
         >
           <button>Rules</button>
         </li>
@@ -81,3 +83,12 @@ const StickySectionNav = forwardRef(function (
 });
 
 export default StickySectionNav;
+
+const {
+  stickyNav,
+  stickyNav__Links,
+  stickyNav__Link,
+  ["stickyNav__Link--Active"]: stickyNav__LinkActive,
+  ["stickyNav--Hidden"]: stickyNavHidden,
+  link__Active,
+} = styles;

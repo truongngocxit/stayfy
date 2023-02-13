@@ -1,5 +1,5 @@
 import styles from "./FacilitySelectItem.module.scss";
-import CheckIcon from "../../../UI/SVG/CheckIcon";
+import CheckIcon from "../../../../UI/SVG/CheckIcon";
 
 const FacilitySelectItem = function ({
   tag,
@@ -9,9 +9,8 @@ const FacilitySelectItem = function ({
 }) {
   const isChecked = facilitiesSelect.some((fac) => fac === tag);
 
-  const { facility, facility__Checkbox, facility__Active } = styles;
   return (
-    <label className={`${facility} ${isChecked ? facility__Active : ""}`}>
+    <label className={`${facility} ${isChecked ? facilityActive : ""}`}>
       <div className={facility__Checkbox}>
         <CheckIcon />
         <input
@@ -27,3 +26,9 @@ const FacilitySelectItem = function ({
 };
 
 export default FacilitySelectItem;
+
+const {
+  facility,
+  facility__Checkbox,
+  ["facility--Active"]: facilityActive,
+} = styles;

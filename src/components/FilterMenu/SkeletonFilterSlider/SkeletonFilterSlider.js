@@ -5,7 +5,7 @@ const SkeletonFilterSlider = function () {
   const { skeletonFilterSlider } = styles;
   return (
     <div className={skeletonFilterSlider}>
-      {new Array(20).fill().map((item, index, array) => (
+      {new Array(24).fill().map((item, index, array) => (
         <SkeletonFilterItem key={index} />
       ))}
     </div>

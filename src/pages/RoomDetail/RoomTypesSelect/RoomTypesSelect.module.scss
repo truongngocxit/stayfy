@@ -1,32 +1,35 @@
 @use "../../../sass-styles/variables" as *;
 
-.roomTypes__Container {
+.roomTypes {
   width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-}
 
-.roomTypes__Nav {
-  display: flex;
-  gap: 1rem;
-  align-self: end;
-}
+  &__ScrollContainer {
+    width: 100%;
+    padding: 0.5rem 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 50%;
+    place-items: center;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
-.roomTypes {
-  //   position: relative;
-  width: 100%;
-  padding: 0.5rem 0;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 50%;
-  place-items: center;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
+    @media only screen and (max-width: 46.5em) {
+      grid-auto-columns: 100%;
+    }
+  }
+
+  &__Nav {
+    display: flex;
+    gap: 1rem;
+    align-self: end;
   }
 
   &__Heading {
@@ -79,9 +82,5 @@
   &__BtnHidden {
     opacity: 0;
     visibility: hidden;
-  }
-
-  @media only screen and (max-width: 46.5em) {
-    grid-auto-columns: 100%;
   }
 }

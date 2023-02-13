@@ -7,12 +7,12 @@ import { createPortal } from "react-dom";
 import Overlay from "../../../UI/Overlay/Overlay";
 import LogoutConfirmModal from "./LogoutConfirmModal/LogoutConfirmModal";
 
-const LoginDropdown = function ({ onClickOption, loginDropdownStyle }) {
+const LoginDropdown = function ({ onClickOption }) {
   const { isActive } = useSelector((state) => state.activeUser);
   const { loginDropdown } = styles;
 
   return (
-    <div className={loginDropdown} style={loginDropdownStyle}>
+    <div className={loginDropdown}>
       {!isActive && <InactiveDropdown onClickOption={onClickOption} />}
       {isActive && <ActiveDropdown onClickOption={onClickOption} />}
     </div>

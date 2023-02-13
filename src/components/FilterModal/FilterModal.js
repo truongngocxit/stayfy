@@ -16,25 +16,11 @@ const FilterModal = function ({
   isFullScreen = false,
   maxPrice = 100,
 }) {
-  const {
-    filterModal,
-    filterModal__FullScreen,
-    filterModal__Head,
-    filterModal__Main,
-    filterModal__Main__ScrollContainer,
-    filterModal__Main__Price,
-    filterModal__Main__Type,
-    filterModal__Main__Type__Container,
-    filterModal__Main__Facilities,
-    filterModal__Foot,
-    filterModal__Foot__ClearBtn,
-    filterModal__Foot__ShowBtn,
-  } = styles;
   return (
     <>
       <ModalTransition
         className={`${filterModal} ${
-          isFullScreen ? filterModal__FullScreen : ""
+          isFullScreen ? filterModalFullScreen : ""
         }`}
         isVisible={isVisible}
       >
@@ -53,10 +39,10 @@ const FilterModal = function ({
                 {maxPrice && <PriceRangeSlider maxPrice={maxPrice} />}
               </div>
               <form className={filterModal__Main__Type}>
-                <h3>Type of Stay</h3>
+                <h3>Types of Stay</h3>
 
                 <StayTypesSelect
-                  className={filterModal__Main__Type__Container}
+                  className={filterModal__Main__Type__TypesList}
                 />
               </form>
               <div className={filterModal__Main__Facilities}>
@@ -84,6 +70,21 @@ const FilterModal = function ({
 };
 
 export default FilterModal;
+
+const {
+  filterModal,
+  ["filterModal--FullScreen"]: filterModalFullScreen,
+  filterModal__Head,
+  filterModal__Main,
+  filterModal__Main__ScrollContainer,
+  filterModal__Main__Price,
+  filterModal__Main__Type,
+  filterModal__Main__Type__TypesList,
+  filterModal__Main__Facilities,
+  filterModal__Foot,
+  filterModal__Foot__ClearBtn,
+  filterModal__Foot__ShowBtn,
+} = styles;
 
 // const [typeFilters, setTypeFilters] = useState([]);
 

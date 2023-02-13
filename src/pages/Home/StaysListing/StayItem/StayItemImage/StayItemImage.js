@@ -86,16 +86,6 @@ const StayItemImage = function ({ className, imgs }) {
     return () => intersectionObserverRef.current.disconnect();
   }, []);
 
-  const {
-    itemImage,
-    itemImage__OuterContainer,
-    itemImage__InnerContainer,
-    itemImage__Image,
-    itemImage__LikeBtn,
-    itemImage__HiddenBtn,
-    itemImage__LeftBtn,
-    itemImage__RightBtn,
-  } = styles;
   return (
     <div
       className={`${itemImage} ${className || ""}`}
@@ -115,7 +105,7 @@ const StayItemImage = function ({ className, imgs }) {
             gridTemplateColumns: `repeat(${imgs.length}, 1fr)`,
           }}
         >
-          {[imgs[0]].map((img, index, array) => (
+          {imgs.map((img, index, array) => (
             <div
               key={img}
               className={itemImage__Image}
@@ -139,16 +129,16 @@ const StayItemImage = function ({ className, imgs }) {
       </div>
 
       <button
-        className={`${itemImage__LeftBtn} ${
-          btnsIsHovered && leftBtnIsVisible ? "" : itemImage__HiddenBtn
+        className={`${itemImage__SlideBtnLeft} ${
+          leftBtnIsVisible ? "" : itemImage__SlideBtnHidden
         }`}
         onClick={handleClickPreviousImage}
       >
         <ChevronLeftIcon />
       </button>
       <button
-        className={`${itemImage__RightBtn} ${
-          btnsIsHovered && rightBtnIsVisible ? "" : itemImage__HiddenBtn
+        className={`${itemImage__SlideBtnRight} ${
+          rightBtnIsVisible ? "" : itemImage__SlideBtnHidden
         }`}
         onClick={handleClickNextImage}
       >
@@ -159,3 +149,14 @@ const StayItemImage = function ({ className, imgs }) {
 };
 
 export default StayItemImage;
+
+const {
+  itemImage,
+  itemImage__OuterContainer,
+  itemImage__InnerContainer,
+  itemImage__Image,
+  itemImage__LikeBtn,
+  ["itemImage__SlideBtn--Hidden"]: itemImage__SlideBtnHidden,
+  itemImage__SlideBtnLeft,
+  itemImage__SlideBtnRight,
+} = styles;

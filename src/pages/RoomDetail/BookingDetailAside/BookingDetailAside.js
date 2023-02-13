@@ -89,7 +89,6 @@ const BookingDetailAside = function ({
 
   const atLeastOneItemIsAdded = selectedRooms.some((room) => room.quantity > 0);
 
-  const { bookingDetail, bookingDetail__Btn } = styles;
   return (
     <div className={bookingDetail} style={{ top: `${40 + stickyNavHeight}px` }}>
       <AsideHead name={name} stars={review.toFixed(2)} />
@@ -126,3 +125,5 @@ const BookingDetailAside = function ({
 };
 
 export default BookingDetailAside;
+
+const { bookingDetail, bookingDetail__Btn } = styles;

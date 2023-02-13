@@ -48,16 +48,6 @@ const ImagesSlider = function ({
       document.removeEventListener("keydown", handleArrowLeftAndRight);
   }, [handleToPreviousImage, handleToNextImage]);
 
-  const {
-    slider,
-    slider__Nav,
-    slider__Nav__CloseBtn,
-    slider__ImageNum,
-    slider__Slider,
-    slider__Slider__Image,
-    slider__Slider__BtnLeft,
-    slider__Slider__BtnRight,
-  } = styles;
   return (
     <div className={slider}>
       <nav className={slider__Nav}>
@@ -93,3 +83,14 @@ const ImagesSlider = function ({
 };
 
 export default ImagesSlider;
+
+const {
+  slider,
+  slider__Nav,
+  slider__Nav__CloseBtn,
+  slider__ImageNum,
+  slider__Slider,
+  slider__Slider__Image,
+  slider__Slider__BtnLeft,
+  slider__Slider__BtnRight,
+} = styles;

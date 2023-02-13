@@ -49,12 +49,10 @@ const LocationSearchDropdown = function (
     onFinishSearch();
   };
 
-  const { searchDropdown, searchDropdown__Absolute, searchDropdown__Static } =
-    styles;
   return (
     <ul
       className={`${searchDropdown} ${
-        isAbsolute ? searchDropdown__Absolute : searchDropdown__Static
+        isAbsolute ? searchDropdownAbsolute : searchDropdownStatic
       }`}
       ref={ref}
     >
@@ -81,3 +79,9 @@ const LocationSearchDropdown = function (
 };
 
 export default forwardRef(LocationSearchDropdown);
+
+const {
+  searchDropdown,
+  ["searchDropdown--Absolute"]: searchDropdownAbsolute,
+  ["searchDropdown--Static"]: searchDropdownStatic,
+} = styles;

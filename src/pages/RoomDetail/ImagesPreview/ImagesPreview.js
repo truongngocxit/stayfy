@@ -25,16 +25,13 @@ const ImagesPreview = forwardRef(function ({ images, name, className }, ref) {
     setIsShowGallery(true);
   };
 
-  const { imagesPreview, imagesPreview__MainImg, imagesPreview__ShowBtn } =
-    styles;
-
   const [mainPreviewImage, ...restPreviewImages] = images;
   return (
     <>
       <div className={`${imagesPreview} ${className}`} ref={ref} id="images">
         <PreviewImage
           onClick={handleClickImage.bind(null, 0)}
-          className={imagesPreview__MainImg}
+          className={imagesPreview__ImgMain}
           src={mainPreviewImage}
           alt={`${name} main preview image`}
         />
@@ -45,6 +42,7 @@ const ImagesPreview = forwardRef(function ({ images, name, className }, ref) {
             key={image}
             src={image}
             lodgeName={name}
+            className={imagesPreview__ImgSmall}
           />
         ))}
         <button className={imagesPreview__ShowBtn} onClick={handleShowGallery}>
@@ -67,3 +65,10 @@ const ImagesPreview = forwardRef(function ({ images, name, className }, ref) {
 });
 
 export default ImagesPreview;
+
+const {
+  imagesPreview,
+  ["imagesPreview__Img--Main"]: imagesPreview__ImgMain,
+  ["imagesPreview__Img--Small"]: imagesPreview__ImgSmall,
+  imagesPreview__ShowBtn,
+} = styles;

@@ -1,4 +1,4 @@
-@use "../../../../sass-styles/variables" as *;
+@use "../../../../../sass-styles/variables" as *;
 
 .facility {
   display: block;
@@ -31,7 +31,7 @@
     }
   }
 
-  &__Active &__Checkbox {
+  &--Active &__Checkbox {
     svg {
       background-color: $primaryColor;
       stroke: #fff;

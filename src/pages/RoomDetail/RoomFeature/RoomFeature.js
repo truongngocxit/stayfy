@@ -25,12 +25,6 @@ const RoomFeature = forwardRef(function ({ amenities }, ref) {
     setAmenitiesModalIsShown(false);
   };
 
-  const {
-    roomFeatures,
-    roomFeatures__List,
-    roomFeatures__List__Item,
-    roomFeatures__MoreBtn,
-  } = styles;
   return (
     <>
       <div className={roomFeatures} ref={ref} id="features">
@@ -39,7 +33,7 @@ const RoomFeature = forwardRef(function ({ amenities }, ref) {
           {availableAmenities.slice(0, 10).map((amenity) => {
             const icon = getAmenityIcon(amenity);
             return (
-              <li key={icon.text} className={roomFeatures__List__Item}>
+              <li key={icon.text} className={roomFeatures__Item}>
                 {icon.icon}
                 <span>{icon.text}</span>
               </li>
@@ -53,15 +47,15 @@ const RoomFeature = forwardRef(function ({ amenities }, ref) {
           Show all amenities
         </button>
       </div>
-      {amenitiesModalIsShown &&
-        createPortal(
-          <AmenitiesModal
-            onCloseModal={handleCloseAmenitiesModal}
-            availableAmenities={availableAmenities}
-            unavailableAmenities={unavailableAmenities}
-          />,
-          document.getElementById("modal-root")
-        )}
+      {createPortal(
+        <AmenitiesModal
+          onCloseModal={handleCloseAmenitiesModal}
+          availableAmenities={availableAmenities}
+          unavailableAmenities={unavailableAmenities}
+          isVisible={amenitiesModalIsShown}
+        />,
+        document.getElementById("modal-root")
+      )}
 
       {amenitiesModalIsShown &&
         createPortal(
@@ -73,3 +67,10 @@ const RoomFeature = forwardRef(function ({ amenities }, ref) {
 });
 
 export default RoomFeature;
+
+const {
+  roomFeatures,
+  roomFeatures__List,
+  roomFeatures__Item,
+  roomFeatures__MoreBtn,
+} = styles;

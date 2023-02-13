@@ -41,21 +41,23 @@ const BookingDate = function ({ date, allowModify }) {
             onClick={handleOpenDatePicker}
           />
         )}
-        <DateItem tag="IN" date={startDateText} time="13:00 – 23:30" />
+        <DateItem tag="IN" date={startDateText} time="13:00 - 23:30" />
         <DateItem tag="OUT" date={endDateText} time="Until 12:00" />
       </div>
+
+      {createPortal(
+        <DateAdjustModal
+          isVisible={datePickerIsOpen}
+          datePickerIsOpen={datePickerIsOpen}
+          onCloseDatePicker={handleCloseDatePicker}
+        />,
+        document.getElementById("modal-root")
+      )}
+
       {datePickerIsOpen &&
         createPortal(
           <Overlay zIndex={1200} onClick={handleCloseDatePicker} />,
           document.getElementById("overlay-root")
-        )}
-      {datePickerIsOpen &&
-        createPortal(
-          <DateAdjustModal
-            datePickerIsOpen={datePickerIsOpen}
-            onCloseDatePicker={handleCloseDatePicker}
-          />,
-          document.getElementById("modal-root")
         )}
     </>
   );

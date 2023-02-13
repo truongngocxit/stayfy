@@ -34,20 +34,20 @@ const ImagesGallery = function ({
     }
   }, [imageScrolledTo]);
 
-  const { gallery, gallery__Container, gallery__Container__LargeImg } = styles;
   return (
     <>
       <ModalTransition className={gallery} isVisible={isVisible}>
         <GalleryHeader name={name} onClick={onCloseGallery} />
-
-        <div className={gallery__Container}>
+        <div className={gallery__GalleryContainer}>
           {images.map((img, index) => (
             <GalleryItem
               key={img}
               src={img}
               index={index}
               lodgeName={name}
-              className={index % 3 === 0 ? gallery__Container__LargeImg : ""}
+              className={
+                index % 3 === 0 ? gallery__ImgLarge : gallery__ImgSmall
+              }
               onClick={handleOpenSlider.bind(null, index)}
               ref={(node) => {
                 if (!previewImagesRef.current) {
@@ -79,3 +79,10 @@ const ImagesGallery = function ({
 };
 
 export default ImagesGallery;
+
+const {
+  gallery,
+  gallery__GalleryContainer,
+  ["gallery__Img--Large"]: gallery__ImgLarge,
+  ["gallery__Img--Small"]: gallery__ImgSmall,
+} = styles;

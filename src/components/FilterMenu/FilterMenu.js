@@ -1,7 +1,7 @@
 import styles from "./FilterMenu.module.scss";
 import ChevronLeftIcon from "../UI/SVG/ChevronLeftIcon";
 import ChevronRightIcon from "../UI/SVG/ChevronRightIcon";
-import FilterItem from "./FilterSlider/FilterItem/FilterItem";
+import FilterItem from "./FilterItem/FilterItem";
 import FilterButton from "./FilterButton/FilterButton";
 import { useRef, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -117,18 +117,6 @@ const FilterMenu = function () {
     reduxDispatch(searchQueryActions.changeFeature(tag));
   };
 
-  const {
-    filterMenu,
-    filterMenu__FilterBtn,
-    filterMenu__Items,
-    filterMenu__Items__Slider,
-    filterMenu__Btn,
-    filterMenu__Btn_Hidden,
-    filterMenu__Btn_Left,
-    filterMenu__Btn_Right,
-    filterMenu__Container,
-  } = styles;
-
   let filterSliderContent;
 
   const sortedFilterItems = [
@@ -140,9 +128,9 @@ const FilterMenu = function () {
     filterSliderContent = isLoading && <SkeletonFilterSlider />;
   } else if (!isLoading && filterItems.length > 0) {
     filterSliderContent = (
-      <div className={filterMenu__Container}>
-        <div className={filterMenu__Items} ref={filterSliderRef}>
-          <div className={filterMenu__Items__Slider}>
+      <div className={filterMenu__OuterContainer}>
+        <div className={filterMenu__InnerContainer} ref={filterSliderRef}>
+          <div className={filterMenu__Slider}>
             {sortedFilterItems.map((item, index, array) => (
               <FilterItem
                 onClick={handleChangeSelectedFilter.bind(null, item.tag)}
@@ -165,16 +153,16 @@ const FilterMenu = function () {
 
         <button
           onClick={handleClickLeft}
-          className={`${filterMenu__Btn} ${filterMenu__Btn_Left} ${
-            !leftBtnIsVisible ? filterMenu__Btn_Hidden : ""
+          className={`${filterMenu__SlideBtn} ${filterMenu__SlideBtnLeft} ${
+            !leftBtnIsVisible ? filterMenu__SlideBtnHidden : ""
           }`}
         >
           <ChevronLeftIcon />
         </button>
 
         <button
-          className={`${filterMenu__Btn} ${filterMenu__Btn_Right} ${
-            !rightBtnIsVisible ? filterMenu__Btn_Hidden : ""
+          className={`${filterMenu__SlideBtn} ${filterMenu__SlideBtnRight} ${
+            !rightBtnIsVisible ? filterMenu__SlideBtnHidden : ""
           }`}
           onClick={handleClickRight}
         >
@@ -205,6 +193,18 @@ const FilterMenu = function () {
 };
 
 export default FilterMenu;
+
+const {
+  filterMenu,
+  filterMenu__FilterBtn,
+  filterMenu__InnerContainer,
+  filterMenu__OuterContainer,
+  filterMenu__Slider,
+  filterMenu__SlideBtn,
+  ["filterMenu__SlideBtn--Hidden"]: filterMenu__SlideBtnHidden,
+  ["filterMenu__SlideBtn--Left"]: filterMenu__SlideBtnLeft,
+  ["filterMenu__SlideBtn--Right"]: filterMenu__SlideBtnRight,
+} = styles;
 
 // const handleClickRight = function () {
 //   const numberOfItemsOnViewport =

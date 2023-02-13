@@ -10,13 +10,22 @@
   display: block;
   border-bottom: $border;
   padding: 0 12rem;
+  visibility: visible;
+  opacity: 1;
 
-  ul {
+  &--Hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &__Links {
     list-style: none;
     display: flex;
     gap: 4rem;
     font-size: 1.6rem;
+  }
 
+  &__Link {
     button {
       background: none;
       border: none;
@@ -28,11 +37,11 @@
         box-shadow: inset 0 -0.4rem 0 0 $grayColorMain;
       }
     }
-  }
-}
 
-.link__Active {
-  button {
-    box-shadow: inset 0 -0.4rem 0 0 $grayColorMain;
+    &--Active {
+      button {
+        box-shadow: inset 0 -0.4rem 0 0 $grayColorMain;
+      }
+    }
   }
 }

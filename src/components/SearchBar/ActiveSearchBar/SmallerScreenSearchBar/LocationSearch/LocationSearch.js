@@ -40,7 +40,7 @@ const LocationSearch = function ({ onFinishSearch }) {
           onFocus={handleStartTypingQuery}
         />
       </label>
-      <div className={location__Searches}>
+      <div className={location__Dropdown}>
         <LocationSearchDropdown
           isAbsolute={false}
           locations={filteredLocations}
@@ -55,4 +55,4 @@ const LocationSearch = function ({ onFinishSearch }) {
 
 export default LocationSearch;
 
-const { location, location__Input, location__Searches } = styles;
+const { location, location__Input, location__Dropdown } = styles;

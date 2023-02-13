@@ -6,8 +6,9 @@ import dayjs from "dayjs";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { bookingInfoActions } from "../../../../../redux-store/bookingInfoSlice";
+import ModalTransition from "../../../../../components/ModalTransition/ModalTransition";
 
-const DateAdjustModal = function ({ onCloseDatePicker }) {
+const DateAdjustModal = function ({ onCloseDatePicker, isVisible }) {
   const reduxDispatch = useDispatch();
 
   const dateFromReduxStore = useSelector(
@@ -38,7 +39,10 @@ const DateAdjustModal = function ({ onCloseDatePicker }) {
 
   const { dateModal, dateModal__CloseBtn, dateModal__SaveBtn } = styles;
   return (
-    <div className={`checkoutDatePicker  ${dateModal}`}>
+    <ModalTransition
+      className={`checkoutDatePicker  ${dateModal}`}
+      isVisible={isVisible}
+    >
       <button onClick={onCloseDatePicker} className={dateModal__CloseBtn}>
         <CloseIcon />
       </button>
@@ -54,7 +58,7 @@ const DateAdjustModal = function ({ onCloseDatePicker }) {
       <button className={dateModal__SaveBtn} onClick={handleSaveSelectedDate}>
         Save
       </button>
-    </div>
+    </ModalTransition>
   );
 };
 

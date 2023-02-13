@@ -1,13 +1,13 @@
-import styles from "./Footer.module.scss";
+import styles from "./BareFooter.module.scss";
 import { Link } from "react-router-dom";
-import FacebookIcon from "../UI/SVG/FacebookIcon";
-import TwitterIcon from "../UI/SVG/TwitterIcon";
-import InstagramIcon from "../UI/SVG/InstagramIcon";
-import LinkedinIcon from "../UI/SVG/LinkedinIcon";
-import AfterSubmitModal from "../AfterSubmitModal/AfterSubmitModal";
+import FacebookIcon from "../../UI/SVG/FacebookIcon";
+import TwitterIcon from "../../UI/SVG/TwitterIcon";
+import InstagramIcon from "../../UI/SVG/InstagramIcon";
+import LinkedinIcon from "../../UI/SVG/LinkedinIcon";
+import AfterSubmitModal from "../../AfterSubmitModal/AfterSubmitModal";
 import SubscriptionForm from "./SubscriptionForm/SubscriptionForm";
 
-const Footer = function ({ onCloseFooter }) {
+const BareFooter = function ({ onCloseFooter }) {
   const {
     footer,
     footer__Links,
@@ -84,4 +84,4 @@ const Footer = function ({ onCloseFooter }) {
   );
 };
 
-export default Footer;
+export default BareFooter;
