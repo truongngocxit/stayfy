@@ -33,7 +33,7 @@
       box-shadow: 0 0.4rem 0 -0.1rem $grayColorMain;
     }
 
-    &__Active {
+    &--Active {
       color: $primaryColor;
       box-shadow: 0 0.4rem 0 -0.1rem $primaryColor;
       &:hover {
@@ -41,7 +41,7 @@
       }
     }
 
-    &__Cancel {
+    &--Cancel {
       color: $warningColor7;
       font-weight: 700;
 
@@ -50,7 +50,7 @@
       }
     }
 
-    &__Cancel#{&}__Active {
+    &--Cancel#{&}--Active {
       box-shadow: 0 0.4rem 0 -0.1rem $warningColor7;
       &:hover {
         box-shadow: 0 0.4rem 0 -0.1rem $warningColor7;
@@ -65,7 +65,7 @@
     border: none;
   }
 
-  &__Smaller ul {
+  &--Smaller ul {
     flex-direction: column;
     gap: 0.5rem;
     position: absolute;
@@ -77,14 +77,14 @@
     z-index: 1500;
   }
 
-  &__Smaller &__Tab {
+  &--Smaller &__Tab {
     padding: 1rem 3rem;
 
     &:hover {
       box-shadow: none;
     }
 
-    &__Active {
+    &--Active {
       color: $primaryColor;
       box-shadow: none;
       background: $tintColor1;
@@ -94,7 +94,7 @@
       }
     }
 
-    &__Cancel {
+    &--Cancel {
       color: $warningColor7;
       box-shadow: none;
 

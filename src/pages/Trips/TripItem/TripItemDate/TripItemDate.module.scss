@@ -5,7 +5,7 @@
   font-weight: 700;
   align-items: center;
 
-  &__Smaller {
+  &--Smaller {
     flex-direction: row;
     gap: 0.5rem;
     font-size: 1.6rem;
@@ -16,13 +16,19 @@
     color: $grayColorMain;
   }
 
-  &__Larger {
+  &--Larger {
     flex-direction: column;
     font-size: 2.4rem;
   }
 
-  &__Larger &__Day {
+  &--Larger &__Day {
     font-size: 3.6rem;
     color: $grayColorFaint3;
+  }
+
+  &__Month {
+  }
+
+  &__Year {
   }
 }

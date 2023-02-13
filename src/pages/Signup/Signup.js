@@ -3,7 +3,7 @@ import BareLogo from "../../components/UI/BareLogo/BareLogo";
 import SignupForm from "./SignupForm/SignupForm";
 import LoginForm from "./LoginForm/LoginForm";
 import ChevronLeftIcon from "../../components/UI/SVG/ChevronLeftIcon";
-import LoadingScreen from "../Profile/LoadingScreen/LoadingScreen";
+import LoadingScreen from "../../components/UI/LoadingScreen/LoadingScreen";
 import { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useSelector } from "react-redux";

@@ -3,8 +3,9 @@ import GuestNumberDropdown from "../../../../../components/SearchBar/GuestNumber
 import useGuestNum from "../../../../../custom-hooks/useGuestNum";
 import { useSelector, useDispatch } from "react-redux";
 import { bookingInfoActions } from "../../../../../redux-store/bookingInfoSlice";
+import ModalTransition from "../../../../../components/ModalTransition/ModalTransition";
 
-const GuestNumAdjustModal = function ({ onCloseGuestNumModal }) {
+const GuestNumAdjustModal = function ({ onCloseGuestNumModal, isVisible }) {
   const reduxDispatch = useDispatch();
   const { adults, children, babies, animals } = useSelector(
     (state) => state.bookingInfo.roomInfo.guests
@@ -36,7 +37,7 @@ const GuestNumAdjustModal = function ({ onCloseGuestNumModal }) {
     guestNumModal__Footer__Save,
   } = styles;
   return (
-    <div className={guestNumModal}>
+    <ModalTransition className={guestNumModal} isVisible={isVisible}>
       <header className={guestNumModal__Header}>
         <h2>Number of Guests</h2>
       </header>
@@ -62,7 +63,7 @@ const GuestNumAdjustModal = function ({ onCloseGuestNumModal }) {
           Save
         </button>
       </div>
-    </div>
+    </ModalTransition>
   );
 };
 

@@ -40,20 +40,11 @@ const TripItem = function ({ roomInfo, bookedDate, bookingId, userTripId }) {
     return () => resizeObserverRef.current.disconnect();
   }, []);
 
-  const {
-    tripItem,
-    tripItem__Larger,
-    tripItem__Smaller,
-    tripItem__Date,
-    tripItem__Info,
-    tripItem__Info__Image,
-    tripItem__NavLink,
-  } = styles;
   return (
     <>
       <div
         className={`${tripItem} ${
-          screenSize !== "large" ? tripItem__Smaller : tripItem__Larger
+          screenSize !== "large" ? tripItemSmaller : tripItemLarger
         }`}
         onClick={handleOpenDetailModal}
       >
@@ -107,3 +98,13 @@ const TripItem = function ({ roomInfo, bookedDate, bookingId, userTripId }) {
 };
 
 export default TripItem;
+
+const {
+  tripItem,
+  ["tripItem--Larger"]: tripItemLarger,
+  ["tripItem--Smaller"]: tripItemSmaller,
+  tripItem__Date,
+  tripItem__Info,
+  tripItem__Info__Image,
+  tripItem__NavLink,
+} = styles;

@@ -22,14 +22,14 @@
     font-size: 2rem;
   }
 
-  &__FName {
+  &__FirstName {
     grid-column: 1;
     @media only screen and (max-width: 46.5em) {
       grid-column: 1 / -1;
     }
   }
 
-  &__LName {
+  &__LastName {
     grid-column: 2;
 
     @media only screen and (max-width: 46.5em) {

@@ -4,7 +4,8 @@ import Input from "../../../../../../components/Input/Input";
 import SettingButton from "../../../../../Profile/SettingButton/SettingButton";
 import useCancelTrip from "../../../../../../custom-hooks/useCancelTrip";
 import { createPortal } from "react-dom";
-import LoadingScreen from "../../../../../Profile/LoadingScreen/LoadingScreen";
+
+import LoadingScreen from "../../../../../../components/UI/LoadingScreen/LoadingScreen";
 import Button from "../../../../../../components/Button/Button";
 
 const CancelTrip = function ({ bookingId, userTripId, onCloseModal }) {
@@ -62,12 +63,14 @@ const CancelTrip = function ({ bookingId, userTripId, onCloseModal }) {
           hasError={confirmHasError}
           errorMessage="Are you sure you're typing 'CANCEL'"
         />
-        <SettingButton
-          text="Cancel trip"
+
+        <Button
+          errorMessage={"Please fill in all the information"}
           className={cancel__Btn}
           isDisabled={confirmIsInvalid || reasonIsInvalid}
-        />
-        <Button>Cancel trip</Button>
+        >
+          Cancel trip
+        </Button>
       </form>
       {isCancelling &&
         createPortal(

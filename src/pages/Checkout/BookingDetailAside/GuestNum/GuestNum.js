@@ -52,13 +52,13 @@ const GuestNum = function ({ guests, allowModify }) {
           <Overlay zIndex={1200} onClick={handleCloseGuestNumModal} />,
           document.getElementById("overlay-root")
         )}
-      {guestNumModalIsVisible &&
-        createPortal(
-          <GuestNumAdjustModal
-            onCloseGuestNumModal={handleCloseGuestNumModal}
-          />,
-          document.getElementById("modal-root")
-        )}
+      {createPortal(
+        <GuestNumAdjustModal
+          isVisible={guestNumModalIsVisible}
+          onCloseGuestNumModal={handleCloseGuestNumModal}
+        />,
+        document.getElementById("modal-root")
+      )}
     </>
   );
 };

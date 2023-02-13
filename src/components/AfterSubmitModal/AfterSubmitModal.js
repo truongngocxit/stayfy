@@ -3,7 +3,7 @@ import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 import CheckIcon from "../UI/SVG/CheckIcon";
 import WarningIcon from "../UI/SVG/WarningIcon";
 import CountdownLine from "./CountdownLine/CountdownLine";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const AfterSubmitModal = function ({
@@ -32,25 +32,14 @@ const AfterSubmitModal = function ({
     to && navigate(to);
   };
 
-  const {
-    afterSubmit,
-    afterSubmit__StateIcon,
-    afterSubmit__StateIcon__Success,
-    afterSubmit__StateIcon__Loading,
-    afterSubmit__StateIcon__Failure,
-    afterSubmit__Header,
-    afterSubmit__Message,
-    afterSubmit__Message__Ok,
-  } = styles;
-
   let icon;
 
   if (state === "loading") {
-    icon = <LoadingSpinner className={afterSubmit__StateIcon__Loading} />;
+    icon = <LoadingSpinner className={afterSubmit__StateIconLoading} />;
   } else if (state === "success") {
-    icon = <CheckIcon className={afterSubmit__StateIcon__Success} />;
+    icon = <CheckIcon className={afterSubmit__StateIconSuccess} />;
   } else if (state === "failure") {
-    icon = <WarningIcon className={afterSubmit__StateIcon__Failure} />;
+    icon = <WarningIcon className={afterSubmit__StateIconFailure} />;
   }
 
   return (
@@ -61,7 +50,7 @@ const AfterSubmitModal = function ({
       </div>
       <div
         className={`${afterSubmit__Message} ${
-          stateMessage ? afterSubmit__Message__Ok : ""
+          stateMessage ? afterSubmit__MessageOk : ""
         }`}
       >
         <p>{stateMessage}</p>
@@ -82,3 +71,14 @@ const AfterSubmitModal = function ({
 };
 
 export default AfterSubmitModal;
+
+const {
+  afterSubmit,
+  afterSubmit__StateIcon,
+  ["afterSubmit__StateIcon--Success"]: afterSubmit__StateIconSuccess,
+  ["afterSubmit__StateIcon--Loading"]: afterSubmit__StateIconLoading,
+  ["afterSubmit__StateIcon--Failure"]: afterSubmit__StateIconFailure,
+  afterSubmit__Header,
+  afterSubmit__Message,
+  ["afterSubmit__Message--Ok"]: afterSubmit__MessageOk,
+} = styles;

@@ -6,7 +6,7 @@ import useInput from "../../../../custom-hooks/useInput";
 import Input from "../../../../components/Input/Input";
 import useChangeUserInfo from "../../../../custom-hooks/useChangeUserInfo";
 import { createPortal } from "react-dom";
-import LoadingScreen from "../../LoadingScreen/LoadingScreen";
+import LoadingScreen from "../../../../components/UI/LoadingScreen/LoadingScreen";
 
 const NameSettingForm = function ({
   activeUserLastName,

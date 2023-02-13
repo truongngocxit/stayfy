@@ -12,12 +12,12 @@
     padding: 6rem 6rem;
   }
 
-  &__Larger {
+  &--Larger {
     display: grid;
     grid-template-columns: 3fr 7fr;
   }
 
-  &__Smaller {
+  &--Smaller {
     display: flex;
     flex-direction: column;
   }

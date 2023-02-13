@@ -12,12 +12,6 @@ const SpecialRequestForm = function () {
     handleStartTyping: handleStartTypingRequest,
   } = useContext(guestSpecialRequestContext);
 
-  const {
-    requestForm,
-    requestForm__Heading,
-    requestForm__Description,
-    requestForm__Form,
-  } = styles;
   return (
     <div className={requestForm}>
       <h3 className={requestForm__Heading}>Special requests</h3>
@@ -44,3 +38,5 @@ const SpecialRequestForm = function () {
 };
 
 export default SpecialRequestForm;
+
+const { requestForm, requestForm__Heading, requestForm__Description } = styles;

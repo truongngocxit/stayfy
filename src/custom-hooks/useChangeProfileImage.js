@@ -17,6 +17,7 @@ const useChangeProfileImage = function () {
     setIsLoading(true);
     setError(null);
     setHasUpdated(false);
+
     try {
       const newProfileImageUrl = `user-profile-images/${activeUserId}.jpeg`;
       const newProfileImageRef = ref(storage, newProfileImageUrl);

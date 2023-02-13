@@ -27,17 +27,11 @@ const Profile = function () {
 
     return () => resizeObserverRef.current.disconnect();
   }, []);
-  const {
-    profile,
-    profile__Larger,
-    profile__Smaller,
-    profile__Nav,
-    profile__BackBtn,
-  } = styles;
+
   return (
     <div
       className={`${profile} ${
-        !isSmallerScreen ? profile__Larger : profile__Smaller
+        !isSmallerScreen ? profileLarger : profileSmaller
       }`}
     >
       {isSmallerScreen && (
@@ -58,3 +52,11 @@ const Profile = function () {
 };
 
 export default Profile;
+
+const {
+  profile,
+  ["profile--Larger"]: profileLarger,
+  ["profile--SMaller"]: profileSmaller,
+  profile__Nav,
+  profile__BackBtn,
+} = styles;

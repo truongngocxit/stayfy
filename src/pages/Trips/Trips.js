@@ -10,13 +10,6 @@ import useFetchUpcomingTrips from "../../custom-hooks/useFetchUpcomingTrips";
 const Trips = function () {
   const { tripData, isFetching, error } = useFetchUpcomingTrips();
 
-  const {
-    trips,
-    trips__Heading,
-    trips__Loading,
-    trips__TripList,
-    trips__NoTrip,
-  } = styles;
   return (
     <>
       <div className={trips}>
@@ -64,3 +57,11 @@ const Trips = function () {
 };
 
 export default Trips;
+
+const {
+  trips,
+  trips__Heading,
+  trips__Loading,
+  trips__TripList,
+  trips__NoTrip,
+} = styles;

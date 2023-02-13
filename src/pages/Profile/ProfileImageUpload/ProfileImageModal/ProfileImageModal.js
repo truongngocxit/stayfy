@@ -2,13 +2,14 @@ import styles from "./ProfileImageModal.module.scss";
 import CloseIcon from "../../../../components/UI/SVG/CloseIcon";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import LoadingScreen from "../../LoadingScreen/LoadingScreen";
+import LoadingScreen from "../../../../components/UI/LoadingScreen/LoadingScreen";
 import SkeletonTransition from "../../../../components/SkeletonTransition/SkeletonTransition";
 
 const ProfileImageModal = function ({
   onCloseModal,
   activeUserProfileImage,
   onChangeProfileImage,
+  onDeleteProfileImage,
   isUpdatingImage,
 }) {
   const [previewImage, setPreviewImage] = useState(null);
@@ -27,20 +28,14 @@ const ProfileImageModal = function ({
     });
   };
 
-  const handleSaveImage = async function () {
+  const handleSaveImage = function () {
     onChangeProfileImage(previewImage, onCloseModal);
   };
 
-  const {
-    profileImageModal,
-    profileImageModal__Close,
-    profileImageModal__Image,
-    profileImageModal__Image__Skeleton,
-    profileImageModal__Actions,
-    profileImageModal__Actions__Upload,
-    profileImageModal__Actions__Delete,
-    profileImageModal__Actions__Save,
-  } = styles;
+  const handleDeleteImage = function () {
+    onDeleteProfileImage();
+  };
+
   return (
     <>
       <div className={profileImageModal}>
@@ -79,7 +74,10 @@ const ProfileImageModal = function ({
               Save
             </button>
           ) : (
-            <button className={profileImageModal__Actions__Delete}>
+            <button
+              className={profileImageModal__Actions__Delete}
+              onClick={handleDeleteImage}
+            >
               Delete
             </button>
           )}
@@ -95,3 +93,14 @@ const ProfileImageModal = function ({
 };
 
 export default ProfileImageModal;
+
+const {
+  profileImageModal,
+  profileImageModal__Close,
+  profileImageModal__Image,
+  profileImageModal__Image__Skeleton,
+  profileImageModal__Actions,
+  profileImageModal__Actions__Upload,
+  profileImageModal__Actions__Delete,
+  profileImageModal__Actions__Save,
+} = styles;

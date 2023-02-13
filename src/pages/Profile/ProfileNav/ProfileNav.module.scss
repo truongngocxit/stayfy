@@ -2,7 +2,6 @@
 
 .profileNav {
   display: flex;
-  //justify-content: space-between;
   border: $border;
   border-radius: $borderRadius;
   overflow: hidden;
@@ -18,7 +17,7 @@
     cursor: pointer;
     overflow: hidden;
 
-    &__Active {
+    &--Active {
       background-color: $grayColorFaint7;
     }
 
@@ -41,20 +40,20 @@
     }
   }
 
-  &__Smaller {
+  &--Smaller {
     flex-direction: row;
     align-self: center !important;
   }
 
-  &__Smaller &__Btn {
+  &--Smaller &__Btn {
     padding: 0.5rem 2rem;
   }
 
-  &__Larger {
+  &--Larger {
     flex-direction: column;
   }
 
-  &__Larger &__Btn {
+  &--Larger &__Btn {
     padding: 2rem 4rem;
   }
 }

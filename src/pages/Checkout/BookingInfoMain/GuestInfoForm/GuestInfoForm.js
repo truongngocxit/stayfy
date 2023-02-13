@@ -55,21 +55,13 @@ const GuestInfoForm = function () {
   const { input: bookedFor, handleInputChange: handleChangeBookedFor } =
     bookedForInput;
 
-  const {
-    infoForm,
-    infoForm__Container,
-    infoForm__FName,
-    infoForm__LName,
-    infoForm__Email,
-    infoForm__Phone,
-  } = styles;
   return (
     <div className={infoForm__Container}>
       <form className={infoForm}>
         <h3>Your information</h3>
 
         <Input
-          className={infoForm__FName}
+          className={infoForm__FirstName}
           errorMessage="Invalid first name"
           hasError={firstNameHasError}
           label="First name"
@@ -82,7 +74,7 @@ const GuestInfoForm = function () {
         />
 
         <Input
-          className={infoForm__LName}
+          className={infoForm__LastName}
           errorMessage="Invalid last name"
           hasError={lastNameHasError}
           label="Last name"
@@ -130,3 +122,12 @@ const GuestInfoForm = function () {
 };
 
 export default GuestInfoForm;
+
+const {
+  infoForm,
+  infoForm__Container,
+  infoForm__FirstName,
+  infoForm__LastName,
+  infoForm__Email,
+  infoForm__Phone,
+} = styles;

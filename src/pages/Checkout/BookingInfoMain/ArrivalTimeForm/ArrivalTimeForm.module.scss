@@ -69,7 +69,7 @@
       }
     }
 
-    &__Focused {
+    &--Focused {
       box-shadow: 0 0 0 0.3rem $tintColor2;
       border: 0.1rem solid $tintColor2;
     }

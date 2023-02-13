@@ -10,23 +10,23 @@
   position: relative;
   cursor: pointer;
 
-  &__Smaller {
+  &--Smaller {
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content;
     border: none;
     background: none;
   }
 
-  &__Smaller &__Date {
+  &--Smaller &__Date {
     justify-self: start;
   }
 
-  &__Smaller &__Info {
+  &--Smaller &__Info {
     border: $border;
     box-shadow: 0 0 0 0.5rem $grayColorFaint6;
   }
 
-  &__Larger {
+  &--Larger {
     grid-template-columns: 1.5fr 8fr;
   }
 

@@ -1,7 +1,7 @@
 import styles from "./SubscriptionForm.module.scss";
 import Input from "../../../Input/Input";
 import useInput from "../../../../custom-hooks/useInput";
-import LoadingScreen from "../../../../pages/Profile/LoadingScreen/LoadingScreen";
+import LoadingScreen from "../../../UI/LoadingScreen/LoadingScreen";
 import Button from "../../../Button/Button";
 import { showAndHideNotification } from "../../../../redux-store/notificationSlice";
 import { useDispatch } from "react-redux";

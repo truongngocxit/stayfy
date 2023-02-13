@@ -5,7 +5,7 @@ import Input from "../../../../components/Input/Input";
 import useInput from "../../../../custom-hooks/useInput";
 import Button from "../../../../components/Button/Button";
 import { createPortal } from "react-dom";
-import LoadingScreen from "../../LoadingScreen/LoadingScreen";
+import LoadingScreen from "../../../../components/UI/LoadingScreen/LoadingScreen";
 import useChangeUserInfo from "../../../../custom-hooks/useChangeUserInfo";
 
 const EmailSettingForm = function ({

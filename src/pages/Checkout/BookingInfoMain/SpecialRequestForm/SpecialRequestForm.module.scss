@@ -20,27 +20,4 @@
   &__Description {
     font-style: italic;
   }
-
-  &__Form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-
-    label {
-      font-weight: 700;
-    }
-
-    textarea {
-      border: $border;
-      border-radius: $borderRadius;
-      padding: 1.5rem 2rem;
-      resize: none;
-
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.3rem $tintColor1;
-        border: 0.1rem solid $tintColor1;
-      }
-    }
-  }
 }

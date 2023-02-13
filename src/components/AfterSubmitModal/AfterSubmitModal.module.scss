@@ -22,18 +22,18 @@
       stroke: $primaryColor;
     }
 
-    &__Success,
-    &__Failure {
+    &--Success,
+    &--Failure {
       stroke-width: 0.3rem;
       padding: 0.3rem;
       border-radius: $borderRadius;
     }
 
-    &__Success {
+    &--Success {
       background-color: $tintColor1;
     }
 
-    &__Failure {
+    &--Failure {
       background-color: $warningColor2;
       stroke: $warningColor6 !important;
       stroke-width: 0.2rem;
@@ -68,7 +68,7 @@
       cursor: pointer;
     }
 
-    &__Ok {
+    &--Ok {
       transform: scale(1);
       opacity: 1;
       visibility: visible;

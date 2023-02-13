@@ -44,19 +44,10 @@ const TripItemModal = function ({
     setActiveTab(tab);
   };
 
-  const {
-    itemModal,
-    itemModal__Smaller,
-    itemModal__Larger,
-    itemModal__Tabs,
-    itemModal__Price,
-    itemModal__Info,
-    itemModal__CloseBtn,
-  } = styles;
   return (
     <ModalTransition
       className={`${itemModal} ${
-        isSmallerScreen ? itemModal__Smaller : itemModal__Larger
+        isSmallerScreen ? itemModalSmaller : itemModalLarger
       }`}
       isVisible={isVisible}
     >
@@ -104,3 +95,13 @@ const TripItemModal = function ({
 };
 
 export default TripItemModal;
+
+const {
+  itemModal,
+  ["itemModal--Smaller"]: itemModalSmaller,
+  ["itemModal--Larger"]: itemModalLarger,
+  itemModal__Tabs,
+  itemModal__Price,
+  itemModal__Info,
+  itemModal__CloseBtn,
+} = styles;

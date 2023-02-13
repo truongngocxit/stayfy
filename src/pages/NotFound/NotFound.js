@@ -1,7 +1,7 @@
 import styles from "./NotFound.module.scss";
 import MainLogo from "../../components/UI/MainLogo/MainLogo";
 import HomeButton from "../../components/TopNav/HomeButton/HomeButton";
-import LoadingScreen from "../Profile/LoadingScreen/LoadingScreen";
+import LoadingScreen from "../../components/UI/LoadingScreen/LoadingScreen";
 import { createPortal } from "react-dom";
 import { useState } from "react";
 

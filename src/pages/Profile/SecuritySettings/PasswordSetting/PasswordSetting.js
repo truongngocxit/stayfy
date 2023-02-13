@@ -6,7 +6,7 @@ import SettingButton from "../../SettingButton/SettingButton";
 import useInput from "../../../../custom-hooks/useInput";
 import maskPassword from "../../../../utils/maskPassword";
 import useChangeUserInfo from "../../../../custom-hooks/useChangeUserInfo";
-import LoadingScreen from "../../LoadingScreen/LoadingScreen";
+import LoadingScreen from "../../../../components/UI/LoadingScreen/LoadingScreen";
 import { createPortal } from "react-dom";
 import { useSelector } from "react-redux";
 

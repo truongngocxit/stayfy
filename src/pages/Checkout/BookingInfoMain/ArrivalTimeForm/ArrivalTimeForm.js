@@ -13,14 +13,6 @@ const ArrivalTimeForm = function () {
     isTyping: selectIsFocused,
   } = useContext(arrivalTimeContext);
 
-  const {
-    timeForm,
-    timeForm__Heading,
-    timeForm__Info,
-    timeForm__Form,
-    timeForm__Form__Focused,
-    timeForm__Form__Select,
-  } = styles;
   return (
     <div className={timeForm}>
       <h3 className={timeForm__Heading}>Your arrival time</h3>
@@ -32,7 +24,7 @@ const ArrivalTimeForm = function () {
         <span>Add your estimated arrival time:</span>
         <div
           className={`${timeForm__Form__Select} ${
-            selectIsFocused ? timeForm__Form__Focused : ""
+            selectIsFocused ? timeForm__FormFocused : ""
           }`}
         >
           <ChevronTopIcon />
@@ -57,6 +49,15 @@ const ArrivalTimeForm = function () {
 };
 
 export default ArrivalTimeForm;
+
+const {
+  timeForm,
+  timeForm__Heading,
+  timeForm__Info,
+  timeForm__Form,
+  ["timeForm__Form--Focused"]: timeForm__FormFocused,
+  timeForm__Form__Select,
+} = styles;
 
 const times = [
   "I'm not sure",

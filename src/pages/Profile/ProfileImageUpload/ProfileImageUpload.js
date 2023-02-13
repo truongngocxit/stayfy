@@ -5,6 +5,7 @@ import Overlay from "../../../components/UI/Overlay/Overlay";
 import { createPortal } from "react-dom";
 import { Tooltip } from "antd";
 import useChangeProfileImage from "../../../custom-hooks/useChangeProfileImage";
+import useDeleteProfileImage from "../../../custom-hooks/useDeleteProfileImage";
 import SkeletonTransition from "../../../components/SkeletonTransition/SkeletonTransition";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -24,15 +25,10 @@ const ProfileImageUpload = function ({
     setProfileImageHasLoaded(true);
   };
 
-  const { isLoading, changeProfileImage, error, hasUpdated } =
-    useChangeProfileImage();
+  const { isLoading, changeProfileImage, hasUpdated } = useChangeProfileImage();
 
-  const {
-    imageUpload,
-    imageUpload__Image,
-    imageUpload__Image__Skeleton,
-    imageUpload__EditIcon,
-  } = styles;
+  const { isDeleting, hasDeleted, deleteProfileImage } =
+    useDeleteProfileImage();
 
   return (
     <>
@@ -47,7 +43,7 @@ const ProfileImageUpload = function ({
           title="Change successully"
           color="#00b4d8"
           placement="topLeft"
-          open={hasUpdated}
+          open={hasUpdated || hasDeleted}
         >
           <div className={imageUpload__Image}>
             <SkeletonTransition
@@ -72,7 +68,8 @@ const ProfileImageUpload = function ({
             onCloseModal={onCloseImageUpdate}
             activeUserProfileImage={activeUserProfileImage}
             onChangeProfileImage={changeProfileImage}
-            isUpdatingImage={isLoading}
+            onDeleteProfileImage={deleteProfileImage}
+            isUpdatingImage={isLoading || isDeleting}
           />,
           document.getElementById("modal-root")
         )}
@@ -87,3 +84,10 @@ const ProfileImageUpload = function ({
 };
 
 export default ProfileImageUpload;
+
+const {
+  imageUpload,
+  imageUpload__Image,
+  imageUpload__Image__Skeleton,
+  imageUpload__EditIcon,
+} = styles;

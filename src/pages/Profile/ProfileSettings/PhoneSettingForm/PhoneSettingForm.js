@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import useInput from "../../../../custom-hooks/useInput";
 import useChangeUserInfo from "../../../../custom-hooks/useChangeUserInfo";
 import Button from "../../../../components/Button/Button";
-import LoadingScreen from "../../LoadingScreen/LoadingScreen";
+import LoadingScreen from "../../../../components/UI/LoadingScreen/LoadingScreen";
 
 const PhoneSettingForm = function ({
   activeUserPhone,

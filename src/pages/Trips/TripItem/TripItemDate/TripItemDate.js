@@ -5,18 +5,11 @@ const TripItemDate = function ({ className, date, isSmallerScreen }) {
   const year = dateObj.getFullYear();
   const month = dateObj.toLocaleString("en-us", { month: "short" });
   const day = dateObj.getDate();
-  const {
-    tripDate,
-    tripDate__Smaller,
-    tripDate__Larger,
-    tripDate__Day,
-    tripDate__Month,
-    tripDate__Year,
-  } = styles;
+
   return (
     <div
       className={`${tripDate} ${
-        isSmallerScreen ? tripDate__Smaller : tripDate__Larger
+        isSmallerScreen ? tripDateSmaller : tripDateLarger
       } ${className}`}
     >
       <span className={tripDate__Day}>{day}</span>
@@ -27,3 +20,12 @@ const TripItemDate = function ({ className, date, isSmallerScreen }) {
 };
 
 export default TripItemDate;
+
+const {
+  tripDate,
+  ["tripDate--Smaller"]: tripDateSmaller,
+  ["tripDate--Larger"]: tripDateLarger,
+  tripDate__Day,
+  tripDate__Month,
+  tripDate__Year,
+} = styles;

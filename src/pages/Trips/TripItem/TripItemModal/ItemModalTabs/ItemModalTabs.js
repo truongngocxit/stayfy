@@ -1,5 +1,4 @@
 import styles from "./ItemModalTabs.module.scss";
-import { useState } from "react";
 import MoreIcon from "../../../../../components/UI/SVG/MoreIcon";
 import useDropdown from "../../../../../custom-hooks/useDropdown";
 
@@ -17,20 +16,10 @@ const ItemModalTabs = function ({
     handleCloseDropdown,
   } = useDropdown();
 
-  const {
-    modalTabs,
-    modalTabs__Smaller,
-    modalTabs__Larger,
-    modalTabs__MoreBtn,
-    modalTabs__Tab,
-    modalTabs__Tab__Cancel,
-    modalTabs__Tab__Active,
-  } = styles;
-
   return (
     <nav
       className={`${modalTabs} ${
-        isSmallerScreen ? modalTabs__Smaller : modalTabs__Larger
+        isSmallerScreen ? modalTabsSmaller : modalTabsLarger
       } ${className}`}
       ref={containerRef}
     >
@@ -44,7 +33,7 @@ const ItemModalTabs = function ({
           {isSmallerScreen && (
             <li
               className={`${modalTabs__Tab} ${
-                activeTab === "details" ? modalTabs__Tab__Active : ""
+                activeTab === "details" ? modalTabs__TabActive : ""
               }`}
               onClick={onChangeTab.bind(null, "details")}
             >
@@ -54,7 +43,7 @@ const ItemModalTabs = function ({
 
           <li
             className={`${modalTabs__Tab} ${
-              activeTab === "images" ? modalTabs__Tab__Active : ""
+              activeTab === "images" ? modalTabs__TabActive : ""
             }`}
             onClick={onChangeTab.bind(null, "images")}
           >
@@ -62,7 +51,7 @@ const ItemModalTabs = function ({
           </li>
           <li
             className={`${modalTabs__Tab} ${
-              activeTab === "facilities" ? modalTabs__Tab__Active : ""
+              activeTab === "facilities" ? modalTabs__TabActive : ""
             }`}
             onClick={onChangeTab.bind(null, "facilities")}
           >
@@ -70,7 +59,7 @@ const ItemModalTabs = function ({
           </li>
           <li
             className={`${modalTabs__Tab} ${
-              activeTab === "location" ? modalTabs__Tab__Active : ""
+              activeTab === "location" ? modalTabs__TabActive : ""
             }`}
             onClick={onChangeTab.bind(null, "location")}
           >
@@ -78,15 +67,15 @@ const ItemModalTabs = function ({
           </li>
           <li
             className={`${modalTabs__Tab} ${
-              activeTab === "contact" ? modalTabs__Tab__Active : ""
+              activeTab === "contact" ? modalTabs__TabActive : ""
             }`}
             onClick={onChangeTab.bind(null, "contact")}
           >
             Contact
           </li>
           <li
-            className={`${modalTabs__Tab} ${modalTabs__Tab__Cancel} ${
-              activeTab === "cancel" ? modalTabs__Tab__Active : ""
+            className={`${modalTabs__Tab} ${modalTabs__TabCancel} ${
+              activeTab === "cancel" ? modalTabs__TabActive : ""
             }`}
             onClick={onChangeTab.bind(null, "cancel")}
           >
@@ -99,3 +88,13 @@ const ItemModalTabs = function ({
 };
 
 export default ItemModalTabs;
+
+const {
+  modalTabs,
+  ["modalTabs--Smaller"]: modalTabsSmaller,
+  ["modalTabs--Larger"]: modalTabsLarger,
+  modalTabs__MoreBtn,
+  modalTabs__Tab,
+  ["modalTabs__Tab--Cancel"]: modalTabs__TabCancel,
+  ["modalTabs__Tab--Active"]: modalTabs__TabActive,
+} = styles;

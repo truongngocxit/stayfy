@@ -36,22 +36,16 @@ const ProfileSettings = function ({ className }) {
     dispatchActiveProfileForm("FORM_INACTIVE");
   };
 
-  const {
-    profile__Settings,
-    profile__Settings__Heading,
-    profile__Settings__ItemsContainer,
-    profile__Settings__Item,
-  } = styles;
   return (
-    <div className={`${profile__Settings} ${className}`}>
-      <h3 className={profile__Settings__Heading}>Personal Details</h3>
+    <div className={`${profileSettings} ${className}`}>
+      <h3 className={profileSettings__Heading}>Personal Details</h3>
       <ProfileImageUpload
         onOpenImageUpdate={handleImageUpdateActive}
         onCloseImageUpdate={handleFormsInactive}
         imageUpdateIsActive={imageIsActive}
       />
-      <div className={profile__Settings__ItemsContainer}>
-        <div className={profile__Settings__Item}>
+      <div className={profileSettings__ItemsContainer}>
+        <div className={profileSettings__Item}>
           <NameSettingForm
             activeUserLastName={lastName}
             activeUserFirstName={firstName}
@@ -60,7 +54,7 @@ const ProfileSettings = function ({ className }) {
             onCloseNameForm={handleFormsInactive}
           />
         </div>
-        <div className={profile__Settings__Item}>
+        <div className={profileSettings__Item}>
           <EmailSettingForm
             activeUserEmail={email}
             emailFormIsActive={emailIsActive}
@@ -68,7 +62,7 @@ const ProfileSettings = function ({ className }) {
             onCloseEmailForm={handleFormsInactive}
           />
         </div>
-        <div className={profile__Settings__Item}>
+        <div className={profileSettings__Item}>
           <PhoneSettingForm
             activeUserPhone={phone}
             phoneFormIsActive={phoneIsActive}
@@ -82,6 +76,13 @@ const ProfileSettings = function ({ className }) {
 };
 
 export default ProfileSettings;
+
+const {
+  profileSettings,
+  profileSettings__Heading,
+  profileSettings__ItemsContainer,
+  profileSettings__Item,
+} = styles;
 
 const activeProfileFormReducer = function (state, action) {
   switch (action) {

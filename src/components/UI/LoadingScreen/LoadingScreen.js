@@ -1,5 +1,5 @@
-import Overlay from "../../../components/UI/Overlay/Overlay";
-import LoadingSpinner from "../../../components/UI/LoadingSpinner/LoadingSpinner";
+import Overlay from "../Overlay/Overlay";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import styles from "./LoadingScreen.module.scss";
 
 const LoadingScreen = function ({ onClick, zIndex = 2200 }) {

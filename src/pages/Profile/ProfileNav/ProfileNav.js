@@ -8,24 +8,15 @@ const ProfileNav = function ({
   onChangeSetting,
   isSmallerScreen = false,
 }) {
-  const {
-    profileNav,
-    profileNav__Larger,
-    profileNav__Smaller,
-    profileNav__Btn,
-    profileNav__Btn__Active,
-    profileNav__Icon,
-    profileNav__Back,
-  } = styles;
   return (
     <nav
       className={`${profileNav} ${
-        isSmallerScreen ? profileNav__Smaller : profileNav__Larger
+        isSmallerScreen ? profileNavSmaller : profileNavLarger
       } ${className}`}
     >
       <button
         className={`${profileNav__Btn} ${
-          currentSetting === "personal" ? profileNav__Btn__Active : ""
+          currentSetting === "personal" ? profileNav__BtnActive : ""
         }`}
         onClick={() => onChangeSetting("personal")}
       >
@@ -37,7 +28,7 @@ const ProfileNav = function ({
       {!isSmallerScreen && <LineBreak />}
       <button
         className={`${profileNav__Btn} ${
-          currentSetting === "security" ? profileNav__Btn__Active : ""
+          currentSetting === "security" ? profileNav__BtnActive : ""
         }`}
         onClick={() => onChangeSetting("security")}
       >
@@ -52,3 +43,12 @@ const ProfileNav = function ({
 };
 
 export default ProfileNav;
+
+const {
+  profileNav,
+  ["profileNav--Larger"]: profileNavLarger,
+  ["profileNav--Smaller"]: profileNavSmaller,
+  profileNav__Btn,
+  ["profileNav__Btn--Active"]: profileNav__BtnActive,
+  profileNav__Icon,
+} = styles;
