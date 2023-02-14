@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { activeUserActions } from "../redux-store/activeUserSlice";
+import { railwayBackendURL } from "../utils/conts";
 import axios from "axios";
 
 const useDeleteAccount = function () {
@@ -14,7 +15,7 @@ const useDeleteAccount = function () {
     try {
       await axios({
         method: "DELETE",
-        url: "https://stayfy-backend.onrender.com/delete-user",
+        url: `${railwayBackendURL}/delete-user`,
         data: { userId: activeUserId },
       });
 

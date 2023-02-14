@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { activeUserActions } from "../redux-store/activeUserSlice";
+import { railwayBackendURL } from "../utils/conts";
 
 const useChangeUserInfo = function () {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +24,7 @@ const useChangeUserInfo = function () {
     try {
       const response = await axios({
         method: "PATCH",
-        url: "https://stayfy-backend.onrender.com/update-user",
+        url: `${railwayBackendURL}update-user`,
         data: { userId: activeUserId, updatedData: data },
       });
 

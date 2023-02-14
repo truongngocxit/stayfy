@@ -5,6 +5,7 @@ import { useContext, forwardRef, useEffect } from "react";
 import LocationSearchContext from "../../../contexts/searchContext/LocationSearchContextProvider";
 import useDropdown from "../../../custom-hooks/useDropdown";
 import CloseIcon from "../../UI/SVG/CloseIcon";
+import { railwayBackendURL } from "../../../utils/conts";
 
 const LocationSearch = function (
   { activeClassName, className, onFinishSearch },
@@ -34,7 +35,7 @@ const LocationSearch = function (
   };
 
   const { data: locations } = useFetchData(
-    "https://stayfy-backend.onrender.com/all-docs/locations"
+    `${railwayBackendURL}all-docs/locations`
   );
 
   let filteredLocations = locations.filter((l) =>

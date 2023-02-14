@@ -4,6 +4,7 @@ import { useContext } from "react";
 import useFetchData from "../../../../../custom-hooks/useFetchData";
 import LocationSearchDropdown from "../../../LocationSearch/LocationSearchDropdown/LocationSearchDropdown";
 import LocationSearchContext from "../../../../../contexts/searchContext/LocationSearchContextProvider";
+import { railwayBackendURL } from "../../../../../utils/conts";
 
 const LocationSearch = function ({ onFinishSearch }) {
   const {
@@ -16,7 +17,7 @@ const LocationSearch = function ({ onFinishSearch }) {
   } = useContext(LocationSearchContext);
 
   const { data: locations } = useFetchData(
-    "https://stayfy-backend.onrender.com/all-docs/locations"
+    `${railwayBackendURL}all-docs/locations`
   );
 
   let filteredLocations = locations.filter((l) =>

@@ -4,6 +4,7 @@ import useInput from "../../../../custom-hooks/useInput";
 import LoadingScreen from "../../../UI/LoadingScreen/LoadingScreen";
 import Button from "../../../Button/Button";
 import { showAndHideNotification } from "../../../../redux-store/notificationSlice";
+import { railwayBackendURL } from "../../../../utils/conts";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useState } from "react";
@@ -31,7 +32,7 @@ const SubscriptionForm = function ({ className }) {
 
     await axios({
       method: "POST",
-      url: "https://stayfy-backend.onrender.com/add-subscription",
+      url: `${railwayBackendURL}add-subscription`,
       data: { email: input },
     });
     resetInput();

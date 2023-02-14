@@ -6,11 +6,11 @@ import Overlay from "../UI/Overlay/Overlay";
 import ProfileButton from "../TopNav/ProfileButton/ProfileButton";
 import { createPortal } from "react-dom";
 import { useState, useEffect, useRef } from "react";
+import useResizingScreen from "../../custom-hooks/useResizingScreen";
+import { tabletWidth } from "../../utils/conts";
 
 const BottomNav = function ({ isTransparent = false }) {
   const [bottomFooterIsVisible, setBottomFooterIsVisible] = useState(false);
-  const resizeObserverRef = useRef(null);
-  const [isSmallerScreen, setIsSmallerScreen] = useState(false);
   const [isScrollDown, setIsScrollDown] = useState(false);
   const lastScrollPosition = useRef(null);
 
@@ -30,22 +30,7 @@ const BottomNav = function ({ isTransparent = false }) {
     return () => window.removeEventListener("scroll", handleScrollY);
   }, []);
 
-  useEffect(() => {
-    resizeObserverRef.current = new ResizeObserver(function (
-      entries,
-      observer
-    ) {
-      if (entries[0].contentRect.width <= 744) {
-        setIsSmallerScreen(true);
-      } else {
-        setIsSmallerScreen(false);
-      }
-    });
-
-    resizeObserverRef.current.observe(document.documentElement);
-
-    return () => resizeObserverRef.current.disconnect();
-  }, []);
+  const isSmallerScreen = useResizingScreen(tabletWidth);
 
   const handleOpenFooter = function () {
     setBottomFooterIsVisible(true);

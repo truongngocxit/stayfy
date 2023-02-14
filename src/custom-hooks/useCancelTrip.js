@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { activeUserActions } from "../redux-store/activeUserSlice";
+import { railwayBackendURL } from "../utils/conts";
 
 const useCancelTrip = function () {
   const [isCancelling, setIsCancelling] = useState(false);
@@ -14,7 +15,7 @@ const useCancelTrip = function () {
     setError(null);
     try {
       await axios({
-        url: "https://stayfy-backend.onrender.com/delete-trip",
+        url: `${railwayBackendURL}delete-trip`,
         method: "DELETE",
         params: {
           bookingId,

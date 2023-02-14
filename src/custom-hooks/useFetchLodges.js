@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { searchQueryActions } from "../redux-store/searchQuerySlice";
 import { cloneDeep } from "lodash";
+import { railwayBackendURL } from "../utils/conts";
 import axios from "axios";
 
 const useFetchLodges = function () {
@@ -26,11 +27,10 @@ const useFetchLodges = function () {
         return;
       }
       setIsLoading(true);
-      //url: "https://stayfy-backend.onrender.com/get-paginated-lodges",
       try {
         const response = await axios({
           method: "GET",
-          url: "https://stayfy-backend-production.up.railway.app/get-paginated-lodges",
+          url: `${railwayBackendURL}get-paginated-lodges`,
           params: {
             cursor,
             numOfItems: Number(numOfItems),

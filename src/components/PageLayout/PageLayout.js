@@ -8,11 +8,20 @@ import { useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { activeUserActions } from "../../redux-store/activeUserSlice";
 import Notification from "./Notification/Notification";
+import ReadMeModal from "../ReadMeModal/ReadMeModal";
 
 const PageLayout = function ({ children }) {
   const { pathname } = useLocation();
   const reduxDispatch = useDispatch();
   const resizeObserverRef = useRef(null);
+
+  const [readMeIsVisible, setReadMeIsVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setReadMeIsVisible(true);
+    }, 3500);
+  }, []);
 
   const [isSmallerScreen, setIsSmallerScreen] = useState(false);
 
@@ -106,7 +115,12 @@ const PageLayout = function ({ children }) {
         {children}
         {footer}
       </div>
-
+      {
+        <ReadMeModal
+          isVisible={readMeIsVisible}
+          onClose={() => setReadMeIsVisible(false)}
+        />
+      }
       {createPortal(<Notification />, document.getElementById("modal-root"))}
     </>
   );

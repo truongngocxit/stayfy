@@ -4,8 +4,7 @@ import { useContext } from "react";
 import { guestGeneralInfoContext } from "../../../contexts/guestBookingInfoContext/guestGeneralInfoContext";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { bookingInfoActions } from "../../../redux-store/bookingInfoSlice";
-import { searchQueryActions } from "../../../redux-store/searchQuerySlice";
+import { railwayBackendURL } from "../../../utils/conts";
 import { activeUserActions } from "../../../redux-store/activeUserSlice";
 
 const BookingButton = function ({
@@ -66,23 +65,9 @@ const BookingButton = function ({
       const sendBookingData = async function () {
         onSubmitting();
 
-        // const bookingResponse = await axios({
-        //   method: "POST",
-        //   url: "https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/bookings.json",
-        //   data,
-        // });
-
-        // const newBookingId = bookingResponse.data.name;
-
-        // const tripResponse = await axios({
-        //   method: "POST",
-        //   url: `https://stayfy-d4fc1-default-rtdb.asia-southeast1.firebasedatabase.app/users/${activeUserId}/upcomingTrips.json`,
-        //   data: { bookingId: newBookingId },
-        // });
-
         const response = await axios({
           method: "POST",
-          url: "https://stayfy-backend.onrender.com/add-booking",
+          url: `${railwayBackendURL}add-booking`,
           data: {
             bookingData: data,
             userId: activeUserId,

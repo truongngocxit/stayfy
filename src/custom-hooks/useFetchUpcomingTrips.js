@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { railwayBackendURL } from "../utils/conts";
 
 const useFetchUpcomingTrips = function () {
   const [isFetching, setIsFetching] = useState(false);
@@ -16,7 +17,7 @@ const useFetchUpcomingTrips = function () {
       setError(null);
       try {
         const getTripsResponse = await axios({
-          url: `https://stayfy-backend.onrender.com/upcoming-trips/${userId}`,
+          url: `${railwayBackendURL}upcoming-trips/${userId}`,
           method: "GET",
         });
 
@@ -25,7 +26,7 @@ const useFetchUpcomingTrips = function () {
         );
 
         const getLodgesResponse = await axios({
-          url: `https://stayfy-backend.onrender.com/lodges-by-ids`,
+          url: `${railwayBackendURL}lodges-by-ids`,
           params: {
             lodges: cleansedTripsData.map((trip) => trip.roomInfo.roomId),
           },

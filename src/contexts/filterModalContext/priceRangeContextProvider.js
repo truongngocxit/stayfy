@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+import { railwayBackendURL } from "../../utils/conts";
 import axios from "axios";
 
 const priceRangeContext = createContext();
@@ -20,7 +21,7 @@ export const PriceRangeContextProvider = function ({ children }) {
     (async function () {
       const response = await axios({
         method: "GET",
-        url: "https://stayfy-backend.onrender.com/query-lodge",
+        url: `${railwayBackendURL}query-lodge`,
         params: {
           orderBy: "price.avg",
           descending: true,

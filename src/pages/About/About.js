@@ -2,6 +2,7 @@ import styles from "./About.module.scss";
 import FactItem from "./FactItem/FactItem";
 import useFetchData from "../../custom-hooks/useFetchData";
 import FounderItem from "./FounterItem/FounderItem";
+import { railwayBackendURL } from "../../utils/conts";
 import { useEffect, useRef } from "react";
 
 const About = function () {
@@ -23,7 +24,7 @@ const About = function () {
     data: factItems,
     isLoading: isLoadingFacts,
     error: factsRequestError,
-  } = useFetchData("https://stayfy-backend.onrender.com/all-docs/facts");
+  } = useFetchData(`${railwayBackendURL}all-docs/facts`);
 
   // const {
   //   data: factItems,
@@ -37,7 +38,7 @@ const About = function () {
     data: founders,
     isLoading: isLoadingFounders,
     error: foundersRequestError,
-  } = useFetchData("https://stayfy-backend.onrender.com/all-docs/founders");
+  } = useFetchData(`${railwayBackendURL}all-docs/founders`);
 
   const intersectionObserverRef = useRef(null);
   const factsRef = useRef([]);

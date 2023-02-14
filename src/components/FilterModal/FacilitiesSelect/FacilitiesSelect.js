@@ -3,6 +3,7 @@ import useFetchData from "../../../custom-hooks/useFetchData";
 import FacilitySection from "./FacilitySection/FacilitySection";
 import { useState, useContext } from "react";
 import facilitiesFilterContext from "../../../contexts/filterModalContext/facilitiesFilterContextProvider";
+import { railwayBackendURL } from "../../../utils/conts";
 
 const FacilitiesSelect = function () {
   const [showMoreIsShown, setShowMoreIsShown] = useState(false);
@@ -16,7 +17,7 @@ const FacilitiesSelect = function () {
   );
 
   const { data, isLoading, error } = useFetchData(
-    "https://stayfy-backend.onrender.com/all-docs/facilities"
+    `${railwayBackendURL}all-docs/facilities`
   );
 
   const cleansedData = Object.entries(

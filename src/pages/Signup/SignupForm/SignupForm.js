@@ -1,6 +1,6 @@
 import styles from "./SignupForm.module.scss";
 import Input from "../../../components/Input/Input";
-import SignupButton from "../SignupButton/SignupButton";
+import { railwayBackendURL } from "../../../utils/conts";
 import NavigationLink from "../NavigationLink/NavigationLink";
 import useInput from "../../../custom-hooks/useInput";
 import Button from "../../../components/Button/Button";
@@ -107,7 +107,7 @@ const SignupForm = function () {
 
       await axios({
         method: "POST",
-        url: "https://stayfy-backend.onrender.com/signup",
+        url: `${railwayBackendURL}signup`,
         data: userData,
       });
 

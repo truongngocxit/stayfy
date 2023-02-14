@@ -4,6 +4,7 @@ import { storage } from "../myAppFirebase/myAppFirebase";
 import { useSelector, useDispatch } from "react-redux";
 import { defaultProfileImage } from "../utils/conts";
 import { activeUserActions } from "../redux-store/activeUserSlice";
+import { railwayBackendURL } from "../utils/conts";
 import axios from "axios";
 
 const useDeleteProfileImage = function () {
@@ -27,7 +28,7 @@ const useDeleteProfileImage = function () {
 
     await axios({
       method: "PATCH",
-      url: "https://stayfy-backend.onrender.com/update-user",
+      url: `${railwayBackendURL}update-user`,
       data: {
         userId: activeUserId,
         updatedData: {

@@ -4,6 +4,7 @@ import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { activeUserActions } from "../redux-store/activeUserSlice";
 import { storage } from "../myAppFirebase/myAppFirebase";
 import axios from "axios";
+import { railwayBackendURL } from "../utils/conts";
 
 const useChangeProfileImage = function () {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +29,7 @@ const useChangeProfileImage = function () {
 
       await axios({
         method: "PATCH",
-        url: "https://stayfy-backend.onrender.com/update-user",
+        url: `${railwayBackendURL}update-user`,
         data: {
           userId: activeUserId,
           updatedData: {
