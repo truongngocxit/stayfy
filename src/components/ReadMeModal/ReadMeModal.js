@@ -22,9 +22,7 @@ const ReadMeModal = function ({ isVisible, onClose }) {
         <button className={readme__CloseIcon} onClick={onClose}>
           <CloseIcon />
         </button>
-        <div className={readme__WavingIcon}>
-          <HandIcon />
-        </div>
+        <span className={readme__WavingIcon}>👋</span>
         <h2 className={readme__Heading}>
           If you're a recruiter, please read me.
         </h2>
