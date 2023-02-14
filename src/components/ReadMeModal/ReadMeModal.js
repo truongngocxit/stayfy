@@ -105,8 +105,8 @@ const ReadMeModal = function ({ isVisible, onClose }) {
             <em>
               I am also in an urgent need of a React fresher/intern job. I am
               work-oriented and can self-learn new things quickly. As an
-              ex-marketer, I can also design and write (in English) decently. If
-              you have any opportunity, please contact me:{" "}
+              ex-marketer, I can also design and write (in both Vietnamese &
+              English) decently. If you have any opportunity, please contact me:{" "}
               <a
                 href="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/cv%2FCV-large.pdf?alt=media&token=492b0198-d2e1-49c7-9659-f99b6bcef4df"
                 target="_black"
