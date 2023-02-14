@@ -33,9 +33,9 @@ const ReadMeModal = function ({ isVisible, onClose }) {
           </p>
           <ul>
             <li>
-              <strong>Front-end:</strong> I relies on ReactJS and pure CSS/SCSS.
-              For some complex elements that can take too long to customize -
-              such as the date picker, I resorted to{" "}
+              <strong>Front-end:</strong> I relies on ReactJS & pure CSS/SCSS.
+              For some elements that may take too long to customize - e.g. the
+              date picker, I resorted to{" "}
               <a
                 href="https://ant.design/"
                 target="_black"
@@ -44,7 +44,7 @@ const ReadMeModal = function ({ isVisible, onClose }) {
               >
                 Ant Design
               </a>
-              's library. Regarding deployment, I'm using Vercel.
+              's library. To deploy the JS bundle, I use Vercel.
             </li>
             <li>
               <strong>Back-end:</strong> I built a simple{" "}
@@ -85,8 +85,7 @@ const ReadMeModal = function ({ isVisible, onClose }) {
               myself using Figma.
             </li>
             <li>
-              <strong>Data:</strong> I took all these hotels' & homestays'
-              images from{" "}
+              <strong>Data:</strong> I took all these homestays' images from{" "}
               <a
                 href="https://www.booking.com/"
                 target="_black"
@@ -101,21 +100,21 @@ const ReadMeModal = function ({ isVisible, onClose }) {
           </ul>
           <p>
             <em>
-              I am also in an urgent need of a React fresher/intern job. I am
+              I am also searching for a React fresher/intern job. I am
               work-oriented and can self-learn new things quickly. As an
               ex-marketer, I can also design and write (in both Vietnamese &
               English) decently. If you have any opportunity, please contact me:{" "}
-              <a
-                href="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/cv%2FCV-large.pdf?alt=media&token=492b0198-d2e1-49c7-9659-f99b6bcef4df"
-                target="_black"
-                rel="noreferrer noopener"
-                className={`${readme__CV}`}
-              >
-                my CV.
-              </a>
             </em>
           </p>
         </div>
+        <a
+          href="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/cv%2FCV-large.pdf?alt=media&token=492b0198-d2e1-49c7-9659-f99b6bcef4df"
+          target="_black"
+          rel="noreferrer noopener"
+          className={`${readme__CV}`}
+        >
+          Take a look at my CV.
+        </a>
       </ModalTransition>
       {isVisible &&
         createPortal(

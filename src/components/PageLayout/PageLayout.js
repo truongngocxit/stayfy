@@ -20,7 +20,7 @@ const PageLayout = function ({ children }) {
   useEffect(() => {
     setTimeout(() => {
       setReadMeIsVisible(true);
-    }, 3500);
+    }, 4500);
   }, []);
 
   const [isSmallerScreen, setIsSmallerScreen] = useState(false);

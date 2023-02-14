@@ -61,13 +61,20 @@ $borderRadius: 1rem;
 //box shadow
 $boxShadow: 0 0.1rem 0.3rem rgba(3, 3, 3, 0.1);
 
-@mixin card {
-  padding: 1rem 2rem;
+@mixin card($paddingHorizontal: 2rem, $paddingVertical: 4rem) {
+  padding: $paddingHorizontal $paddingVertical;
   border: $border;
   border-radius: $borderRadius;
+  background-color: #fff;
 }
 
-@mixin largeBoxShadow {
+@mixin modal($paddingHorizontal: 2rem, $paddingVertical: 4rem, $zIndex: 2000) {
+  @include card($paddingHorizontal: 2rem, $paddingVertical: 4rem);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  z-index: $zIndex;
 }
 
 //keyframes
