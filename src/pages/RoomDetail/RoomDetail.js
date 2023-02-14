@@ -154,27 +154,29 @@ const RoomDetail = function () {
   } = styles;
   return (
     <>
-      <StickySectionNav
-        activeId={activeId}
-        isVisible={navIsSticky}
-        ref={stickyNavRef}
-        onScrollToAbout={handleScrollToElement.bind(null, aboutSectionRef)}
-        onScrollToFacilities={handleScrollToElement.bind(
-          null,
-          facilitiesSectionRef
-        )}
-        onScrollToLocation={handleScrollToElement.bind(
-          null,
-          locationSectionRef
-        )}
-        onScrollToPhotos={handleScrollToElement.bind(null, imagePreviewRef)}
-        onScrollToRules={handleScrollToElement.bind(null, rulesSectionRef)}
-        onScrollToHost={handleScrollToElement.bind(null, hostSectionref)}
-        onScrollToRoomTypes={handleScrollToElement.bind(
-          null,
-          roomTypesSectionRef
-        )}
-      />
+      {!isSmallerScreen && (
+        <StickySectionNav
+          activeId={activeId}
+          isVisible={navIsSticky}
+          ref={stickyNavRef}
+          onScrollToAbout={handleScrollToElement.bind(null, aboutSectionRef)}
+          onScrollToFacilities={handleScrollToElement.bind(
+            null,
+            facilitiesSectionRef
+          )}
+          onScrollToLocation={handleScrollToElement.bind(
+            null,
+            locationSectionRef
+          )}
+          onScrollToPhotos={handleScrollToElement.bind(null, imagePreviewRef)}
+          onScrollToRules={handleScrollToElement.bind(null, rulesSectionRef)}
+          onScrollToHost={handleScrollToElement.bind(null, hostSectionref)}
+          onScrollToRoomTypes={handleScrollToElement.bind(
+            null,
+            roomTypesSectionRef
+          )}
+        />
+      )}
       <div className={roomDetail}>
         {isSmallerScreen && (
           <ImagesSlider images={lodge.images.filter((img) => img !== "")} />

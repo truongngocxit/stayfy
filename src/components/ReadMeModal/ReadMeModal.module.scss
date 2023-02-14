@@ -8,21 +8,44 @@
   left: 50%;
   max-height: 80%;
   transform: translate(-50%, -50%);
-  padding: 2.5rem 0;
+  //padding: 2.5rem 0;
   border-radius: $borderRadius;
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  //gap: 2rem;
+
+  @media only screen and (max-width: 59em) {
+    min-width: 65%;
+  }
+
+  @media only screen and (max-width: 48em) {
+    min-width: 76%;
+  }
+
+  @media only screen and (max-width: 34em) {
+    min-width: 84%;
+  }
+
+  @media only screen and (max-width: 26.5625em) {
+    width: 100%;
+    top: auto;
+    bottom: -45%;
+    min-height: 90%;
+    &__Heading {
+      font-size: 2rem;
+    }
+  }
 
   &__CloseIcon {
     position: absolute;
-    width: 3.2rem;
-    height: 3.2rem;
+    width: 2.8rem;
+    height: 2.8rem;
     cursor: pointer;
     border-radius: 50%;
     transition: all 0.3s;
-    left: 3rem;
+    top: 2rem;
+    left: 2rem;
 
     svg {
       padding: 0.4rem;
@@ -42,6 +65,7 @@
     //padding-bottom: 0.4rem;
     font-size: 2.4rem;
     display: inline-block;
+    padding-top: 2rem;
     //animation: wavingEffect alternate 0.4s infinite both linear;
 
     // svg {
@@ -53,10 +77,11 @@
 
   &__Heading {
     text-align: center;
-    padding: 0 4rem;
+    padding: 1rem 4rem 2rem 4rem;
   }
 
   &__Content {
+    padding: 1.5rem 0;
     text-align: justify;
     line-height: 2.4rem;
     gap: 1rem;
@@ -92,27 +117,38 @@
   }
 
   &__CV {
-    background-color: $primaryColor;
-    border-radius: $borderRadius;
-    padding: 0.2rem 0.6rem;
-    position: relative;
-    display: block;
-    align-self: center;
-    &:link,
-    &:visited {
-      color: #fff;
-    }
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: $border;
 
-    &:hover,
-    &:active {
-      color: #fff;
-    }
+    a {
+      background-color: $primaryColor;
+      border-radius: $borderRadius;
+      padding: 1rem 2rem;
+      position: relative;
+      display: inline-block;
 
-    &::after {
-      content: "👈";
-      position: absolute;
-      font-size: 2rem;
-      animation: pointingFromRight alternate 0.3s infinite both linear;
+      &:link,
+      &:visited {
+        color: #fff;
+      }
+
+      &:hover,
+      &:active {
+        color: #fff;
+      }
+
+      &::after {
+        content: "👈";
+        font-size: 3.2rem;
+        position: absolute;
+        font-size: 2rem;
+        animation: pointingFromRight alternate 0.3s infinite both linear;
+        right: -2rem;
+      }
     }
     // &::before {
     //   content: "👆";

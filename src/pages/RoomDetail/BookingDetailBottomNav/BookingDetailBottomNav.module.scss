@@ -20,6 +20,7 @@
     padding: 1.5rem 3rem;
     border-radius: $borderRadius;
     color: #fff;
+    white-space: nowrap;
   }
 
   &__Info {
@@ -31,11 +32,12 @@
 
     span {
       text-decoration: underline;
+      white-space: nowrap;
     }
 
     &__RoomsAndGuests {
       display: flex;
-      gap: 1.5rem;
+      gap: 1rem;
     }
   }
 }

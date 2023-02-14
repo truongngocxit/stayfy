@@ -4,7 +4,7 @@ import useDropdown from "../../../custom-hooks/useDropdown";
 import LoginDropdown from "./LoginDropdown/LoginDropdown";
 import { useSelector } from "react-redux";
 
-const ProfileButton = function ({ className }) {
+const ProfileButton = function ({ className, loginDropdownStyle }) {
   const {
     dropdownIsVisible,
     containerRef,
@@ -37,7 +37,10 @@ const ProfileButton = function ({ className }) {
         </div>
       </button>
       {dropdownIsVisible && (
-        <LoginDropdown onClickOption={handleCloseDropdown} />
+        <LoginDropdown
+          onClickOption={handleCloseDropdown}
+          loginDropdownStyle={loginDropdownStyle}
+        />
       )}
     </div>
   );

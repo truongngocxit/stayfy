@@ -50,7 +50,7 @@ const BottomNav = function ({ isTransparent = false }) {
         {isSmallerScreen ? (
           <ProfileButton
             loginDropdownStyle={{
-              transform: "translate(60%, -45%)",
+              transform: "translate(60%, -34%)",
             }}
           />
         ) : (

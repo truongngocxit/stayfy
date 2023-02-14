@@ -79,7 +79,7 @@ const RoomMain = function ({
         <LineBreak />
         <AboutHost ref={hostRef} hostInfo={lodgeInfo.host} />
         <LineBreak />
-        <RoomMoreInfo ref={rulesRef} />
+        {/* <RoomMoreInfo ref={rulesRef} /> */}
       </div>
       {!isSmallerScreen && (
         <aside className={roomMain__Aside}>

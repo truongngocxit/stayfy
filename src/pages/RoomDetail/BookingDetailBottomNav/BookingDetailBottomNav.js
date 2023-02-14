@@ -163,7 +163,11 @@ const BookingDetailBottomNav = function ({
       <div className={bookingDetail}>
         <div className={bookingDetail__Info}>
           <div className={bookingDetail__Info__RoomsAndGuests}>
-            <span onClick={onScrollToRoomTypes}>{numOfRoomsLabel}</span>·
+            {totalRooms > 0 && (
+              <>
+                <span onClick={onScrollToRoomTypes}>{numOfRoomsLabel}</span>·
+              </>
+            )}
             <span onClick={handleStartAddingGuestNum}>{guestsLabel}</span>
           </div>
           <span

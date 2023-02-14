@@ -23,9 +23,7 @@ const ReadMeModal = function ({ isVisible, onClose }) {
           <CloseIcon />
         </button>
         <span className={readme__WavingIcon}>👋</span>
-        <h2 className={readme__Heading}>
-          If you're a recruiter, please read me.
-        </h2>
+        <h2 className={readme__Heading}>If you're a recruiter, please read.</h2>
         <div className={readme__Content}>
           <p>
             Hi there! I'm Truong, the one who's behind this website. Here are
@@ -107,14 +105,15 @@ const ReadMeModal = function ({ isVisible, onClose }) {
             </em>
           </p>
         </div>
-        <a
-          href="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/cv%2FCV-large.pdf?alt=media&token=492b0198-d2e1-49c7-9659-f99b6bcef4df"
-          target="_black"
-          rel="noreferrer noopener"
-          className={`${readme__CV}`}
-        >
-          Take a look at my CV.
-        </a>
+        <div className={`${readme__CV}`}>
+          <a
+            href="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/cv%2FCV-large.pdf?alt=media&token=492b0198-d2e1-49c7-9659-f99b6bcef4df"
+            target="_black"
+            rel="noreferrer noopener"
+          >
+            Take a look at my CV.
+          </a>
+        </div>
       </ModalTransition>
       {isVisible &&
         createPortal(
