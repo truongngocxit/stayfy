@@ -4,6 +4,7 @@ export default function Overlay({
   onClick,
   zIndex = 100,
   backgroundOpacity = 0.4,
+  backgroundColor = `rgba(51, 51, 51, ${backgroundOpacity})`,
 }) {
   const { overlay } = styles;
   return (
@@ -12,7 +13,7 @@ export default function Overlay({
       onClick={onClick}
       style={{
         zIndex: zIndex,
-        backgroundColor: `rgba(51, 51, 51, ${backgroundOpacity})`,
+        backgroundColor: backgroundColor,
       }}
     ></div>
   );
