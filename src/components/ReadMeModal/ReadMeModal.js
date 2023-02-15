@@ -107,7 +107,7 @@ const ReadMeModal = function ({ isVisible, onClose }) {
         </div>
         <div className={`${readme__CV}`}>
           <a
-            href="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/cv%2FCV-large.pdf?alt=media&token=492b0198-d2e1-49c7-9659-f99b6bcef4df"
+            href="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/cv%2FCV-NguyenPhuTruong-0912720513.pdf?alt=media&token=57101647-77f6-4bd5-b525-ea8ab69a7e82"
             target="_black"
             rel="noreferrer noopener"
           >
