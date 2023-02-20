@@ -28,6 +28,7 @@ The back-end git source: [API services](https://github.com/truongngocxit/stayfy-
 I am also searching for a React fresher/intern job. I am work-oriented and can self-learn new things quickly. As an ex-marketer, I can also design and write (in both Vietnamese & English) decently. If you have any opportunity, please contact me:
 
 Email: nguyenphutruong1997@gmail.com
+
 Phone: 0912720513
 
 Many thanks,
