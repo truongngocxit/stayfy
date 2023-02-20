@@ -36,7 +36,7 @@ const ReadMeModal = function ({ isVisible, onClose }) {
               date picker, I resorted to{" "}
               <a
                 href="https://ant.design/"
-                target="_black"
+                target="_blank"
                 rel="noreferrer noopener"
                 className={readme__Link}
               >
@@ -48,7 +48,7 @@ const ReadMeModal = function ({ isVisible, onClose }) {
               <strong>Back-end:</strong> I built a simple{" "}
               <a
                 href="https://stayfy-backend-production.up.railway.app/"
-                target="_black"
+                target="_blank"
                 rel="noreferrer noopener"
                 className={readme__Link}
               >
@@ -60,7 +60,7 @@ const ReadMeModal = function ({ isVisible, onClose }) {
               <strong>Database:</strong> I'm using{" "}
               <a
                 href="https://firebase.google.com/docs/firestore"
-                target="_black"
+                target="_blank"
                 rel="noreferrer noopener"
                 className={readme__Link}
               >
@@ -72,7 +72,7 @@ const ReadMeModal = function ({ isVisible, onClose }) {
               <strong>Design:</strong> I basically replicated{" "}
               <a
                 href="https://www.airbnb.com/"
-                target="_black"
+                target="_blank"
                 rel="noreferrer noopener"
                 className={readme__Link}
               >
@@ -86,7 +86,7 @@ const ReadMeModal = function ({ isVisible, onClose }) {
               <strong>Data:</strong> I took all these homestays' images from{" "}
               <a
                 href="https://www.booking.com/"
-                target="_black"
+                target="_blank"
                 rel="noreferrer noopener"
                 className={readme__Link}
               >
@@ -107,8 +107,8 @@ const ReadMeModal = function ({ isVisible, onClose }) {
         </div>
         <div className={`${readme__CV}`}>
           <a
-            href="https://firebasestorage.googleapis.com/v0/b/stayfy-d4fc1.appspot.com/o/cv%2FCV-NguyenPhuTruong-0912720513.pdf?alt=media&token=23b858a2-9a25-4a69-a788-810cd5cd78ee"
-            target="_black"
+            href="https://drive.google.com/file/d/149i34I9Hy0rWUj4_zIghsjxvxP9qJtqq/view"
+            target="_blank"
             rel="noreferrer noopener"
           >
             Take a look at my CV.
