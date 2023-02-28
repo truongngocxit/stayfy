@@ -93,9 +93,9 @@ const StayItemImage = function ({ className, imgs }) {
       onMouseLeave={handleBlurImg}
     >
       {<StayItemImageSkeleton isLoading={!firstImageHasLoaded} />}
-      <button className={itemImage__LikeBtn}>
+      {/* <button className={itemImage__LikeBtn}>
         <HeartIcon />
-      </button>
+      </button> */}
 
       <div className={itemImage__OuterContainer} ref={imagesContainerRef}>
         <div
