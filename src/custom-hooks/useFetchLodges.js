@@ -66,7 +66,15 @@ const useFetchLodges = function () {
         setIsLoading(false);
       }
     },
-    [hasReachedEnd, featureFilter, locationSearch, reduxDispatch, priceRange]
+    [
+      hasReachedEnd,
+      featureFilter,
+      locationSearch,
+      reduxDispatch,
+      priceRange,
+      facilities,
+      typesOfStay,
+    ]
   );
 
   return {
