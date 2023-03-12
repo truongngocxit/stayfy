@@ -18,7 +18,7 @@ const LargeScreenSearchBar = function ({
       </div>
       <div className={searchBar__Guests}>
         <button>
-          {guests.adults
+          {guests.adults > 1
             ? `${guests.adults + guests.children} guests`
             : "For 1 guest"}
         </button>
